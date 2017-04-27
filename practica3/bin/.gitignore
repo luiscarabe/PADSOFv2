@@ -1,5 +1,8 @@
-/es/
-/Emails
-/Emails.txt
+/.classpath
+/.project
+/.settings/
 /Educagram.objectData
+/Emails.txt
 /doc/
+/es/
+/lib/
