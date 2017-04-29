@@ -42,7 +42,7 @@ public class LoginPanel extends JPanel{
 		pswLabel.setLabelFor(pswField);
 		this.logWindow.add(pswField, SpringLayout.VERTICAL_CENTER);
 		this.logWindow.add(enter, SpringLayout.VERTICAL_CENTER);
-		this.logWindow.setBackground(Color.GREEN);
+		this.logWindow.setBackground(Color.decode("#556B2F"));
 		this.setPreferredSize(new Dimension(screenSize.width,screenSize.height));
 		
 		layout.putConstraint(SpringLayout.WEST, this.idLabel, 10, SpringLayout.WEST, this.logWindow);
