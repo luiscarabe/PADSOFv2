@@ -4,6 +4,8 @@
 package es.uam.eps.padsof.p4.inter;
 
 
+import java.awt.*;
+
 import javax.swing.*;
 
 
@@ -12,16 +14,16 @@ import javax.swing.*;
  *
  */
 public class MainFrame extends JFrame{
-	private JFrame educagram;
-	private static final MainFrame Instance = new MainFrame();
+	private static final MainFrame Instance = new MainFrame("Educagram");
+	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	/**
 	 * Private constructor of Educagram, it creates an instance of the
 	 * several ArrayLists
 	 */
 	
-	private MainFrame(){
-		this.educagram = new JFrame("Educagram");
+	private MainFrame(String name){
+		super(name);
 	}
     
 	/**
@@ -32,7 +34,7 @@ public class MainFrame extends JFrame{
 	}
 	
 	public void addPanel(JPanel panel){
-		educagram.add(panel);
+		this.add(panel);
 	}
 	
 	
