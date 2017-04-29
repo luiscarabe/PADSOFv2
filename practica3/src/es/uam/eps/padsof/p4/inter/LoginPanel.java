@@ -21,38 +21,31 @@ public class LoginPanel extends JPanel{
 	private SpringLayout layout2 = new SpringLayout();
 	private ImageIcon image = new ImageIcon("fase2.1.jpg");
 	private JLabel imgLabel = new JLabel(image);
-	private JLabel eastLabel = new JLabel(" ");
-	private JLabel westLabel = new JLabel(" ");
-	private JLabel southLabel = new JLabel(" ");
-	
+
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	
 	public LoginPanel(){
 		imgLabel.setVisible(true);
 		imgLabel.setBounds(15,20,200,200);
-		//eastLabel.setVisible(true);
-		//eastLabel.setBounds(15,20,200,200);
-		//westLabel.setVisible(true);
-		//westLabel.setBounds(15,20,200,200);
-		//southLabel.setVisible(true);
-		//southLabel.setBounds(15,20,200,200);
+		//imgLabel.setPreferredSize(new Dimension(1000,1000));
 
-		this.logWindow.setPreferredSize(new Dimension(600,600));
-		this.logWindow.setMaximumSize(new Dimension(600,600));
-		//this.logWindow.setSize(100, 100);
+		this.logWindow.setPreferredSize(new Dimension(370,100));
+		this.logWindow.setMaximumSize(new Dimension(500,500));
+		
+		//this.logWindow.setBounds(1, 1, 100, 100);
 		this.logWindow.setLayout(layout);
-		this.logWindow.add(idLabel, SpringLayout.HORIZONTAL_CENTER);
-		this.logWindow.add(idField);
+		this.logWindow.add(idLabel, SpringLayout.VERTICAL_CENTER);
+		this.logWindow.add(idField, SpringLayout.VERTICAL_CENTER);
 		idLabel.setLabelFor(idField);
-		this.logWindow.add(pswLabel);
+		this.logWindow.add(pswLabel, SpringLayout.VERTICAL_CENTER);
 		pswLabel.setLabelFor(pswField);
-		this.logWindow.add(pswField);
-		this.logWindow.add(enter);
+		this.logWindow.add(pswField, SpringLayout.VERTICAL_CENTER);
+		this.logWindow.add(enter, SpringLayout.VERTICAL_CENTER);
 		this.logWindow.setBackground(Color.GREEN);
 		this.setPreferredSize(new Dimension(screenSize.width,screenSize.height));
 		
-		//layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.idLabel, 10, SpringLayout.HORIZONTAL_CENTER, this.logWindow);
+		layout.putConstraint(SpringLayout.WEST, this.idLabel, 10, SpringLayout.WEST, this.logWindow);
 		layout.putConstraint(SpringLayout.NORTH, this.idLabel, 10, SpringLayout.NORTH, this.logWindow);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.pswLabel, 15, SpringLayout.SOUTH, this.idLabel);
@@ -65,17 +58,21 @@ public class LoginPanel extends JPanel{
 		layout.putConstraint(SpringLayout.WEST, this.pswField, 10, SpringLayout.EAST, this.pswLabel);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.enter, 10, SpringLayout.SOUTH, this.pswField);
-		layout.putConstraint(SpringLayout.WEST, this.enter, 250, SpringLayout.WEST, this.logWindow);
+		layout.putConstraint(SpringLayout.WEST, this.enter, 150, SpringLayout.WEST, this.logWindow);
 		
 		this.setLayout(layout2);
 		this.setSize(screenSize.width, screenSize.height);
 		this.logWindow.setVisible(true);
-		this.add(this.imgLabel, SpringLayout.HORIZONTAL_CENTER);
-		layout2.putConstraint(SpringLayout.EAST, this.imgLabel, 80, SpringLayout.EAST, this);
-		this.add(this.logWindow, BorderLayout.CENTER);
-		//this.add(this.southLabel, BorderLayout.SOUTH);
-		//this.add(this.eastLabel, BorderLayout.EAST);
-		//this.add(this.westLabel, BorderLayout.WEST);
+		this.add(this.imgLabel);
+		this.add(this.logWindow);
+		
+		layout2.putConstraint(SpringLayout.WEST, this.imgLabel, 300, SpringLayout.WEST, this);
+		layout2.putConstraint(SpringLayout.NORTH, this.imgLabel, 30, SpringLayout.NORTH, this);
+		
+		layout2.putConstraint(SpringLayout.WEST, this.logWindow, 425, SpringLayout.WEST, this);
+		layout2.putConstraint(SpringLayout.NORTH, this.logWindow, 30, SpringLayout.SOUTH, this.imgLabel);
+
+		
 		this.setBackground(Color.WHITE);
 		this.setVisible(true);
 

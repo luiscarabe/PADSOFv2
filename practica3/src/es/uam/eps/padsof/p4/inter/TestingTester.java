@@ -11,10 +11,10 @@ public class TestingTester {
 		LoginPanel lo = new LoginPanel();
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());
-		ma.setContentPane(lo);
-		
+		//ma.setContentPane(lo);
+		ma.add(lo);
 		ma.setVisible(true);
-		ma.setBounds(0,0,ma.screenSize.width,ma.screenSize.height);		
+		ma.setSize(1500,1500);		
 		ma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ma.setVisible(true);
 
