@@ -20,7 +20,7 @@ public class CreateCoursePanel extends JPanel {
 	private JLabel nameLabel = new JLabel("Write the name of the course:");
 	private JLabel descLabel = new JLabel("Write the description of the course:");
 	private JTextField nameField = new JTextField(30);
-	private JTextArea descField = new JTextArea(3, 30);
+	private JTextArea descField = new JTextArea();
 	private JButton ok = new JButton("Create");
 	private JButton cancel = new JButton("Cancel");
 	
@@ -42,56 +42,66 @@ public class CreateCoursePanel extends JPanel {
 		
 		this.imgLabel.setVisible(true);
 		this.imgLabel.setBounds(0,0,200,200);
-		//this.imgLabel.setPreferredSize(new Dimension(100,100));
 		
 		this.creatLabel.setFont(this.creatLabel.getFont().deriveFont(30f));
 		this.professor.setFont(this.professor.getFont().deriveFont(15f));
 		this.signOut.setForeground(Color.RED);
 		
-		this.supPanel.add(imgLabel,SpringLayout.VERTICAL_CENTER);
-		this.supPanel.add(creatLabel,SpringLayout.VERTICAL_CENTER);
-		this.supPanel.add(professor,SpringLayout.VERTICAL_CENTER);
-		this.supPanel.add(signOut,SpringLayout.VERTICAL_CENTER);
+		this.supPanel.add(imgLabel);
+		this.supPanel.add(creatLabel);
+		this.supPanel.add(professor);
+		this.supPanel.add(signOut);
 		
-		layout.putConstraint(SpringLayout.NORTH, this.imgLabel, 10, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.WEST, this.imgLabel, 10, SpringLayout.WEST, this.supPanel);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.imgLabel, 40, SpringLayout.WEST, this.supPanel);
+		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.imgLabel, 40, SpringLayout.NORTH, this.supPanel);
 		
-		layout.putConstraint(SpringLayout.NORTH, this.creatLabel, 20, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.WEST, this.creatLabel, 30, SpringLayout.EAST, this.imgLabel);
+		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.creatLabel, 0, SpringLayout.VERTICAL_CENTER, this.imgLabel);
+		layout.putConstraint(SpringLayout.WEST, this.creatLabel, 10, SpringLayout.EAST, this.imgLabel);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.professor, 5, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.WEST, this.professor, 1100, SpringLayout.WEST, this.supPanel);
+		layout.putConstraint(SpringLayout.EAST, this.professor, 0, SpringLayout.EAST, this.signOut);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.signOut, 40, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.WEST, this.signOut, 1100, SpringLayout.WEST, this.supPanel);
+		layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
 		
 		this.nameLabel.setLabelFor(this.nameField);
-		this.descLabel.setLabelFor(this.descField);
 		
-
-		this.add(this.supPanel, SpringLayout.VERTICAL_CENTER);
-		this.add(this.nameField, SpringLayout.HORIZONTAL_CENTER);
-		this.add(this.descField, SpringLayout.VERTICAL_CENTER);
-		this.add(this.descLabel, SpringLayout.VERTICAL_CENTER);
-		this.add(this.nameLabel, SpringLayout.VERTICAL_CENTER);
-		
+		this.descField.setLineWrap(true);
+		this.descField.setWrapStyleWord(true);
+		JScrollPane textpane = new JScrollPane(this.descField,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		textpane.setPreferredSize(new Dimension(700,300));
+													
+		this.add(textpane);
+		this.add(this.supPanel);
+		this.add(this.nameField);
+		this.add(this.descLabel);
+		this.add(this.nameLabel);
+		this.add(this.ok);
+		this.add(this.cancel);
 	
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
+		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.supPanel, 30, SpringLayout.HORIZONTAL_CENTER, this);
+		layout2.putConstraint(SpringLayout.EAST, this.supPanel, 0, SpringLayout.EAST, this);
 		layout2.putConstraint(SpringLayout.WEST, this.supPanel, 0, SpringLayout.WEST, this);
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.nameLabel, 100, SpringLayout.NORTH, this);
 		layout2.putConstraint(SpringLayout.WEST, this.nameLabel, 10, SpringLayout.WEST, this);
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.nameField, 100, SpringLayout.NORTH, this);
-		layout2.putConstraint(SpringLayout.WEST, this.nameField, 10, SpringLayout.EAST, this.nameLabel);
+		layout2.putConstraint(SpringLayout.WEST, this.nameField, 0, SpringLayout.WEST, textpane);
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.descLabel, 50, SpringLayout.SOUTH, this.nameLabel);
 		layout2.putConstraint(SpringLayout.WEST, this.descLabel, 10, SpringLayout.WEST, this);
 		
-		layout2.putConstraint(SpringLayout.NORTH, this.descField, 50, SpringLayout.NORTH, this.nameField);
-		layout2.putConstraint(SpringLayout.WEST, this.descField, 10, SpringLayout.EAST, this.descLabel);
-
+		layout2.putConstraint(SpringLayout.NORTH, textpane, 50, SpringLayout.NORTH, this.nameField);
+		layout2.putConstraint(SpringLayout.WEST, textpane, 10, SpringLayout.EAST, this.descLabel);
+		
+		layout2.putConstraint(SpringLayout.NORTH, this.cancel, 10, SpringLayout.SOUTH, textpane);
+		layout2.putConstraint(SpringLayout.EAST, this.cancel, 0, SpringLayout.EAST, textpane);
+		
+		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.ok, 0, SpringLayout.VERTICAL_CENTER, this.cancel);
+		layout2.putConstraint(SpringLayout.EAST, this.ok, -10, SpringLayout.WEST, this.cancel);
 		
 
 	}

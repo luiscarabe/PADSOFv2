@@ -53,6 +53,7 @@ public class HomePanelTeacher extends JPanel {
 				strCourses[i] = c.getTitle();
 				i++;
 			}
+			
 			this.listCourses = new JComboBox<String>(strCourses);
 			this.imgLabel.setVisible(true);
 			this.imgLabel.setBounds(0,0,200,200);
@@ -71,11 +72,11 @@ public class HomePanelTeacher extends JPanel {
 			this.supPanel.add(signOut);
 			this.supPanel.add(createCourse);
 			
-			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.imgLabel, 50, SpringLayout.WEST, this.supPanel);
+			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.imgLabel, 40, SpringLayout.WEST, this.supPanel);
 			layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.imgLabel, 40, SpringLayout.NORTH, this.supPanel);
 			
-			layout.putConstraint(SpringLayout.NORTH, this.homeLabel, 20, SpringLayout.NORTH, this.supPanel);
-			layout.putConstraint(SpringLayout.WEST, this.homeLabel, 30, SpringLayout.EAST, this.imgLabel);
+			layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.homeLabel, 0, SpringLayout.VERTICAL_CENTER, this.imgLabel);
+			layout.putConstraint(SpringLayout.WEST, this.homeLabel, 10, SpringLayout.EAST, this.imgLabel);
 			
 			layout.putConstraint(SpringLayout.NORTH, this.courses, 45, SpringLayout.NORTH, this.supPanel);
 			layout.putConstraint(SpringLayout.EAST, this.courses, 0, SpringLayout.WEST, this.listCourses);
@@ -93,10 +94,10 @@ public class HomePanelTeacher extends JPanel {
 			layout.putConstraint(SpringLayout.WEST, this.createCourse, 10, SpringLayout.EAST, this.globalStats);
 			
 			layout.putConstraint(SpringLayout.NORTH, this.professor, 5, SpringLayout.NORTH, this.supPanel);
-			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.professor, 0, SpringLayout.HORIZONTAL_CENTER, this.signOut);
+			layout.putConstraint(SpringLayout.EAST, this.professor, 0, SpringLayout.EAST, this.signOut);
 			
 			layout.putConstraint(SpringLayout.NORTH, this.signOut, 40, SpringLayout.NORTH, this.supPanel);
-			layout.putConstraint(SpringLayout.WEST, this.signOut, (screenSize.width-200) , SpringLayout.WEST, this.supPanel);
+			layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
 			
 			this.noCourse.setFont(this.noCourse.getFont().deriveFont(25f));
 			
@@ -105,6 +106,8 @@ public class HomePanelTeacher extends JPanel {
 			
 			layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.supPanel, 30, SpringLayout.HORIZONTAL_CENTER, this);
+			layout2.putConstraint(SpringLayout.EAST, this.supPanel, 0, SpringLayout.EAST, this);
+			layout2.putConstraint(SpringLayout.WEST, this.supPanel, 0, SpringLayout.WEST, this);
 			
 			layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.noCourse, 0, SpringLayout.VERTICAL_CENTER, this);
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.noCourse, 0, SpringLayout.HORIZONTAL_CENTER, this);

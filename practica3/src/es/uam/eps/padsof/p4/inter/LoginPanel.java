@@ -76,6 +76,30 @@ public class LoginPanel extends JPanel{
 		this.setBackground(Color.WHITE);
 		this.setVisible(true);
 
+		this.setBackground(Color.WHITE);
+		this.setVisible(true);
+
+		// a lo mejor en el main!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		// controller
+		//LoginPanelController controller = new LoginPanelController(this, Educagram.getInstance());
+			// Associate controller to view
+		//	this.setController(controller);
+
+		//}
+			
+		//public void setController(ActionListener c) {
+			//this.enter.addActionListener(c);
+		//}
+		
+		// Get the name of a task from the JTextField
+		//public String getId() {
+			//return this.idField.getText();
+		//}
+		
+		//public String getPsw() {
+			//return this.pswField.getText();
+		//}
+
 		
 	}
 	
