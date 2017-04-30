@@ -5,7 +5,12 @@ package es.uam.eps.padsof.p4.inter;
 
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
+
+import es.uam.eps.padsof.p3.educagram.Educagram;
+import es.uam.eps.padsof.p4.controllers.LoginPanelController;
 /**
  * @author e341020
  *
@@ -76,31 +81,27 @@ public class LoginPanel extends JPanel{
 		this.setBackground(Color.WHITE);
 		this.setVisible(true);
 
-		this.setBackground(Color.WHITE);
-		this.setVisible(true);
-
 		// a lo mejor en el main!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		// controller
-		//LoginPanelController controller = new LoginPanelController(this, Educagram.getInstance());
-			// Associate controller to view
-		//	this.setController(controller);
+		LoginPanelController controller = new LoginPanelController(this, Educagram.getInstance());
+		// Associate controller to view
+		this.setController(controller);
 
-		//}
+		}
 			
-		//public void setController(ActionListener c) {
-			//this.enter.addActionListener(c);
-		//}
+		public void setController(ActionListener c) {
+			this.enter.addActionListener(c);
+		}
 		
 		// Get the name of a task from the JTextField
-		//public String getId() {
-			//return this.idField.getText();
-		//}
+		public String getId() {
+			return this.idField.getText();
+		}
 		
-		//public String getPsw() {
-			//return this.pswField.getText();
-		//}
+		public String getPsw() {
+			return this.pswField.getText();
+		}
 
 		
-	}
 	
 }

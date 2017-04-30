@@ -1,11 +1,15 @@
 package es.uam.eps.padsof.p4.inter;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.course.*;
 import es.uam.eps.padsof.p3.user.*;
+import es.uam.eps.padsof.p4.controllers.HomePanelStudentController;
+import es.uam.eps.padsof.p4.controllers.HomePanelTeacherController;
 
 public class HomePanelStudent extends JPanel{
 
@@ -101,8 +105,15 @@ public class HomePanelStudent extends JPanel{
 		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.noCourse, 0, SpringLayout.VERTICAL_CENTER, this);
 		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.noCourse, 0, SpringLayout.HORIZONTAL_CENTER, this);
 
-		
+		// a lo mejor en el main!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		// controller
+		HomePanelStudentController controller = new HomePanelStudentController(this, Educagram.getInstance());
+		// Associate controller to view
+		this.setController(controller);
 
 	}
 	
+	public void setController(ActionListener c) {
+		this.signOut.addActionListener(c);
+	}
 }
