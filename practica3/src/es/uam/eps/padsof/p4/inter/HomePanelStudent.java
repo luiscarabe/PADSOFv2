@@ -7,14 +7,14 @@ import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.course.*;
 import es.uam.eps.padsof.p3.user.*;
 
-public class HomePanel extends JPanel{
-	
+public class HomePanelStudent extends JPanel{
+
 	//Superior Panel
 	private JPanel supPanel = new JPanel();
-	private ImageIcon image = new ImageIcon("logo.jpg");
+	private ImageIcon image = new ImageIcon("logov3.png");
 	private JLabel imgLabel = new JLabel(image);
 	private JLabel homeLabel = new JLabel("Home page");
-	private JLabel courses = new JLabel("Courses:");
+	private JLabel courses = new JLabel("My courses:");
 	private JComboBox<String> listCourses;
 	private JButton searchCour = new JButton("Search Course");
 	private JButton marks = new JButton ("Marks");
@@ -22,13 +22,17 @@ public class HomePanel extends JPanel{
 	private JButton signOut = new JButton("Sign out");
 	private SpringLayout layout = new SpringLayout();
 	
+	private JLabel noCourse = new JLabel("Welcome back " + Educagram.getInstance().getCurrentUser().getName() +"!\n Please, choose a Course.");
+	private SpringLayout layout2 = new SpringLayout();
+	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	public HomePanel(){
+	public HomePanelStudent(){
 		String[] strCourses = {};
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
-		this.setLayout(new FlowLayout());
+		this.setLayout(layout2);
+		this.setBackground(Color.decode("#98FB98"));
 		
 		this.supPanel.setVisible(true);
 		this.supPanel.setPreferredSize(new Dimension(screenSize.width, 80));
@@ -43,28 +47,32 @@ public class HomePanel extends JPanel{
 		}
 		this.listCourses = new JComboBox<String>(strCourses);
 		this.imgLabel.setVisible(true);
-		this.imgLabel.setBounds(0,0,20,20);
-		this.imgLabel.setPreferredSize(new Dimension(100,100));
+		this.imgLabel.setBounds(0,0,200,200);
 		
 		this.homeLabel.setFont(this.homeLabel.getFont().deriveFont(30f));
+		this.student.setFont(this.student.getFont().deriveFont(15f));
+		this.signOut.setForeground(Color.RED);
 		
-		this.supPanel.add(imgLabel,SpringLayout.VERTICAL_CENTER);
-		this.supPanel.add(homeLabel,SpringLayout.VERTICAL_CENTER);
-		this.supPanel.add(courses,SpringLayout.VERTICAL_CENTER);
-		this.supPanel.add(listCourses,SpringLayout.VERTICAL_CENTER);
-		this.supPanel.add(searchCour,SpringLayout.VERTICAL_CENTER);
-		this.supPanel.add(marks,SpringLayout.VERTICAL_CENTER);
-		this.supPanel.add(student,SpringLayout.VERTICAL_CENTER);
-		this.supPanel.add(signOut,SpringLayout.VERTICAL_CENTER);
+		this.supPanel.add(imgLabel);
+		this.supPanel.add(homeLabel);
+		this.supPanel.add(courses);
+		this.supPanel.add(listCourses);
+		this.supPanel.add(searchCour);
+		this.supPanel.add(marks);
+		this.supPanel.add(student);
+		this.supPanel.add(signOut);
+		
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.imgLabel, 50, SpringLayout.WEST, this.supPanel);
+		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.imgLabel, 40, SpringLayout.NORTH, this.supPanel);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.homeLabel, 20, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.WEST, this.homeLabel, 150, SpringLayout.WEST, this.supPanel);
+		layout.putConstraint(SpringLayout.WEST, this.homeLabel, 30, SpringLayout.EAST, this.imgLabel);
 		
-		layout.putConstraint(SpringLayout.NORTH, this.courses, 40, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.WEST, this.courses, 100, SpringLayout.EAST, this.homeLabel);
+		layout.putConstraint(SpringLayout.NORTH, this.courses, 45, SpringLayout.NORTH, this.supPanel);
+		layout.putConstraint(SpringLayout.EAST, this.courses, 0, SpringLayout.WEST, this.listCourses);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.listCourses, 40, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.WEST, this.listCourses, 5, SpringLayout.EAST, this.courses);
+		layout.putConstraint(SpringLayout.EAST, this.listCourses, 0, SpringLayout.HORIZONTAL_CENTER, this.supPanel);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.searchCour, 40, SpringLayout.NORTH, this.supPanel);
 		layout.putConstraint(SpringLayout.WEST, this.searchCour, 10, SpringLayout.EAST, this.listCourses);
@@ -73,15 +81,24 @@ public class HomePanel extends JPanel{
 		layout.putConstraint(SpringLayout.WEST, this.marks, 10, SpringLayout.EAST, this.searchCour);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.student, 5, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.WEST, this.student, 200, SpringLayout.EAST, this.courses);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.student, 0, SpringLayout.HORIZONTAL_CENTER, this.signOut);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.signOut, 40, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.WEST, this.signOut, 200, SpringLayout.EAST, this.marks);
+		layout.putConstraint(SpringLayout.WEST, this.signOut, (screenSize.width-200) , SpringLayout.WEST, this.supPanel);
 		
-		layout.putConstraint(SpringLayout.NORTH, this.imgLabel, 0, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.WEST, this.imgLabel, 0, SpringLayout.WEST, this.supPanel);
+		this.noCourse.setFont(this.noCourse.getFont().deriveFont(25f));
 		
+
 		this.add(this.supPanel);
+		this.add(this.noCourse);
+		
+		
+		layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
+		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.supPanel, 30, SpringLayout.HORIZONTAL_CENTER, this);
+		
+		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.noCourse, 0, SpringLayout.VERTICAL_CENTER, this);
+		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.noCourse, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
 		
 
 	}

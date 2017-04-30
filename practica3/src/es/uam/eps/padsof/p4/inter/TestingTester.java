@@ -12,7 +12,7 @@ public class TestingTester {
 	public static void main(String[] args) {
 		Educagram.getInstance().setCurrentUser(new Student("Paco", "PAco", "Paco"));
 		MainFrame ma = MainFrame.getInstance();
-		HomePanel lo = new HomePanel();
+		HomePanelTeacher lo = new HomePanelTeacher();
 		
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());
