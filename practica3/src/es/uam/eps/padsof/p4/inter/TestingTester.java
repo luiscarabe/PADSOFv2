@@ -24,6 +24,14 @@ public class TestingTester {
 		ArrayList<String> ar = new ArrayList<String>();
 		ar.add("Hola");
 		ar.add("Adios");
+		ar.add("Hola");
+		ar.add("Adios");
+		ar.add("Hola");
+		ar.add("Adios");
+		ar.add("Hola");
+		ar.add("Adios");
+		ar.add("Hola");
+		ar.add("Adios");
 		SearchCourStudentPanel lo = new SearchCourStudentPanel("Hola", ar, ar, ar );
 		
 		//Container container = ma.getContentPane();

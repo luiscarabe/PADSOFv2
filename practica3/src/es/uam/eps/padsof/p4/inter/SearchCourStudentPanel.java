@@ -31,15 +31,18 @@ public class SearchCourStudentPanel extends JPanel{
 		JList<String> applyList;
 		private JLabel applyLabel = new JLabel("Apply for:");
 		private JButton applyButton = new JButton("Apply");
+		private JScrollPane applyPane;
 		
 		private DefaultListModel<String> enrolModel = new DefaultListModel<String>();
 		JList<String> enrolList;
 		private JLabel enrolLabel = new JLabel("Your courses:");
+		private JScrollPane enrolPane = new JScrollPane(this.enrolList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		private DefaultListModel<String> appliedModel = new DefaultListModel<String>();
 		JList<String> appliedList;
 		private JLabel appliedLabel = new JLabel("Your applications:");
 		private JButton appliedButton = new JButton("Cancel");
+		private JScrollPane appliedPane = new JScrollPane(this.appliedList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		private JLabel searchLabel = new JLabel("Search Course:");
 		private JTextField searchField = new JTextField(20);
@@ -116,29 +119,33 @@ public class SearchCourStudentPanel extends JPanel{
 				this.enrolModel.addElement(s);
 			}
 			this.enrolList = new JList<String>(enrolModel);
-			this.enrolList.setPreferredSize(new Dimension(100,100));
+			this.enrolPane = new JScrollPane(this.enrolList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			this.enrolPane.setPreferredSize(new Dimension(100,100));
 			this.enrolList.setBackground(Color.decode("#6495ED"));
+			
 			
 			for(String s: applyCour){
 				this.applyModel.addElement(s);
 			}
 			this.applyList = new JList<String>(applyModel);
-			this.applyList.setPreferredSize(new Dimension(100,100));
+			this.applyPane = new JScrollPane(this.applyList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			this.applyPane.setPreferredSize(new Dimension(100,100));
 			this.applyList.setBackground(Color.decode("#6495ED"));
 			
 			for(String s: appliedCour){
 				this.appliedModel.addElement(s);
 			}
 			this.appliedList = new JList<String>(appliedModel);
-			this.appliedList.setPreferredSize(new Dimension(100,100));
+			this.appliedPane = new JScrollPane(this.appliedList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			this.appliedPane.setPreferredSize(new Dimension(100,100));
 			this.appliedList.setBackground(Color.decode("#6495ED"));
 			
 			this.searchLabel.setLabelFor(this.searchField);
 			
 			this.add(this.supPanel);
-			this.add(this.enrolList);
-			this.add(this.applyList);
-			this.add(this.appliedList);
+			this.add(this.enrolPane);
+			this.add(this.applyPane);
+			this.add(this.appliedPane);
 			this.add(this.appliedLabel);
 			this.add(this.applyLabel);
 			this.add(this.enrolLabel);
@@ -155,35 +162,35 @@ public class SearchCourStudentPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.EAST, this.supPanel, 0, SpringLayout.EAST, this);
 			layout2.putConstraint(SpringLayout.WEST, this.supPanel, 0, SpringLayout.WEST, this);
 			
-			layout2.putConstraint(SpringLayout.WEST, this.enrolList, 100, SpringLayout.WEST, this);
-			layout2.putConstraint(SpringLayout.NORTH, this.enrolList, 150, SpringLayout.NORTH, this);
+			layout2.putConstraint(SpringLayout.WEST, this.enrolPane, 100, SpringLayout.WEST, this);
+			layout2.putConstraint(SpringLayout.NORTH, this.enrolPane, 150, SpringLayout.NORTH, this);
 			
-			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.enrolLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.enrolList);
-			layout2.putConstraint(SpringLayout.SOUTH, this.enrolLabel, -10, SpringLayout.NORTH, this.enrolList);	
+			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.enrolLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.enrolPane);
+			layout2.putConstraint(SpringLayout.SOUTH, this.enrolLabel, -10, SpringLayout.NORTH, this.enrolPane);	
 			
-			layout2.putConstraint(SpringLayout.WEST, this.applyList, 300, SpringLayout.WEST, this);
-			layout2.putConstraint(SpringLayout.NORTH, this.applyList, 0, SpringLayout.NORTH, this.enrolList);
+			layout2.putConstraint(SpringLayout.WEST, this.applyPane, 300, SpringLayout.WEST, this);
+			layout2.putConstraint(SpringLayout.NORTH, this.applyPane, 0, SpringLayout.NORTH, this.enrolPane);
 			
-			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.applyLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.applyList);
-			layout2.putConstraint(SpringLayout.SOUTH, this.applyLabel, -10, SpringLayout.NORTH, this.applyList);
+			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.applyLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.applyPane);
+			layout2.putConstraint(SpringLayout.SOUTH, this.applyLabel, -10, SpringLayout.NORTH, this.applyPane);
 			
-			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.applyButton, 0, SpringLayout.HORIZONTAL_CENTER, this.applyList);
-			layout2.putConstraint(SpringLayout.NORTH, this.applyButton, 10, SpringLayout.SOUTH, this.applyList);
+			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.applyButton, 0, SpringLayout.HORIZONTAL_CENTER, this.applyPane);
+			layout2.putConstraint(SpringLayout.NORTH, this.applyButton, 10, SpringLayout.SOUTH, this.applyPane);
 		
-			layout2.putConstraint(SpringLayout.WEST, this.appliedList, 500, SpringLayout.WEST, this);
-			layout2.putConstraint(SpringLayout.NORTH, this.appliedList, 0, SpringLayout.NORTH, this.enrolList);
+			layout2.putConstraint(SpringLayout.WEST, this.appliedPane, 500, SpringLayout.WEST, this);
+			layout2.putConstraint(SpringLayout.NORTH, this.appliedPane, 0, SpringLayout.NORTH, this.enrolPane);
 			
-			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.appliedLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.appliedList);
-			layout2.putConstraint(SpringLayout.SOUTH, this.appliedLabel, -10, SpringLayout.NORTH, this.appliedList);
+			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.appliedLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.appliedPane);
+			layout2.putConstraint(SpringLayout.SOUTH, this.appliedLabel, -10, SpringLayout.NORTH, this.appliedPane);
 			
-			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.appliedButton, 0, SpringLayout.HORIZONTAL_CENTER, this.appliedList);
-			layout2.putConstraint(SpringLayout.NORTH, this.appliedButton, 10, SpringLayout.SOUTH, this.appliedList);
+			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.appliedButton, 0, SpringLayout.HORIZONTAL_CENTER, this.appliedPane);
+			layout2.putConstraint(SpringLayout.NORTH, this.appliedButton, 10, SpringLayout.SOUTH, this.appliedPane);
 			
 			layout2.putConstraint(SpringLayout.WEST, this.searchLabel, 800, SpringLayout.WEST, this);
-			layout2.putConstraint(SpringLayout.NORTH, this.searchLabel, 0, SpringLayout.NORTH, this.enrolList);
+			layout2.putConstraint(SpringLayout.NORTH, this.searchLabel, 0, SpringLayout.NORTH, this.enrolPane);
 			
 			layout2.putConstraint(SpringLayout.WEST, this.searchField, 10, SpringLayout.EAST, this.searchLabel);
-			layout2.putConstraint(SpringLayout.NORTH, this.searchField, 0, SpringLayout.NORTH, this.enrolList);
+			layout2.putConstraint(SpringLayout.NORTH, this.searchField, 0, SpringLayout.NORTH, this.enrolPane);
 			
 			layout2.putConstraint(SpringLayout.WEST, this.searchButton, 0, SpringLayout.WEST, this.searchField);
 			layout2.putConstraint(SpringLayout.NORTH, this.searchButton, 10, SpringLayout.SOUTH, this.searchField);
