@@ -20,7 +20,7 @@ public class HomePanelStudent extends JPanel{
 	private JLabel homeLabel = new JLabel("Home page");
 	private JLabel courses = new JLabel("My courses:");
 	private JComboBox<String> listCourses;
-	private JButton searchCour = new JButton("Search Course");
+	private JButton searchCour = new JButton("All Courses");
 	private JButton marks = new JButton ("Marks");
 	private JLabel student;
 	private JButton signOut = new JButton("Sign out");

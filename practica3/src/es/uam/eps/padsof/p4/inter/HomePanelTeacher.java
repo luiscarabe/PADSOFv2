@@ -4,12 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SpringLayout;
+import javax.swing.*;
 
 
 import es.uam.eps.padsof.p3.course.Course;
@@ -77,6 +72,7 @@ public class HomePanelTeacher extends JPanel {
 			this.supPanel.add(signOut);
 			this.supPanel.add(createCourse);
 			
+			
 			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.imgLabel, 40, SpringLayout.WEST, this.supPanel);
 			layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.imgLabel, 40, SpringLayout.NORTH, this.supPanel);
 			
@@ -123,12 +119,121 @@ public class HomePanelTeacher extends JPanel {
 		
 		public void addCourse(String name){
 			strCourses = Arrays.copyOf(strCourses, strCourses.length+1);
-			strCourses[strCourses.length] = name;
+			strCourses[strCourses.length - 1] = name;
 			this.listCourses.addItem(name);
+			this.listCourses.setSelectedItem(null);
 		}
 		
 		public void setController(ActionListener c) {
 			this.signOut.addActionListener(c);
+			this.createCourse.addActionListener(c);
 		}
+
+		/**
+		 * @return the supPanel
+		 */
+		public JPanel getSupPanel() {
+			return supPanel;
+		}
+
+		/**
+		 * @return the image
+		 */
+		public ImageIcon getImage() {
+			return image;
+		}
+
+		/**
+		 * @return the imgLabel
+		 */
+		public JLabel getImgLabel() {
+			return imgLabel;
+		}
+
+		/**
+		 * @return the homeLabel
+		 */
+		public JLabel getHomeLabel() {
+			return homeLabel;
+		}
+
+		/**
+		 * @return the courses
+		 */
+		public JLabel getCourses() {
+			return courses;
+		}
+
+		/**
+		 * @return the listCourses
+		 */
+		public JComboBox<String> getListCourses() {
+			return listCourses;
+		}
+
+		/**
+		 * @return the searchCour
+		 */
+		public JButton getSearchCour() {
+			return searchCour;
+		}
+
+		/**
+		 * @return the globalStats
+		 */
+		public JButton getGlobalStats() {
+			return globalStats;
+		}
+
+		/**
+		 * @return the createCourse
+		 */
+		public JButton getCreateCourse() {
+			return createCourse;
+		}
+
+		/**
+		 * @return the professor
+		 */
+		public JLabel getProfessor() {
+			return professor;
+		}
+
+		/**
+		 * @return the signOut
+		 */
+		public JButton getSignOut() {
+			return signOut;
+		}
+
+		/**
+		 * @return the layout
+		 */
+		public SpringLayout getLayout() {
+			return layout;
+		}
+
+		/**
+		 * @return the strCourses
+		 */
+		public String[] getStrCourses() {
+			return strCourses;
+		}
+
+		/**
+		 * @return the noCourse
+		 */
+		public JLabel getNoCourse() {
+			return noCourse;
+		}
+
+		/**
+		 * @return the layout2
+		 */
+		public SpringLayout getLayout2() {
+			return layout2;
+		}
+		
+		
 
 }

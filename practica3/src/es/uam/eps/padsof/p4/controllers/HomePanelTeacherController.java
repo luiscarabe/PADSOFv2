@@ -4,12 +4,14 @@
 package es.uam.eps.padsof.p4.controllers;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
+import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.educagram.Educagram;
-import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
-import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p3.user.Student;
+import es.uam.eps.padsof.p4.inter.*;
 
 
 /**
@@ -32,18 +34,27 @@ public class HomePanelTeacherController implements ActionListener{
 		JPanel newview;
 		JComponent source = (JComponent) e.getSource();
 		
-		try{
-			
-			Educagram.getInstance().signOut();
-			
-			
-			newview = MainFrame.getInstance().getLp();
+		if(source == this.view.getSignOut()){
+			try{
+				
+				Educagram.getInstance().signOut();
+				
+				
+				newview = MainFrame.getInstance().getLp();
+				MainFrame.getInstance().setContentPane(newview);
+				newview.setVisible(true);
+				view.setVisible(false);
+				return;
+			}catch(Exception ex){
+				System.out.println(ex.getMessage());
+			}
+		}else if(source == this.view.getCreateCourse()){
+			MainFrame.getInstance().setCcp(new CreateCoursePanel());
+			newview = MainFrame.getInstance().getCcp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
-		}catch(Exception ex){
-			System.out.println(ex.getMessage());
 		}
 		
 	}

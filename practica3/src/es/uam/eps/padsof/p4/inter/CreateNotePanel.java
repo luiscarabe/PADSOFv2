@@ -1,6 +1,7 @@
 package es.uam.eps.padsof.p4.inter;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -116,4 +117,31 @@ public class CreateNotePanel extends JPanel{
 		
 
 	}
+	
+	public void setController(ActionListener c) {
+		this.signOut.addActionListener(c);
+		this.ok.addActionListener(c);
+		this.cancel.addActionListener(c);
+	}
+
+	public JButton getSignOut() {
+		return signOut;
+	}
+
+	public String getDesc() {
+		return descField.getText();
+	}
+
+	public String getContent() {
+		return contentField.getText();
+	}
+
+	public JButton getOk() {
+		return ok;
+	}
+
+	public JButton getCancel() {
+		return cancel;
+	}
+
 }

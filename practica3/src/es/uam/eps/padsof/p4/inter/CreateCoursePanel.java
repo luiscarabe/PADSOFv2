@@ -3,6 +3,7 @@ package es.uam.eps.padsof.p4.inter;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -105,4 +106,118 @@ public class CreateCoursePanel extends JPanel {
 		
 
 	}
+	
+	public void setController(ActionListener c) {
+		this.signOut.addActionListener(c);
+		this.ok.addActionListener(c);
+		this.cancel.addActionListener(c);
+	}
+	
+	public String getName() {
+		return this.nameField.getText();
+	}
+	
+	public String getDesc() {
+		return this.descField.getText();
+	}
+
+	/**
+	 * @return the supPanel
+	 */
+	public JPanel getSupPanel() {
+		return supPanel;
+	}
+
+	/**
+	 * @return the image
+	 */
+	public ImageIcon getImage() {
+		return image;
+	}
+
+	/**
+	 * @return the imgLabel
+	 */
+	public JLabel getImgLabel() {
+		return imgLabel;
+	}
+
+	/**
+	 * @return the creatLabel
+	 */
+	public JLabel getCreatLabel() {
+		return creatLabel;
+	}
+
+	/**
+	 * @return the professor
+	 */
+	public JLabel getProfessor() {
+		return professor;
+	}
+
+	/**
+	 * @return the signOut
+	 */
+	public JButton getSignOut() {
+		return signOut;
+	}
+
+	/**
+	 * @return the layout
+	 */
+	public SpringLayout getLayout() {
+		return layout;
+	}
+
+	/**
+	 * @return the nameLabel
+	 */
+	public JLabel getNameLabel() {
+		return nameLabel;
+	}
+
+	/**
+	 * @return the descLabel
+	 */
+	public JLabel getDescLabel() {
+		return descLabel;
+	}
+
+	/**
+	 * @return the nameField
+	 */
+	public JTextField getNameField() {
+		return nameField;
+	}
+
+	/**
+	 * @return the descField
+	 */
+	public JTextArea getDescField() {
+		return descField;
+	}
+
+	/**
+	 * @return the ok
+	 */
+	public JButton getOk() {
+		return ok;
+	}
+
+	/**
+	 * @return the cancel
+	 */
+	public JButton getCancel() {
+		return cancel;
+	}
+
+	/**
+	 * @return the layout2
+	 */
+	public SpringLayout getLayout2() {
+		return layout2;
+	}
+	
+	
 }

@@ -30,12 +30,16 @@ public class MainFrame extends JFrame{
 	private LoginPanel lp = new LoginPanel();
 	private HomePanelTeacher hpt = new HomePanelTeacher((ArrayList<Course>)Educagram.getInstance().getCourses());
 	private HomePanelStudent hps;
+	private CreateCoursePanel ccp;
+	private CreateNotePanel cnp;
 	
 	//estos dos a lo mejor se pueden hacer en el controller "anterior" check this.constructor
 	private LoginPanelController lpc = new LoginPanelController(lp);
 	private HomePanelTeacherController hptc = new HomePanelTeacherController(hpt);
 	
 	private HomePanelStudentController hpsc;
+	private CreateCoursePanelController ccpc;
+	private CreateNotePanelController cnpc;
 	
 	
 	/**
@@ -114,6 +118,46 @@ public class MainFrame extends JFrame{
 		this.hpsc = new HomePanelStudentController(hps);
 		hps.setController(this.hpsc);
 		this.hps = hps;
+	}
+
+
+
+	/**
+	 * @return the ccp
+	 */
+	public CreateCoursePanel getCcp() {
+		return ccp;
+	}
+
+
+
+	/**
+	 * @param ccp the ccp to set
+	 */
+	public void setCcp(CreateCoursePanel ccp) {
+		this.ccpc = new CreateCoursePanelController(ccp);
+		ccp.setController(this.ccpc);
+		this.ccp = ccp;
+	}
+
+
+
+	/**
+	 * @return the cnp
+	 */
+	public CreateNotePanel getCnp() {
+		return cnp;
+	}
+
+
+
+	/**
+	 * @param cnp the cnp to set
+	 */
+	public void setCnp(CreateNotePanel cnp) {
+		this.cnpc = new CreateNotePanelController(cnp);
+		cnp.setController(this.cnpc);
+		this.cnp = cnp;
 	}
 	
 	

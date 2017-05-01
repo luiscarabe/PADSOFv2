@@ -21,7 +21,10 @@ public class TestingTester {
 		ArrayList<Course> lcour = new ArrayList<Course>();
 		lcour.add(new Course("ADSOFdfffffffffffffffffffffffffffffffffffffffffffffffffffffffff", "IS THE BEST"));
 		((Student)edu.getCurrentUser()).setEnrolledCourses(lcour);
-		CreateNotePanel lo = new CreateNotePanel ();
+		ArrayList<String> ar = new ArrayList<String>();
+		ar.add("Hola");
+		ar.add("Adios");
+		SearchCourStudentPanel lo = new SearchCourStudentPanel("Hola", ar, ar, ar );
 		
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());
