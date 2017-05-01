@@ -8,6 +8,12 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.educagram.Educagram;
+import es.uam.eps.padsof.p4.controllers.*;
+
+import java.util.*;
+
 
 /**
  * @author yo
@@ -21,9 +27,16 @@ public class MainFrame extends JFrame{
 	private static final MainFrame Instance = new MainFrame("Educagram");
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	LoginPanel lp = new LoginPanel();
-	HomePanelTeacher hpt = new HomePanelTeacher();
-	HomePanelStudent hps;
+	private LoginPanel lp = new LoginPanel();
+	private HomePanelTeacher hpt = new HomePanelTeacher((ArrayList<Course>)Educagram.getInstance().getCourses());
+	private HomePanelStudent hps;
+	
+	//estos dos a lo mejor se pueden hacer en el controller "anterior" check this.constructor
+	private LoginPanelController lpc = new LoginPanelController(lp);
+	private HomePanelTeacherController hptc = new HomePanelTeacherController(hpt);
+	
+	private HomePanelStudentController hpsc;
+	
 	
 	/**
 	 * Private constructor of Educagram, it creates an instance of the
@@ -32,6 +45,8 @@ public class MainFrame extends JFrame{
 	
 	private MainFrame(String name){
 		super(name);
+		this.lp.setController(lpc);
+		this.hpt.setController(hptc);
 	}
     
 	
@@ -96,6 +111,8 @@ public class MainFrame extends JFrame{
 	 * @param hps the hps to set
 	 */
 	public void setHps(HomePanelStudent hps) {
+		this.hpsc = new HomePanelStudentController(hps);
+		hps.setController(this.hpsc);
 		this.hps = hps;
 	}
 	

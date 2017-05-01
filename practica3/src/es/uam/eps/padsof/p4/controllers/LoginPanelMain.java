@@ -17,10 +17,9 @@ public class LoginPanelMain {
 	public static void main(String[] args) {
 		Educagram model = Educagram.getInstance();
 		MainFrame ma = MainFrame.getInstance();
-		LoginPanel lo = new LoginPanel();
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());
-		ma.setContentPane(lo);
+		ma.setContentPane(ma.getLp());
 		
 		ma.setBounds(0,0,MainFrame.screenSize.width, MainFrame.screenSize.height);		
 		ma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,21 +1,27 @@
 package es.uam.eps.padsof.p4.inter;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
+import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.user.*;
 
 public class TestingTester {
 
 	public static void main(String[] args) {
-		Educagram.getInstance().setCurrentUser(new Professor("Paco", "PAco", "Paco"));
-		Professor p = (Professor) Educagram.getInstance().getCurrentUser();
-		p.createCourse("Manolo", "Interesante");
-		System.out.println(Educagram.getInstance().getCourses().get(0));
+		Educagram edu = Educagram.getInstance();
+		edu.setCurrentUser(new Student("Paco", "PAco", "Paco"));
+		//Professor p = (Professor) Educagram.getInstance().getCurrentUser();
+		//p.createCourse("Manolo", "Interesante");
+		//System.out.println(Educagram.getInstance().getCourses().get(0));
 		MainFrame ma = MainFrame.getInstance();
-		HomePanelTeacher lo = new HomePanelTeacher();
+		ArrayList<Course> lcour = new ArrayList<Course>();
+		lcour.add(new Course("ADSOFdfffffffffffffffffffffffffffffffffffffffffffffffffffffffff", "IS THE BEST"));
+		((Student)edu.getCurrentUser()).setEnrolledCourses(lcour);
+		CreateNotePanel lo = new CreateNotePanel ();
 		
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());

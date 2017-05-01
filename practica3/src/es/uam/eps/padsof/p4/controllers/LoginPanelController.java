@@ -8,11 +8,13 @@ package es.uam.eps.padsof.p4.controllers;
 import es.uam.eps.padsof.p4.inter.HomePanelStudent;
 import es.uam.eps.padsof.p4.inter.LoginPanel;
 import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.educagram.*;
 import es.uam.eps.padsof.p3.user.Student;
 import es.uam.eps.padsof.p3.user.User;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -25,9 +27,9 @@ public class LoginPanelController implements ActionListener{
 	
 	private LoginPanel view;
 	private Educagram edu = Educagram.getInstance();
-	public LoginPanelController(LoginPanel view, Educagram model) {
+	public LoginPanelController(LoginPanel view) {
 		this.view = view;
-		this.edu = model;
+		this.edu = Educagram.getInstance();
 	}
 	
 	
@@ -57,8 +59,9 @@ public class LoginPanelController implements ActionListener{
 				MainFrame.getInstance().setContentPane(newview);
 				newview.setVisible(true);
 				view.setVisible(false);
+				return;
 			}
-			MainFrame.getInstance().setHps(new HomePanelStudent());
+			MainFrame.getInstance().setHps(new HomePanelStudent(current.getName(), (ArrayList<Course>)((Student)current).getEnrolledCourses()));
 			newview = MainFrame.getInstance().getHps();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);

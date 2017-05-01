@@ -13,9 +13,9 @@ private static final long serialVersionUID = 1L;
 	
 	private HomePanelStudent view;
 	private Educagram edu = Educagram.getInstance();
-	public HomePanelStudentController(HomePanelStudent view, Educagram model) {
+	public HomePanelStudentController(HomePanelStudent view) {
 		this.view = view;
-		this.edu = model;
+		this.edu = Educagram.getInstance();
 	}
 	
 	@Override
