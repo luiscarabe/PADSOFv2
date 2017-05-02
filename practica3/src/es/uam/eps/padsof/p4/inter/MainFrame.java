@@ -32,6 +32,7 @@ public class MainFrame extends JFrame{
 	private HomePanelStudent hps;
 	private CreateCoursePanel ccp;
 	private CreateNotePanel cnp;
+	private SearchCourStudentPanel scsp;
 	
 	//estos dos a lo mejor se pueden hacer en el controller "anterior" check this.constructor
 	private LoginPanelController lpc = new LoginPanelController(lp);
@@ -40,6 +41,7 @@ public class MainFrame extends JFrame{
 	private HomePanelStudentController hpsc;
 	private CreateCoursePanelController ccpc;
 	private CreateNotePanelController cnpc;
+	private SearchCourStudentPanelController scspc;
 	
 	
 	/**
@@ -159,6 +161,27 @@ public class MainFrame extends JFrame{
 		cnp.setController(this.cnpc);
 		this.cnp = cnp;
 	}
+
+
+
+	/**
+	 * @return the scsp
+	 */
+	public SearchCourStudentPanel getScsp() {
+		return scsp;
+	}
+
+
+
+	/**
+	 * @param scsp the scsp to set
+	 */
+	public void setScsp(SearchCourStudentPanel scsp) {
+		this.scspc = new SearchCourStudentPanelController(scsp);
+		scsp.setController(this.scspc);
+		this.scsp = scsp;
+	}
+	
 	
 	
 }

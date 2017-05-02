@@ -24,7 +24,6 @@ public class CreateNotePanelController implements ActionListener{
 	
 	public CreateNotePanelController(CreateNotePanel view) {
 		this.view = view;
-		this.edu = Educagram.getInstance();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

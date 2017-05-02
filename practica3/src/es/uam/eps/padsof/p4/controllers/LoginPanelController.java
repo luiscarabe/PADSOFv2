@@ -29,7 +29,6 @@ public class LoginPanelController implements ActionListener{
 	private Educagram edu = Educagram.getInstance();
 	public LoginPanelController(LoginPanel view) {
 		this.view = view;
-		this.edu = Educagram.getInstance();
 	}
 	
 	

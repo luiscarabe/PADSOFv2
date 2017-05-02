@@ -28,7 +28,6 @@ public class CreateUnitPanelController implements ActionListener{
 	
 	public CreateUnitPanelController(CreateNotePanel view) {
 		this.view = view;
-		this.edu = Educagram.getInstance();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

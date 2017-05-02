@@ -114,5 +114,100 @@ public class HomePanelStudent extends JPanel{
 	
 	public void setController(ActionListener c) {
 		this.signOut.addActionListener(c);
+		this.searchCour.addActionListener(c);
 	}
+
+	/**
+	 * @return the supPanel
+	 */
+	public JPanel getSupPanel() {
+		return supPanel;
+	}
+
+	/**
+	 * @return the image
+	 */
+	public ImageIcon getImage() {
+		return image;
+	}
+
+	/**
+	 * @return the imgLabel
+	 */
+	public JLabel getImgLabel() {
+		return imgLabel;
+	}
+
+	/**
+	 * @return the homeLabel
+	 */
+	public JLabel getHomeLabel() {
+		return homeLabel;
+	}
+
+	/**
+	 * @return the courses
+	 */
+	public JLabel getCourses() {
+		return courses;
+	}
+
+	/**
+	 * @return the listCourses
+	 */
+	public JComboBox<String> getListCourses() {
+		return listCourses;
+	}
+
+	/**
+	 * @return the searchCour
+	 */
+	public JButton getSearchCour() {
+		return searchCour;
+	}
+
+	/**
+	 * @return the marks
+	 */
+	public JButton getMarks() {
+		return marks;
+	}
+
+	/**
+	 * @return the student
+	 */
+	public JLabel getStudent() {
+		return student;
+	}
+
+	/**
+	 * @return the signOut
+	 */
+	public JButton getSignOut() {
+		return signOut;
+	}
+
+	/**
+	 * @return the layout
+	 */
+	public SpringLayout getLayout() {
+		return layout;
+	}
+
+	/**
+	 * @return the noCourse
+	 */
+	public JLabel getNoCourse() {
+		return noCourse;
+	}
+
+	/**
+	 * @return the layout2
+	 */
+	public SpringLayout getLayout2() {
+		return layout2;
+	}
+	
+	
+	
 }
