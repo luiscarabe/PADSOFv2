@@ -20,7 +20,6 @@ public class HomePanelTeacher extends JPanel {
 		private JLabel courses = new JLabel("All courses:");
 		private JComboBox<String> listCourses;
 		private JButton searchCour = new JButton("Search Course");
-		private JButton globalStats = new JButton ("Global Statistics");
 		private JButton createCourse = new JButton ("Create Course");
 		private JLabel professor = new JLabel("Professor");
 		private JButton signOut = new JButton("Sign out");
@@ -67,7 +66,6 @@ public class HomePanelTeacher extends JPanel {
 			this.supPanel.add(courses);
 			this.supPanel.add(listCourses);
 			this.supPanel.add(searchCour);
-			this.supPanel.add(globalStats);
 			this.supPanel.add(professor);
 			this.supPanel.add(signOut);
 			this.supPanel.add(createCourse);
@@ -88,11 +86,8 @@ public class HomePanelTeacher extends JPanel {
 			layout.putConstraint(SpringLayout.NORTH, this.searchCour, 40, SpringLayout.NORTH, this.supPanel);
 			layout.putConstraint(SpringLayout.WEST, this.searchCour, 10, SpringLayout.EAST, this.listCourses);
 			
-			layout.putConstraint(SpringLayout.NORTH, this.globalStats, 40, SpringLayout.NORTH, this.supPanel);
-			layout.putConstraint(SpringLayout.WEST, this.globalStats, 10, SpringLayout.EAST, this.searchCour);
-			
 			layout.putConstraint(SpringLayout.NORTH, this.createCourse, 40, SpringLayout.NORTH, this.supPanel);
-			layout.putConstraint(SpringLayout.WEST, this.createCourse, 10, SpringLayout.EAST, this.globalStats);
+			layout.putConstraint(SpringLayout.WEST, this.createCourse, 10, SpringLayout.EAST, this.searchCour);
 			
 			layout.putConstraint(SpringLayout.NORTH, this.professor, 5, SpringLayout.NORTH, this.supPanel);
 			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.professor, 0, SpringLayout.HORIZONTAL_CENTER, this.signOut);
@@ -176,13 +171,6 @@ public class HomePanelTeacher extends JPanel {
 		 */
 		public JButton getSearchCour() {
 			return searchCour;
-		}
-
-		/**
-		 * @return the globalStats
-		 */
-		public JButton getGlobalStats() {
-			return globalStats;
 		}
 
 		/**

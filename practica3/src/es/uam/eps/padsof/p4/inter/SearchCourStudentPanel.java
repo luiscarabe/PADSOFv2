@@ -119,8 +119,8 @@ public class SearchCourStudentPanel extends JPanel{
 			layout.putConstraint(SpringLayout.NORTH, this.signOut, 40, SpringLayout.NORTH, this.supPanel);
 			layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
 			
-			Font font = this.enrolLabel.getFont();
-			Map attributes = font.getAttributes();
+
+			Map attributes = this.enrolLabel.getFont().getAttributes();
 			attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 			
 			
@@ -130,8 +130,8 @@ public class SearchCourStudentPanel extends JPanel{
 			this.enrolList = new JList<String>(enrolModel);
 			this.enrolPane = new JScrollPane(this.enrolList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			this.enrolPane.setPreferredSize(new Dimension(250,500));
-			this.enrolList.setBackground(Color.decode("#6495ED"));
-			this.enrolLabel.setFont(font.deriveFont(attributes));
+			this.enrolList.setBackground(Color.decode("#20B2AA"));
+			this.enrolLabel.setFont(this.enrolLabel.getFont().deriveFont(attributes));
 			this.enrolLabel.setFont(this.enrolLabel.getFont().deriveFont(15f));
 			
 			
@@ -141,8 +141,8 @@ public class SearchCourStudentPanel extends JPanel{
 			this.applyList = new JList<String>(applyModel);
 			this.applyPane = new JScrollPane(this.applyList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			this.applyPane.setPreferredSize(new Dimension(250,500));
-			this.applyList.setBackground(Color.decode("#6495ED"));
-			this.applyLabel.setFont(font.deriveFont(attributes));
+			this.applyList.setBackground(Color.decode("#20B2AA"));
+			this.applyLabel.setFont(this.applyLabel.getFont().deriveFont(attributes));
 			this.applyLabel.setFont(this.applyLabel.getFont().deriveFont(15f));
 			
 			for(String s: appliedCour){
@@ -151,8 +151,8 @@ public class SearchCourStudentPanel extends JPanel{
 			this.appliedList = new JList<String>(appliedModel);
 			this.appliedPane = new JScrollPane(this.appliedList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			this.appliedPane.setPreferredSize(new Dimension(250,500));
-			this.appliedList.setBackground(Color.decode("#6495ED"));
-			this.appliedLabel.setFont(font.deriveFont(attributes));
+			this.appliedList.setBackground(Color.decode("#20B2AA"));
+			this.appliedLabel.setFont(this.applyLabel.getFont().deriveFont(attributes));
 			this.appliedLabel.setFont(this.appliedLabel.getFont().deriveFont(15f));
 			
 			this.searchLabel.setLabelFor(this.searchField);
@@ -211,10 +211,36 @@ public class SearchCourStudentPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.NORTH, this.searchButton, 10, SpringLayout.SOUTH, this.searchField);
 		}
 		
+		public void addEnrCourse(String name){
+			this.enrolModel.addElement(name);
+		}
+		
+		public void delEnrCourse(String name){
+			this.enrolModel.removeElement(name);
+		}
+		
+		public void addApplyCourse(String name){
+			this.applyModel.addElement(name);
+		}
+		
+		public void delApplyCourse(String name){
+			this.applyModel.removeElement(name);
+		}
+		
+		public void addAppliedCourse(String name){
+			this.appliedModel.addElement(name);
+		}
+		
+		public void delAppliedCourse(String name){
+			this.appliedModel.removeElement(name);
+		}
+		
 		public void setController(ActionListener c) {
 			this.signOut.addActionListener(c);
 			this.searchCour.addActionListener(c);
 			this.searchButton.addActionListener(c);
+			this.applyButton.addActionListener(c);
+			this.appliedButton.addActionListener(c);
 		}
 		
 		public String getScourse(){

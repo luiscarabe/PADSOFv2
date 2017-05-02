@@ -99,7 +99,7 @@ public class StudentsOfCourPanel extends JPanel {
 		this.enrolPane = new JScrollPane(this.enrolList, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.enrolPane.setPreferredSize(new Dimension(250, 500));
-		this.enrolList.setBackground(Color.decode("#6495ED"));
+		this.enrolList.setBackground(Color.decode("#B5B5B5"));
 		this.enrolLabel.setFont(font.deriveFont(attributes));
 		this.enrolLabel.setFont(this.enrolLabel.getFont().deriveFont(15f));
 
@@ -110,7 +110,7 @@ public class StudentsOfCourPanel extends JPanel {
 		this.expelPane = new JScrollPane(this.expelList, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.expelPane.setPreferredSize(new Dimension(250, 500));
-		this.expelList.setBackground(Color.decode("#6495ED"));
+		this.expelList.setBackground(Color.decode("#20B2AA"));
 		this.expelLabel.setFont(font.deriveFont(attributes));
 		this.expelLabel.setFont(this.expelLabel.getFont().deriveFont(15f));
 
@@ -121,7 +121,7 @@ public class StudentsOfCourPanel extends JPanel {
 		this.appliedPane = new JScrollPane(this.appliedList, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.appliedPane.setPreferredSize(new Dimension(250, 500));
-		this.appliedList.setBackground(Color.decode("#6495ED"));
+		this.appliedList.setBackground(Color.decode("#20B2AA"));
 		this.appliedLabel.setFont(font.deriveFont(attributes));
 		this.appliedLabel.setFont(this.appliedLabel.getFont().deriveFont(15f));
 
@@ -198,5 +198,28 @@ public class StudentsOfCourPanel extends JPanel {
 	
 		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.returning, 0, SpringLayout.HORIZONTAL_CENTER, this.searchButton);
 		layout2.putConstraint(SpringLayout.NORTH, this.returning, 0, SpringLayout.NORTH, this.appliedAcceptButton);
+	}
+	public void addEnrCourse(String name){
+		this.enrolModel.addElement(name);
+	}
+	
+	public void delEnrCourse(String name){
+		this.enrolModel.removeElement(name);
+	}
+	
+	public void addApplyCourse(String name){
+		this.expelModel.addElement(name);
+	}
+	
+	public void delApplyCourse(String name){
+		this.expelModel.removeElement(name);
+	}
+	
+	public void addAppliedCourse(String name){
+		this.appliedModel.addElement(name);
+	}
+	
+	public void delAppliedCourse(String name){
+		this.appliedModel.removeElement(name);
 	}
 }
