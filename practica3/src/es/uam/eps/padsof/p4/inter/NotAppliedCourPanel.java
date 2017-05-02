@@ -1,18 +1,17 @@
 package es.uam.eps.padsof.p4.inter;
 
-import java.awt.*;
-import java.util.*;
-
-import java.awt.event.ActionListener;
-
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.font.TextAttribute;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
 
 import javax.swing.*;
 
-import es.uam.eps.padsof.p3.course.*;
-
-
-public class HomePanelStudent extends JPanel{
-
+public class NotAppliedCourPanel extends JPanel{
 	//Superior Panel
 	private JPanel supPanel = new JPanel();
 	private ImageIcon image = new ImageIcon("logov3.png");
@@ -26,12 +25,15 @@ public class HomePanelStudent extends JPanel{
 	private JButton signOut = new JButton("Sign out");
 	private SpringLayout layout = new SpringLayout();
 	
-	private JLabel noCourse;
+	private JLabel courseLabel;
+	private JLabel applyLabel = new JLabel("You can't see this course, please apply:");
+	private JButton applyButton = new JButton ("Apply");
+	
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	public HomePanelStudent(String name, ArrayList<String> enrCourses){
+	public NotAppliedCourPanel(String name, ArrayList<String> enrCourses, String courName){
 		String[] strCourses = {};
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
@@ -44,7 +46,7 @@ public class HomePanelStudent extends JPanel{
 		this.supPanel.setLayout(layout);
 		
 		this.student = new JLabel("Student: "+ name);
-		this.noCourse = new JLabel("Welcome back " + name +"!\n Please, choose a Course.");
+		this.courseLabel = new JLabel(courName);
 		int i = 0;
 		for(String c: enrCourses){
 			strCourses = Arrays.copyOf(strCourses, strCourses.length+1);
@@ -95,11 +97,16 @@ public class HomePanelStudent extends JPanel{
 		layout.putConstraint(SpringLayout.NORTH, this.signOut, 40, SpringLayout.NORTH, this.supPanel);
 		layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
 		
-		this.noCourse.setFont(this.noCourse.getFont().deriveFont(25f));
+		Map attributes = this.courseLabel.getFont().getAttributes();
+		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		this.courseLabel.setFont(this.courseLabel.getFont().deriveFont(attributes));
+		this.courseLabel.setFont(this.courseLabel.getFont().deriveFont(30f));
 		
 
 		this.add(this.supPanel);
-		this.add(this.noCourse);
+		this.add(this.courseLabel);
+		this.add(this.applyButton);
+		this.add(this.applyLabel);
 		
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
@@ -107,107 +114,14 @@ public class HomePanelStudent extends JPanel{
 		layout2.putConstraint(SpringLayout.EAST, this.supPanel, 0, SpringLayout.EAST, this);
 		layout2.putConstraint(SpringLayout.WEST, this.supPanel, 0, SpringLayout.WEST, this);
 		
-		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.noCourse, 0, SpringLayout.VERTICAL_CENTER, this);
-		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.noCourse, 0, SpringLayout.HORIZONTAL_CENTER, this);
-
+		layout2.putConstraint(SpringLayout.WEST, this.courseLabel, 10, SpringLayout.WEST, this);
+		layout2.putConstraint(SpringLayout.NORTH, this.courseLabel, 10, SpringLayout.SOUTH, this.supPanel);
+		
+		layout2.putConstraint(SpringLayout.WEST, this.applyLabel, 10, SpringLayout.WEST, this);
+		layout2.putConstraint(SpringLayout.NORTH, this.applyLabel, 10, SpringLayout.SOUTH, this.courseLabel);
+		
+		layout2.putConstraint(SpringLayout.WEST, this.applyButton, 10, SpringLayout.EAST, this.applyLabel);
+		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.applyButton, 0, SpringLayout.VERTICAL_CENTER, this.applyLabel);
+		
 	}
-	
-	public void setController(ActionListener c) {
-		this.signOut.addActionListener(c);
-		this.searchCour.addActionListener(c);
-	}
-
-	/**
-	 * @return the supPanel
-	 */
-	public JPanel getSupPanel() {
-		return supPanel;
-	}
-
-	/**
-	 * @return the image
-	 */
-	public ImageIcon getImage() {
-		return image;
-	}
-
-	/**
-	 * @return the imgLabel
-	 */
-	public JLabel getImgLabel() {
-		return imgLabel;
-	}
-
-	/**
-	 * @return the homeLabel
-	 */
-	public JLabel getHomeLabel() {
-		return homeLabel;
-	}
-
-	/**
-	 * @return the courses
-	 */
-	public JLabel getCourses() {
-		return courses;
-	}
-
-	/**
-	 * @return the listCourses
-	 */
-	public JComboBox<String> getListCourses() {
-		return listCourses;
-	}
-
-	/**
-	 * @return the searchCour
-	 */
-	public JButton getSearchCour() {
-		return searchCour;
-	}
-
-	/**
-	 * @return the marks
-	 */
-	public JButton getMarks() {
-		return marks;
-	}
-
-	/**
-	 * @return the student
-	 */
-	public JLabel getStudent() {
-		return student;
-	}
-
-	/**
-	 * @return the signOut
-	 */
-	public JButton getSignOut() {
-		return signOut;
-	}
-
-	/**
-	 * @return the layout
-	 */
-	public SpringLayout getLayout() {
-		return layout;
-	}
-
-	/**
-	 * @return the noCourse
-	 */
-	public JLabel getNoCourse() {
-		return noCourse;
-	}
-
-	/**
-	 * @return the layout2
-	 */
-	public SpringLayout getLayout2() {
-		return layout2;
-	}
-	
-	
-	
 }

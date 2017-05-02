@@ -28,7 +28,7 @@ public class MainFrame extends JFrame{
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	private LoginPanel lp = new LoginPanel();
-	private HomePanelTeacher hpt = new HomePanelTeacher((ArrayList<Course>)Educagram.getInstance().getCourses());
+	private HomePanelTeacher hpt;
 	private HomePanelStudent hps;
 	private CreateCoursePanel ccp;
 	private CreateNotePanel cnp;
@@ -36,7 +36,7 @@ public class MainFrame extends JFrame{
 	
 	//estos dos a lo mejor se pueden hacer en el controller "anterior" check this.constructor
 	private LoginPanelController lpc = new LoginPanelController(lp);
-	private HomePanelTeacherController hptc = new HomePanelTeacherController(hpt);
+	private HomePanelTeacherController hptc;
 	
 	private HomePanelStudentController hpsc;
 	private CreateCoursePanelController ccpc;
@@ -52,7 +52,6 @@ public class MainFrame extends JFrame{
 	private MainFrame(String name){
 		super(name);
 		this.lp.setController(lpc);
-		this.hpt.setController(hptc);
 	}
     
 	
@@ -99,6 +98,8 @@ public class MainFrame extends JFrame{
 	 * @param hpt the hpt to set
 	 */
 	public void setHpt(HomePanelTeacher hpt) {
+		this.hptc = new HomePanelTeacherController(hpt);
+		hpt.setController(this.hptc);
 		this.hpt = hpt;
 	}
 

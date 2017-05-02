@@ -32,7 +32,7 @@ public class HomePanelTeacher extends JPanel {
 		
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		public HomePanelTeacher(ArrayList<Course> allCour){
+		public HomePanelTeacher(ArrayList<String> allCour){
 			this.setVisible(true);
 			this.setSize(screenSize.width, screenSize.height);
 			this.setLayout(layout2);
@@ -45,9 +45,9 @@ public class HomePanelTeacher extends JPanel {
 			
 			int i = 0;
 			
-			for(Course c: allCour){
+			for(String c: allCour){
 				strCourses = Arrays.copyOf(strCourses, strCourses.length+1);
-				strCourses[i] = c.getTitle();
+				strCourses[i] = c;
 				i++;
 			}
 			

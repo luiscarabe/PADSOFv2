@@ -6,6 +6,7 @@
 package es.uam.eps.padsof.p4.controllers;
 
 import es.uam.eps.padsof.p4.inter.HomePanelStudent;
+import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
 import es.uam.eps.padsof.p4.inter.LoginPanel;
 import es.uam.eps.padsof.p4.inter.MainFrame;
 import es.uam.eps.padsof.p3.course.Course;
@@ -38,6 +39,7 @@ public class LoginPanelController implements ActionListener{
 		String email = view.getId();
 		String psw = String.valueOf(view.getPsw());
 		User current;
+		ArrayList<String> cournames = new ArrayList<String>();
 		
 		//testing!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		System.out.println(email);
@@ -54,13 +56,20 @@ public class LoginPanelController implements ActionListener{
 				return;
 			}
 			if(current.equals(edu.getProfessor())){
+				for(Course aux: edu.getInstance().getCourses()){
+					cournames.add(aux.getTitle());
+				}
+				MainFrame.getInstance().setHpt(new HomePanelTeacher( cournames));
 				newview = MainFrame.getInstance().getHpt();
 				MainFrame.getInstance().setContentPane(newview);
 				newview.setVisible(true);
 				view.setVisible(false);
 				return;
 			}
-			MainFrame.getInstance().setHps(new HomePanelStudent(current.getName(), (ArrayList<Course>)((Student)current).getEnrolledCourses()));
+			for(Course aux: ((Student)current).getEnrolledCourses()){
+				cournames.add(aux.getTitle());
+			}
+			MainFrame.getInstance().setHps(new HomePanelStudent(current.getName(), cournames));
 			newview = MainFrame.getInstance().getHps();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);

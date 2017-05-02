@@ -24,7 +24,7 @@ public class TestingTester {
 		ArrayList<String> ar = new ArrayList<String>();
 		ar.add("Hola");
 		ar.add("Adios");
-		ar.add("Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		ar.add("Holaaaaaaaaaaaaaaaaaaaaaaaa");
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
@@ -32,14 +32,14 @@ public class TestingTester {
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
-		SearchCourStudentPanel lo = new SearchCourStudentPanel("Hola", ar, ar, ar );
+		StudentsOfCourPanel lo = new StudentsOfCourPanel("Hola", ar, ar, ar);
 		
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());
 		//ma.setContentPane(lo);
 		ma.add(lo);
 		ma.setVisible(true);
-		ma.setSize(1500,1500);		
+		ma.setSize(ma.screenSize.width,ma.screenSize.height);		
 		ma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
