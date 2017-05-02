@@ -36,13 +36,13 @@ public class SearchCourStudentPanel extends JPanel{
 		private DefaultListModel<String> enrolModel = new DefaultListModel<String>();
 		JList<String> enrolList;
 		private JLabel enrolLabel = new JLabel("Your courses:");
-		private JScrollPane enrolPane = new JScrollPane(this.enrolList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		private JScrollPane enrolPane;
 		
 		private DefaultListModel<String> appliedModel = new DefaultListModel<String>();
 		JList<String> appliedList;
 		private JLabel appliedLabel = new JLabel("Your applications:");
 		private JButton appliedButton = new JButton("Cancel");
-		private JScrollPane appliedPane = new JScrollPane(this.appliedList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		private JScrollPane appliedPane;
 		
 		private JLabel searchLabel = new JLabel("Search Course:");
 		private JTextField searchField = new JTextField(20);
@@ -119,7 +119,7 @@ public class SearchCourStudentPanel extends JPanel{
 				this.enrolModel.addElement(s);
 			}
 			this.enrolList = new JList<String>(enrolModel);
-			this.enrolPane = new JScrollPane(this.enrolList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			this.enrolPane = new JScrollPane(this.enrolList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			this.enrolPane.setPreferredSize(new Dimension(100,100));
 			this.enrolList.setBackground(Color.decode("#6495ED"));
 			
@@ -128,7 +128,7 @@ public class SearchCourStudentPanel extends JPanel{
 				this.applyModel.addElement(s);
 			}
 			this.applyList = new JList<String>(applyModel);
-			this.applyPane = new JScrollPane(this.applyList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			this.applyPane = new JScrollPane(this.applyList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			this.applyPane.setPreferredSize(new Dimension(100,100));
 			this.applyList.setBackground(Color.decode("#6495ED"));
 			
@@ -136,7 +136,7 @@ public class SearchCourStudentPanel extends JPanel{
 				this.appliedModel.addElement(s);
 			}
 			this.appliedList = new JList<String>(appliedModel);
-			this.appliedPane = new JScrollPane(this.appliedList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			this.appliedPane = new JScrollPane(this.appliedList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			this.appliedPane.setPreferredSize(new Dimension(100,100));
 			this.appliedList.setBackground(Color.decode("#6495ED"));
 			

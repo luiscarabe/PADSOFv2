@@ -24,7 +24,7 @@ public class TestingTester {
 		ArrayList<String> ar = new ArrayList<String>();
 		ar.add("Hola");
 		ar.add("Adios");
-		ar.add("Hola");
+		ar.add("Holaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
