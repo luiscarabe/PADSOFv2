@@ -26,7 +26,6 @@ public class CreateCoursePanelController implements ActionListener{
 	
 	public CreateCoursePanelController(CreateCoursePanel view) {
 		this.view = view;
-		this.edu = Educagram.getInstance();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -38,6 +37,7 @@ public class CreateCoursePanelController implements ActionListener{
 		String desc = view.getDesc();
 		Course course;
 		
+		//para comprobar !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		System.out.println(title);
 		System.out.println(desc);
 		

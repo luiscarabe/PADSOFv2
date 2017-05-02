@@ -25,7 +25,6 @@ public class HomePanelTeacherController implements ActionListener{
 	private Educagram edu = Educagram.getInstance();
 	public HomePanelTeacherController(HomePanelTeacher view) {
 		this.view = view;
-		this.edu = Educagram.getInstance();
 	}
 	
 	@Override

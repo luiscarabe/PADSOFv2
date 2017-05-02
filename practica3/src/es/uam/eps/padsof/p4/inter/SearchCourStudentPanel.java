@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -195,4 +196,219 @@ public class SearchCourStudentPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.WEST, this.searchButton, 0, SpringLayout.WEST, this.searchField);
 			layout2.putConstraint(SpringLayout.NORTH, this.searchButton, 10, SpringLayout.SOUTH, this.searchField);
 		}
+		
+		public void setController(ActionListener c) {
+			this.signOut.addActionListener(c);
+			this.searchCour.addActionListener(c);
+			this.searchButton.addActionListener(c);
+		}
+		
+		public String getScourse(){
+			return this.searchField.getText();
+		}
+		
+		/**
+		 * @return the supPanel
+		 */
+		public JPanel getSupPanel() {
+			return supPanel;
+		}
+
+		/**
+		 * @return the image
+		 */
+		public ImageIcon getImage() {
+			return image;
+		}
+
+		/**
+		 * @return the imgLabel
+		 */
+		public JLabel getImgLabel() {
+			return imgLabel;
+		}
+
+		/**
+		 * @return the homeLabel
+		 */
+		public JLabel getHomeLabel() {
+			return homeLabel;
+		}
+
+		/**
+		 * @return the courses
+		 */
+		public JLabel getCourses() {
+			return courses;
+		}
+
+		/**
+		 * @return the listCourses
+		 */
+		public JComboBox<String> getListCourses() {
+			return listCourses;
+		}
+
+		/**
+		 * @return the searchCour
+		 */
+		public JButton getSearchCour() {
+			return searchCour;
+		}
+
+		/**
+		 * @return the marks
+		 */
+		public JButton getMarks() {
+			return marks;
+		}
+
+		/**
+		 * @return the student
+		 */
+		public JLabel getStudent() {
+			return student;
+		}
+
+		/**
+		 * @return the signOut
+		 */
+		public JButton getSignOut() {
+			return signOut;
+		}
+
+		/**
+		 * @return the layout
+		 */
+		public SpringLayout getLayout() {
+			return layout;
+		}
+
+		/**
+		 * @return the applyModel
+		 */
+		public DefaultListModel<String> getApplyModel() {
+			return applyModel;
+		}
+
+		/**
+		 * @return the applyList
+		 */
+		public JList<String> getApplyList() {
+			return applyList;
+		}
+
+		/**
+		 * @return the applyLabel
+		 */
+		public JLabel getApplyLabel() {
+			return applyLabel;
+		}
+
+		/**
+		 * @return the applyButton
+		 */
+		public JButton getApplyButton() {
+			return applyButton;
+		}
+
+		/**
+		 * @return the applyPane
+		 */
+		public JScrollPane getApplyPane() {
+			return applyPane;
+		}
+
+		/**
+		 * @return the enrolModel
+		 */
+		public DefaultListModel<String> getEnrolModel() {
+			return enrolModel;
+		}
+
+		/**
+		 * @return the enrolList
+		 */
+		public JList<String> getEnrolList() {
+			return enrolList;
+		}
+
+		/**
+		 * @return the enrolLabel
+		 */
+		public JLabel getEnrolLabel() {
+			return enrolLabel;
+		}
+
+		/**
+		 * @return the enrolPane
+		 */
+		public JScrollPane getEnrolPane() {
+			return enrolPane;
+		}
+
+		/**
+		 * @return the appliedModel
+		 */
+		public DefaultListModel<String> getAppliedModel() {
+			return appliedModel;
+		}
+
+		/**
+		 * @return the appliedList
+		 */
+		public JList<String> getAppliedList() {
+			return appliedList;
+		}
+
+		/**
+		 * @return the appliedLabel
+		 */
+		public JLabel getAppliedLabel() {
+			return appliedLabel;
+		}
+
+		/**
+		 * @return the appliedButton
+		 */
+		public JButton getAppliedButton() {
+			return appliedButton;
+		}
+
+		/**
+		 * @return the appliedPane
+		 */
+		public JScrollPane getAppliedPane() {
+			return appliedPane;
+		}
+
+		/**
+		 * @return the searchLabel
+		 */
+		public JLabel getSearchLabel() {
+			return searchLabel;
+		}
+
+		/**
+		 * @return the searchField
+		 */
+		public JTextField getSearchField() {
+			return searchField;
+		}
+
+		/**
+		 * @return the searchButton
+		 */
+		public JButton getSearchButton() {
+			return searchButton;
+		}
+
+		/**
+		 * @return the layout2
+		 */
+		public SpringLayout getLayout2() {
+			return layout2;
+		}
+		
+		
 }
