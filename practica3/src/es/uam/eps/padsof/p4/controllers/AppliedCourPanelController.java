@@ -6,14 +6,20 @@ package es.uam.eps.padsof.p4.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.educagram.Educagram;
+import es.uam.eps.padsof.p3.user.Application;
+import es.uam.eps.padsof.p3.user.Student;
 import es.uam.eps.padsof.p4.inter.AppliedCourPanel;
 import es.uam.eps.padsof.p4.inter.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.NotAppliedCourPanel;
+import es.uam.eps.padsof.p4.inter.SearchCourStudentPanel;
 /**
  * @author Miguel
  *
@@ -24,14 +30,58 @@ public class AppliedCourPanelController implements ActionListener{
 	
 	private AppliedCourPanel view;
 	private Educagram edu = Educagram.getInstance();
-	public AppliedCourPanelController(AppliedCourPanel view) {
+	private Course course;
+	public AppliedCourPanelController(AppliedCourPanel view, Course course) {
 		this.view = view;
+		this.course = course;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		JPanel newview;
 		JComponent source = (JComponent) e.getSource();
+		Student current = (Student)edu.getCurrentUser();
+		Application app;
+		ArrayList<Course> enrolled = (ArrayList<Course>) current.getEnrolledCourses();
+		ArrayList<Application> applied = (ArrayList<Application>) current.getAppliedCourses();
+		ArrayList<Course> forapply = new ArrayList<Course>();
+		ArrayList<Course> expelled = (ArrayList<Course>) current.getExpelledCourses();
+		ArrayList<String> enrNames = new ArrayList<String>();
+		ArrayList<String> appNames = new ArrayList<String>();
+		ArrayList<String> foraNames = new ArrayList<String>();
+		ArrayList<String> expNames = new ArrayList<String>();
+		int flag = 0;
+		
+		for(Course aux1: edu.getCourses()){
+			flag = 0;
+			if(!enrolled.contains(aux1)){
+				for(Application aux2: applied){
+					if(aux1.equals(aux2.getCourse())){
+						flag = 1;
+					}
+				}
+				if(expelled.contains(aux1)){
+					flag = 1;
+				}
+				if(flag == 0){
+					forapply.add(aux1);
+				}
+			}
+		}
+		
+		
+		for(Course c: enrolled){
+			enrNames.add(c.getTitle());
+		}
+		for(Application a: applied){
+			appNames.add(a.getCourse().getTitle());
+		}
+		for(Course c: forapply){
+			foraNames.add(c.getTitle());
+		}
+		for(Course c: expelled){
+			expNames.add(c.getTitle());
+		}
 		
 		
 		if(source == this.view.getSignOut()){
@@ -48,6 +98,39 @@ public class AppliedCourPanelController implements ActionListener{
 			}catch(Exception ex){
 				System.out.println(ex.getMessage());
 			}
+		}else if(source == this.view.getSearchCour()){
+			MainFrame.getInstance().setScsp(new SearchCourStudentPanel(current.getName(), enrNames, foraNames, appNames, expNames));
+			newview = MainFrame.getInstance().getScsp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+			return;
+		}else if(source == this.view.getGo()){
+			String name = this.view.getListCourses().getSelectedItem().toString();
+			if(name == null){
+				return;
+			}
+			Course course = edu.searchCourse(name);
+			MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), enrNames, name), course);
+			newview = MainFrame.getInstance().getCsp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+			return;
+		}else if(source == this.view.getApplyButton()){
+			app = course.searchApplication(current);
+			if(app == null){
+				System.out.println("Error rarop en AppliedCour.... Application no encontrada");
+				return;
+			}
+			System.out.println("Holap cachopo");
+			current.cancelApplication(app);
+			MainFrame.getInstance().setNacp(new NotAppliedCourPanel(current.getName(), (ArrayList<String>) enrNames, course.getTitle()), course);
+			newview = MainFrame.getInstance().getNacp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+			return;
 		}
 	}
 

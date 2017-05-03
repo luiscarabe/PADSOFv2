@@ -93,7 +93,8 @@ private static final long serialVersionUID = 1L;
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
-		}else if(source == this.view.getListCourses()){
+			return;
+		}else if(source == this.view.getGo()){
 			String name = this.view.getListCourses().getSelectedItem().toString();
 			if(name == null){
 				return;
@@ -104,6 +105,7 @@ private static final long serialVersionUID = 1L;
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
+			return;
 		}
 	}
 }

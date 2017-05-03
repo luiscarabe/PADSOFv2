@@ -91,7 +91,7 @@ public class CourseTeacherPanelController implements ActionListener{
 				return;
 			}
 			Course course = edu.searchCourse(name);
-			MainFrame.getInstance().setCtp(new CourseTeacherPanel( name, course.getDesc(), allNames), course);
+			MainFrame.getInstance().setCtp(new CourseTeacherPanel( course, allNames), course);
 			newview = MainFrame.getInstance().getCtp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);

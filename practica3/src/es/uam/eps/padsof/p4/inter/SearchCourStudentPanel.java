@@ -41,6 +41,7 @@ public class SearchCourStudentPanel extends JPanel{
 		JList<String> enrolList;
 		private JLabel enrolLabel = new JLabel("Your courses");
 		private JScrollPane enrolPane;
+		private JButton enrolButton = new JButton("Go");
 		
 		private DefaultListModel<String> expelModel = new DefaultListModel<String>();
 		JList<String> expelList;
@@ -139,6 +140,7 @@ public class SearchCourStudentPanel extends JPanel{
 				this.enrolModel.addElement(s);
 			}
 			this.enrolList = new JList<String>(enrolModel);
+			this.enrolList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			this.enrolPane = new JScrollPane(this.enrolList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			this.enrolPane.setPreferredSize(new Dimension(200,500));
 			this.enrolList.setBackground(Color.decode("#20B2AA"));
@@ -192,6 +194,7 @@ public class SearchCourStudentPanel extends JPanel{
 			this.add(this.searchButton);
 			this.add(this.searchLabel);
 			this.add(this.searchField);
+			this.add(this.enrolButton);
 			
 		
 			
@@ -200,7 +203,7 @@ public class SearchCourStudentPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.EAST, this.supPanel, 0, SpringLayout.EAST, this);
 			layout2.putConstraint(SpringLayout.WEST, this.supPanel, 0, SpringLayout.WEST, this);
 			
-			layout2.putConstraint(SpringLayout.EAST, this.enrolPane, -80, SpringLayout.WEST, this.applyPane);
+			layout2.putConstraint(SpringLayout.EAST, this.enrolPane, -60, SpringLayout.WEST, this.applyPane);
 			layout2.putConstraint(SpringLayout.NORTH, this.enrolPane, 150, SpringLayout.NORTH, this);
 			
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.enrolLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.enrolPane);
@@ -215,7 +218,7 @@ public class SearchCourStudentPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.applyButton, 0, SpringLayout.HORIZONTAL_CENTER, this.applyPane);
 			layout2.putConstraint(SpringLayout.NORTH, this.applyButton, 10, SpringLayout.SOUTH, this.applyPane);
 		
-			layout2.putConstraint(SpringLayout.WEST, this.appliedPane, 80, SpringLayout.EAST, this.applyPane);
+			layout2.putConstraint(SpringLayout.WEST, this.appliedPane, 60, SpringLayout.EAST, this.applyPane);
 			layout2.putConstraint(SpringLayout.NORTH, this.appliedPane, 0, SpringLayout.NORTH, this.enrolPane);
 			
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.appliedLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.appliedPane);
@@ -224,7 +227,7 @@ public class SearchCourStudentPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.appliedButton, 0, SpringLayout.HORIZONTAL_CENTER, this.appliedPane);
 			layout2.putConstraint(SpringLayout.NORTH, this.appliedButton, 10, SpringLayout.SOUTH, this.appliedPane);
 			
-			layout2.putConstraint(SpringLayout.WEST, this.expelPane, 80, SpringLayout.EAST, this.appliedPane);
+			layout2.putConstraint(SpringLayout.WEST, this.expelPane, 60, SpringLayout.EAST, this.appliedPane);
 			layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.expelPane, 0, SpringLayout.VERTICAL_CENTER, this.appliedPane);
 			
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.expelLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.expelPane);
@@ -238,6 +241,9 @@ public class SearchCourStudentPanel extends JPanel{
 			
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.searchButton, 0, SpringLayout.HORIZONTAL_CENTER, this.searchField);
 			layout2.putConstraint(SpringLayout.NORTH, this.searchButton, 10, SpringLayout.SOUTH, this.searchField);
+			
+			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.enrolButton, 0, SpringLayout.HORIZONTAL_CENTER, this.enrolPane);
+			layout2.putConstraint(SpringLayout.NORTH, this.enrolButton, 10, SpringLayout.SOUTH, this.enrolPane);
 		}
 		
 		public String getSearched(){
@@ -274,6 +280,8 @@ public class SearchCourStudentPanel extends JPanel{
 			this.searchButton.addActionListener(c);
 			this.applyButton.addActionListener(c);
 			this.appliedButton.addActionListener(c);
+			this.go.addActionListener(c);
+			this.enrolButton.addActionListener(c);
 		}
 		
 		public String getScourse(){
@@ -481,6 +489,20 @@ public class SearchCourStudentPanel extends JPanel{
 		 */
 		public SpringLayout getLayout2() {
 			return layout2;
+		}
+		
+		/**
+		 * @return the go
+		 */
+		public JButton getGo() {
+			return go;
+		}
+		
+		/**
+		 * @return the enrolButton
+		 */
+		public JButton getEnrolButton() {
+			return enrolButton;
 		}
 		
 		

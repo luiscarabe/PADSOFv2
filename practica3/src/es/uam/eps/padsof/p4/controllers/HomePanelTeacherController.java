@@ -64,8 +64,17 @@ public class HomePanelTeacherController implements ActionListener{
 				return;
 			}
 			Course course = edu.searchCourse(name);
-			MainFrame.getInstance().setCtp(new CourseTeacherPanel( name, course.getDesc(), allNames), course);
+			MainFrame.getInstance().setCtp(new CourseTeacherPanel(course, allNames), course);
 			newview = MainFrame.getInstance().getCtp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+		}else if(source == this.view.getSearchCour()){
+			for(Course aux : edu.getCourses()){
+				allNames.add(aux.getTitle());
+			}
+			MainFrame.getInstance().setSctp(new SearchCourTeacherPanel(allNames));
+			newview = MainFrame.getInstance().getSctp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);

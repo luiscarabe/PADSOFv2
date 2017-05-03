@@ -21,7 +21,6 @@ public class AppliedCourPanel extends JPanel{
 		private JLabel student;
 		private JButton signOut = new JButton("Sign out");
 		private SpringLayout layout = new SpringLayout();
-		
 		private JLabel courseLabel;
 		private JLabel applyLabel = new JLabel("You have not been accepted yet:");
 		private JButton applyButton = new JButton ("Cancel application");
@@ -100,6 +99,8 @@ public class AppliedCourPanel extends JPanel{
 			layout.putConstraint(SpringLayout.NORTH, this.signOut, 40, SpringLayout.NORTH, this.supPanel);
 			layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
 			
+			this.courseLabel = new JLabel(courName);
+			
 			Map attributes = this.courseLabel.getFont().getAttributes();
 			attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 			this.courseLabel.setFont(this.courseLabel.getFont().deriveFont(attributes));
@@ -132,6 +133,9 @@ public class AppliedCourPanel extends JPanel{
 		
 		public void setController(ActionListener c){
 			this.signOut.addActionListener(c);
+			this.searchCour.addActionListener(c);
+			this.go.addActionListener(c);
+			this.applyButton.addActionListener(c);
 		}
 
 		/**
@@ -239,5 +243,10 @@ public class AppliedCourPanel extends JPanel{
 			return layout2;
 		}
 		
-		
+		/**
+		 * @return the applyButton
+		 */
+		public JButton getGo() {
+			return go;
+		}
 }

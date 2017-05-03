@@ -105,6 +105,8 @@ public class NotAppliedCourPanel extends JPanel{
 		layout.putConstraint(SpringLayout.NORTH, this.signOut, 40, SpringLayout.NORTH, this.supPanel);
 		layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
 		
+		this.courseLabel = new JLabel(courName);
+		
 		Map attributes = this.courseLabel.getFont().getAttributes();
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		this.courseLabel.setFont(this.courseLabel.getFont().deriveFont(attributes));
@@ -135,6 +137,9 @@ public class NotAppliedCourPanel extends JPanel{
 	
 	public void setController(ActionListener c){
 		this.signOut.addActionListener(c);
+		this.searchCour.addActionListener(c);
+		this.go.addActionListener(c);
+		this.applyButton.addActionListener(c);
 	}
 
 	/**
@@ -242,5 +247,10 @@ public class NotAppliedCourPanel extends JPanel{
 		return layout2;
 	}
 	
-	
+	/**
+	 * @return the go
+	 */
+	public JButton getGo(){
+		return this.go;
+	}
 }

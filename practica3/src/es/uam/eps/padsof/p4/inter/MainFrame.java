@@ -39,6 +39,7 @@ public class MainFrame extends JFrame{
 	private NotAppliedCourPanel nacp;
 	private CourseTeacherPanel ctp;
 	private StudentsOfCourPanel socp;
+	private SearchCourTeacherPanel sctp;
 	
 	/* Controllers */
 	private LoginPanelController lpc = new LoginPanelController(lp);
@@ -52,6 +53,7 @@ public class MainFrame extends JFrame{
 	private NotAppliedCourPanelController nacpc;
 	private CourseTeacherPanelController ctpc;
 	private StudentsOfCourPanelController socpc;
+	private SearchCourTeacherPanelController sctpc;
 	
 	
 	
@@ -229,8 +231,8 @@ public class MainFrame extends JFrame{
 	/**
 	 * @param acp the acp to set
 	 */
-	public void setAcp(AppliedCourPanel acp) {
-		this.acpc = new AppliedCourPanelController(acp);
+	public void setAcp(AppliedCourPanel acp, Course course) {
+		this.acpc = new AppliedCourPanelController(acp, course);
 		acp.setController(this.acpc);
 		this.acp = acp;
 	}
@@ -249,8 +251,8 @@ public class MainFrame extends JFrame{
 	/**
 	 * @param nacp the nacp to set
 	 */
-	public void setNacp(NotAppliedCourPanel nacp) {
-		this.nacpc = new NotAppliedCourPanelController(nacp);
+	public void setNacp(NotAppliedCourPanel nacp, Course course) {
+		this.nacpc = new NotAppliedCourPanelController(nacp, course);
 		nacp.setController(this.nacpc);
 		this.nacp = nacp;
 	}
@@ -293,6 +295,26 @@ public class MainFrame extends JFrame{
 		this.socpc = new StudentsOfCourPanelController(socp, course);
 		socp.setController(this.socpc);
 		this.socp = socp;
+	}
+
+
+
+	/**
+	 * @return the sctp
+	 */
+	public SearchCourTeacherPanel getSctp() {
+		return sctp;
+	}
+
+
+
+	/**
+	 * @param sctp the sctp to set
+	 */
+	public void setSctp(SearchCourTeacherPanel sctp) {
+		this.sctpc = new SearchCourTeacherPanelController(sctp);
+		sctp.setController(this.sctpc);
+		this.sctp = sctp;
 	}
 	
 	

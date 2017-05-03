@@ -129,6 +129,7 @@ public class HomePanelTeacher extends JPanel {
 			this.signOut.addActionListener(c);
 			this.createCourse.addActionListener(c);
 			this.go.addActionListener(c);
+			this.searchCour.addActionListener(c);
 		}
 
 		/**
