@@ -55,7 +55,7 @@ public class HomePanelTeacherController implements ActionListener{
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
-		}else if(source == this.view.getListCourses()){
+		}else if(source == this.view.getGo()){
 			for(Course aux : edu.getCourses()){
 				allNames.add(aux.getTitle());
 			}
@@ -64,7 +64,7 @@ public class HomePanelTeacherController implements ActionListener{
 				return;
 			}
 			Course course = edu.searchCourse(name);
-			MainFrame.getInstance().setCtp(new CourseTeacherPanel( name, "aaa", allNames), course);
+			MainFrame.getInstance().setCtp(new CourseTeacherPanel( name, course.getDesc(), allNames), course);
 			newview = MainFrame.getInstance().getCtp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);

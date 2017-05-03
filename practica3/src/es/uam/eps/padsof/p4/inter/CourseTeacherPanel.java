@@ -265,6 +265,9 @@ public class CourseTeacherPanel extends JPanel{
 		return layout2;
 	}
 	
+	/**
+	 * @return the go
+	 */
 	public JButton getGo(){
 		return go;
 	}
