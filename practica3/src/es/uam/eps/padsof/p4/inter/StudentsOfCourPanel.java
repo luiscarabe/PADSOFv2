@@ -200,27 +200,27 @@ public class StudentsOfCourPanel extends JPanel {
 		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.returning, 0, SpringLayout.HORIZONTAL_CENTER, this.searchButton);
 		layout2.putConstraint(SpringLayout.NORTH, this.returning, 0, SpringLayout.NORTH, this.appliedAcceptButton);
 	}
-	public void addEnrCourse(String name){
+	public void addEnrStudent(String name){
 		this.enrolModel.addElement(name);
 	}
 	
-	public void delEnrCourse(String name){
+	public void delEnrStudent(String name){
 		this.enrolModel.removeElement(name);
 	}
 	
-	public void addApplyCourse(String name){
+	public void addExpelStudent(String name){
 		this.expelModel.addElement(name);
 	}
 	
-	public void delApplyCourse(String name){
+	public void delExpelStudent(String name){
 		this.expelModel.removeElement(name);
 	}
 	
-	public void addAppliedCourse(String name){
+	public void addAppliedStudent(String name){
 		this.appliedModel.addElement(name);
 	}
 	
-	public void delAppliedCourse(String name){
+	public void delAppliedStudent(String name){
 		this.appliedModel.removeElement(name);
 	}
 	
@@ -230,5 +230,176 @@ public class StudentsOfCourPanel extends JPanel {
 		this.appliedAcceptButton.addActionListener(c);
 		this.appliedRejectButton.addActionListener(c);
 		this.enrolButton.addActionListener(c);
+		this.returning.addActionListener(c);
 	}
+	/**
+	 * @return the supPanel
+	 */
+	public JPanel getSupPanel() {
+		return supPanel;
+	}
+	/**
+	 * @return the image
+	 */
+	public ImageIcon getImage() {
+		return image;
+	}
+	/**
+	 * @return the imgLabel
+	 */
+	public JLabel getImgLabel() {
+		return imgLabel;
+	}
+	/**
+	 * @return the homeLabel
+	 */
+	public JLabel getHomeLabel() {
+		return homeLabel;
+	}
+	/**
+	 * @return the professor
+	 */
+	public JLabel getProfessor() {
+		return professor;
+	}
+	/**
+	 * @return the signOut
+	 */
+	public JButton getSignOut() {
+		return signOut;
+	}
+	/**
+	 * @return the layout
+	 */
+	public SpringLayout getLayout() {
+		return layout;
+	}
+	/**
+	 * @return the expelModel
+	 */
+	public DefaultListModel<String> getExpelModel() {
+		return expelModel;
+	}
+	/**
+	 * @return the expelList
+	 */
+	public JList<String> getExpelList() {
+		return expelList;
+	}
+	/**
+	 * @return the expelLabel
+	 */
+	public JLabel getExpelLabel() {
+		return expelLabel;
+	}
+	/**
+	 * @return the expelButton
+	 */
+	public JButton getExpelButton() {
+		return expelButton;
+	}
+	/**
+	 * @return the expelPane
+	 */
+	public JScrollPane getExpelPane() {
+		return expelPane;
+	}
+	/**
+	 * @return the enrolModel
+	 */
+	public DefaultListModel<String> getEnrolModel() {
+		return enrolModel;
+	}
+	/**
+	 * @return the enrolList
+	 */
+	public JList<String> getEnrolList() {
+		return enrolList;
+	}
+	/**
+	 * @return the enrolLabel
+	 */
+	public JLabel getEnrolLabel() {
+		return enrolLabel;
+	}
+	/**
+	 * @return the enrolPane
+	 */
+	public JScrollPane getEnrolPane() {
+		return enrolPane;
+	}
+	/**
+	 * @return the enrolButton
+	 */
+	public JButton getEnrolButton() {
+		return enrolButton;
+	}
+	/**
+	 * @return the appliedModel
+	 */
+	public DefaultListModel<String> getAppliedModel() {
+		return appliedModel;
+	}
+	/**
+	 * @return the appliedList
+	 */
+	public JList<String> getAppliedList() {
+		return appliedList;
+	}
+	/**
+	 * @return the appliedLabel
+	 */
+	public JLabel getAppliedLabel() {
+		return appliedLabel;
+	}
+	/**
+	 * @return the appliedAcceptButton
+	 */
+	public JButton getAppliedAcceptButton() {
+		return appliedAcceptButton;
+	}
+	/**
+	 * @return the appliedRejectButton
+	 */
+	public JButton getAppliedRejectButton() {
+		return appliedRejectButton;
+	}
+	/**
+	 * @return the appliedPane
+	 */
+	public JScrollPane getAppliedPane() {
+		return appliedPane;
+	}
+	/**
+	 * @return the searchLabel
+	 */
+	public JLabel getSearchLabel() {
+		return searchLabel;
+	}
+	/**
+	 * @return the searchField
+	 */
+	public JTextField getSearchField() {
+		return searchField;
+	}
+	/**
+	 * @return the searchButton
+	 */
+	public JButton getSearchButton() {
+		return searchButton;
+	}
+	/**
+	 * @return the returning
+	 */
+	public JButton getReturning() {
+		return returning;
+	}
+	/**
+	 * @return the layout2
+	 */
+	public SpringLayout getLayout2() {
+		return layout2;
+	}
+	
+	
 }

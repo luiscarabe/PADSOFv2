@@ -50,6 +50,9 @@ private static final long serialVersionUID = 1L;
 						flag = 1;
 					}
 				}
+				if(expelled.contains(aux1)){
+					flag = 1;
+				}
 				if(flag == 0){
 					forapply.add(aux1);
 				}

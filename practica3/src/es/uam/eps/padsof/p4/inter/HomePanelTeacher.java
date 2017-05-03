@@ -128,7 +128,7 @@ public class HomePanelTeacher extends JPanel {
 		public void setController(ActionListener c) {
 			this.signOut.addActionListener(c);
 			this.createCourse.addActionListener(c);
-			this.listCourses.addActionListener(c);
+			this.go.addActionListener(c);
 		}
 
 		/**
@@ -229,6 +229,11 @@ public class HomePanelTeacher extends JPanel {
 			return layout2;
 		}
 		
-		
+		/**
+		 * @return the go
+		 */
+		public JButton getGo(){
+			return go;
+		}
 
 }
