@@ -11,6 +11,7 @@ import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.user.Application;
 import es.uam.eps.padsof.p3.user.Student;
 import es.uam.eps.padsof.p3.user.User;
+import es.uam.eps.padsof.p4.inter.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.CreateCoursePanel;
 import es.uam.eps.padsof.p4.inter.HomePanelStudent;
 import es.uam.eps.padsof.p4.inter.MainFrame;
@@ -23,7 +24,6 @@ private static final long serialVersionUID = 1L;
 	private Educagram edu = Educagram.getInstance();
 	public HomePanelStudentController(HomePanelStudent view) {
 		this.view = view;
-		this.edu = Educagram.getInstance();
 	}
 	
 	@Override
@@ -35,9 +35,11 @@ private static final long serialVersionUID = 1L;
 		ArrayList<Course> enrolled = (ArrayList<Course>) current.getEnrolledCourses();
 		ArrayList<Application> applied = (ArrayList<Application>) current.getAppliedCourses();
 		ArrayList<Course> forapply = new ArrayList<Course>();
+		ArrayList<Course> expelled = (ArrayList<Course>) current.getExpelledCourses();
 		ArrayList<String> enrNames = new ArrayList<String>();
 		ArrayList<String> appNames = new ArrayList<String>();
 		ArrayList<String> foraNames = new ArrayList<String>();
+		ArrayList<String> expNames = new ArrayList<String>();
 		int flag = 0;
 		
 		for(Course aux1: edu.getCourses()){
@@ -64,6 +66,9 @@ private static final long serialVersionUID = 1L;
 		for(Course c: forapply){
 			foraNames.add(c.getTitle());
 		}
+		for(Course c: expelled){
+			expNames.add(c.getTitle());
+		}
 		
 		if(source == this.view.getSignOut()){
 			try{
@@ -80,8 +85,19 @@ private static final long serialVersionUID = 1L;
 				System.out.println(ex.getMessage());
 			}
 		}else if(source == this.view.getSearchCour()){
-			MainFrame.getInstance().setScsp(new SearchCourStudentPanel(current.getName(), enrNames, foraNames, appNames));
+			MainFrame.getInstance().setScsp(new SearchCourStudentPanel(current.getName(), enrNames, foraNames, appNames, expNames));
 			newview = MainFrame.getInstance().getScsp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+		}else if(source == this.view.getListCourses()){
+			String name = this.view.getListCourses().getSelectedItem().toString();
+			if(name == null){
+				return;
+			}
+			Course course = edu.searchCourse(name);
+			MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), enrNames, name), course);
+			newview = MainFrame.getInstance().getCsp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);

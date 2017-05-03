@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -221,5 +222,13 @@ public class StudentsOfCourPanel extends JPanel {
 	
 	public void delAppliedCourse(String name){
 		this.appliedModel.removeElement(name);
+	}
+	
+	public void setController(ActionListener c){
+		this.signOut.addActionListener(c);
+		this.expelButton.addActionListener(c);
+		this.appliedAcceptButton.addActionListener(c);
+		this.appliedRejectButton.addActionListener(c);
+		this.enrolButton.addActionListener(c);
 	}
 }

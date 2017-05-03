@@ -32,6 +32,7 @@ public class HomePanelTeacherController implements ActionListener{
 		// TODO Auto-generated method stub
 		JPanel newview;
 		JComponent source = (JComponent) e.getSource();
+		ArrayList<String> allNames = new ArrayList<String>();
 		
 		if(source == this.view.getSignOut()){
 			try{
@@ -54,6 +55,20 @@ public class HomePanelTeacherController implements ActionListener{
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
+		}else if(source == this.view.getListCourses()){
+			for(Course aux : edu.getCourses()){
+				allNames.add(aux.getTitle());
+			}
+			String name = this.view.getListCourses().getSelectedItem().toString();
+			if(name == null){
+				return;
+			}
+			Course course = edu.searchCourse(name);
+			MainFrame.getInstance().setCtp(new CourseTeacherPanel( name, "aaa", allNames), course);
+			newview = MainFrame.getInstance().getCtp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
 		}
 		
 	}

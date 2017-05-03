@@ -27,23 +27,37 @@ public class MainFrame extends JFrame{
 	private static final MainFrame Instance = new MainFrame("Educagram");
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
+	/* Panels */
 	private LoginPanel lp = new LoginPanel();
 	private HomePanelTeacher hpt;
 	private HomePanelStudent hps;
 	private CreateCoursePanel ccp;
 	private CreateNotePanel cnp;
 	private SearchCourStudentPanel scsp;
+	private CourseStudentPanel csp;
+	private AppliedCourPanel acp;
+	private NotAppliedCourPanel nacp;
+	private CourseTeacherPanel ctp;
+	private StudentsOfCourPanel socp;
 	
-	//estos dos a lo mejor se pueden hacer en el controller "anterior" check this.constructor
+	/* Controllers */
 	private LoginPanelController lpc = new LoginPanelController(lp);
 	private HomePanelTeacherController hptc;
-	
 	private HomePanelStudentController hpsc;
 	private CreateCoursePanelController ccpc;
 	private CreateNotePanelController cnpc;
 	private SearchCourStudentPanelController scspc;
+	private CourseStudentPanelController cspc;
+	private AppliedCourPanelController acpc;
+	private NotAppliedCourPanelController nacpc;
+	private CourseTeacherPanelController ctpc;
+	private StudentsOfCourPanelController socpc;
 	
 	
+	
+
+
+
 	/**
 	 * Private constructor of Educagram, it creates an instance of the
 	 * several ArrayLists
@@ -181,6 +195,104 @@ public class MainFrame extends JFrame{
 		this.scspc = new SearchCourStudentPanelController(scsp);
 		scsp.setController(this.scspc);
 		this.scsp = scsp;
+	}
+
+
+
+	/**
+	 * @return the csp
+	 */
+	public CourseStudentPanel getCsp() {
+		return csp;
+	}
+
+
+
+	/**
+	 * @param csp the csp to set
+	 */
+	public void setCsp(CourseStudentPanel csp, Course course) {
+		this.cspc = new CourseStudentPanelController(csp, course);
+		csp.setController(this.cspc);
+		this.csp = csp;
+	}
+	
+	/**
+	 * @return the acp
+	 */
+	public AppliedCourPanel getAcp() {
+		return acp;
+	}
+
+
+
+	/**
+	 * @param acp the acp to set
+	 */
+	public void setAcp(AppliedCourPanel acp) {
+		this.acpc = new AppliedCourPanelController(acp);
+		acp.setController(this.acpc);
+		this.acp = acp;
+	}
+
+
+
+	/**
+	 * @return the nacp
+	 */
+	public NotAppliedCourPanel getNacp() {
+		return nacp;
+	}
+
+
+
+	/**
+	 * @param nacp the nacp to set
+	 */
+	public void setNacp(NotAppliedCourPanel nacp) {
+		this.nacpc = new NotAppliedCourPanelController(nacp);
+		nacp.setController(this.nacpc);
+		this.nacp = nacp;
+	}
+
+
+
+	/**
+	 * @return the ctp
+	 */
+	public CourseTeacherPanel getCtp() {
+		return ctp;
+	}
+
+
+
+	/**
+	 * @param ctp the ctp to set
+	 */
+	public void setCtp(CourseTeacherPanel ctp, Course course) {
+		this.ctpc = new CourseTeacherPanelController(ctp, course);
+		ctp.setController(this.ctpc);
+		this.ctp = ctp;
+	}
+
+
+
+	/**
+	 * @return the socp
+	 */
+	public StudentsOfCourPanel getSocp() {
+		return socp;
+	}
+
+
+
+	/**
+	 * @param socp the socp to set
+	 */
+	public void setSocp(StudentsOfCourPanel socp, Course course) {
+		this.socpc = new StudentsOfCourPanelController(socp, course);
+		socp.setController(this.socpc);
+		this.socp = socp;
 	}
 	
 	

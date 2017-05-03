@@ -16,9 +16,12 @@ import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.user.Application;
 import es.uam.eps.padsof.p3.user.Student;
+import es.uam.eps.padsof.p4.inter.AppliedCourPanel;
+import es.uam.eps.padsof.p4.inter.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.CreateCoursePanel;
 import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
 import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.NotAppliedCourPanel;
 import es.uam.eps.padsof.p4.inter.SearchCourStudentPanel;
 
 /**
@@ -42,7 +45,8 @@ public class SearchCourStudentPanelController implements ActionListener{
 		String Scourse = this.view.getScourse();
 		Course course;
 		List<String> auxCoursesNames;
-		List<Course> auxCourses;
+		List<Course> auxCourses1 = edu.getCourses();
+		List<Course> auxCourses2 = new ArrayList<Course>();
 		List<Application> auxAppli;
 		Application application = null;
 		Student current = (Student)edu.getCurrentUser();
@@ -67,13 +71,57 @@ public class SearchCourStudentPanelController implements ActionListener{
 				JOptionPane.showMessageDialog(view, "Write the name of a course.", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+			
 			course = edu.searchCourse(Scourse);
 			if(course == null){
 				JOptionPane.showMessageDialog(view, "There is not a course with that name.", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			// falta codigop xD
-			return;
+			auxAppli = current.getAppliedCourses();
+			for(Application a: auxAppli){
+				auxCourses2.add(a.getCourse());
+				if(a.getCourse().equals(course)){
+					flag = 1;
+				}
+			}
+			if(course.isEnrolledStudent(current)){
+				auxCoursesNames = new ArrayList<String>();
+				for(Course aux : auxCourses1){
+					auxCoursesNames.add(aux.getTitle());
+				}
+				//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), (ArrayList<String>) auxCoursesNames, course.getTitle()), course);
+				newview = MainFrame.getInstance().getCsp();
+				MainFrame.getInstance().setContentPane(newview);
+				newview.setVisible(true);
+				view.setVisible(false);
+				return;
+			}else if(course.isExpelledStudent(current)){
+				JOptionPane.showMessageDialog(view, "You've been expelled from this course. You can not access to it.", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}else if(flag == 1){
+				auxCoursesNames = new ArrayList<String>();
+				for(Course aux : auxCourses1){
+					auxCoursesNames.add(aux.getTitle());
+				}
+				MainFrame.getInstance().setAcp(new AppliedCourPanel(current.getName(), (ArrayList<String>) auxCoursesNames, course.getTitle()));
+				newview = MainFrame.getInstance().getAcp();
+				MainFrame.getInstance().setContentPane(newview);
+				newview.setVisible(true);
+				view.setVisible(false);
+				return;
+			}else{
+				auxCoursesNames = new ArrayList<String>();
+				for(Course aux : auxCourses1){
+					auxCoursesNames.add(aux.getTitle());
+				}
+				MainFrame.getInstance().setNacp(new NotAppliedCourPanel(current.getName(), (ArrayList<String>) auxCoursesNames, course.getTitle()));
+				newview = MainFrame.getInstance().getNacp();
+				MainFrame.getInstance().setContentPane(newview);
+				newview.setVisible(true);
+				view.setVisible(false);
+				return;
+			}
 		}else if(source == this.view.getAppliedButton()){
 			auxCoursesNames = this.view.getAppliedList().getSelectedValuesList();
 			auxAppli = current.getAppliedCourses();
@@ -103,7 +151,7 @@ public class SearchCourStudentPanelController implements ActionListener{
 			
 		}else if(source == this.view.getApplyButton()){
 			auxCoursesNames = this.view.getApplyList().getSelectedValuesList();
-			auxCourses = edu.getCourses();
+			auxCourses1 = edu.getCourses();
 			for(String aux: auxCoursesNames){
 				course = edu.searchCourse(aux);
 				if(course == null){

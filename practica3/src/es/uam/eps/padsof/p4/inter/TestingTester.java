@@ -32,7 +32,7 @@ public class TestingTester {
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
-		StudentsOfCourPanel lo = new StudentsOfCourPanel("Hola", ar, ar, ar);
+		SearchCourStudentPanel lo = new SearchCourStudentPanel("aaaaaaa", ar, ar, ar, ar );
 		
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());

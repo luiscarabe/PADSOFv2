@@ -23,6 +23,7 @@ public class SearchCourStudentPanel extends JPanel{
 		private JLabel homeLabel = new JLabel("All Courses");
 		private JLabel courses = new JLabel("My courses:");
 		private JComboBox<String> listCourses;
+		private JButton go = new JButton("Go");
 		private JButton searchCour = new JButton("All Courses");
 		private JButton marks = new JButton ("Marks");
 		private JLabel student;
@@ -41,6 +42,11 @@ public class SearchCourStudentPanel extends JPanel{
 		private JLabel enrolLabel = new JLabel("Your courses");
 		private JScrollPane enrolPane;
 		
+		private DefaultListModel<String> expelModel = new DefaultListModel<String>();
+		JList<String> expelList;
+		private JLabel expelLabel = new JLabel("Expelled");
+		private JScrollPane expelPane;
+		
 		private DefaultListModel<String> appliedModel = new DefaultListModel<String>();
 		JList<String> appliedList;
 		private JLabel appliedLabel = new JLabel("Your applications");
@@ -55,7 +61,7 @@ public class SearchCourStudentPanel extends JPanel{
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		
-		public SearchCourStudentPanel(String name, ArrayList<String> enrCour, ArrayList<String> applyCour, ArrayList<String> appliedCour){
+		public SearchCourStudentPanel(String name, ArrayList<String> enrCour, ArrayList<String> applyCour, ArrayList<String> appliedCour, ArrayList<String> expelCour){
 			String[] strCourses = {};
 			this.setVisible(true);
 			this.setSize(screenSize.width, screenSize.height);
@@ -68,7 +74,6 @@ public class SearchCourStudentPanel extends JPanel{
 			this.supPanel.setLayout(layout);
 			
 			this.student = new JLabel("Student: "+ name);
-			
 			int i = 0;
 			for(String c: enrCour){
 				strCourses = Arrays.copyOf(strCourses, strCourses.length+1);
@@ -85,6 +90,8 @@ public class SearchCourStudentPanel extends JPanel{
 			this.student.setFont(this.student.getFont().deriveFont(15f));
 			this.signOut.setForeground(Color.RED);
 			
+			this.go.setPreferredSize(new Dimension(53,25));
+			
 			
 			this.supPanel.add(imgLabel);
 			this.supPanel.add(homeLabel);
@@ -94,6 +101,7 @@ public class SearchCourStudentPanel extends JPanel{
 			this.supPanel.add(marks);
 			this.supPanel.add(student);
 			this.supPanel.add(signOut);
+			this.supPanel.add(go);
 			
 			layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.imgLabel, 40, SpringLayout.WEST, this.supPanel);
 			layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.imgLabel, 40, SpringLayout.NORTH, this.supPanel);
@@ -107,18 +115,21 @@ public class SearchCourStudentPanel extends JPanel{
 			layout.putConstraint(SpringLayout.NORTH, this.listCourses, 40, SpringLayout.NORTH, this.supPanel);
 			layout.putConstraint(SpringLayout.EAST, this.listCourses, 100, SpringLayout.HORIZONTAL_CENTER, this.supPanel);
 			
-			layout.putConstraint(SpringLayout.NORTH, this.searchCour, 40, SpringLayout.NORTH, this.supPanel);
-			layout.putConstraint(SpringLayout.WEST, this.searchCour, 10, SpringLayout.EAST, this.listCourses);
+			layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.go, 0, SpringLayout.VERTICAL_CENTER, this.listCourses);
+			layout.putConstraint(SpringLayout.WEST, this.go, 10, SpringLayout.EAST, this.listCourses);
 			
-			layout.putConstraint(SpringLayout.NORTH, this.marks, 40, SpringLayout.NORTH, this.supPanel);
+			
+			layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.searchCour, 0, SpringLayout.VERTICAL_CENTER, this.listCourses);
+			layout.putConstraint(SpringLayout.WEST, this.searchCour, 10, SpringLayout.EAST, this.go);
+			
+			layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.marks, 0, SpringLayout.VERTICAL_CENTER, this.listCourses);
 			layout.putConstraint(SpringLayout.WEST, this.marks, 10, SpringLayout.EAST, this.searchCour);
 			
 			layout.putConstraint(SpringLayout.NORTH, this.student, 5, SpringLayout.NORTH, this.supPanel);
 			layout.putConstraint(SpringLayout.EAST, this.student, 0, SpringLayout.EAST, this.signOut);
 			
 			layout.putConstraint(SpringLayout.NORTH, this.signOut, 40, SpringLayout.NORTH, this.supPanel);
-			layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
-			
+			layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);			
 
 			Map attributes = this.enrolLabel.getFont().getAttributes();
 			attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
@@ -129,10 +140,20 @@ public class SearchCourStudentPanel extends JPanel{
 			}
 			this.enrolList = new JList<String>(enrolModel);
 			this.enrolPane = new JScrollPane(this.enrolList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-			this.enrolPane.setPreferredSize(new Dimension(250,500));
+			this.enrolPane.setPreferredSize(new Dimension(200,500));
 			this.enrolList.setBackground(Color.decode("#20B2AA"));
 			this.enrolLabel.setFont(this.enrolLabel.getFont().deriveFont(attributes));
 			this.enrolLabel.setFont(this.enrolLabel.getFont().deriveFont(15f));
+			
+			for(String s: expelCour){
+				this.expelModel.addElement(s);
+			}
+			this.expelList = new JList<String>(expelModel);
+			this.expelPane = new JScrollPane(this.expelList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			this.expelPane.setPreferredSize(new Dimension(200,500));
+			this.expelList.setBackground(Color.decode("#20B2AA"));
+			this.expelLabel.setFont(this.expelLabel.getFont().deriveFont(attributes));
+			this.expelLabel.setFont(this.expelLabel.getFont().deriveFont(15f));
 			
 			
 			for(String s: applyCour){
@@ -140,7 +161,7 @@ public class SearchCourStudentPanel extends JPanel{
 			}
 			this.applyList = new JList<String>(applyModel);
 			this.applyPane = new JScrollPane(this.applyList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-			this.applyPane.setPreferredSize(new Dimension(250,500));
+			this.applyPane.setPreferredSize(new Dimension(200,500));
 			this.applyList.setBackground(Color.decode("#20B2AA"));
 			this.applyLabel.setFont(this.applyLabel.getFont().deriveFont(attributes));
 			this.applyLabel.setFont(this.applyLabel.getFont().deriveFont(15f));
@@ -150,7 +171,7 @@ public class SearchCourStudentPanel extends JPanel{
 			}
 			this.appliedList = new JList<String>(appliedModel);
 			this.appliedPane = new JScrollPane(this.appliedList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-			this.appliedPane.setPreferredSize(new Dimension(250,500));
+			this.appliedPane.setPreferredSize(new Dimension(200,500));
 			this.appliedList.setBackground(Color.decode("#20B2AA"));
 			this.appliedLabel.setFont(this.applyLabel.getFont().deriveFont(attributes));
 			this.appliedLabel.setFont(this.appliedLabel.getFont().deriveFont(15f));
@@ -159,6 +180,8 @@ public class SearchCourStudentPanel extends JPanel{
 			
 			this.add(this.supPanel);
 			this.add(this.enrolPane);
+			this.add(this.expelLabel);
+			this.add(this.expelPane);
 			this.add(this.applyPane);
 			this.add(this.appliedPane);
 			this.add(this.appliedLabel);
@@ -177,13 +200,13 @@ public class SearchCourStudentPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.EAST, this.supPanel, 0, SpringLayout.EAST, this);
 			layout2.putConstraint(SpringLayout.WEST, this.supPanel, 0, SpringLayout.WEST, this);
 			
-			layout2.putConstraint(SpringLayout.EAST, this.enrolPane, -100, SpringLayout.WEST, this.applyPane);
+			layout2.putConstraint(SpringLayout.EAST, this.enrolPane, -80, SpringLayout.WEST, this.applyPane);
 			layout2.putConstraint(SpringLayout.NORTH, this.enrolPane, 150, SpringLayout.NORTH, this);
 			
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.enrolLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.enrolPane);
 			layout2.putConstraint(SpringLayout.SOUTH, this.enrolLabel, -10, SpringLayout.NORTH, this.enrolPane);	
 			
-			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.applyPane, -100, SpringLayout.HORIZONTAL_CENTER, this);
+			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.applyPane, -250, SpringLayout.HORIZONTAL_CENTER, this);
 			layout2.putConstraint(SpringLayout.NORTH, this.applyPane, 0, SpringLayout.NORTH, this.enrolPane);
 			
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.applyLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.applyPane);
@@ -192,7 +215,7 @@ public class SearchCourStudentPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.applyButton, 0, SpringLayout.HORIZONTAL_CENTER, this.applyPane);
 			layout2.putConstraint(SpringLayout.NORTH, this.applyButton, 10, SpringLayout.SOUTH, this.applyPane);
 		
-			layout2.putConstraint(SpringLayout.WEST, this.appliedPane, 100, SpringLayout.EAST, this.applyPane);
+			layout2.putConstraint(SpringLayout.WEST, this.appliedPane, 80, SpringLayout.EAST, this.applyPane);
 			layout2.putConstraint(SpringLayout.NORTH, this.appliedPane, 0, SpringLayout.NORTH, this.enrolPane);
 			
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.appliedLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.appliedPane);
@@ -201,14 +224,24 @@ public class SearchCourStudentPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.appliedButton, 0, SpringLayout.HORIZONTAL_CENTER, this.appliedPane);
 			layout2.putConstraint(SpringLayout.NORTH, this.appliedButton, 10, SpringLayout.SOUTH, this.appliedPane);
 			
+			layout2.putConstraint(SpringLayout.WEST, this.expelPane, 80, SpringLayout.EAST, this.appliedPane);
+			layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.expelPane, 0, SpringLayout.VERTICAL_CENTER, this.appliedPane);
+			
+			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.expelLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.expelPane);
+			layout2.putConstraint(SpringLayout.SOUTH, this.expelLabel, -10, SpringLayout.NORTH, this.expelPane);	
+			
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.searchLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.searchField);
 			layout2.putConstraint(SpringLayout.SOUTH, this.searchLabel, -10, SpringLayout.NORTH, this.searchField);
 			
-			layout2.putConstraint(SpringLayout.EAST, this.searchField, -50, SpringLayout.EAST, this);
+			layout2.putConstraint(SpringLayout.WEST, this.searchField, 30, SpringLayout.EAST, this.expelPane);
 			layout2.putConstraint(SpringLayout.NORTH, this.searchField, 0, SpringLayout.NORTH, this.enrolPane);
 			
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.searchButton, 0, SpringLayout.HORIZONTAL_CENTER, this.searchField);
 			layout2.putConstraint(SpringLayout.NORTH, this.searchButton, 10, SpringLayout.SOUTH, this.searchField);
+		}
+		
+		public String getSearched(){
+			return this.searchField.getText();
 		}
 		
 		public void addEnrCourse(String name){
