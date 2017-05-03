@@ -1,23 +1,11 @@
 package es.uam.eps.padsof.p4.inter;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
+import java.util.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SpringLayout;
+import javax.swing.*;
 
 public class CourseTeacherPanel extends JPanel{
 	//Superior Panel
@@ -40,6 +28,14 @@ public class CourseTeacherPanel extends JPanel{
 	private JTextArea courseDesc;
 	private JScrollPane coursePane;
 	private JButton studentsButton = new JButton("Students");
+	private JButton delete = new JButton("Delete");
+	private JButton edit = new JButton("Edit");
+	private JButton stats = new JButton("View stats");
+	private JButton view = new JButton("View");
+	private JButton createNote = new JButton("Create note");
+	private JButton createExer = new JButton("Create exercise");
+	private JButton createSubUnit = new JButton("Create subunit");
+	private JCheckBox hide = new JCheckBox("Hidden");
 	
 	private JButton createUnit = new JButton("Create unit");
 	private SpringLayout layout2 = new SpringLayout();
@@ -114,6 +110,8 @@ public class CourseTeacherPanel extends JPanel{
 		
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.signOut, 0, SpringLayout.VERTICAL_CENTER, this.listCourses);
 		layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
+		
+		this.courseLabel = new JLabel(courName);
 		
 		Map attributes = this.courseLabel.getFont().getAttributes();
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
