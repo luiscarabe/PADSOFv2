@@ -8,7 +8,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.tree.*;
 
-import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.course.*;
 
 public class CourseTeacherPanel extends JPanel{
 	//Superior Panel
@@ -34,7 +34,7 @@ public class CourseTeacherPanel extends JPanel{
 	private JButton delete = new JButton("Delete");
 	private JButton edit = new JButton("Edit");
 	private JButton stats = new JButton("View stats");
-	private JButton view = new JButton("View");
+	private JButton view = new JButton("View Note");
 	private JButton createNote = new JButton("Create note");
 	private JButton createExer = new JButton("Create exercise");
 	private JButton createSubunit = new JButton("Create subunit");
@@ -46,6 +46,8 @@ public class CourseTeacherPanel extends JPanel{
 	private DefaultTreeModel courseModel;
 	private JTree courTree;
 	private JScrollPane coursePane;
+	private HashMap<DefaultMutableTreeNode, ArrayList<DefaultMutableTreeNode>> units = new HashMap<DefaultMutableTreeNode, ArrayList<DefaultMutableTreeNode>>();
+	
 
 	
 	private JButton createUnit = new JButton("Create unit");
@@ -148,18 +150,18 @@ public class CourseTeacherPanel extends JPanel{
 		this.courseDescPane.setPreferredSize(new Dimension(500, 60));
 		
 		this.allButtons.setLayout(new FlowLayout());
-		this.allButtons.setPreferredSize(new Dimension (500,100));
+		this.allButtons.setPreferredSize(new Dimension (450,100));
 		this.allButtons.setVisible(true);
 		this.allButtons.setBackground(this.getBackground());
 		this.hide.setBackground(this.getBackground());
+		
+		this.allButtons.add(this.createNote);
+		this.allButtons.add(this.createExer);
+		this.allButtons.add(this.createSubunit);
 		this.allButtons.add(this.delete);
 		this.allButtons.add(this.edit);
 		this.allButtons.add(this.stats);
 		this.allButtons.add(this.view);
-		this.allButtons.add(this.createNote);
-		this.allButtons.add(this.createExer);
-		this.allButtons.add(this.createSubunit);
-		this.allButtons.add(this.hide);
 		
 		
 		this.add(this.supPanel);
@@ -169,6 +171,7 @@ public class CourseTeacherPanel extends JPanel{
 		this.add(this.createUnit);
 		this.add(this.coursePane);
 		this.add(this.allButtons);
+		this.add(this.hide);
 		
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
@@ -194,6 +197,38 @@ public class CourseTeacherPanel extends JPanel{
 		layout2.putConstraint(SpringLayout.NORTH, this.allButtons, -5, SpringLayout.NORTH, this.studentsButton);
 		layout2.putConstraint(SpringLayout.WEST, this.allButtons, 600, SpringLayout.WEST, this);
 		
+		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.hide, -20, SpringLayout.VERTICAL_CENTER, this.allButtons);
+		layout2.putConstraint(SpringLayout.WEST, this.hide, 5, SpringLayout.EAST, this.allButtons);
+		
+	}
+	
+	public void addUnit(Unit u){
+		this.units.put(new DefaultMutableTreeNode(u), null);
+		DefaultMutableTreeNode aux = null;
+		for(Map.Entry<DefaultMutableTreeNode, ArrayList<DefaultMutableTreeNode>> e : this.units.entrySet()){
+			aux = e.getKey();
+			if (aux.equals(u))
+				break;
+		}
+		this.courseModel.insertNodeInto(aux, this.root, this.courseModel.getChildCount(this.root));
+	}
+	
+	public void addSubunit(Unit subunit, Unit parentUnit){
+		int numNodes = this.courseModel.getChildCount(root);
+		DefaultMutableTreeNode aux = null;
+		for (int i = 0; i < numNodes; i++){
+			if (this.courseModel.getChild(root, i).toString().equals(parentUnit.toString())){
+				aux = (DefaultMutableTreeNode) this.courseModel.getChild(root, i);
+				break;
+			}
+		}
+		
+		if(this.units.get(aux) == null)
+			this.units.put(aux, new ArrayList<DefaultMutableTreeNode>());
+			
+		DefaultMutableTreeNode subNode = new DefaultMutableTreeNode(subunit);
+		this.units.get(aux).add(subNode);
+		this.courseModel.insertNodeInto(subNode, aux, this.courseModel.getChildCount(aux));
 	}
 	
 	public void setController(ActionListener c){

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.user.*;
 
@@ -19,7 +20,7 @@ public class TestingTester {
 		//System.out.println(Educagram.getInstance().getCourses().get(0));
 		MainFrame ma = MainFrame.getInstance();
 		ArrayList<Course> lcour = new ArrayList<Course>();
-		lcour.add(new Course("ADSOFdf", "IS THE BEST"));
+		lcour.add(new Course("ADSOff", "IS THE BEST"));
 		((Student)edu.getCurrentUser()).setEnrolledCourses(lcour);
 		ArrayList<String> ar = new ArrayList<String>();
 		ar.add("Hola");
@@ -33,6 +34,10 @@ public class TestingTester {
 		ar.add("Hola");
 		ar.add("Adios");
 		CourseTeacherPanel lo = new CourseTeacherPanel(lcour.get(0), ar );
+		Unit u1 = new Unit("Hola", "hola", false, null);
+		Unit u2 = new Unit("Adios", "adios", false, null);
+		lo.addUnit(u1);
+		lo.addSubunit(u2, u1);
 		
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());
