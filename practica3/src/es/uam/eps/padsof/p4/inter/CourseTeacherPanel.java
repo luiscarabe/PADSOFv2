@@ -12,7 +12,7 @@ public class CourseTeacherPanel extends JPanel{
 	private JPanel supPanel = new JPanel();
 	private ImageIcon image = new ImageIcon("logov3.png");
 	private JLabel imgLabel = new JLabel(image);
-	private JLabel homeLabel = new JLabel("Home page");
+	private JLabel homeLabel = new JLabel("Course page");
 	private JLabel courses = new JLabel("All courses:");
 	private JComboBox<String> listCourses;
 	private JButton go = new JButton("Go");
@@ -155,6 +155,7 @@ public class CourseTeacherPanel extends JPanel{
 	public void setController(ActionListener c){
 		this.signOut.addActionListener(c);
 		this.studentsButton.addActionListener(c);
+		this.go.addActionListener(c);
 	}
 
 	/**
@@ -264,5 +265,8 @@ public class CourseTeacherPanel extends JPanel{
 		return layout2;
 	}
 	
+	public JButton getGo(){
+		return go;
+	}
 	
 }
