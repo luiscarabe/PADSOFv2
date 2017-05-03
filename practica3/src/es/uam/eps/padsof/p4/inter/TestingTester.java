@@ -19,7 +19,7 @@ public class TestingTester {
 		//System.out.println(Educagram.getInstance().getCourses().get(0));
 		MainFrame ma = MainFrame.getInstance();
 		ArrayList<Course> lcour = new ArrayList<Course>();
-		lcour.add(new Course("ADSOFdfffffffffffffffffffffffffffffffffffffffffffffffffffffffff", "IS THE BEST"));
+		lcour.add(new Course("ADSOFdf", "IS THE BEST"));
 		((Student)edu.getCurrentUser()).setEnrolledCourses(lcour);
 		ArrayList<String> ar = new ArrayList<String>();
 		ar.add("Hola");
@@ -32,7 +32,7 @@ public class TestingTester {
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
-		CourseTeacherPanel lo = new CourseTeacherPanel("AAAAA", "BBBB", ar );
+		CourseTeacherPanel lo = new CourseTeacherPanel(lcour.get(0), ar );
 		
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());

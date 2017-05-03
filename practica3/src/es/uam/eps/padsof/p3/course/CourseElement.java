@@ -188,6 +188,9 @@ public abstract class CourseElement implements Serializable{
 		return true;
 	}
 	
+	@Override
+	public abstract String toString();
+	
 	
 	
 }

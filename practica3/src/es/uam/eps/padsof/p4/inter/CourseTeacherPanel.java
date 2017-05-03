@@ -6,6 +6,9 @@ import java.awt.font.TextAttribute;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.tree.*;
+
+import es.uam.eps.padsof.p3.course.Course;
 
 public class CourseTeacherPanel extends JPanel{
 	//Superior Panel
@@ -26,7 +29,7 @@ public class CourseTeacherPanel extends JPanel{
 	
 	private JLabel courseLabel;
 	private JTextArea courseDesc;
-	private JScrollPane coursePane;
+	private JScrollPane courseDescPane;
 	private JButton studentsButton = new JButton("Students");
 	private JButton delete = new JButton("Delete");
 	private JButton edit = new JButton("Edit");
@@ -34,15 +37,23 @@ public class CourseTeacherPanel extends JPanel{
 	private JButton view = new JButton("View");
 	private JButton createNote = new JButton("Create note");
 	private JButton createExer = new JButton("Create exercise");
-	private JButton createSubUnit = new JButton("Create subunit");
+	private JButton createSubunit = new JButton("Create subunit");
 	private JCheckBox hide = new JCheckBox("Hidden");
+	private JPanel allButtons = new JPanel();
+	
+	//Tree
+	private DefaultMutableTreeNode root;
+	private DefaultTreeModel courseModel;
+	private JTree courTree;
+	private JScrollPane coursePane;
+
 	
 	private JButton createUnit = new JButton("Create unit");
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	public CourseTeacherPanel( String courName, String courDesc, ArrayList<String> allCour){
+	public CourseTeacherPanel( Course cour, ArrayList<String> allCour){
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
 		this.setLayout(layout2);
@@ -111,26 +122,53 @@ public class CourseTeacherPanel extends JPanel{
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.signOut, 0, SpringLayout.VERTICAL_CENTER, this.listCourses);
 		layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
 		
-		this.courseLabel = new JLabel(courName);
+		this.courseLabel = new JLabel(cour.getTitle());
+		
+		this.root = new DefaultMutableTreeNode(cour);
+		this.courseModel = new DefaultTreeModel(this.root);
+		this.courTree = new JTree(courseModel);
+		this.courTree.setBackground(this.getBackground());
+		this.courTree.setVisible(true);
+		this.coursePane = new JScrollPane(this.courTree, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		this.coursePane.setPreferredSize(new Dimension(500,500));
+		this.coursePane.setBorder(null);
+		this.coursePane.setPreferredSize(new Dimension(500, 60));
 		
 		Map attributes = this.courseLabel.getFont().getAttributes();
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		this.courseLabel.setFont(this.courseLabel.getFont().deriveFont(attributes));
 		this.courseLabel.setFont(this.courseLabel.getFont().deriveFont(30f));
-		this.courseDesc = new JTextArea(courDesc);
+		this.courseDesc = new JTextArea(cour.getDesc());
 		this.courseDesc.setEditable(false);
 		this.courseDesc.setBackground(this.getBackground());
 		this.courseDesc.setLineWrap(true);
 		this.courseDesc.setWrapStyleWord(true);
-		this.coursePane = new JScrollPane(this.courseDesc, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		this.coursePane.setBorder(null);
-		this.coursePane.setPreferredSize(new Dimension(500, 60));
+		this.courseDescPane = new JScrollPane(this.courseDesc, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		this.courseDescPane.setBorder(null);
+		this.courseDescPane.setPreferredSize(new Dimension(500, 60));
+		
+		this.allButtons.setLayout(new FlowLayout());
+		this.allButtons.setPreferredSize(new Dimension (500,100));
+		this.allButtons.setVisible(true);
+		this.allButtons.setBackground(this.getBackground());
+		this.hide.setBackground(this.getBackground());
+		this.allButtons.add(this.delete);
+		this.allButtons.add(this.edit);
+		this.allButtons.add(this.stats);
+		this.allButtons.add(this.view);
+		this.allButtons.add(this.createNote);
+		this.allButtons.add(this.createExer);
+		this.allButtons.add(this.createSubunit);
+		this.allButtons.add(this.hide);
+		
 		
 		this.add(this.supPanel);
 		this.add(this.courseLabel);
-		this.add(this.coursePane);
+		this.add(this.courseDescPane);
 		this.add(this.studentsButton);
 		this.add(this.createUnit);
+		this.add(this.coursePane);
+		this.add(this.allButtons);
 		
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
@@ -144,11 +182,17 @@ public class CourseTeacherPanel extends JPanel{
 		layout2.putConstraint(SpringLayout.WEST, this.courseLabel, 10, SpringLayout.WEST, this);
 		layout2.putConstraint(SpringLayout.NORTH, this.courseLabel, 10, SpringLayout.SOUTH, this.supPanel);
 		
-		layout2.putConstraint(SpringLayout.WEST, this.coursePane, 10, SpringLayout.WEST, this);
-		layout2.putConstraint(SpringLayout.NORTH, this.coursePane, 10, SpringLayout.SOUTH, this.courseLabel);
+		layout2.putConstraint(SpringLayout.WEST, this.courseDescPane, 10, SpringLayout.WEST, this);
+		layout2.putConstraint(SpringLayout.NORTH, this.courseDescPane, 10, SpringLayout.SOUTH, this.courseLabel);
 		
 		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.studentsButton, 0, SpringLayout.VERTICAL_CENTER, this.createUnit);
 		layout2.putConstraint(SpringLayout.WEST, this.studentsButton, 10, SpringLayout.EAST, this.createUnit);
+		
+		layout2.putConstraint(SpringLayout.NORTH, this.coursePane, 20, SpringLayout.SOUTH, this.courseDescPane);
+		layout2.putConstraint(SpringLayout.WEST, this.coursePane, 0, SpringLayout.WEST, this.courseLabel);
+		
+		layout2.putConstraint(SpringLayout.NORTH, this.allButtons, -5, SpringLayout.NORTH, this.studentsButton);
+		layout2.putConstraint(SpringLayout.WEST, this.allButtons, 600, SpringLayout.WEST, this);
 		
 	}
 	

@@ -39,6 +39,11 @@ public class Note extends CourseElement implements Serializable{
 	public void setText(String text) {
 		this.text = text;
 	}
+
+	@Override
+	public String toString() {
+		return this.getTitle();
+	}
 	
 	
 	

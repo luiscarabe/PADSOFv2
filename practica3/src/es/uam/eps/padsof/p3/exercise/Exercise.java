@@ -427,6 +427,11 @@ public class Exercise extends CourseElement implements Serializable{
 		}
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		return this.getTitle();
+	}
 	
 	
 }

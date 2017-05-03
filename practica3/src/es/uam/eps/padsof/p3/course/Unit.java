@@ -185,6 +185,11 @@ public class Unit extends CourseElement implements Serializable{
 		}
 		this.setHidden(true);
 	}
+
+	@Override
+	public String toString() {
+		return this.getTitle();
+	}
 	
 	
 	

@@ -387,7 +387,13 @@ public class Course implements Serializable{
 			return false;
 		return true;
 	}
-	
+	/**
+	 * Course toString
+	 */
+	@Override
+	public String toString(){
+		return this.title;
+	}
 	
 	
 	
