@@ -23,7 +23,6 @@ public class CourseTeacherPanel extends JPanel{
 	private JComboBox<String> listCourses;
 	private JButton go = new JButton("Go");
 	private JButton searchCour = new JButton("Search Course");
-	private JButton globalStats = new JButton ("Global Statistics");
 	private JButton createCourse = new JButton ("Create Course");
 	private JLabel professor = new JLabel("Professor");
 	private JButton signOut = new JButton("Sign out");
@@ -35,6 +34,7 @@ public class CourseTeacherPanel extends JPanel{
 	private JScrollPane courseDescPane;
 	private JButton createUnit = new JButton("Create unit");
 	private JButton studentsButton = new JButton("Students");
+	private JButton globalStats = new JButton("Global Statistics");
 	
 	private JPanel commonButtons = new JPanel();
 	private JButton delete = new JButton("Delete");
@@ -211,6 +211,7 @@ public class CourseTeacherPanel extends JPanel{
 		this.add(this.unitButtons);
 		this.add(this.descLabel);
 		this.add(this.otherButtons);
+		this.add(this.globalStats);
 		
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
@@ -229,6 +230,9 @@ public class CourseTeacherPanel extends JPanel{
 		
 		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.studentsButton, 0, SpringLayout.VERTICAL_CENTER, this.createUnit);
 		layout2.putConstraint(SpringLayout.WEST, this.studentsButton, 10, SpringLayout.EAST, this.createUnit);
+		
+		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.globalStats, 0, SpringLayout.VERTICAL_CENTER, this.createUnit);
+		layout2.putConstraint(SpringLayout.WEST, this.globalStats, 10, SpringLayout.EAST, this.studentsButton);
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.coursePane, 20, SpringLayout.SOUTH, this.courseDescPane);
 		layout2.putConstraint(SpringLayout.WEST, this.coursePane, 0, SpringLayout.WEST, this.courseLabel);
