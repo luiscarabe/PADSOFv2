@@ -6,6 +6,8 @@ import java.awt.font.TextAttribute;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.event.TreeModelListener;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.*;
 
 import es.uam.eps.padsof.p3.course.*;
@@ -187,7 +189,17 @@ public class CourseTeacherPanel extends JPanel{
 		this.otherButtons.add(this.createSubunit);
 		this.otherButtons.add(this.stats);
 		
+		this.desc = new JTextArea();
+		this.desc.setEditable(false);
+		this.desc.setText("cachopo");
+		this.desc.setBackground(Color.decode("#D3D3D3"));
+		this.desc.setLineWrap(true);
+		this.desc.setWrapStyleWord(true);
+		this.descPane = new JScrollPane(this.desc, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		this.descPane.setBorder(null);
+		this.descPane.setPreferredSize(new Dimension(500, 300));
 		
+		this.add(this.descPane);
 		this.add(this.supPanel);
 		this.add(this.courseLabel);
 		this.add(this.courseDescPane);
@@ -235,7 +247,9 @@ public class CourseTeacherPanel extends JPanel{
 			
 		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.commonButtons);
 		layout2.putConstraint(SpringLayout.NORTH, this.descLabel, 30, SpringLayout.SOUTH, this.otherButtons);
-		
+
+		layout2.putConstraint(SpringLayout.NORTH, this.descPane, 5, SpringLayout.SOUTH, this.descLabel);
+		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descPane, 0, SpringLayout.HORIZONTAL_CENTER, this.descLabel);
 	}
 	
 	public void addUnit(Unit u){
@@ -445,10 +459,41 @@ public class CourseTeacherPanel extends JPanel{
 		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descPane, 0, SpringLayout.HORIZONTAL_CENTER, this.descLabel);
 	}
 	
-	public void setController(ActionListener c){
-		this.signOut.addActionListener(c);
-		this.studentsButton.addActionListener(c);
-		this.go.addActionListener(c);
+	public void setController(EventListener c){
+		this.signOut.addActionListener((ActionListener) c);
+		this.studentsButton.addActionListener((ActionListener) c);
+		this.go.addActionListener((ActionListener) c);
+		this.edit.addActionListener((ActionListener) c);
+		this.courTree.addTreeSelectionListener((TreeSelectionListener) c);
+		/*this.courseModel.addTreeModelListener((TreeModelListener) c);*/
+	}
+	
+	public Object getParent(CourseElement c){
+		int numNodes = this.courseModel.getChildCount(root);
+		int numNodes1 = 0;
+		int numNodes2 = 0;
+		DefaultMutableTreeNode aux = null;
+		DefaultMutableTreeNode aux2 = null;
+		for (int i = 0; i < numNodes; i++){
+			aux = (DefaultMutableTreeNode) this.courseModel.getChild(root, i);
+			if (this.courseModel.getChild(root, i).toString().equals(c.toString()))
+				return this.root;
+			numNodes1 = aux.getChildCount();
+			for(int j = 0; j < numNodes1; j++){
+				aux2 = (DefaultMutableTreeNode)this.courseModel.getChild(aux, j);
+				if(this.courseModel.getChild(aux, j).toString().equals(c.toString())){
+					return aux;
+				}
+				numNodes2 = aux2.getChildCount();
+				for(int k = 0; k < numNodes2; k++){
+					if(this.courseModel.getChild(aux2, k).toString().equals(c.toString())){
+						return aux2;
+					}
+				}
+				
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -494,6 +539,13 @@ public class CourseTeacherPanel extends JPanel{
 	}
 
 	/**
+	 * @return the go
+	 */
+	public JButton getGo() {
+		return go;
+	}
+
+	/**
 	 * @return the searchCour
 	 */
 	public JButton getSearchCour() {
@@ -535,6 +587,12 @@ public class CourseTeacherPanel extends JPanel{
 		return layout;
 	}
 
+	/**
+	 * @return the strCourses
+	 */
+	public String[] getStrCourses() {
+		return strCourses;
+	}
 
 	/**
 	 * @return the courseLabel
@@ -543,6 +601,26 @@ public class CourseTeacherPanel extends JPanel{
 		return courseLabel;
 	}
 
+	/**
+	 * @return the courseDesc
+	 */
+	public JTextArea getCourseDesc() {
+		return courseDesc;
+	}
+
+	/**
+	 * @return the courseDescPane
+	 */
+	public JScrollPane getCourseDescPane() {
+		return courseDescPane;
+	}
+
+	/**
+	 * @return the createUnit
+	 */
+	public JButton getCreateUnit() {
+		return createUnit;
+	}
 
 	/**
 	 * @return the studentsButton
@@ -552,17 +630,138 @@ public class CourseTeacherPanel extends JPanel{
 	}
 
 	/**
+	 * @return the commonButtons
+	 */
+	public JPanel getCommonButtons() {
+		return commonButtons;
+	}
+
+	/**
+	 * @return the delete
+	 */
+	public JButton getDelete() {
+		return delete;
+	}
+
+	/**
+	 * @return the edit
+	 */
+	public JButton getEdit() {
+		return edit;
+	}
+
+	/**
+	 * @return the hide
+	 */
+	public JCheckBox getHide() {
+		return hide;
+	}
+
+	/**
+	 * @return the unitButtons
+	 */
+	public JPanel getUnitButtons() {
+		return unitButtons;
+	}
+
+	/**
+	 * @return the createNote
+	 */
+	public JButton getCreateNote() {
+		return createNote;
+	}
+
+	/**
+	 * @return the createExer
+	 */
+	public JButton getCreateExer() {
+		return createExer;
+	}
+
+	/**
+	 * @return the otherButtons
+	 */
+	public JPanel getOtherButtons() {
+		return otherButtons;
+	}
+
+	/**
+	 * @return the createSubunit
+	 */
+	public JButton getCreateSubunit() {
+		return createSubunit;
+	}
+
+	/**
+	 * @return the stats
+	 */
+	public JButton getStats() {
+		return stats;
+	}
+
+	/**
+	 * @return the view
+	 */
+	public JButton getView() {
+		return view;
+	}
+
+	/**
+	 * @return the root
+	 */
+	public DefaultMutableTreeNode getRoot() {
+		return root;
+	}
+
+	/**
+	 * @return the courseModel
+	 */
+	public DefaultTreeModel getCourseModel() {
+		return courseModel;
+	}
+
+	/**
+	 * @return the courTree
+	 */
+	public JTree getCourTree() {
+		return courTree;
+	}
+
+	/**
+	 * @return the coursePane
+	 */
+	public JScrollPane getCoursePane() {
+		return coursePane;
+	}
+
+	/**
+	 * @return the desc
+	 */
+	public JTextArea getDesc() {
+		return desc;
+	}
+
+	/**
+	 * @return the descPane
+	 */
+	public JScrollPane getDescPane() {
+		return descPane;
+	}
+
+	/**
+	 * @return the descLabel
+	 */
+	public JLabel getDescLabel() {
+		return descLabel;
+	}
+
+	/**
 	 * @return the layout2
 	 */
 	public SpringLayout getLayout2() {
 		return layout2;
 	}
+
 	
-	/**
-	 * @return the go
-	 */
-	public JButton getGo(){
-		return go;
-	}
 	
 }
