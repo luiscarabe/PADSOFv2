@@ -15,6 +15,7 @@ import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.inter.CourseTeacherPanel;
 import es.uam.eps.padsof.p4.inter.CreateNotePanel;
+import es.uam.eps.padsof.p4.inter.CreateSubUnitPanel;
 import es.uam.eps.padsof.p4.inter.CreateUnitPanel;
 import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
 import es.uam.eps.padsof.p4.inter.MainFrame;
@@ -23,16 +24,18 @@ import es.uam.eps.padsof.p4.inter.MainFrame;
  * @author Miguel
  *
  */
-public class CreateUnitPanelController implements ActionListener{
+public class CreateSubUnitPanelController implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
-	private CreateUnitPanel view;
+	private CreateSubUnitPanel view;
 	private Educagram edu = Educagram.getInstance();
 	private Course course;
+	private Unit unit;
 	
-	public CreateUnitPanelController(CreateUnitPanel view, Course course) {
+	public CreateSubUnitPanelController(CreateSubUnitPanel view, Course course, Unit unit) {
 		this.view = view;
 		this.course= course;
+		this.unit = unit;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -44,7 +47,7 @@ public class CreateUnitPanelController implements ActionListener{
 		String title = view.getName();
 		String desc = view.getDesc();
 		Course course;
-		Unit unit;
+		Unit subunit;
 		
 		System.out.println(title);
 		System.out.println(desc);
@@ -65,17 +68,17 @@ public class CreateUnitPanelController implements ActionListener{
 			}
 		}else if(source == this.view.getOk()){
 			if(title.equals("")){
-				JOptionPane.showMessageDialog(view, "The unit must have a title", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(view, "The subunit must have a title.", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			unit = (Unit) this.course.createUnit(title, desc, false);
-			if(unit == null){
+			subunit = (Unit) this.unit.createSubUnit(title, desc, false);
+			if(subunit == null){
 				JOptionPane.showMessageDialog(view, "There is already an element of the course with this name.", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
 			newview = MainFrame.getInstance().getCtp();
-			((CourseTeacherPanel) newview).addUnit(unit);
+			((CourseTeacherPanel) newview).addSubunit(subunit, this.unit);
 			((CourseTeacherPanel) newview).getCourseDesc().setText(this.course.getDesc());
 			((CourseTeacherPanel) newview).getCourseDesc().repaint();
 			((CourseTeacherPanel) newview).getCourseDesc().revalidate();

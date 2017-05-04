@@ -9,6 +9,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.controllers.*;
 
@@ -41,6 +42,10 @@ public class MainFrame extends JFrame{
 	private StudentsOfCourPanel socp;
 	private SearchCourTeacherPanel sctp;
 	private ModifyCoursePanel mcp;
+	private CreateUnitPanel cup;
+	private CreateSubUnitPanel csup;
+	private ModifyUnitPanel mup;
+	
 	
 	/* Controllers */
 	private LoginPanelController lpc = new LoginPanelController(lp);
@@ -56,8 +61,15 @@ public class MainFrame extends JFrame{
 	private StudentsOfCourPanelController socpc;
 	private SearchCourTeacherPanelController sctpc;
 	private ModifyCoursePanelController mcpc;
+	private CreateUnitPanelController cupc;
+	private CreateSubUnitPanelController csupc;
+	private ModifyUnitPanelController mupc;
 	
 	
+	
+
+
+
 	
 
 
@@ -337,6 +349,64 @@ public class MainFrame extends JFrame{
 		this.mcpc = new ModifyCoursePanelController(mcp, course);
 		mcp.setController(this.mcpc);
 		this.mcp = mcp;
+	}
+	
+	/**
+	 * @return the cup
+	 */
+	public CreateUnitPanel getCup() {
+		return cup;
+	}
+
+
+
+	/**
+	 * @param cup the cup to set
+	 */
+	public void setCup(CreateUnitPanel cup, Course course) {
+		this.cupc = new CreateUnitPanelController(cup, course);
+		cup.setController(this.cupc);
+		this.cup = cup;
+	}
+
+
+
+	/**
+	 * @return the csup
+	 */
+	public CreateSubUnitPanel getCsup() {
+		return csup;
+	}
+
+
+
+	/**
+	 * @param csup the csup to set
+	 */
+	public void setCsup(CreateSubUnitPanel csup, Course course, Unit unit) {
+		this.csupc = new CreateSubUnitPanelController(csup, course, unit);
+		csup.setController(this.csupc);
+		this.csup = csup;
+	}
+
+
+
+	/**
+	 * @return the mup
+	 */
+	public ModifyUnitPanel getMup() {
+		return mup;
+	}
+
+
+
+	/**
+	 * @param mup the mup to set
+	 */
+	public void setMup(ModifyUnitPanel mup, Course course, Unit unit) {
+		this.mupc = new ModifyUnitPanelController(mup, course, unit);
+		mup.setController(this.mupc);
+		this.mup = mup;
 	}
 	
 	

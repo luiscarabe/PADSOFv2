@@ -37,11 +37,9 @@ private static final long serialVersionUID = 1L;
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		JPanel newview;
-		HomePanelTeacher hpt;
 		JComponent source = (JComponent) e.getSource();
 		/*String title = view.getName();*/
 		String desc = view.getDesc();
-		Course course;
 		
 		//para comprobar !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		System.out.println(desc);
@@ -67,7 +65,7 @@ private static final long serialVersionUID = 1L;
 			((CourseTeacherPanel) newview).getCourseDesc().setText(this.course.getDesc());
 			((CourseTeacherPanel) newview).getCourseDesc().repaint();
 			((CourseTeacherPanel) newview).getCourseDesc().revalidate();
-			((CourseTeacherPanel) newview).getDesc().setText(this.course.getDesc());
+			((CourseTeacherPanel) newview).getDesc().setText(this.course.getTitle() + ":\n" + this.course.getDesc());
 			((CourseTeacherPanel) newview).getDesc().repaint();
 			((CourseTeacherPanel) newview).getDesc().revalidate();
 			

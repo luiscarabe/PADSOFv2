@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.course.CourseElement;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.inter.CourseTeacherPanel;
@@ -18,21 +19,24 @@ import es.uam.eps.padsof.p4.inter.CreateNotePanel;
 import es.uam.eps.padsof.p4.inter.CreateUnitPanel;
 import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
 import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.ModifyUnitPanel;
 
 /**
  * @author Miguel
  *
  */
-public class CreateUnitPanelController implements ActionListener{
+public class ModifyUnitPanelController implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
-	private CreateUnitPanel view;
+	private ModifyUnitPanel view;
 	private Educagram edu = Educagram.getInstance();
 	private Course course;
+	private Unit unit;
 	
-	public CreateUnitPanelController(CreateUnitPanel view, Course course) {
+	public ModifyUnitPanelController(ModifyUnitPanel view, Course course, Unit unit) {
 		this.view = view;
 		this.course= course;
+		this.unit = unit;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -43,8 +47,11 @@ public class CreateUnitPanelController implements ActionListener{
 		JComponent source = (JComponent) e.getSource();
 		String title = view.getName();
 		String desc = view.getDesc();
+		String titleaux;
+		String descaux;
 		Course course;
 		Unit unit;
+		int flag = 0;
 		
 		System.out.println(title);
 		System.out.println(desc);
@@ -68,29 +75,45 @@ public class CreateUnitPanelController implements ActionListener{
 				JOptionPane.showMessageDialog(view, "The unit must have a title", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			unit = (Unit) this.course.createUnit(title, desc, false);
-			if(unit == null){
+			titleaux = this.unit.getTitle();
+			descaux = this.unit.getDesc();
+			this.unit.setTitle(title);
+			this.unit.setDesc(desc);
+			for(CourseElement aux: this.course.getCourseElements()){
+				if(this.unit != aux){
+					if(title.equals(aux.getTitle())){
+						flag = 1;
+					}
+				}
+			}
+			if(flag == 1){
+				this.unit.setTitle(titleaux);
+				this.unit.setDesc(descaux);
 				JOptionPane.showMessageDialog(view, "There is already an element of the course with this name.", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
 			newview = MainFrame.getInstance().getCtp();
-			((CourseTeacherPanel) newview).addUnit(unit);
 			((CourseTeacherPanel) newview).getCourseDesc().setText(this.course.getDesc());
 			((CourseTeacherPanel) newview).getCourseDesc().repaint();
 			((CourseTeacherPanel) newview).getCourseDesc().revalidate();
-			((CourseTeacherPanel) newview).getDesc().setText(this.course.getDesc());
+			((CourseTeacherPanel) newview).getDesc().setText(this.unit.getTitle() + ":\n" + this.unit.getDesc());
 			((CourseTeacherPanel) newview).getDesc().repaint();
 			((CourseTeacherPanel) newview).getDesc().revalidate();
 			
 			((CourseTeacherPanel) newview).getCommonButtons().setVisible(true);
 			((CourseTeacherPanel) newview).getEdit().setVisible(true);
-			((CourseTeacherPanel) newview).getDelete().setVisible(false);
-			((CourseTeacherPanel) newview).getHide().setVisible(false);
+			((CourseTeacherPanel) newview).getDelete().setVisible(true);
+			((CourseTeacherPanel) newview).getHide().setVisible(true);
 			
-			((CourseTeacherPanel) newview).getUnitButtons().setVisible(false);
+			((CourseTeacherPanel) newview).getUnitButtons().setVisible(true);
 			
-			((CourseTeacherPanel) newview).getOtherButtons().setVisible(false);
+			((CourseTeacherPanel) newview).getOtherButtons().setVisible(true);
+			((CourseTeacherPanel) newview).getView().setVisible(false);
+			
+			((CourseTeacherPanel) newview).getCreateSubunit().setVisible(true);
+			
+			((CourseTeacherPanel) newview).getStats().setVisible(false);
 			
 			((CourseTeacherPanel) newview).getCommonButtons().validate();
 			((CourseTeacherPanel) newview).getCommonButtons().repaint();
@@ -98,8 +121,8 @@ public class CreateUnitPanelController implements ActionListener{
 			((CourseTeacherPanel) newview).getUnitButtons().validate();
 			((CourseTeacherPanel) newview).getUnitButtons().repaint();
 			
-			((CourseTeacherPanel) newview).getOtherButtons().validate();
-			((CourseTeacherPanel) newview).getOtherButtons().repaint();
+			((CourseTeacherPanel) newview).validate();
+			((CourseTeacherPanel) newview).repaint();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);

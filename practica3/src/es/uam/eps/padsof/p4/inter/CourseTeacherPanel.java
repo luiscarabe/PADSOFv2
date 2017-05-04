@@ -116,7 +116,7 @@ public class CourseTeacherPanel extends JPanel{
 		layout.putConstraint(SpringLayout.EAST, this.courses, 0, SpringLayout.WEST, this.listCourses);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.listCourses, 40, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.EAST, this.listCourses, 0, SpringLayout.HORIZONTAL_CENTER, this.supPanel);
+		layout.putConstraint(SpringLayout.EAST, this.listCourses, 60, SpringLayout.HORIZONTAL_CENTER, this.supPanel);
 
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.go, 0, SpringLayout.VERTICAL_CENTER, this.listCourses);
 		layout.putConstraint(SpringLayout.WEST, this.go, 10, SpringLayout.EAST, this.listCourses);
@@ -267,6 +267,7 @@ public class CourseTeacherPanel extends JPanel{
 			}
 		}
 		this.courseModel.removeNodeFromParent(aux);
+		this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 	}
 	
 	public void addSubunit(Unit subunit, Unit parentUnit){
@@ -421,6 +422,7 @@ public class CourseTeacherPanel extends JPanel{
 			if(flag==1)
 				break;
 		}
+		
 		if(flag == 1){
 			numNodes1 = aux2.getChildCount();
 			for(int i = 0; i < numNodes1; i++){
@@ -464,6 +466,9 @@ public class CourseTeacherPanel extends JPanel{
 		this.studentsButton.addActionListener((ActionListener) c);
 		this.go.addActionListener((ActionListener) c);
 		this.edit.addActionListener((ActionListener) c);
+		this.createUnit.addActionListener((ActionListener) c);
+		this.createSubunit.addActionListener((ActionListener) c);
+		this.delete.addActionListener((ActionListener) c);
 		this.courTree.addTreeSelectionListener((TreeSelectionListener) c);
 		/*this.courseModel.addTreeModelListener((TreeModelListener) c);*/
 	}
