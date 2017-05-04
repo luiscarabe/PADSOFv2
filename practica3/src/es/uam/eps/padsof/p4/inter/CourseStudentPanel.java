@@ -10,6 +10,9 @@ import java.util.Arrays;
 import java.util.Map;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeSelectionModel;
 
 public class CourseStudentPanel extends JPanel{
 	//Superior Panel
@@ -27,13 +30,24 @@ public class CourseStudentPanel extends JPanel{
 			private SpringLayout layout = new SpringLayout();
 			
 			private JLabel courseLabel;
-			private JLabel applyLabel = new JLabel("This is the content of the course");
+			private JTextArea courseDesc;
+			private JScrollPane courseDescPane;
+			
+			//Tree
+			private DefaultMutableTreeNode root;
+			private DefaultTreeModel courseModel;
+			private JTree courTree;
+			private JScrollPane coursePane;
+			
+			private JTextArea desc;
+			private JScrollPane descPane;
+			private JLabel descLabel = new JLabel("Description");
 			
 			private SpringLayout layout2 = new SpringLayout();
 			
 			public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			
-			public CourseStudentPanel(String name, ArrayList<String> enrCourses, String courName){
+			public CourseStudentPanel(String name, ArrayList<String> enrCourses, Course cour){
 				String[] strCourses = {};
 				this.setVisible(true);
 				this.setSize(screenSize.width, screenSize.height);
@@ -103,12 +117,33 @@ public class CourseStudentPanel extends JPanel{
 				layout.putConstraint(SpringLayout.NORTH, this.signOut, 40, SpringLayout.NORTH, this.supPanel);
 				layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
 				
-				this.courseLabel = new JLabel(courName);
+				this.courseLabel = new JLabel(cour.getTitle());
+				
+				this.root = new DefaultMutableTreeNode(cour);
+				this.courseModel = new DefaultTreeModel(this.root);
+				this.courTree = new JTree(courseModel);
+				this.courTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+				this.courTree.setBackground(this.getBackground());
+				this.courTree.setVisible(true);
+				this.coursePane = new JScrollPane(this.courTree, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				this.coursePane.setPreferredSize(new Dimension(500,500));
+				this.coursePane.setBorder(null);
+				this.coursePane.setPreferredSize(new Dimension(500, 600));
 				
 				Map attributes = this.courseLabel.getFont().getAttributes();
 				attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 				this.courseLabel.setFont(this.courseLabel.getFont().deriveFont(attributes));
 				this.courseLabel.setFont(this.courseLabel.getFont().deriveFont(30f));
+				this.courseDesc = new JTextArea(cour.getDesc());
+				this.courseDesc.setEditable(false);
+				this.courseDesc.setBackground(this.getBackground());
+				this.courseDesc.setLineWrap(true);
+				this.courseDesc.setWrapStyleWord(true);
+				this.courseDescPane = new JScrollPane(this.courseDesc, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				this.courseDescPane.setBorder(null);
+				this.courseDescPane.setPreferredSize(new Dimension(500, 60));
+				
+				this.descLabel.setFont(this.descLabel.getFont().deriveFont(attributes));
 				
 
 				this.add(this.supPanel);

@@ -31,30 +31,33 @@ public class CourseTeacherPanel extends JPanel{
 	private JLabel courseLabel;
 	private JTextArea courseDesc;
 	private JScrollPane courseDescPane;
+	private JButton createUnit = new JButton("Create unit");
 	private JButton studentsButton = new JButton("Students");
+	
+	private JPanel commonButtons = new JPanel();
 	private JButton delete = new JButton("Delete");
 	private JButton edit = new JButton("Edit");
-	private JButton stats = new JButton("View stats");
-	private JButton view = new JButton("View Note");
+	private JCheckBox hide = new JCheckBox("Hidden");
+	
+	private JPanel unitButtons = new JPanel();
 	private JButton createNote = new JButton("Create note");
 	private JButton createExer = new JButton("Create exercise");
+	
+	private JPanel otherButtons = new JPanel();
 	private JButton createSubunit = new JButton("Create subunit");
-	private JCheckBox hide = new JCheckBox("Hidden");
-	private JPanel allButtons = new JPanel();
+	private JButton stats = new JButton("View stats");
+	private JButton view = new JButton("View Note");
 	
 	//Tree
 	private DefaultMutableTreeNode root;
 	private DefaultTreeModel courseModel;
 	private JTree courTree;
 	private JScrollPane coursePane;
-	private HashMap<DefaultMutableTreeNode, ArrayList<DefaultMutableTreeNode>> units = new HashMap<DefaultMutableTreeNode, ArrayList<DefaultMutableTreeNode>>();
 	
 	private JTextArea desc;
 	private JScrollPane descPane;
 	private JLabel descLabel = new JLabel("Description");
 
-	
-	private JButton createUnit = new JButton("Create unit");
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -156,19 +159,33 @@ public class CourseTeacherPanel extends JPanel{
 		
 		this.descLabel.setFont(this.descLabel.getFont().deriveFont(attributes));
 		
-		this.allButtons.setLayout(new FlowLayout());
-		this.allButtons.setPreferredSize(new Dimension (450,100));
-		this.allButtons.setVisible(true);
-		this.allButtons.setBackground(this.getBackground());
-		this.hide.setBackground(this.getBackground());
+		this.commonButtons.setLayout(new FlowLayout());
+		this.commonButtons.setPreferredSize(new Dimension (300,50));
+		this.commonButtons.setVisible(true);
+		this.commonButtons.setBackground(this.getBackground());
 		
-		this.allButtons.add(this.createNote);
-		this.allButtons.add(this.createExer);
-		this.allButtons.add(this.createSubunit);
-		this.allButtons.add(this.delete);
-		this.allButtons.add(this.edit);
-		this.allButtons.add(this.stats);
-		this.allButtons.add(this.view);
+		this.hide.setBackground(this.getBackground());
+
+		this.commonButtons.add(this.delete);
+		this.commonButtons.add(this.edit);
+		this.commonButtons.add(this.hide);
+
+		this.unitButtons.setLayout(new FlowLayout());
+		this.unitButtons.setPreferredSize(new Dimension (300,50));
+		this.unitButtons.setVisible(true);
+		this.unitButtons.setBackground(this.getBackground());
+		
+		this.unitButtons.add(this.createNote);
+		this.unitButtons.add(this.createExer);
+		
+		this.otherButtons.setLayout(new FlowLayout());
+		this.otherButtons.setPreferredSize(new Dimension (400,50));
+		this.otherButtons.setVisible(true);
+		this.otherButtons.setBackground(this.getBackground());
+		
+		this.otherButtons.add(this.view);
+		this.otherButtons.add(this.createSubunit);
+		this.otherButtons.add(this.stats);
 		
 		
 		this.add(this.supPanel);
@@ -177,9 +194,11 @@ public class CourseTeacherPanel extends JPanel{
 		this.add(this.studentsButton);
 		this.add(this.createUnit);
 		this.add(this.coursePane);
-		this.add(this.allButtons);
-		this.add(this.hide);
+		this.add(this.unitButtons);
+		this.add(this.commonButtons);
+		this.add(this.unitButtons);
 		this.add(this.descLabel);
+		this.add(this.otherButtons);
 		
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
@@ -202,14 +221,20 @@ public class CourseTeacherPanel extends JPanel{
 		layout2.putConstraint(SpringLayout.NORTH, this.coursePane, 20, SpringLayout.SOUTH, this.courseDescPane);
 		layout2.putConstraint(SpringLayout.WEST, this.coursePane, 0, SpringLayout.WEST, this.courseLabel);
 		
-		layout2.putConstraint(SpringLayout.NORTH, this.allButtons, -5, SpringLayout.NORTH, this.studentsButton);
-		layout2.putConstraint(SpringLayout.WEST, this.allButtons, 600, SpringLayout.WEST, this);
+		layout2.putConstraint(SpringLayout.NORTH, this.commonButtons, -5, SpringLayout.NORTH, this.studentsButton);
+		layout2.putConstraint(SpringLayout.WEST, this.commonButtons, 650, SpringLayout.WEST, this);
 		
-		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.hide, -20, SpringLayout.VERTICAL_CENTER, this.allButtons);
-		layout2.putConstraint(SpringLayout.WEST, this.hide, 5, SpringLayout.EAST, this.allButtons);
+		layout2.putConstraint(SpringLayout.NORTH, this.unitButtons, -5, SpringLayout.SOUTH, this.commonButtons);
+		layout2.putConstraint(SpringLayout.WEST, this.unitButtons, 0, SpringLayout.WEST, this.commonButtons);
 		
-		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.allButtons);
-		layout2.putConstraint(SpringLayout.NORTH, this.descLabel, 50, SpringLayout.SOUTH, this.allButtons);
+		layout2.putConstraint(SpringLayout.NORTH, this.unitButtons, -5, SpringLayout.SOUTH, this.commonButtons);
+		layout2.putConstraint(SpringLayout.WEST, this.unitButtons, 0, SpringLayout.WEST, this.commonButtons);
+		
+		layout2.putConstraint(SpringLayout.NORTH, this.otherButtons, -5, SpringLayout.SOUTH, this.unitButtons);
+		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.otherButtons, 0, SpringLayout.HORIZONTAL_CENTER, this.commonButtons);
+			
+		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.commonButtons);
+		layout2.putConstraint(SpringLayout.NORTH, this.descLabel, 30, SpringLayout.SOUTH, this.otherButtons);
 		
 	}
 	
@@ -407,12 +432,12 @@ public class CourseTeacherPanel extends JPanel{
 	public void setDescription(String desc){
 		this.desc = new JTextArea(desc);
 		this.desc.setEditable(false);
-		this.desc.setBackground(this.getBackground());
+		this.desc.setBackground(Color.decode("#D3D3D3"));
 		this.desc.setLineWrap(true);
 		this.desc.setWrapStyleWord(true);
 		this.descPane = new JScrollPane(this.desc, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		//this.descPane.setBorder(null);
-		this.descPane.setPreferredSize(new Dimension(500, 400));
+		this.descPane.setBorder(null);
+		this.descPane.setPreferredSize(new Dimension(500, 300));
 		
 		this.add(this.descPane);
 		
