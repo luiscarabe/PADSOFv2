@@ -191,6 +191,7 @@ public class CourseTeacherPanel extends JPanel{
 		
 		this.desc = new JTextArea();
 		this.desc.setEditable(false);
+		this.desc.setText("cachopo");
 		this.desc.setBackground(Color.decode("#D3D3D3"));
 		this.desc.setLineWrap(true);
 		this.desc.setWrapStyleWord(true);
@@ -462,6 +463,7 @@ public class CourseTeacherPanel extends JPanel{
 		this.signOut.addActionListener((ActionListener) c);
 		this.studentsButton.addActionListener((ActionListener) c);
 		this.go.addActionListener((ActionListener) c);
+		this.edit.addActionListener((ActionListener) c);
 		this.courTree.addTreeSelectionListener((TreeSelectionListener) c);
 		/*this.courseModel.addTreeModelListener((TreeModelListener) c);*/
 	}

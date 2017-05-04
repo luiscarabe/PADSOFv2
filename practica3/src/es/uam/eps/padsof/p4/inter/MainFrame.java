@@ -40,6 +40,7 @@ public class MainFrame extends JFrame{
 	private CourseTeacherPanel ctp;
 	private StudentsOfCourPanel socp;
 	private SearchCourTeacherPanel sctp;
+	private ModifyCoursePanel mcp;
 	
 	/* Controllers */
 	private LoginPanelController lpc = new LoginPanelController(lp);
@@ -54,6 +55,7 @@ public class MainFrame extends JFrame{
 	private CourseTeacherPanelController ctpc;
 	private StudentsOfCourPanelController socpc;
 	private SearchCourTeacherPanelController sctpc;
+	private ModifyCoursePanelController mcpc;
 	
 	
 	
@@ -315,6 +317,26 @@ public class MainFrame extends JFrame{
 		this.sctpc = new SearchCourTeacherPanelController(sctp);
 		sctp.setController(this.sctpc);
 		this.sctp = sctp;
+	}
+
+
+
+	/**
+	 * @return the mcp
+	 */
+	public ModifyCoursePanel getMcp() {
+		return mcp;
+	}
+
+
+
+	/**
+	 * @param mcp the mcp to set
+	 */
+	public void setMcp(ModifyCoursePanel mcp, Course course) {
+		this.mcpc = new ModifyCoursePanelController(mcp, course);
+		mcp.setController(this.mcpc);
+		this.mcp = mcp;
 	}
 	
 	

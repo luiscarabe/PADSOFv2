@@ -28,6 +28,7 @@ import es.uam.eps.padsof.p3.user.Student;
 import es.uam.eps.padsof.p4.inter.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.CourseTeacherPanel;
 import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.ModifyCoursePanel;
 import es.uam.eps.padsof.p4.inter.SearchCourStudentPanel;
 import es.uam.eps.padsof.p4.inter.StudentsOfCourPanel;
 
@@ -107,6 +108,12 @@ public class CourseTeacherPanelController implements ActionListener, TreeSelecti
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
+		}else if(source == this.view.getEdit()){
+			MainFrame.getInstance().setMcp(new ModifyCoursePanel( course.getTitle(), course.getDesc()), course);
+			newview = MainFrame.getInstance().getMcp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
 		}
 	}
 	@Override
@@ -125,9 +132,10 @@ public class CourseTeacherPanelController implements ActionListener, TreeSelecti
 		
 		System.out.println(source instanceof Course);
 		if(source instanceof Course){
-			System.out.println("Course");
+			System.out.println("Course" + ((Course)source).getDesc());
 			/*this.view.setDescription(((Course)source).getDesc());*/
 			this.view.getDesc().setText(((Course)source).getDesc());
+			this.view.getDesc().repaint();
 			this.view.getDesc().revalidate();
 			
 			this.view.getCommonButtons().setVisible(true);
@@ -148,8 +156,6 @@ public class CourseTeacherPanelController implements ActionListener, TreeSelecti
 			this.view.getOtherButtons().validate();
 			this.view.getOtherButtons().repaint();
 			
-			this.view.revalidate();
-			this.view.repaint();
 			return;
 		}else if(source instanceof Unit){
 			System.out.println("Unit o subunit");
