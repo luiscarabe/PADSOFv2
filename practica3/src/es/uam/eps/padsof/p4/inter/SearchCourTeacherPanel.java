@@ -38,7 +38,7 @@ public class SearchCourTeacherPanel extends JPanel{
 	private DefaultListModel<String> courModel = new DefaultListModel<String>();
 	JList<String> courList;
 	private JLabel courLabel = new JLabel("All courses");
-	private JButton courButton = new JButton("Apply");
+	private JButton courButton = new JButton("Go");
 	private JScrollPane courPane;
 	
 	private JLabel searchLabel = new JLabel("Search Course");
@@ -100,7 +100,7 @@ public class SearchCourTeacherPanel extends JPanel{
 		layout.putConstraint(SpringLayout.EAST, this.courses, 0, SpringLayout.WEST, this.listCourses);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.listCourses, 40, SpringLayout.NORTH, this.supPanel);
-		layout.putConstraint(SpringLayout.EAST, this.listCourses, 0, SpringLayout.HORIZONTAL_CENTER, this.supPanel);
+		layout.putConstraint(SpringLayout.EAST, this.listCourses, 60, SpringLayout.HORIZONTAL_CENTER, this.supPanel);
 
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.go, 0, SpringLayout.VERTICAL_CENTER, this.listCourses);
 		layout.putConstraint(SpringLayout.WEST, this.go, 10, SpringLayout.EAST, this.listCourses);
