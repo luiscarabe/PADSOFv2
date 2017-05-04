@@ -8,18 +8,18 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class ModifyCoursePanel extends JPanel {
+public class ModifySubunitPanel extends JPanel {
 	//Superior Panel
 	private JPanel supPanel = new JPanel();
 	private ImageIcon image = new ImageIcon("logov3.png");
 	private JLabel imgLabel = new JLabel(image);
-	private JLabel creatLabel = new JLabel("Modify Course");
+	private JLabel creatLabel = new JLabel("Modify Subunit");
 	private JLabel professor = new JLabel("Professor");
 	private JButton signOut = new JButton("Sign out");
 	private SpringLayout layout = new SpringLayout();
 	
-	private JLabel nameLabel = new JLabel("Name of the course:");
-	private JLabel descLabel = new JLabel("Modify the description of the course:");
+	private JLabel nameLabel = new JLabel("Modify the name of the subunit:");
+	private JLabel descLabel = new JLabel("Modify the description of the subunit:");
 	private JTextField nameField;
 	private JTextArea descField;
 	private JButton ok = new JButton("Modify");
@@ -30,7 +30,7 @@ public class ModifyCoursePanel extends JPanel {
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	public ModifyCoursePanel(String name, String desc){
+	public ModifySubunitPanel(String name, String desc){
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
 		this.setLayout(layout2);
@@ -66,8 +66,8 @@ public class ModifyCoursePanel extends JPanel {
 		layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
 		
 		this.nameLabel.setLabelFor(this.nameField);
-		this.nameField = new JTextField(name);
-		this.nameField.setEditable(false);
+		this.nameField = new JTextField(30);
+		this.nameField.setText(name);
 		
 		this.descField = new JTextArea(desc);
 		this.descField.setLineWrap(true);

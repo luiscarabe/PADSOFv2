@@ -2,6 +2,7 @@ package es.uam.eps.padsof.p4.inter;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
@@ -14,6 +15,11 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
+import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.course.Note;
+import es.uam.eps.padsof.p3.course.Unit;
+import es.uam.eps.padsof.p3.exercise.Exercise;
+
 public class CourseStudentPanel extends JPanel{
 	//Superior Panel
 			private JPanel supPanel = new JPanel();
@@ -24,7 +30,6 @@ public class CourseStudentPanel extends JPanel{
 			private JComboBox<String> listCourses;
 			private JButton go = new JButton("Go");
 			private JButton searchCour = new JButton("All Courses");
-			private JButton marks = new JButton ("Marks");
 			private JLabel student;
 			private JButton signOut = new JButton("Sign out");
 			private SpringLayout layout = new SpringLayout();
@@ -32,6 +37,16 @@ public class CourseStudentPanel extends JPanel{
 			private JLabel courseLabel;
 			private JTextArea courseDesc;
 			private JScrollPane courseDescPane;
+			
+			private JButton view = new JButton("View note");
+			private JButton take = new JButton("Take exercise");
+			private JButton marks = new JButton ("Marks");
+			private JPanel otherButtons = new JPanel();
+			
+			private JButton solution = new JButton ("Solution");
+			private JButton yourAns = new JButton ("Your answers");
+			private JPanel exerReady = new JPanel();
+			
 			
 			//Tree
 			private DefaultMutableTreeNode root;
@@ -84,7 +99,6 @@ public class CourseStudentPanel extends JPanel{
 				this.supPanel.add(courses);
 				this.supPanel.add(listCourses);
 				this.supPanel.add(searchCour);
-				this.supPanel.add(marks);
 				this.supPanel.add(student);
 				this.supPanel.add(signOut);
 				this.supPanel.add(go);
@@ -108,8 +122,6 @@ public class CourseStudentPanel extends JPanel{
 				layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.searchCour, 0, SpringLayout.VERTICAL_CENTER, this.listCourses);
 				layout.putConstraint(SpringLayout.WEST, this.searchCour, 10, SpringLayout.EAST, this.go);
 				
-				layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.marks, 0, SpringLayout.VERTICAL_CENTER, this.listCourses);
-				layout.putConstraint(SpringLayout.WEST, this.marks, 10, SpringLayout.EAST, this.searchCour);
 				
 				layout.putConstraint(SpringLayout.NORTH, this.student, 5, SpringLayout.NORTH, this.supPanel);
 				layout.putConstraint(SpringLayout.EAST, this.student, 0, SpringLayout.EAST, this.signOut);
@@ -142,14 +154,34 @@ public class CourseStudentPanel extends JPanel{
 				this.courseDescPane = new JScrollPane(this.courseDesc, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				this.courseDescPane.setBorder(null);
 				this.courseDescPane.setPreferredSize(new Dimension(500, 60));
-				
+		
 				this.descLabel.setFont(this.descLabel.getFont().deriveFont(attributes));
 				
+				this.otherButtons.setLayout(new FlowLayout());
+				this.otherButtons.setPreferredSize(new Dimension (350,50));
+				this.otherButtons.setVisible(true);
+				this.otherButtons.setBackground(this.getBackground());
+				
+				this.otherButtons.add(this.view);
+				this.otherButtons.add(this.take);
+				this.otherButtons.add(this.marks);
+				
+				this.exerReady.setLayout(new FlowLayout());
+				this.exerReady.setPreferredSize(new Dimension (300,50));
+				this.exerReady.setVisible(true);
+				this.exerReady.setBackground(this.getBackground());
+				
+				this.exerReady.add(this.solution);
+				this.exerReady.add(this.yourAns);
+
 
 				this.add(this.supPanel);
 				this.add(this.courseLabel);
-				this.add(this.applyLabel);
-				
+				this.add(this.courseDescPane);
+				this.add(this.coursePane);
+				this.add(this.descLabel);
+				this.add(this.otherButtons);
+				this.add(this.exerReady);
 				
 				layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
 				layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.supPanel, 0, SpringLayout.HORIZONTAL_CENTER, this);
@@ -159,9 +191,229 @@ public class CourseStudentPanel extends JPanel{
 				layout2.putConstraint(SpringLayout.WEST, this.courseLabel, 10, SpringLayout.WEST, this);
 				layout2.putConstraint(SpringLayout.NORTH, this.courseLabel, 10, SpringLayout.SOUTH, this.supPanel);
 				
-				layout2.putConstraint(SpringLayout.WEST, this.applyLabel, 10, SpringLayout.WEST, this);
-				layout2.putConstraint(SpringLayout.NORTH, this.applyLabel, 10, SpringLayout.SOUTH, this.courseLabel);
+				layout2.putConstraint(SpringLayout.WEST, this.courseDescPane, 10, SpringLayout.WEST, this);
+				layout2.putConstraint(SpringLayout.NORTH, this.courseDescPane, 10, SpringLayout.SOUTH, this.courseLabel);
 				
+				layout2.putConstraint(SpringLayout.NORTH, this.coursePane, 20, SpringLayout.SOUTH, this.courseDescPane);
+				layout2.putConstraint(SpringLayout.WEST, this.coursePane, 0, SpringLayout.WEST, this.courseLabel);
+				
+				layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.otherButtons, 0, SpringLayout.HORIZONTAL_CENTER, this.exerReady);
+				layout2.putConstraint(SpringLayout.SOUTH, this.otherButtons, -10, SpringLayout.NORTH, this.exerReady);
+				
+				layout2.putConstraint(SpringLayout.WEST, this.exerReady, 100, SpringLayout.EAST, this.coursePane);
+				layout2.putConstraint(SpringLayout.NORTH, this.exerReady, 150, SpringLayout.NORTH, this);
+				
+				layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.exerReady);
+				layout2.putConstraint(SpringLayout.NORTH, this.descLabel, 20, SpringLayout.SOUTH, this.exerReady);
+				
+				
+			}
+			
+			public void addUnit(Unit u){
+				DefaultMutableTreeNode aux = new DefaultMutableTreeNode(u);
+				this.courseModel.insertNodeInto(aux, this.root, this.courseModel.getChildCount(this.root));
+			}
+			
+			public void removeUnit(Unit u){
+				int numNodes = this.courseModel.getChildCount(root);
+				DefaultMutableTreeNode aux = null;
+				for (int i = 0; i < numNodes; i++){
+					if (this.courseModel.getChild(root, i).toString().equals(u.toString())){
+						aux = (DefaultMutableTreeNode) this.courseModel.getChild(root, i);
+						break;
+					}
+				}
+				this.courseModel.removeNodeFromParent(aux);
+			}
+			
+			public void addSubunit(Unit subunit, Unit parentUnit){
+				int numNodes = this.courseModel.getChildCount(root);
+				DefaultMutableTreeNode aux = null;
+				for (int i = 0; i < numNodes; i++){
+					if (this.courseModel.getChild(root, i).toString().equals(parentUnit.toString())){
+						aux = (DefaultMutableTreeNode) this.courseModel.getChild(root, i);
+						break;
+					}
+				}
+					
+				DefaultMutableTreeNode subNode = new DefaultMutableTreeNode(subunit);
+				this.courseModel.insertNodeInto(subNode, aux, this.courseModel.getChildCount(aux));
+			}
+			
+			public void removeSubunit(Unit subunit, Unit parentUnit){
+				int numNodes = this.courseModel.getChildCount(root);
+				DefaultMutableTreeNode aux = null;
+				DefaultMutableTreeNode aux2 = null;
+				for (int i = 0; i < numNodes; i++){
+					if (this.courseModel.getChild(root, i).toString().equals(parentUnit.toString())){
+						aux = (DefaultMutableTreeNode) this.courseModel.getChild(root, i);
+						break;
+					}
+				}
+				numNodes = this.courseModel.getChildCount(aux);
+				for (int i = 0; i < numNodes; i++){
+					if (this.courseModel.getChild(aux, i).toString().equals(subunit.toString())){
+						aux2 = (DefaultMutableTreeNode) this.courseModel.getChild(aux, i);
+						break;
+					}
+				}
+				this.courseModel.removeNodeFromParent(aux2);
+			}
+			
+			public void addNote(Note note, Unit u){
+				int numNodes = this.courseModel.getChildCount(root);
+				int numNodes1 = 0;
+				int flag = 0;
+				DefaultMutableTreeNode aux = null;
+				DefaultMutableTreeNode aux2 = null;
+				for (int i = 0; i < numNodes; i++){
+					aux = (DefaultMutableTreeNode) this.courseModel.getChild(root, i);
+					if (this.courseModel.getChild(root, i).toString().equals(u.toString()))
+						break;
+					numNodes1 = aux.getChildCount();
+					for(int j = 0; j < numNodes1; j++){
+						if(this.courseModel.getChild(aux, j).toString().equals(u.toString())){
+							aux2 = (DefaultMutableTreeNode)this.courseModel.getChild(aux, j);
+							flag = 1;
+							break;
+						}
+					}
+					if(flag==1)
+						break;
+				}
+				if(flag == 1)
+					this.courseModel.insertNodeInto(new DefaultMutableTreeNode(note), aux2, this.courseModel.getChildCount(aux2));
+				else
+					this.courseModel.insertNodeInto(new DefaultMutableTreeNode(note), aux, this.courseModel.getChildCount(aux));
+			}
+			
+			public void removeNote(Note note, Unit u){
+				int numNodes = this.courseModel.getChildCount(root);
+				int numNodes1 = 0;
+				int flag = 0;
+				DefaultMutableTreeNode aux = null;
+				DefaultMutableTreeNode aux2 = null;
+				for (int i = 0; i < numNodes; i++){
+					aux = (DefaultMutableTreeNode) this.courseModel.getChild(root, i);
+					if (this.courseModel.getChild(root, i).toString().equals(u.toString()))
+						break;
+					numNodes1 = aux.getChildCount();
+					for(int j = 0; j < numNodes1; j++){
+						if(this.courseModel.getChild(aux, j).toString().equals(u.toString())){
+							aux2 = (DefaultMutableTreeNode)this.courseModel.getChild(aux, j);
+							flag = 1;
+							break;
+						}
+					}
+					if(flag==1)
+						break;
+				}
+				if(flag == 1){
+					numNodes1 = aux2.getChildCount();
+					for(int i = 0; i < numNodes1; i++){
+						if(this.courseModel.getChild(aux2, i).toString().equals(note.toString())){
+							aux = (DefaultMutableTreeNode)this.courseModel.getChild(aux2, i);
+							break;
+						}
+					}
+					this.courseModel.removeNodeFromParent(aux);
+				}
+					
+				else
+					numNodes1 = aux.getChildCount();
+					for(int i = 0; i < numNodes1; i++){
+						if(this.courseModel.getChild(aux, i).toString().equals(note.toString())){
+							aux2 = (DefaultMutableTreeNode)this.courseModel.getChild(aux, i);
+							break;
+						}
+					}
+					this.courseModel.removeNodeFromParent(aux2);
+			}
+			
+			public void addExercise(Exercise exer, Unit u){
+				int numNodes = this.courseModel.getChildCount(root);
+				int numNodes1 = 0;
+				int flag = 0;
+				DefaultMutableTreeNode aux = null;
+				DefaultMutableTreeNode aux2 = null;
+				for (int i = 0; i < numNodes; i++){
+					aux = (DefaultMutableTreeNode) this.courseModel.getChild(root, i);
+					if (this.courseModel.getChild(root, i).toString().equals(u.toString()))
+						break;
+					numNodes1 = aux.getChildCount();
+					for(int j = 0; j < numNodes1; j++){
+						if(this.courseModel.getChild(aux, j).toString().equals(u.toString())){
+							aux2 = (DefaultMutableTreeNode)this.courseModel.getChild(aux, j);
+							flag = 1;
+							break;
+						}
+					}
+					if(flag==1)
+						break;
+				}
+				if(flag == 1)
+					this.courseModel.insertNodeInto(new DefaultMutableTreeNode(exer), aux2, this.courseModel.getChildCount(aux2));
+				else
+					this.courseModel.insertNodeInto(new DefaultMutableTreeNode(exer), aux, this.courseModel.getChildCount(aux));
+			}
+			
+			public void removeExercise(Exercise exer, Unit u){
+				int numNodes = this.courseModel.getChildCount(root);
+				int numNodes1 = 0;
+				int flag = 0;
+				DefaultMutableTreeNode aux = null;
+				DefaultMutableTreeNode aux2 = null;
+				for (int i = 0; i < numNodes; i++){
+					aux = (DefaultMutableTreeNode) this.courseModel.getChild(root, i);
+					if (this.courseModel.getChild(root, i).toString().equals(u.toString()))
+						break;
+					numNodes1 = aux.getChildCount();
+					for(int j = 0; j < numNodes1; j++){
+						if(this.courseModel.getChild(aux, j).toString().equals(u.toString())){
+							aux2 = (DefaultMutableTreeNode)this.courseModel.getChild(aux, j);
+							flag = 1;
+							break;
+						}
+					}
+					if(flag==1)
+						break;
+				}
+				if(flag == 1){
+					numNodes1 = aux2.getChildCount();
+					for(int i = 0; i < numNodes1; i++){
+						if(this.courseModel.getChild(aux2, i).toString().equals(exer.toString())){
+							aux = (DefaultMutableTreeNode)this.courseModel.getChild(aux2, i);
+							break;
+						}
+					}
+					this.courseModel.removeNodeFromParent(aux);
+				}
+					
+				else
+					numNodes1 = aux.getChildCount();
+					for(int i = 0; i < numNodes1; i++){
+						if(this.courseModel.getChild(aux, i).toString().equals(exer.toString())){
+							aux2 = (DefaultMutableTreeNode)this.courseModel.getChild(aux, i);
+							break;
+						}
+					}
+					this.courseModel.removeNodeFromParent(aux2);
+			}
+			
+			public void setDescription(String desc){
+				this.desc = new JTextArea(desc);
+				this.desc.setEditable(false);
+				this.desc.setBackground(Color.decode("#D3D3D3"));
+				this.desc.setLineWrap(true);
+				this.desc.setWrapStyleWord(true);
+				this.descPane = new JScrollPane(this.desc, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				this.descPane.setBorder(null);
+				this.descPane.setPreferredSize(new Dimension(500, 300));
+				
+				this.add(this.descPane);
+				
+				layout2.putConstraint(SpringLayout.NORTH, this.descPane, 5, SpringLayout.SOUTH, this.descLabel);
+				layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descPane, 0, SpringLayout.HORIZONTAL_CENTER, this.descLabel);
 			}
 			
 			public void setController(ActionListener c){
@@ -253,13 +505,6 @@ public class CourseStudentPanel extends JPanel{
 			 */
 			public JLabel getCourseLabel() {
 				return courseLabel;
-			}
-
-			/**
-			 * @return the applyLabel
-			 */
-			public JLabel getApplyLabel() {
-				return applyLabel;
 			}
 
 			/**

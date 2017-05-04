@@ -35,7 +35,7 @@ public class TestingTester {
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
-		CourseTeacherPanel lo = new CourseTeacherPanel(lcour.get(0), ar );
+		CourseStudentPanel lo = new CourseStudentPanel("ADSOD", ar, lcour.get(0));
 		Unit u1 = new Unit("Unidad 1", "hola", false, null);
 		Unit u2 = new Unit("Subunidad 1", "adios", false, null);
 		Unit u3 = new Unit("Subunidad 2", "adios", false, null);
