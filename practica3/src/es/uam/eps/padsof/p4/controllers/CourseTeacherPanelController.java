@@ -9,9 +9,20 @@ import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.course.CourseElement;
+import es.uam.eps.padsof.p3.course.Note;
+import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
+import es.uam.eps.padsof.p3.exercise.Exercise;
 import es.uam.eps.padsof.p3.user.Application;
 import es.uam.eps.padsof.p3.user.Student;
 import es.uam.eps.padsof.p4.inter.CourseStudentPanel;
@@ -24,7 +35,7 @@ import es.uam.eps.padsof.p4.inter.StudentsOfCourPanel;
  * @author Miguel
  *
  */
-public class CourseTeacherPanelController implements ActionListener{
+public class CourseTeacherPanelController implements ActionListener, TreeSelectionListener{
 	private static final long serialVersionUID = 1L;
 	
 	private CourseTeacherPanel view;
@@ -98,4 +109,152 @@ public class CourseTeacherPanelController implements ActionListener{
 			view.setVisible(false);
 		}
 	}
+	@Override
+	public void valueChanged(TreeSelectionEvent e) {
+		// TODO Auto-generated method stub
+		JPanel newview;
+		/*Object source = ((DefaultTreeModel)this.view.getCourseModel()).get;*/
+		Object source = ((DefaultMutableTreeNode)e.getNewLeadSelectionPath().getLastPathComponent()).getUserObject();
+		Object parent = null;
+		if(source instanceof CourseElement){
+			parent = ((DefaultMutableTreeNode)((DefaultMutableTreeNode)e.getNewLeadSelectionPath().getLastPathComponent()).getParent()).getUserObject();
+		}
+		System.out.println("Holap");
+		System.out.println(source.getClass());
+		System.out.println(source.toString());
+		
+		System.out.println(source instanceof Course);
+		if(source instanceof Course){
+			System.out.println("Course");
+			/*this.view.setDescription(((Course)source).getDesc());*/
+			this.view.getDesc().setText(((Course)source).getDesc());
+			this.view.getDesc().revalidate();
+			
+			this.view.getCommonButtons().setVisible(true);
+			this.view.getEdit().setVisible(true);
+			this.view.getDelete().setVisible(false);
+			this.view.getHide().setVisible(false);
+			
+			this.view.getUnitButtons().setVisible(false);
+			
+			this.view.getOtherButtons().setVisible(false);
+			
+			this.view.getCommonButtons().validate();
+			this.view.getCommonButtons().repaint();
+			
+			this.view.getUnitButtons().validate();
+			this.view.getUnitButtons().repaint();
+			
+			this.view.getOtherButtons().validate();
+			this.view.getOtherButtons().repaint();
+			
+			this.view.revalidate();
+			this.view.repaint();
+			return;
+		}else if(source instanceof Unit){
+			System.out.println("Unit o subunit");
+			/*this.view.setDescription(((Unit)source).getDesc());*/
+			this.view.getDesc().setText(((Unit)source).getDesc());
+			this.view.getDesc().revalidate();
+			
+			this.view.getCommonButtons().setVisible(true);
+			this.view.getEdit().setVisible(true);
+			this.view.getDelete().setVisible(true);
+			this.view.getHide().setVisible(true);
+			
+			this.view.getUnitButtons().setVisible(true);
+			
+			this.view.getOtherButtons().setVisible(true);
+			this.view.getView().setVisible(false);
+			if(parent instanceof Unit){
+				this.view.getCreateSubunit().setVisible(false);
+			}else{
+				this.view.getCreateSubunit().setVisible(true);
+			}
+			this.view.getStats().setVisible(false);
+			
+			this.view.getCommonButtons().validate();
+			this.view.getCommonButtons().repaint();
+			
+			this.view.getUnitButtons().validate();
+			this.view.getUnitButtons().repaint();
+			
+			this.view.getOtherButtons().validate();
+			this.view.getOtherButtons().repaint();
+			
+			this.view.validate();
+			this.view.repaint();
+			return;
+		}else if(source instanceof Note){
+			System.out.println("Note");
+			/*this.view.setDescription(((Note)source).getDesc());*/
+			this.view.getDesc().setText(((Note)source).getDesc());
+			this.view.getDesc().revalidate();
+			
+			this.view.getCommonButtons().setVisible(true);
+			this.view.getEdit().setVisible(true);
+			this.view.getDelete().setVisible(true);
+			this.view.getHide().setVisible(true);
+			
+			this.view.getUnitButtons().setVisible(false);
+			
+			this.view.getOtherButtons().setVisible(true);
+			this.view.getView().setVisible(true);
+			if(parent instanceof Unit){
+				this.view.getCreateSubunit().setVisible(false);
+			}else{
+				this.view.getCreateSubunit().setVisible(false);
+			}
+			this.view.getStats().setVisible(false);
+			
+			this.view.getCommonButtons().validate();
+			this.view.getCommonButtons().repaint();
+			
+			this.view.getUnitButtons().validate();
+			this.view.getUnitButtons().repaint();
+			
+			this.view.getOtherButtons().validate();
+			this.view.getOtherButtons().repaint();
+			
+			this.view.validate();
+			this.view.repaint();
+			return;
+		}else if(source instanceof Exercise){
+			/*this.view.setDescription(((Exercise)source).getDesc());*/
+			this.view.getDesc().setText(((Exercise)source).getDesc());
+			this.view.getDesc().revalidate();
+			
+			this.view.getCommonButtons().setVisible(true);
+			this.view.getEdit().setVisible(true);
+			this.view.getDelete().setVisible(true);
+			this.view.getHide().setVisible(true);
+			
+			this.view.getUnitButtons().setVisible(false);
+			
+			this.view.getOtherButtons().setVisible(true);
+			this.view.getView().setVisible(false);
+			if(parent instanceof Unit){
+				this.view.getCreateSubunit().setVisible(false);
+			}else{
+				this.view.getCreateSubunit().setVisible(false);
+			}
+			this.view.getStats().setVisible(true);
+			
+			this.view.getCommonButtons().validate();
+			this.view.getCommonButtons().repaint();
+			
+			this.view.getUnitButtons().validate();
+			this.view.getUnitButtons().repaint();
+			
+			this.view.getOtherButtons().validate();
+			this.view.getOtherButtons().repaint();
+			
+			this.view.validate();
+			this.view.repaint();
+			return;
+		}
+		
+		
+	}
+
 }
