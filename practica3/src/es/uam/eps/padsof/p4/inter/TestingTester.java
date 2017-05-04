@@ -35,8 +35,8 @@ public class TestingTester {
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
-		CreateExercisePanel lo = new CreateExercisePanel();
-		Unit u1 = new Unit("Unidad 1", "hola", false, null);
+		AddQuestionTFPanel lo = new AddQuestionTFPanel();
+		/*Unit u1 = new Unit("Unidad 1", "hola", false, null);
 		Unit u2 = new Unit("Subunidad 1", "adios", false, null);
 		Unit u3 = new Unit("Subunidad 2", "adios", false, null);
 		Unit u4 = new Unit("Unidad 2", "adios", false, null);
@@ -58,8 +58,7 @@ public class TestingTester {
 		lo.removeExercise(e2, u1);
 		lo.removeNote(n2,u4);
 		
-		lo.setDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		*/
+		lo.setDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaa");*/
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());
 		//ma.setContentPane(lo);
