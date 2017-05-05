@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.swing.*;
 
-public class AddQuestionTFPanel extends JDialog{
+public class ModifyQuestionTFPanel extends JDialog{
 	
 	private JPanel jp = new JPanel();
 	
@@ -29,14 +29,13 @@ public class AddQuestionTFPanel extends JDialog{
 			
 	private SpringLayout layout = new SpringLayout();
 	
-	public AddQuestionTFPanel(){
+	public ModifyQuestionTFPanel(String title, String wei, boolean sol){
 		this.jp.setVisible(true);
 		this.jp.setPreferredSize(new Dimension(300, 300));
 		this.jp.setLayout(layout);
 
 		this.solutionGroup.add(solutionT);
 		this.solutionGroup.add(solutionF);
-		this.solutionT.setSelected(true);
 		this.solutionPanel.add(this.solutionT);
 		this.solutionPanel.add(this.solutionF);
 		
@@ -46,6 +45,13 @@ public class AddQuestionTFPanel extends JDialog{
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		this.firstLabel.setFont(this.firstLabel.getFont().deriveFont(attributes));
 		
+		this.titleField.setText(title);
+		this.weightField.setText(wei);
+		if(sol == true)
+			this.solutionT.setSelected(true);
+		else
+			this.solutionF.setSelected(true);
+			
 
 		this.jp.add(this.solutionLabel);
 		this.jp.add(this.titleLabel);
