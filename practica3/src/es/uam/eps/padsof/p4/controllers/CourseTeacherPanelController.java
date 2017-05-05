@@ -46,124 +46,125 @@ import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
  * @author Miguel
  *
  */
-public class CourseTeacherPanelController implements ActionListener, TreeSelectionListener{
+public class CourseTeacherPanelController implements ActionListener, TreeSelectionListener {
 	private static final long serialVersionUID = 1L;
-	
+
 	private CourseTeacherPanel view;
 	private Educagram edu = Educagram.getInstance();
 	private Course course;
 	private Object nodo;
 	private Object padre;
+
 	public CourseTeacherPanelController(CourseTeacherPanel view, Course course) {
 		this.view = view;
 		this.course = course;
 		this.nodo = null;
 		this.padre = null;
-		
+
 		List<CourseElement> courelem = course.getCourseElements();
 		List<CourseElement> subunits = new ArrayList<CourseElement>();
 		List<CourseElement> notes = new ArrayList<CourseElement>();
 		List<CourseElement> exercises = new ArrayList<CourseElement>();
 		Unit u;
-		
-		for(CourseElement aux1: courelem){
-			if(aux1 instanceof Unit){
-				for(CourseElement aux2: courelem){
-					if(aux2 instanceof Unit){
-						if(aux1 != aux2){
-							u = (Unit)aux2;
-							if(u.getCourseElements().contains(aux1)){
+
+		for (CourseElement aux1 : courelem) {
+			if (aux1 instanceof Unit) {
+				for (CourseElement aux2 : courelem) {
+					if (aux2 instanceof Unit) {
+						if (aux1 != aux2) {
+							u = (Unit) aux2;
+							if (u.getCourseElements().contains(aux1)) {
 								subunits.add(aux1);
 							}
 						}
 					}
 				}
-			}else if(aux1 instanceof Note){
+			} else if (aux1 instanceof Note) {
 				notes.add(aux1);
-			}else if(aux1 instanceof Exercise){
+			} else if (aux1 instanceof Exercise) {
 				exercises.add(aux1);
 			}
 		}
-		
-		for(CourseElement aux1: courelem){
-			if(aux1 instanceof Unit){
-				if(subunits.contains(aux1) == false){
+
+		for (CourseElement aux1 : courelem) {
+			if (aux1 instanceof Unit) {
+				if (subunits.contains(aux1) == false) {
 					this.view.addUnit((Unit) aux1);
 				}
 			}
 		}
-		
-		for(CourseElement aux1: courelem){
-			if(aux1 instanceof Unit){
-				for(CourseElement aux2: subunits){
-					if(((Unit)aux1).getCourseElements().contains(aux2)){
-						this.view.addSubunit((Unit)aux2, (Unit)aux1);
+
+		for (CourseElement aux1 : courelem) {
+			if (aux1 instanceof Unit) {
+				for (CourseElement aux2 : subunits) {
+					if (((Unit) aux1).getCourseElements().contains(aux2)) {
+						this.view.addSubunit((Unit) aux2, (Unit) aux1);
 					}
 				}
-				if(subunits.contains(aux1) == false){
-					for(CourseElement aux2: notes){
-						if(((Unit)aux1).getCourseElements().contains(aux2)){
-							this.view.addNote((Note)aux2, (Unit)aux1);
+				if (subunits.contains(aux1) == false) {
+					for (CourseElement aux2 : notes) {
+						if (((Unit) aux1).getCourseElements().contains(aux2)) {
+							this.view.addNote((Note) aux2, (Unit) aux1);
 						}
 					}
-					for(CourseElement aux2: exercises){
-						if(((Unit)aux1).getCourseElements().contains(aux2)){
-							this.view.addExercise((Exercise)aux2, (Unit)aux1);
+					for (CourseElement aux2 : exercises) {
+						if (((Unit) aux1).getCourseElements().contains(aux2)) {
+							this.view.addExercise((Exercise) aux2, (Unit) aux1);
 						}
 					}
 				}
 			}
 		}
-		for(CourseElement aux1: subunits){
-			for(CourseElement aux2: notes){
-				if(((Unit)aux1).getCourseElements().contains(aux2)){
-					this.view.addNote((Note)aux2, (Unit)aux1);
+		for (CourseElement aux1 : subunits) {
+			for (CourseElement aux2 : notes) {
+				if (((Unit) aux1).getCourseElements().contains(aux2)) {
+					this.view.addNote((Note) aux2, (Unit) aux1);
 				}
 			}
-			for(CourseElement aux2: exercises){
-				if(((Unit)aux1).getCourseElements().contains(aux2)){
-					this.view.addExercise((Exercise)aux2, (Unit)aux1);
+			for (CourseElement aux2 : exercises) {
+				if (((Unit) aux1).getCourseElements().contains(aux2)) {
+					this.view.addExercise((Exercise) aux2, (Unit) aux1);
 				}
 			}
 		}
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		JPanel newview;
 		JComponent source = (JComponent) e.getSource();
 		ArrayList<String> allNames = new ArrayList<String>();
-		
-		if(source == this.view.getSignOut()){
-			try{
-				
+
+		if (source == this.view.getSignOut()) {
+			try {
+
 				Educagram.getInstance().signOut();
-				
-				
+
 				newview = MainFrame.getInstance().getLp();
 				MainFrame.getInstance().setContentPane(newview);
 				newview.setVisible(true);
 				view.setVisible(false);
 				return;
-			}catch(Exception ex){
+			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
 			}
-		}else if(source == this.view.getCreateCourse()){
+		} else if (source == this.view.getCreateCourse()) {
 			MainFrame.getInstance().setCcp(new CreateCoursePanel());
 			newview = MainFrame.getInstance().getCcp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
-		}else if(source == this.view.getGo()){
-			if(this.view.getListCourses().getSelectedItem() == null){
+		} else if (source == this.view.getGo()) {
+			if (this.view.getListCourses().getSelectedItem() == null) {
 				return;
 			}
-			for(Course aux : edu.getCourses()){
+			for (Course aux : edu.getCourses()) {
 				allNames.add(aux.getTitle());
 			}
 			String name = this.view.getListCourses().getSelectedItem().toString();
-			if(name == null){
+			if (name == null) {
 				return;
 			}
 			Course course = edu.searchCourse(name);
@@ -172,8 +173,8 @@ public class CourseTeacherPanelController implements ActionListener, TreeSelecti
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
-		}else if(source == this.view.getSearchCour()){
-			for(Course aux : edu.getCourses()){
+		} else if (source == this.view.getSearchCour()) {
+			for (Course aux : edu.getCourses()) {
 				allNames.add(aux.getTitle());
 			}
 			MainFrame.getInstance().setSctp(new SearchCourTeacherPanel(allNames));
@@ -181,479 +182,487 @@ public class CourseTeacherPanelController implements ActionListener, TreeSelecti
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
-		}else if(source == this.view.getStudentsButton()){
+		} else if (source == this.view.getStudentsButton()) {
 			ArrayList<String> enrNames = new ArrayList<String>();
 			ArrayList<String> expNames = new ArrayList<String>();
 			ArrayList<String> appNames = new ArrayList<String>();
 			ArrayList<Application> app = (ArrayList<Application>) course.getApplications();
-			
-			
+
 			ArrayList<Student> enr = (ArrayList<Student>) course.getEnrolledStudents();
-			for(Student aux: enr){
+			for (Student aux : enr) {
 				enrNames.add(aux.getName());
 			}
-			
+
 			enr = (ArrayList<Student>) course.getExpelledStudents();
-			for(Student aux: enr){
+			for (Student aux : enr) {
 				expNames.add(aux.getName());
 			}
-			
-			for(Application aux: app){
+
+			for (Application aux : app) {
 				appNames.add(aux.getAppliedStudent().getName());
 			}
-			
-			MainFrame.getInstance().setSocp(new StudentsOfCourPanel(course.getTitle(), enrNames, expNames, appNames), course);
+
+			MainFrame.getInstance().setSocp(new StudentsOfCourPanel(course.getTitle(), enrNames, expNames, appNames),
+					course);
 			newview = MainFrame.getInstance().getSocp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
-		}else if(source == this.view.getCreateUnit()){
+		} else if (source == this.view.getCreateUnit()) {
 			MainFrame.getInstance().setCup(new CreateUnitPanel(), this.course);
 			newview = MainFrame.getInstance().getCup();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
-		}else if(source == this.view.getCreateSubunit()){
+		} else if (source == this.view.getCreateSubunit()) {
 			MainFrame.getInstance().setCsup(new CreateSubUnitPanel(), this.course, (Unit) this.nodo);
 			newview = MainFrame.getInstance().getCsup();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
-		}else if(source == this.view.getCreateNote()){
+		} else if (source == this.view.getCreateNote()) {
 			MainFrame.getInstance().setCnp(new CreateNotePanel(), this.course, (Unit) this.nodo);
 			newview = MainFrame.getInstance().getCnp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
-		}else if(source == this.view.getCreateExer()){
-			//codigo ejercicio
-			
-			
-			
+		} else if (source == this.view.getCreateExer()) {
+			// codigo ejercicio
+
 			return;
-		}else if(source == this.view.getDelete()){
-			if(this.padre == null){
+		} else if (source == this.view.getDelete()) {
+			if (this.padre == null) {
 				this.view.removeUnit((Unit) this.nodo);
 				this.course.deleteUnit((Unit) this.nodo);
-				
-				
+
 				this.view.getCourTree().revalidate();
 				this.view.getCourTree().repaint();
 				this.view.getDesc().setText(this.course.getTitle() + ":\n" + this.course.getDesc());
 				this.view.getDesc().repaint();
 				this.view.getDesc().revalidate();
-				
+
 				this.view.getCommonButtons().setVisible(true);
 				this.view.getEdit().setVisible(true);
 				this.view.getDelete().setVisible(false);
 				this.view.getHide().setVisible(false);
-				
+
 				this.view.getUnitButtons().setVisible(false);
-				
+
 				this.view.getOtherButtons().setVisible(false);
-				
+
 				this.view.getCommonButtons().validate();
 				this.view.getCommonButtons().repaint();
-				
+
 				this.view.getUnitButtons().validate();
 				this.view.getUnitButtons().repaint();
-				
+
 				this.view.getOtherButtons().validate();
 				this.view.getOtherButtons().repaint();
 				return;
-			}else if(this.padre instanceof Unit){
-				if(this.nodo instanceof Unit){
+			} else if (this.padre instanceof Unit) {
+				if (this.nodo instanceof Unit) {
 					this.view.removeSubunit((Unit) this.nodo, (Unit) this.padre);
 					((Unit) this.padre).deleteSubUnit((Unit) this.nodo);
-					
-					
+
 					this.view.getCourTree().revalidate();
 					this.view.getCourTree().repaint();
 					this.view.getDesc().setText(this.course.getTitle() + ":\n" + this.course.getDesc());
 					this.view.getDesc().repaint();
 					this.view.getDesc().revalidate();
-					
+
 					this.view.getCommonButtons().setVisible(true);
 					this.view.getEdit().setVisible(true);
 					this.view.getDelete().setVisible(false);
 					this.view.getHide().setVisible(false);
-					
+
 					this.view.getUnitButtons().setVisible(false);
-					
+
 					this.view.getOtherButtons().setVisible(false);
-					
+
 					this.view.getCommonButtons().validate();
 					this.view.getCommonButtons().repaint();
-					
+
 					this.view.getUnitButtons().validate();
 					this.view.getUnitButtons().repaint();
-					
+
 					this.view.getOtherButtons().validate();
 					this.view.getOtherButtons().repaint();
 					return;
-				}else if(this.nodo instanceof Note){
+				} else if (this.nodo instanceof Note) {
 					this.view.removeNote((Note) this.nodo, (Unit) this.padre);
 					((Unit) this.padre).deleteNote((Note) this.nodo);
-					
-					
+
 					this.view.getCourTree().revalidate();
 					this.view.getCourTree().repaint();
 					this.view.getDesc().setText(this.course.getTitle() + ":\n" + this.course.getDesc());
 					this.view.getDesc().repaint();
 					this.view.getDesc().revalidate();
-					
+
 					this.view.getCommonButtons().setVisible(true);
 					this.view.getEdit().setVisible(true);
 					this.view.getDelete().setVisible(false);
 					this.view.getHide().setVisible(false);
-					
+
 					this.view.getUnitButtons().setVisible(false);
-					
+
 					this.view.getOtherButtons().setVisible(false);
-					
+
 					this.view.getCommonButtons().validate();
 					this.view.getCommonButtons().repaint();
-					
+
 					this.view.getUnitButtons().validate();
 					this.view.getUnitButtons().repaint();
-					
+
 					this.view.getOtherButtons().validate();
 					this.view.getOtherButtons().repaint();
 					return;
-				}else if(this.nodo instanceof Exercise){
-					//codigo ejercicio
-					
+				} else if (this.nodo instanceof Exercise) {
+					// codigo ejercicio
+
 					return;
 				}
 			}
-		}else if(source == this.view.getEdit()){
-			if(this.nodo instanceof Course || this.nodo == null){
-				MainFrame.getInstance().setMcp(new ModifyCoursePanel( course.getTitle(), course.getDesc()), course);
+		} else if (source == this.view.getEdit()) {
+			if (this.nodo instanceof Course || this.nodo == null) {
+				MainFrame.getInstance().setMcp(new ModifyCoursePanel(course.getTitle(), course.getDesc()), course);
 				newview = MainFrame.getInstance().getMcp();
 				MainFrame.getInstance().setContentPane(newview);
 				newview.setVisible(true);
 				view.setVisible(false);
 				return;
-			}else if(this.nodo instanceof Unit){
-				if(this.padre == null){
-					MainFrame.getInstance().setMup(new ModifyUnitPanel(((Unit) this.nodo).getTitle(), ((Unit) this.nodo).getDesc()), course, ((Unit) this.nodo));
+			} else if (this.nodo instanceof Unit) {
+				if (this.padre == null) {
+					MainFrame.getInstance().setMup(
+							new ModifyUnitPanel(((Unit) this.nodo).getTitle(), ((Unit) this.nodo).getDesc()), course,
+							((Unit) this.nodo));
 					newview = MainFrame.getInstance().getMup();
 					MainFrame.getInstance().setContentPane(newview);
 					newview.setVisible(true);
 					view.setVisible(false);
 					return;
-				}else if(this.padre instanceof Unit){
-					MainFrame.getInstance().setMsup(new ModifySubunitPanel(((Unit) this.nodo).getTitle(), ((Unit) this.nodo).getDesc()), course, ((Unit) this.nodo));
+				} else if (this.padre instanceof Unit) {
+					MainFrame.getInstance().setMsup(
+							new ModifySubunitPanel(((Unit) this.nodo).getTitle(), ((Unit) this.nodo).getDesc()), course,
+							((Unit) this.nodo));
 					newview = MainFrame.getInstance().getMsup();
 					MainFrame.getInstance().setContentPane(newview);
 					newview.setVisible(true);
 					view.setVisible(false);
 					return;
 				}
-			}else if(this.nodo instanceof Note){
-				MainFrame.getInstance().setMnp(new ModifyNotePanel(((Note) this.nodo).getTitle(), ((Note) this.nodo).getDesc(), ((Note) this.nodo).getText()), course, ((Note) this.nodo));
+			} else if (this.nodo instanceof Note) {
+				MainFrame.getInstance().setMnp(new ModifyNotePanel(((Note) this.nodo).getTitle(),
+						((Note) this.nodo).getDesc(), ((Note) this.nodo).getText()), course, ((Note) this.nodo));
 				newview = MainFrame.getInstance().getMnp();
 				MainFrame.getInstance().setContentPane(newview);
 				newview.setVisible(true);
 				view.setVisible(false);
 				return;
-			}else if(this.nodo instanceof Exercise){
+			} else if (this.nodo instanceof Exercise) {
 				// codigo ejercicio
-				
+
 				return;
 			}
-		}else if(source == this.view.getView()){
-			MainFrame.getInstance().setVntp(new ViewNoteTeacherPanel(((Note) this.nodo).getTitle(), ((Note) this.nodo).getDesc(), ((Note) this.nodo).getText()));
+		} else if (source == this.view.getView()) {
+			MainFrame.getInstance().setVntp(new ViewNoteTeacherPanel(((Note) this.nodo).getTitle(),
+					((Note) this.nodo).getDesc(), ((Note) this.nodo).getText()));
 			newview = MainFrame.getInstance().getVntp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
-		}else if(source == this.view.getHide()){
-			if(this.nodo instanceof Unit){
-				if(this.padre == null){
-					if(this.view.getHide().isSelected() == true){
-						((Unit)this.nodo).unitHide();
+		} else if (source == this.view.getHide()) {
+			if (this.nodo instanceof Unit) {
+				if (this.padre == null) {
+					if (this.view.getHide().isSelected() == true) {
+						((Unit) this.nodo).unitHide();
 						this.view.getHide().setSelected(true);
 						this.view.getHide().revalidate();
 						this.view.getHide().repaint();
-					}else{
-						((Unit)this.nodo).setHidden(false);;
+					} else {
+						((Unit) this.nodo).setHidden(false);
+						;
 						this.view.getHide().setSelected(false);
 						this.view.getHide().revalidate();
 						this.view.getHide().repaint();
 					}
 					return;
-				}else if(this.padre instanceof Unit){
-					if(this.view.getHide().isSelected() == true){
-						((Unit)this.nodo).unitHide();
+				} else if (this.padre instanceof Unit) {
+					if (this.view.getHide().isSelected() == true) {
+						((Unit) this.nodo).unitHide();
 						this.view.getHide().setSelected(true);
 						this.view.getHide().revalidate();
 						this.view.getHide().repaint();
 						return;
-					}else if(this.view.getHide().isSelected() == false){
-						if(((Unit)this.padre).isHidden() == true){
-							((Unit)this.nodo).unitHide();
+					} else if (this.view.getHide().isSelected() == false) {
+						if (((Unit) this.padre).isHidden() == true) {
+							((Unit) this.nodo).unitHide();
 							this.view.getHide().setSelected(true);
 							this.view.getHide().revalidate();
 							this.view.getHide().repaint();
-						}else{
-							((Unit)this.nodo).setHidden(false);;
+						} else {
+							((Unit) this.nodo).setHidden(false);
+							;
 							this.view.getHide().setSelected(false);
 							this.view.getHide().revalidate();
 							this.view.getHide().repaint();
 						}
 						return;
-					}else{
+					} else {
 						return;
 					}
 				}
-			}else if(this.nodo instanceof Note){
-				if(this.view.getHide().isSelected() == true){
-					((Note)this.nodo).setHidden(true);
+			} else if (this.nodo instanceof Note) {
+				if (this.view.getHide().isSelected() == true) {
+					((Note) this.nodo).setHidden(true);
 					this.view.getHide().setSelected(true);
 					this.view.getHide().revalidate();
 					this.view.getHide().repaint();
 					return;
-				}else if(this.view.getHide().isSelected() == false){
-					if(((Unit)this.padre).isHidden() == true){
-						((Note)this.nodo).setHidden(true);
+				} else if (this.view.getHide().isSelected() == false) {
+					if (((Unit) this.padre).isHidden() == true) {
+						((Note) this.nodo).setHidden(true);
 						this.view.getHide().setSelected(true);
 						this.view.getHide().revalidate();
 						this.view.getHide().repaint();
-					}else{
-						((Note)this.nodo).setHidden(false);;
+					} else {
+						((Note) this.nodo).setHidden(false);
+						;
 						this.view.getHide().setSelected(false);
 						this.view.getHide().revalidate();
 						this.view.getHide().repaint();
 					}
 					return;
-				}else{
+				} else {
 					return;
 				}
-			}else if(this.nodo instanceof Exercise){
-				if(this.view.getHide().isSelected() == true){
-					((Exercise)this.nodo).setHidden(true);
+			} else if (this.nodo instanceof Exercise) {
+				if (this.view.getHide().isSelected() == true) {
+					((Exercise) this.nodo).setHidden(true);
 					this.view.getHide().setSelected(true);
 					this.view.getHide().revalidate();
 					this.view.getHide().repaint();
 					return;
-				}else if(this.view.getHide().isSelected() == false){
-					if(((Unit)this.padre).isHidden() == true){
-						((Exercise)this.nodo).setHidden(true);
+				} else if (this.view.getHide().isSelected() == false) {
+					if (((Unit) this.padre).isHidden() == true) {
+						((Exercise) this.nodo).setHidden(true);
 						this.view.getHide().setSelected(true);
 						this.view.getHide().revalidate();
 						this.view.getHide().repaint();
-					}else{
-						((Exercise)this.nodo).setHidden(false);;
+					} else {
+						((Exercise) this.nodo).setHidden(false);
+						;
 						this.view.getHide().setSelected(false);
 						this.view.getHide().revalidate();
 						this.view.getHide().repaint();
 					}
 					return;
-				}else{
+				} else {
 					return;
 				}
 			}
 			return;
 		}
 	}
+
 	@Override
 	public void valueChanged(TreeSelectionEvent e) {
 		// TODO Auto-generated method stub
 		JPanel newview;
-		/*Object source = ((DefaultTreeModel)this.view.getCourseModel()).get;*/
-		if(e.getNewLeadSelectionPath() == null){
+		/*
+		 * Object source = ((DefaultTreeModel)this.view.getCourseModel()).get;
+		 */
+		if (e.getNewLeadSelectionPath() == null) {
 			return;
 		}
-		Object source = ((DefaultMutableTreeNode)e.getNewLeadSelectionPath().getLastPathComponent()).getUserObject();
+		Object source = ((DefaultMutableTreeNode) e.getNewLeadSelectionPath().getLastPathComponent()).getUserObject();
 		Object parent = null;
-		if(source instanceof CourseElement){
-			parent = ((DefaultMutableTreeNode)((DefaultMutableTreeNode)e.getNewLeadSelectionPath().getLastPathComponent()).getParent()).getUserObject();
+		if (source instanceof CourseElement) {
+			parent = ((DefaultMutableTreeNode) ((DefaultMutableTreeNode) e.getNewLeadSelectionPath()
+					.getLastPathComponent()).getParent()).getUserObject();
 		}
 		System.out.println("Holap");
 		System.out.println(source.getClass());
 		System.out.println(source.toString());
-		
+
 		System.out.println(source instanceof Course);
-		if(source instanceof Course){
-			System.out.println("Course" + ((Course)source).getDesc());
+		if (source instanceof Course) {
+			System.out.println("Course" + ((Course) source).getDesc());
 			this.nodo = null;
 			this.padre = null;
-			/*this.view.setDescription(((Course)source).getDesc());*/
-			this.view.getDesc().setText(((Course)source).getTitle() + ":\n" + ((Course)source).getDesc());
+			/* this.view.setDescription(((Course)source).getDesc()); */
+			this.view.getDesc().setText(((Course) source).getTitle() + ":\n" + ((Course) source).getDesc());
 			this.view.getDesc().repaint();
 			this.view.getDesc().revalidate();
-			
+
 			this.view.getCommonButtons().setVisible(true);
 			this.view.getEdit().setVisible(true);
 			this.view.getDelete().setVisible(false);
 			this.view.getHide().setVisible(false);
-			
+
 			this.view.getUnitButtons().setVisible(false);
-			
+
 			this.view.getOtherButtons().setVisible(false);
-			
+
 			this.view.getCommonButtons().validate();
 			this.view.getCommonButtons().repaint();
-			
+
 			this.view.getUnitButtons().validate();
 			this.view.getUnitButtons().repaint();
-			
+
 			this.view.getOtherButtons().validate();
 			this.view.getOtherButtons().repaint();
-			
+
 			return;
-		}else if(source instanceof Unit){
+		} else if (source instanceof Unit) {
 			System.out.println("Unit o subunit");
 			this.nodo = (CourseElement) source;
 			this.padre = null;
-			/*this.view.setDescription(((Unit)source).getDesc());*/
-			this.view.getDesc().setText(((Unit)source).getTitle() + ":\n" + ((Unit)source).getDesc());
+			/* this.view.setDescription(((Unit)source).getDesc()); */
+			this.view.getDesc().setText(((Unit) source).getTitle() + ":\n" + ((Unit) source).getDesc());
 			this.view.getDesc().revalidate();
-			
+
 			this.view.getCommonButtons().setVisible(true);
 			this.view.getEdit().setVisible(true);
 			this.view.getDelete().setVisible(true);
 			this.view.getHide().setVisible(true);
-			
+
 			this.view.getUnitButtons().setVisible(true);
-			
+
 			this.view.getOtherButtons().setVisible(true);
 			this.view.getView().setVisible(false);
-			if(parent instanceof Unit){
+			if (parent instanceof Unit) {
 				this.padre = (CourseElement) parent;
 				this.view.getCreateSubunit().setVisible(false);
-				if(((Unit)this.nodo).isHidden() == false && ((Unit)this.padre).isHidden() == true){
-					((Unit)this.nodo).setHidden(true);
+				if (((Unit) this.nodo).isHidden() == false && ((Unit) this.padre).isHidden() == true) {
+					((Unit) this.nodo).setHidden(true);
 					this.view.getHide().setSelected(true);
-				}else{
-					if(((Unit)this.nodo).isHidden() == true){
+				} else {
+					if (((Unit) this.nodo).isHidden() == true) {
 						this.view.getHide().setSelected(true);
-					}else{
+					} else {
 						this.view.getHide().setSelected(false);
 					}
 				}
-				
-			}else{
-				if(((Unit)this.nodo).isHidden() == true){
+
+			} else {
+				if (((Unit) this.nodo).isHidden() == true) {
 					this.view.getHide().setSelected(true);
-				}else{
+				} else {
 					this.view.getHide().setSelected(false);
 				}
 				this.view.getCreateSubunit().setVisible(true);
 			}
 			this.view.getStats().setVisible(false);
-			
+
 			this.view.getCommonButtons().validate();
 			this.view.getCommonButtons().repaint();
-			
+
 			this.view.getUnitButtons().validate();
 			this.view.getUnitButtons().repaint();
-			
+
 			this.view.getOtherButtons().validate();
 			this.view.getOtherButtons().repaint();
-			
+
 			this.view.validate();
 			this.view.repaint();
 			return;
-		}else if(source instanceof Note){
+		} else if (source instanceof Note) {
 			System.out.println("Note");
-			
+
 			this.nodo = (CourseElement) source;
 			this.padre = (CourseElement) parent;
-			/*this.view.setDescription(((Note)source).getDesc());*/
-			this.view.getDesc().setText(((Note)source).getTitle() + ":\n" + ((Note)source).getDesc());
+			/* this.view.setDescription(((Note)source).getDesc()); */
+			this.view.getDesc().setText(((Note) source).getTitle() + ":\n" + ((Note) source).getDesc());
 			this.view.getDesc().revalidate();
-			
+
 			this.view.getCommonButtons().setVisible(true);
 			this.view.getEdit().setVisible(true);
 			this.view.getDelete().setVisible(true);
 			this.view.getHide().setVisible(true);
-			
+
 			this.view.getUnitButtons().setVisible(false);
-			
+
 			this.view.getOtherButtons().setVisible(true);
 			this.view.getView().setVisible(true);
-			
+
 			this.view.getCreateSubunit().setVisible(false);
-			
-			if(((Note)this.nodo).isHidden() == false && ((Unit)this.padre).isHidden() == true){
-				((Note)this.nodo).setHidden(true);
+
+			if (((Note) this.nodo).isHidden() == false && ((Unit) this.padre).isHidden() == true) {
+				((Note) this.nodo).setHidden(true);
 				this.view.getHide().setSelected(true);
-			}else{
-				if(((Note)this.nodo).isHidden() == true){
+			} else {
+				if (((Note) this.nodo).isHidden() == true) {
 					this.view.getHide().setSelected(true);
-				}else{
+				} else {
 					this.view.getHide().setSelected(false);
 				}
 			}
-			
+
 			this.view.getStats().setVisible(false);
-			
+
 			this.view.getCommonButtons().validate();
 			this.view.getCommonButtons().repaint();
-			
+
 			this.view.getUnitButtons().validate();
 			this.view.getUnitButtons().repaint();
-			
+
 			this.view.getOtherButtons().validate();
 			this.view.getOtherButtons().repaint();
-			
+
 			this.view.validate();
 			this.view.repaint();
 			return;
-		}else if(source instanceof Exercise){
+		} else if (source instanceof Exercise) {
 			this.nodo = (CourseElement) source;
 			this.padre = (CourseElement) parent;
-			/*this.view.setDescription(((Exercise)source).getDesc());*/
-			this.view.getDesc().setText(((Exercise)source).getTitle() + ":\n" + ((Exercise)source).getDesc());
+			/* this.view.setDescription(((Exercise)source).getDesc()); */
+			this.view.getDesc().setText(((Exercise) source).getTitle() + ":\n" + ((Exercise) source).getDesc());
 			this.view.getDesc().revalidate();
-			
+
 			this.view.getCommonButtons().setVisible(true);
 			this.view.getEdit().setVisible(true);
 			this.view.getDelete().setVisible(true);
 			this.view.getHide().setVisible(true);
-			
+
 			this.view.getUnitButtons().setVisible(false);
-			
+
 			this.view.getOtherButtons().setVisible(true);
 			this.view.getView().setVisible(false);
-			
+
 			this.view.getCreateSubunit().setVisible(false);
-			
-			if(((Exercise)this.nodo).isHidden() == false && ((Unit)this.padre).isHidden() == true){
-				((Exercise)this.nodo).setHidden(true);
+
+			if (((Exercise) this.nodo).isHidden() == false && ((Unit) this.padre).isHidden() == true) {
+				((Exercise) this.nodo).setHidden(true);
 				this.view.getHide().setSelected(true);
-			}else{
-				if(((Exercise)this.nodo).isHidden() == true){
+			} else {
+				if (((Exercise) this.nodo).isHidden() == true) {
 					this.view.getHide().setSelected(true);
-				}else{
+				} else {
 					this.view.getHide().setSelected(false);
 				}
 			}
-			
+
 			this.view.getStats().setVisible(true);
-			
+
 			this.view.getCommonButtons().validate();
 			this.view.getCommonButtons().repaint();
-			
+
 			this.view.getUnitButtons().validate();
 			this.view.getUnitButtons().repaint();
-			
+
 			this.view.getOtherButtons().validate();
 			this.view.getOtherButtons().repaint();
-			
+
 			this.view.validate();
 			this.view.repaint();
 			return;
 		}
-		
-		
+
 	}
 
 }

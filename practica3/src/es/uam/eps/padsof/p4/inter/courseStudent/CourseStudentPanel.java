@@ -15,6 +15,7 @@ import javax.swing.*;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import es.uam.eps.padsof.p3.course.Course;
@@ -175,8 +176,16 @@ public class CourseStudentPanel extends JPanel{
 				
 				this.exerReady.add(this.solution);
 				this.exerReady.add(this.yourAns);
-
-
+				
+				this.desc = new JTextArea();
+				this.desc.setEditable(false);
+				this.desc.setBackground(Color.decode("#D3D3D3"));
+				this.desc.setLineWrap(true);
+				this.desc.setWrapStyleWord(true);
+				this.descPane = new JScrollPane(this.desc, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				this.descPane.setBorder(null);
+				this.descPane.setPreferredSize(new Dimension(500, 300));
+				
 				this.add(this.supPanel);
 				this.add(this.courseLabel);
 				this.add(this.courseDescPane);
@@ -184,6 +193,10 @@ public class CourseStudentPanel extends JPanel{
 				this.add(this.descLabel);
 				this.add(this.otherButtons);
 				this.add(this.exerReady);
+				this.add(this.descPane);
+				
+				layout2.putConstraint(SpringLayout.NORTH, this.descPane, 5, SpringLayout.SOUTH, this.descLabel);
+				layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descPane, 0, SpringLayout.HORIZONTAL_CENTER, this.descLabel);
 				
 				layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
 				layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.supPanel, 0, SpringLayout.HORIZONTAL_CENTER, this);
@@ -209,6 +222,17 @@ public class CourseStudentPanel extends JPanel{
 				layout2.putConstraint(SpringLayout.NORTH, this.descLabel, 20, SpringLayout.SOUTH, this.exerReady);
 				
 				
+				this.desc.setText(cour.getTitle() + ":\n" + cour.getDesc());
+				this.desc.repaint();
+				this.desc.revalidate();
+
+				this.otherButtons.setVisible(false);
+				this.exerReady.setVisible(false);
+
+				this.otherButtons.validate();
+				this.otherButtons.repaint();
+				this.exerReady.validate();
+				this.exerReady.repaint();
 			}
 			
 			public void addUnit(Unit u){
@@ -226,6 +250,7 @@ public class CourseStudentPanel extends JPanel{
 					}
 				}
 				this.courseModel.removeNodeFromParent(aux);
+				this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 			}
 			
 			public void addSubunit(Unit subunit, Unit parentUnit){
@@ -260,6 +285,7 @@ public class CourseStudentPanel extends JPanel{
 					}
 				}
 				this.courseModel.removeNodeFromParent(aux2);
+				this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 			}
 			
 			public void addNote(Note note, Unit u){
@@ -319,6 +345,7 @@ public class CourseStudentPanel extends JPanel{
 						}
 					}
 					this.courseModel.removeNodeFromParent(aux);
+					this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 				}
 					
 				else
@@ -330,6 +357,7 @@ public class CourseStudentPanel extends JPanel{
 						}
 					}
 					this.courseModel.removeNodeFromParent(aux2);
+					this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 			}
 			
 			public void addExercise(Exercise exer, Unit u){
@@ -389,6 +417,7 @@ public class CourseStudentPanel extends JPanel{
 						}
 					}
 					this.courseModel.removeNodeFromParent(aux);
+					this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 				}
 					
 				else
@@ -400,6 +429,7 @@ public class CourseStudentPanel extends JPanel{
 						}
 					}
 					this.courseModel.removeNodeFromParent(aux2);
+					this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 			}
 			
 			public void setDescription(String desc){
