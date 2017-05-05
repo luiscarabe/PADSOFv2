@@ -8,9 +8,11 @@ import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EventListener;
 import java.util.Map;
 
 import javax.swing.*;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
@@ -25,7 +27,7 @@ public class CourseStudentPanel extends JPanel{
 			private JPanel supPanel = new JPanel();
 			private ImageIcon image = new ImageIcon("logov3.png");
 			private JLabel imgLabel = new JLabel(image);
-			private JLabel homeLabel = new JLabel("Home page");
+			private JLabel homeLabel = new JLabel("Course page");
 			private JLabel courses = new JLabel("My courses:");
 			private JComboBox<String> listCourses;
 			private JButton go = new JButton("Go");
@@ -416,10 +418,11 @@ public class CourseStudentPanel extends JPanel{
 				layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descPane, 0, SpringLayout.HORIZONTAL_CENTER, this.descLabel);
 			}
 			
-			public void setController(ActionListener c){
-				this.signOut.addActionListener(c);
-				this.searchCour.addActionListener(c);
-				this.go.addActionListener(c);
+			public void setController(EventListener c){
+				this.signOut.addActionListener((ActionListener) c);
+				this.searchCour.addActionListener((ActionListener) c);
+				this.go.addActionListener((ActionListener) c);
+				this.courTree.addTreeSelectionListener((TreeSelectionListener) c);
 				
 			}
 
@@ -466,17 +469,17 @@ public class CourseStudentPanel extends JPanel{
 			}
 
 			/**
+			 * @return the go
+			 */
+			public JButton getGo() {
+				return go;
+			}
+
+			/**
 			 * @return the searchCour
 			 */
 			public JButton getSearchCour() {
 				return searchCour;
-			}
-
-			/**
-			 * @return the marks
-			 */
-			public JButton getMarks() {
-				return marks;
 			}
 
 			/**
@@ -508,16 +511,123 @@ public class CourseStudentPanel extends JPanel{
 			}
 
 			/**
+			 * @return the courseDesc
+			 */
+			public JTextArea getCourseDesc() {
+				return courseDesc;
+			}
+
+			/**
+			 * @return the courseDescPane
+			 */
+			public JScrollPane getCourseDescPane() {
+				return courseDescPane;
+			}
+
+			/**
+			 * @return the view
+			 */
+			public JButton getView() {
+				return view;
+			}
+
+			/**
+			 * @return the take
+			 */
+			public JButton getTake() {
+				return take;
+			}
+
+			/**
+			 * @return the marks
+			 */
+			public JButton getMarks() {
+				return marks;
+			}
+
+			/**
+			 * @return the otherButtons
+			 */
+			public JPanel getOtherButtons() {
+				return otherButtons;
+			}
+
+			/**
+			 * @return the solution
+			 */
+			public JButton getSolution() {
+				return solution;
+			}
+
+			/**
+			 * @return the yourAns
+			 */
+			public JButton getYourAns() {
+				return yourAns;
+			}
+
+			/**
+			 * @return the exerReady
+			 */
+			public JPanel getExerReady() {
+				return exerReady;
+			}
+
+			/**
+			 * @return the root
+			 */
+			public DefaultMutableTreeNode getRoot() {
+				return root;
+			}
+
+			/**
+			 * @return the courseModel
+			 */
+			public DefaultTreeModel getCourseModel() {
+				return courseModel;
+			}
+
+			/**
+			 * @return the courTree
+			 */
+			public JTree getCourTree() {
+				return courTree;
+			}
+
+			/**
+			 * @return the coursePane
+			 */
+			public JScrollPane getCoursePane() {
+				return coursePane;
+			}
+
+			/**
+			 * @return the desc
+			 */
+			public JTextArea getDesc() {
+				return desc;
+			}
+
+			/**
+			 * @return the descPane
+			 */
+			public JScrollPane getDescPane() {
+				return descPane;
+			}
+
+			/**
+			 * @return the descLabel
+			 */
+			public JLabel getDescLabel() {
+				return descLabel;
+			}
+
+			/**
 			 * @return the layout2
 			 */
 			public SpringLayout getLayout2() {
 				return layout2;
 			}
+
 			
-			/**
-			 * @return the go
-			 */
-			public JButton getGo() {
-				return go;
-			}
 }
