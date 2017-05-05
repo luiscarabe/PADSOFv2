@@ -35,7 +35,7 @@ public class TestingTester {
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
-		CourseTeacherPanel lo = new CourseTeacherPanel(lcour.get(0), ar);
+		AddQuestionTFPanel lo = new AddQuestionTFPanel();
 		/*Unit u1 = new Unit("Unidad 1", "hola", false, null);
 		Unit u2 = new Unit("Subunidad 1", "adios", false, null);
 		Unit u3 = new Unit("Subunidad 2", "adios", false, null);
@@ -62,10 +62,11 @@ public class TestingTester {
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());
 		//ma.setContentPane(lo);
-		ma.add(lo);
-		ma.setVisible(true);
-		ma.setSize(ma.screenSize.width,ma.screenSize.height);		
-		ma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//ma.add(lo);
+		//ma.setVisible(true);
+		//ma.setSize(ma.screenSize.width,ma.screenSize.height);		
+		//ma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }
