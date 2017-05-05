@@ -111,7 +111,7 @@ public class AppliedCourPanelController implements ActionListener{
 				return;
 			}
 			Course course = edu.searchCourse(name);
-			MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), enrNames, name), course);
+			MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), enrNames, course), course);
 			newview = MainFrame.getInstance().getCsp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);

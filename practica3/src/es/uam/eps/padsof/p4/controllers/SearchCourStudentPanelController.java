@@ -89,7 +89,7 @@ public class SearchCourStudentPanelController implements ActionListener{
 					auxCoursesNames.add(aux.getTitle());
 				}
 				//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-				MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), (ArrayList<String>) auxCoursesNames, course.getTitle()), course);
+				MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), (ArrayList<String>) auxCoursesNames, course), course);
 				newview = MainFrame.getInstance().getCsp();
 				MainFrame.getInstance().setContentPane(newview);
 				newview.setVisible(true);
@@ -178,7 +178,7 @@ public class SearchCourStudentPanelController implements ActionListener{
 				auxCoursesNames.add(aux.getTitle());
 			}
 			course = edu.searchCourse(name);
-			MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), (ArrayList<String>) auxCoursesNames, name), course);
+			MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), (ArrayList<String>) auxCoursesNames, course), course);
 			newview = MainFrame.getInstance().getCsp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
@@ -195,7 +195,7 @@ public class SearchCourStudentPanelController implements ActionListener{
 				auxCoursesNames.add(aux.getTitle());
 			}
 			course = edu.searchCourse(name);
-			MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), (ArrayList<String>) auxCoursesNames, name), course);
+			MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), (ArrayList<String>) auxCoursesNames, course), course);
 			newview = MainFrame.getInstance().getCsp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);

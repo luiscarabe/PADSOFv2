@@ -6,6 +6,7 @@ package es.uam.eps.padsof.p4.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -58,6 +59,73 @@ public class CourseTeacherPanelController implements ActionListener, TreeSelecti
 		this.course = course;
 		this.nodo = null;
 		this.padre = null;
+		
+		List<CourseElement> courelem = course.getCourseElements();
+		List<CourseElement> subunits = new ArrayList<CourseElement>();
+		List<CourseElement> notes = new ArrayList<CourseElement>();
+		List<CourseElement> exercises = new ArrayList<CourseElement>();
+		Unit u;
+		
+		for(CourseElement aux1: courelem){
+			if(aux1 instanceof Unit){
+				for(CourseElement aux2: courelem){
+					if(aux2 instanceof Unit){
+						if(aux1 != aux2){
+							u = (Unit)aux2;
+							if(u.getCourseElements().contains(aux1)){
+								subunits.add(aux1);
+							}
+						}
+					}
+				}
+			}else if(aux1 instanceof Note){
+				notes.add(aux1);
+			}else if(aux1 instanceof Exercise){
+				exercises.add(aux1);
+			}
+		}
+		
+		for(CourseElement aux1: courelem){
+			if(aux1 instanceof Unit){
+				if(subunits.contains(aux1) == false){
+					this.view.addUnit((Unit) aux1);
+				}
+			}
+		}
+		
+		for(CourseElement aux1: courelem){
+			if(aux1 instanceof Unit){
+				for(CourseElement aux2: subunits){
+					if(((Unit)aux1).getCourseElements().contains(aux2)){
+						this.view.addSubunit((Unit)aux2, (Unit)aux1);
+					}
+				}
+				if(subunits.contains(aux1) == false){
+					for(CourseElement aux2: notes){
+						if(((Unit)aux1).getCourseElements().contains(aux2)){
+							this.view.addNote((Note)aux2, (Unit)aux1);
+						}
+					}
+					for(CourseElement aux2: exercises){
+						if(((Unit)aux1).getCourseElements().contains(aux2)){
+							this.view.addExercise((Exercise)aux2, (Unit)aux1);
+						}
+					}
+				}
+			}
+		}
+		for(CourseElement aux1: subunits){
+			for(CourseElement aux2: notes){
+				if(((Unit)aux1).getCourseElements().contains(aux2)){
+					this.view.addNote((Note)aux2, (Unit)aux1);
+				}
+			}
+			for(CourseElement aux2: exercises){
+				if(((Unit)aux1).getCourseElements().contains(aux2)){
+					this.view.addExercise((Exercise)aux2, (Unit)aux1);
+				}
+			}
+		}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
