@@ -26,21 +26,21 @@ import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
 import es.uam.eps.padsof.p3.user.Application;
 import es.uam.eps.padsof.p3.user.Student;
-import es.uam.eps.padsof.p4.inter.CourseStudentPanel;
-import es.uam.eps.padsof.p4.inter.CourseTeacherPanel;
-import es.uam.eps.padsof.p4.inter.CreateCoursePanel;
-import es.uam.eps.padsof.p4.inter.CreateNotePanel;
-import es.uam.eps.padsof.p4.inter.CreateSubUnitPanel;
-import es.uam.eps.padsof.p4.inter.CreateUnitPanel;
 import es.uam.eps.padsof.p4.inter.MainFrame;
-import es.uam.eps.padsof.p4.inter.ModifyCoursePanel;
-import es.uam.eps.padsof.p4.inter.ModifyNotePanel;
-import es.uam.eps.padsof.p4.inter.ModifySubunitPanel;
-import es.uam.eps.padsof.p4.inter.ModifyUnitPanel;
-import es.uam.eps.padsof.p4.inter.SearchCourStudentPanel;
-import es.uam.eps.padsof.p4.inter.SearchCourTeacherPanel;
-import es.uam.eps.padsof.p4.inter.StudentsOfCourPanel;
-import es.uam.eps.padsof.p4.inter.ViewNoteTeacherPanel;
+import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
+import es.uam.eps.padsof.p4.inter.courseStudent.SearchCourStudentPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateCoursePanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateNotePanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateSubUnitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateUnitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ModifyCoursePanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ModifyNotePanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ModifySubunitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ModifyUnitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.SearchCourTeacherPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.StudentsOfCourPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
 
 /**
  * @author Miguel

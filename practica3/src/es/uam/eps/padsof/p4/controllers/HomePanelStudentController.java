@@ -11,11 +11,11 @@ import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.user.Application;
 import es.uam.eps.padsof.p3.user.Student;
 import es.uam.eps.padsof.p3.user.User;
-import es.uam.eps.padsof.p4.inter.CourseStudentPanel;
-import es.uam.eps.padsof.p4.inter.CreateCoursePanel;
 import es.uam.eps.padsof.p4.inter.HomePanelStudent;
 import es.uam.eps.padsof.p4.inter.MainFrame;
-import es.uam.eps.padsof.p4.inter.SearchCourStudentPanel;
+import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
+import es.uam.eps.padsof.p4.inter.courseStudent.SearchCourStudentPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateCoursePanel;
 
 public class HomePanelStudentController implements ActionListener{
 private static final long serialVersionUID = 1L;

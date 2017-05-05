@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.inter.*;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateCoursePanel;
 
 /**
  * @author Miguel

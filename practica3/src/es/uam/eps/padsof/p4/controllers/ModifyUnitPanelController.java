@@ -14,12 +14,12 @@ import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.course.CourseElement;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
-import es.uam.eps.padsof.p4.inter.CourseTeacherPanel;
-import es.uam.eps.padsof.p4.inter.CreateNotePanel;
-import es.uam.eps.padsof.p4.inter.CreateUnitPanel;
 import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
 import es.uam.eps.padsof.p4.inter.MainFrame;
-import es.uam.eps.padsof.p4.inter.ModifyUnitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateNotePanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateUnitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ModifyUnitPanel;
 
 /**
  * @author Miguel

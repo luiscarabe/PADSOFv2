@@ -13,6 +13,22 @@ import es.uam.eps.padsof.p3.course.Note;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.controllers.*;
+import es.uam.eps.padsof.p4.inter.courseStudent.AppliedCourPanel;
+import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
+import es.uam.eps.padsof.p4.inter.courseStudent.NotAppliedCourPanel;
+import es.uam.eps.padsof.p4.inter.courseStudent.SearchCourStudentPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateCoursePanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateNotePanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateSubUnitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateUnitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ModifyCoursePanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ModifyNotePanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ModifySubunitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ModifyUnitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.SearchCourTeacherPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.StudentsOfCourPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
 
 import java.util.*;
 

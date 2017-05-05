@@ -13,11 +13,11 @@ import javax.swing.JPanel;
 import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
-import es.uam.eps.padsof.p4.inter.CourseTeacherPanel;
-import es.uam.eps.padsof.p4.inter.CreateSubUnitPanel;
 import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
 import es.uam.eps.padsof.p4.inter.MainFrame;
-import es.uam.eps.padsof.p4.inter.ViewNoteTeacherPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateSubUnitPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
 
 /**
  * @author gjius

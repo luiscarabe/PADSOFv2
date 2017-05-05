@@ -11,6 +11,7 @@ import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
 import es.uam.eps.padsof.p3.user.*;
+import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
 
 public class testingtesteando {
 
