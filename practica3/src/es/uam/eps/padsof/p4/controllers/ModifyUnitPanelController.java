@@ -94,35 +94,11 @@ public class ModifyUnitPanelController implements ActionListener{
 			}
 			
 			newview = MainFrame.getInstance().getCtp();
-			((CourseTeacherPanel) newview).getCourseDesc().setText(this.course.getDesc());
-			((CourseTeacherPanel) newview).getCourseDesc().repaint();
-			((CourseTeacherPanel) newview).getCourseDesc().revalidate();
+			
 			((CourseTeacherPanel) newview).getDesc().setText(this.unit.getTitle() + ":\n" + this.unit.getDesc());
 			((CourseTeacherPanel) newview).getDesc().repaint();
 			((CourseTeacherPanel) newview).getDesc().revalidate();
 			
-			((CourseTeacherPanel) newview).getCommonButtons().setVisible(true);
-			((CourseTeacherPanel) newview).getEdit().setVisible(true);
-			((CourseTeacherPanel) newview).getDelete().setVisible(true);
-			((CourseTeacherPanel) newview).getHide().setVisible(true);
-			
-			((CourseTeacherPanel) newview).getUnitButtons().setVisible(true);
-			
-			((CourseTeacherPanel) newview).getOtherButtons().setVisible(true);
-			((CourseTeacherPanel) newview).getView().setVisible(false);
-			
-			((CourseTeacherPanel) newview).getCreateSubunit().setVisible(true);
-			
-			((CourseTeacherPanel) newview).getStats().setVisible(false);
-			
-			((CourseTeacherPanel) newview).getCommonButtons().validate();
-			((CourseTeacherPanel) newview).getCommonButtons().repaint();
-			
-			((CourseTeacherPanel) newview).getUnitButtons().validate();
-			((CourseTeacherPanel) newview).getUnitButtons().repaint();
-			
-			((CourseTeacherPanel) newview).validate();
-			((CourseTeacherPanel) newview).repaint();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);

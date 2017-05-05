@@ -11,31 +11,32 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.course.CourseElement;
+import es.uam.eps.padsof.p3.course.Note;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.inter.CourseTeacherPanel;
-import es.uam.eps.padsof.p4.inter.CreateNotePanel;
-import es.uam.eps.padsof.p4.inter.CreateSubUnitPanel;
-import es.uam.eps.padsof.p4.inter.CreateUnitPanel;
 import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
 import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.ModifyNotePanel;
+import es.uam.eps.padsof.p4.inter.ModifySubunitPanel;
 
 /**
- * @author Miguel
+ * @author gjius
  *
  */
-public class CreateSubUnitPanelController implements ActionListener{
-	private static final long serialVersionUID = 1L;
+public class ModifyNotePanelController implements ActionListener{
+private static final long serialVersionUID = 1L;
 	
-	private CreateSubUnitPanel view;
+	private ModifyNotePanel view;
 	private Educagram edu = Educagram.getInstance();
 	private Course course;
-	private Unit unit;
+	private Note note;
 	
-	public CreateSubUnitPanelController(CreateSubUnitPanel view, Course course, Unit unit) {
+	public ModifyNotePanelController( ModifyNotePanel view, Course course, Note note) {
 		this.view = view;
 		this.course= course;
-		this.unit = unit;
+		this.note = note;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -46,8 +47,13 @@ public class CreateSubUnitPanelController implements ActionListener{
 		JComponent source = (JComponent) e.getSource();
 		String title = view.getName();
 		String desc = view.getDesc();
+		String content = view.getContent();
+		String titleaux;
+		String descaux;
+		String contentaux;
 		Course course;
-		Unit subunit;
+		Unit unit;
+		int flag = 0;
 		
 		System.out.println(title);
 		System.out.println(desc);
@@ -67,18 +73,36 @@ public class CreateSubUnitPanelController implements ActionListener{
 				System.out.println(ex.getMessage());
 			}
 		}else if(source == this.view.getOk()){
-			if(title.equals("")){
-				JOptionPane.showMessageDialog(view, "The subunit must have a title.", "Error", JOptionPane.ERROR_MESSAGE);
+			if(title.equals("") || content.equals("")){
+				JOptionPane.showMessageDialog(view, "TThe note must have a title and content.", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			subunit = (Unit) this.unit.createSubUnit(title, desc, false);
-			if(subunit == null){
+			titleaux = this.note.getTitle();
+			descaux = this.note.getDesc();
+			contentaux = this.note.getText();
+			this.note.setTitle(title);
+			this.note.setDesc(desc);
+			this.note.setText(content);
+			for(CourseElement aux: this.course.getCourseElements()){
+				if(this.note != aux){
+					if(title.equals(aux.getTitle())){
+						flag = 1;
+					}
+				}
+			}
+			if(flag == 1){
+				this.note.setTitle(titleaux);
+				this.note.setDesc(descaux);
+				this.note.setText(contentaux);
 				JOptionPane.showMessageDialog(view, "There is already an element of the course with this name.", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
 			newview = MainFrame.getInstance().getCtp();
-			((CourseTeacherPanel) newview).addSubunit(subunit, this.unit);
+			
+			((CourseTeacherPanel) newview).getDesc().setText(this.note.getTitle() + ":\n" + this.note.getDesc());
+			((CourseTeacherPanel) newview).getDesc().repaint();
+			((CourseTeacherPanel) newview).getDesc().revalidate();
 			
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);

@@ -14,43 +14,30 @@ import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.inter.CourseTeacherPanel;
-import es.uam.eps.padsof.p4.inter.CreateNotePanel;
 import es.uam.eps.padsof.p4.inter.CreateSubUnitPanel;
-import es.uam.eps.padsof.p4.inter.CreateUnitPanel;
 import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
 import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.ViewNoteTeacherPanel;
 
 /**
- * @author Miguel
+ * @author gjius
  *
  */
-public class CreateSubUnitPanelController implements ActionListener{
-	private static final long serialVersionUID = 1L;
+public class ViewNoteTeacherPanelController implements ActionListener{
+private static final long serialVersionUID = 1L;
 	
-	private CreateSubUnitPanel view;
+	private ViewNoteTeacherPanel view;
 	private Educagram edu = Educagram.getInstance();
-	private Course course;
-	private Unit unit;
 	
-	public CreateSubUnitPanelController(CreateSubUnitPanel view, Course course, Unit unit) {
+	public ViewNoteTeacherPanelController(ViewNoteTeacherPanel view) {
 		this.view = view;
-		this.course= course;
-		this.unit = unit;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		JPanel newview;
 		// esto sera la de course !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		HomePanelTeacher hpt;
 		JComponent source = (JComponent) e.getSource();
-		String title = view.getName();
-		String desc = view.getDesc();
-		Course course;
-		Unit subunit;
-		
-		System.out.println(title);
-		System.out.println(desc);
 		
 		if(source == this.view.getSignOut()){
 			try{
@@ -67,23 +54,6 @@ public class CreateSubUnitPanelController implements ActionListener{
 				System.out.println(ex.getMessage());
 			}
 		}else if(source == this.view.getOk()){
-			if(title.equals("")){
-				JOptionPane.showMessageDialog(view, "The subunit must have a title.", "Error", JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-			subunit = (Unit) this.unit.createSubUnit(title, desc, false);
-			if(subunit == null){
-				JOptionPane.showMessageDialog(view, "There is already an element of the course with this name.", "Error", JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-			
-			newview = MainFrame.getInstance().getCtp();
-			((CourseTeacherPanel) newview).addSubunit(subunit, this.unit);
-			
-			MainFrame.getInstance().setContentPane(newview);
-			newview.setVisible(true);
-			view.setVisible(false);
-		}else if(source == this.view.getCancel()){
 			newview = MainFrame.getInstance().getCtp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);

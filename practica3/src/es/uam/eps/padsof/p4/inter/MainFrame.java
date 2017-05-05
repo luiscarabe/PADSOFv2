@@ -9,6 +9,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.course.Note;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.controllers.*;
@@ -45,6 +46,9 @@ public class MainFrame extends JFrame{
 	private CreateUnitPanel cup;
 	private CreateSubUnitPanel csup;
 	private ModifyUnitPanel mup;
+	private ModifySubunitPanel msup;
+	private ModifyNotePanel mnp;
+	private ViewNoteTeacherPanel vntp;
 	
 	
 	/* Controllers */
@@ -64,6 +68,9 @@ public class MainFrame extends JFrame{
 	private CreateUnitPanelController cupc;
 	private CreateSubUnitPanelController csupc;
 	private ModifyUnitPanelController mupc;
+	private ModifySubUnitPanelController msupc;
+	private ModifyNotePanelController mnpc;
+	private ViewNoteTeacherPanelController vntpc;
 	
 	
 	
@@ -187,8 +194,8 @@ public class MainFrame extends JFrame{
 	/**
 	 * @param cnp the cnp to set
 	 */
-	public void setCnp(CreateNotePanel cnp) {
-		this.cnpc = new CreateNotePanelController(cnp);
+	public void setCnp(CreateNotePanel cnp, Course course, Unit unit) {
+		this.cnpc = new CreateNotePanelController(cnp, course, unit);
 		cnp.setController(this.cnpc);
 		this.cnp = cnp;
 	}
@@ -407,6 +414,66 @@ public class MainFrame extends JFrame{
 		this.mupc = new ModifyUnitPanelController(mup, course, unit);
 		mup.setController(this.mupc);
 		this.mup = mup;
+	}
+
+
+
+	/**
+	 * @return the msup
+	 */
+	public ModifySubunitPanel getMsup() {
+		return msup;
+	}
+
+
+
+	/**
+	 * @param msup the msup to set
+	 */
+	public void setMsup(ModifySubunitPanel msup, Course course, Unit subunit) {
+		this.msupc = new ModifySubUnitPanelController(msup, course, subunit);
+		msup.setController(this.msupc);
+		this.msup = msup;
+	}
+
+
+
+	/**
+	 * @return the mnp
+	 */
+	public ModifyNotePanel getMnp() {
+		return mnp;
+	}
+
+
+
+	/**
+	 * @param mnp the mnp to set
+	 */
+	public void setMnp(ModifyNotePanel mnp, Course course, Note note) {
+		this.mnpc = new ModifyNotePanelController(mnp, course, note);
+		mnp.setController(this.mnpc);
+		this.mnp = mnp;
+	}
+
+
+
+	/**
+	 * @return the vntp
+	 */
+	public ViewNoteTeacherPanel getVntp() {
+		return vntp;
+	}
+
+
+
+	/**
+	 * @param vntp the vntp to set
+	 */
+	public void setVntp(ViewNoteTeacherPanel vntp) {
+		this.vntpc = new ViewNoteTeacherPanelController(vntp);
+		vntp.setController(this.vntpc);
+		this.vntp = vntp;
 	}
 	
 	

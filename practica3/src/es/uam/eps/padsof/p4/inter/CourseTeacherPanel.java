@@ -254,6 +254,28 @@ public class CourseTeacherPanel extends JPanel{
 
 		layout2.putConstraint(SpringLayout.NORTH, this.descPane, 5, SpringLayout.SOUTH, this.descLabel);
 		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descPane, 0, SpringLayout.HORIZONTAL_CENTER, this.descLabel);
+		
+		this.desc.setText(cour.getTitle() + ":\n" + cour.getDesc());
+		this.desc.repaint();
+		this.desc.revalidate();
+		
+		this.commonButtons.setVisible(true);
+		this.edit.setVisible(true);
+		this.delete.setVisible(false);
+		this.hide.setVisible(false);
+		
+		this.unitButtons.setVisible(false);
+		
+		this.otherButtons.setVisible(false);
+		
+		this.commonButtons.validate();
+		this.commonButtons.repaint();
+		
+		this.unitButtons.validate();
+		this.unitButtons.repaint();
+		
+		this.otherButtons.validate();
+		this.otherButtons.repaint();
 	}
 	
 	public void addUnit(Unit u){
@@ -306,6 +328,7 @@ public class CourseTeacherPanel extends JPanel{
 			}
 		}
 		this.courseModel.removeNodeFromParent(aux2);
+		this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 	}
 	
 	public void addNote(Note note, Unit u){
@@ -376,6 +399,7 @@ public class CourseTeacherPanel extends JPanel{
 				}
 			}
 			this.courseModel.removeNodeFromParent(aux2);
+			this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 	}
 	
 	public void addExercise(Exercise exer, Unit u){
@@ -447,6 +471,7 @@ public class CourseTeacherPanel extends JPanel{
 				}
 			}
 			this.courseModel.removeNodeFromParent(aux2);
+			this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 	}
 	
 	public void setDescription(String desc){
@@ -472,7 +497,13 @@ public class CourseTeacherPanel extends JPanel{
 		this.edit.addActionListener((ActionListener) c);
 		this.createUnit.addActionListener((ActionListener) c);
 		this.createSubunit.addActionListener((ActionListener) c);
+		this.createNote.addActionListener((ActionListener) c);
+		this.view.addActionListener((ActionListener) c);
 		this.delete.addActionListener((ActionListener) c);
+		this.hide.addActionListener((ActionListener) c);
+		this.go.addActionListener((ActionListener) c);
+		this.searchCour.addActionListener((ActionListener) c);
+		this.createCourse.addActionListener((ActionListener) c);
 		this.courTree.addTreeSelectionListener((TreeSelectionListener) c);
 		/*this.courseModel.addTreeModelListener((TreeModelListener) c);*/
 	}

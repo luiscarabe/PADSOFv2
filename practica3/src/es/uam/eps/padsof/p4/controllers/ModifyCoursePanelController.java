@@ -89,6 +89,7 @@ private static final long serialVersionUID = 1L;
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
+			return;
 		}else if(source == this.view.getCancel()){
 			newview = MainFrame.getInstance().getCtp();
 			MainFrame.getInstance().setContentPane(newview);

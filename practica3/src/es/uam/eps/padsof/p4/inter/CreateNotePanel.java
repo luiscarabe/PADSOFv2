@@ -127,6 +127,10 @@ public class CreateNotePanel extends JPanel{
 	public JButton getSignOut() {
 		return signOut;
 	}
+	
+	public String getName() {
+		return nameField.getText();
+	}
 
 	public String getDesc() {
 		return descField.getText();

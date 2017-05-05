@@ -180,8 +180,16 @@ public class Unit extends CourseElement implements Serializable{
 	 * Method that hide a unit and all its elements
 	 */
 	public void unitHide(){
+		List<CourseElement> sub = new ArrayList<CourseElement>();
 		for(CourseElement aux: this.getCourseElements()){
-			aux.setHidden(true);
+			if(aux instanceof Unit){
+				sub.add((Unit) aux);
+			}else{
+				aux.setHidden(true);
+			}
+		}
+		for(CourseElement aux: sub){
+			((Unit) aux).unitHide();
 		}
 		this.setHidden(true);
 	}

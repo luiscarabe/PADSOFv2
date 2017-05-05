@@ -8,7 +8,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.course.Note;
+import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
+import es.uam.eps.padsof.p4.inter.CourseTeacherPanel;
 import es.uam.eps.padsof.p4.inter.CreateCoursePanel;
 import es.uam.eps.padsof.p4.inter.CreateNotePanel;
 import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
@@ -21,9 +24,13 @@ public class CreateNotePanelController implements ActionListener{
 	
 	private CreateNotePanel view;
 	private Educagram edu = Educagram.getInstance();
+	private Course course;
+	private Unit unit;
 	
-	public CreateNotePanelController(CreateNotePanel view) {
+	public CreateNotePanelController(CreateNotePanel view, Course course, Unit unit) {
 		this.view = view;
+		this.course = course;
+		this.unit = unit;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -35,7 +42,7 @@ public class CreateNotePanelController implements ActionListener{
 		String title = view.getName();
 		String desc = view.getDesc();
 		String content = view.getContent();
-		Course course;
+		Note note;
 		
 		System.out.println(title);
 		System.out.println(desc);
@@ -59,19 +66,19 @@ public class CreateNotePanelController implements ActionListener{
 				JOptionPane.showMessageDialog(view, "The note must have a title and content.", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			course = edu.getInstance().getProfessor().createCourse(title, desc);
-			if(course == null){
-				JOptionPane.showMessageDialog(view, "A note with this title already exists.", "Error", JOptionPane.ERROR_MESSAGE);
+			note = this.unit.createNote(title, desc, false, content);
+			if(note == null){
+				JOptionPane.showMessageDialog(view, "There is already an element of the course with this name.", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			newview = MainFrame.getInstance().getHpt();
-			hpt = (HomePanelTeacher)newview;
-			hpt.addCourse(course.getTitle());
+			newview = MainFrame.getInstance().getCtp();
+			((CourseTeacherPanel) newview).addNote(note, this.unit);
+			
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
 		}else if(source == this.view.getCancel()){
-			newview = MainFrame.getInstance().getHpt();
+			newview = MainFrame.getInstance().getCtp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);

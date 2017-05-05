@@ -56,6 +56,9 @@ public class HomePanelTeacherController implements ActionListener{
 			view.setVisible(false);
 			return;
 		}else if(source == this.view.getGo()){
+			if(this.view.getListCourses().getSelectedItem() == null){
+				return;
+			}
 			for(Course aux : edu.getCourses()){
 				allNames.add(aux.getTitle());
 			}
