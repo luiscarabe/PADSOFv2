@@ -18,7 +18,7 @@ import es.uam.eps.padsof.p4.controllers.LoginPanelController;
 public class LoginPanel extends JPanel{
 	private JButton enter = new JButton("Enter");
 	private JPanel logWindow = new JPanel();
-	private JLabel idLabel = new JLabel("ID:");
+	private JLabel idLabel = new JLabel("Email:");
 	private JTextField idField = new JTextField(20);
 	private JLabel pswLabel = new JLabel("Password:");
 	private JPasswordField pswField = new JPasswordField(20);
