@@ -168,6 +168,9 @@ public class SearchCourStudentPanelController implements ActionListener{
 			this.view.repaint();
 			return;
 		}else if(source == this.view.getGo()){
+			if (this.view.getListCourses().getSelectedItem() == null) {
+				return;
+			}
 			String name = this.view.getListCourses().getSelectedItem().toString();
 			if(name == null){
 				return;

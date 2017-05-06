@@ -27,6 +27,8 @@ import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
 import es.uam.eps.padsof.p4.inter.MainFrame;
 import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseStudent.SearchCourStudentPanel;
+import es.uam.eps.padsof.p4.inter.courseStudent.ViewNoteStudentPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
 
 /**
  * @author Miguel
@@ -192,14 +194,16 @@ public class CourseStudentPanelController implements ActionListener, TreeSelecti
 				System.out.println(ex.getMessage());
 			}
 		} else if (source == this.view.getSearchCour()) {
-			MainFrame.getInstance()
-					.setScsp(new SearchCourStudentPanel(current.getName(), enrNames, foraNames, appNames, expNames));
+			MainFrame.getInstance().setScsp(new SearchCourStudentPanel(current.getName(), enrNames, foraNames, appNames, expNames));
 			newview = MainFrame.getInstance().getScsp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
 		} else if (source == this.view.getGo()) {
+			if (this.view.getListCourses().getSelectedItem() == null) {
+				return;
+			}
 			String name = this.view.getListCourses().getSelectedItem().toString();
 			if (name == null) {
 				return;
@@ -207,6 +211,14 @@ public class CourseStudentPanelController implements ActionListener, TreeSelecti
 			Course course = edu.searchCourse(name);
 			MainFrame.getInstance().setCsp(new CourseStudentPanel(current.getName(), enrNames, course), course);
 			newview = MainFrame.getInstance().getCsp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+			return;
+		}else if(source == this.view.getView()){
+			MainFrame.getInstance().setVnsp(new ViewNoteStudentPanel(current.getName(), ((Note) this.nodo).getTitle(),
+					((Note) this.nodo).getDesc(), ((Note) this.nodo).getText()));
+			newview = MainFrame.getInstance().getVnsp();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);

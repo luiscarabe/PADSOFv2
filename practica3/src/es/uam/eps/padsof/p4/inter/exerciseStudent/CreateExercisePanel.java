@@ -1,11 +1,14 @@
 package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
 import javax.swing.*;
+
+import es.uam.eps.padsof.p3.exercise.Question;
 
 public class CreateExercisePanel extends JPanel{
 	//Superior Panel
@@ -37,8 +40,8 @@ public class CreateExercisePanel extends JPanel{
 		private JCheckBox eqValued = new JCheckBox("Questions equally valued");
 		private JPanel addQuesPanel = new JPanel();
 		
-		private DefaultListModel<String> quesModel = new DefaultListModel<String>();
-		JList<String> quesList;
+		private DefaultListModel<Question> quesModel = new DefaultListModel<Question>();
+		JList<Question> quesList;
 		private JScrollPane quesPane;
 		private JLabel quesLabel = new JLabel("Questions");
 		private JButton edit = new JButton("Edit");
@@ -127,7 +130,7 @@ public class CreateExercisePanel extends JPanel{
 			Map attributes = this.quesLabel.getFont().getAttributes();
 			attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 			
-			this.quesList = new JList<String>(this.quesModel);
+			this.quesList = new JList<Question>(this.quesModel);
 			this.quesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			this.quesPane = new JScrollPane(this.quesList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			this.quesPane.setPreferredSize(new Dimension(200,200));
@@ -215,5 +218,289 @@ public class CreateExercisePanel extends JPanel{
 			layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.cancel, 0, SpringLayout.VERTICAL_CENTER, this.create);
 			layout2.putConstraint(SpringLayout.WEST, this.cancel, 10, SpringLayout.EAST, this.create);		
 		}
+		
+		public String getName(){
+			return this.titleField.getText();
+		}
+		
+		public String getDesc(){
+			return this.descField.getText();
+		}
+		
+		public void setController(ActionListener c) {
+			this.signOut.addActionListener(c);
+			this.create.addActionListener(c);
+			this.cancel.addActionListener(c);
+			this.edit.addActionListener(c);
+			this.delete.addActionListener(c);
+			this.addTFQues.addActionListener(c);
+			this.addMultiQues.addActionListener(c);
+			this.addOpenQues.addActionListener(c);
+			this.addUniqQues.addActionListener(c);
+			this.aleatOrder.addActionListener(c);
+			this.hide.addActionListener(c);
+			this.eqValued.addActionListener(c);
+		}
+
+		/**
+		 * @return the supPanel
+		 */
+		public JPanel getSupPanel() {
+			return supPanel;
+		}
+
+		/**
+		 * @return the image
+		 */
+		public ImageIcon getImage() {
+			return image;
+		}
+
+		/**
+		 * @return the imgLabel
+		 */
+		public JLabel getImgLabel() {
+			return imgLabel;
+		}
+
+		/**
+		 * @return the creatLabel
+		 */
+		public JLabel getCreatLabel() {
+			return creatLabel;
+		}
+
+		/**
+		 * @return the professor
+		 */
+		public JLabel getProfessor() {
+			return professor;
+		}
+
+		/**
+		 * @return the signOut
+		 */
+		public JButton getSignOut() {
+			return signOut;
+		}
+
+		/**
+		 * @return the layout
+		 */
+		public SpringLayout getLayout() {
+			return layout;
+		}
+
+		/**
+		 * @return the titleLabel
+		 */
+		public JLabel getTitleLabel() {
+			return titleLabel;
+		}
+
+		/**
+		 * @return the titleField
+		 */
+		public JTextField getTitleField() {
+			return titleField;
+		}
+
+		/**
+		 * @return the descLabel
+		 */
+		public JLabel getDescLabel() {
+			return descLabel;
+		}
+
+		/**
+		 * @return the descField
+		 */
+		public JTextArea getDescField() {
+			return descField;
+		}
+
+		/**
+		 * @return the descPane
+		 */
+		public JScrollPane getDescPane() {
+			return descPane;
+		}
+
+		/**
+		 * @return the iniDateLabel
+		 */
+		public JLabel getIniDateLabel() {
+			return iniDateLabel;
+		}
+
+		/**
+		 * @return the finDateLabel
+		 */
+		public JLabel getFinDateLabel() {
+			return finDateLabel;
+		}
+
+		/**
+		 * @return the iniDate
+		 */
+		public JSpinner getIniDate() {
+			return iniDate;
+		}
+
+		/**
+		 * @return the finDate
+		 */
+		public JSpinner getFinDate() {
+			return finDate;
+		}
+
+		/**
+		 * @return the date
+		 */
+		public JPanel getDate() {
+			return date;
+		}
+
+		/**
+		 * @return the addQuesLabel
+		 */
+		public JLabel getAddQuesLabel() {
+			return addQuesLabel;
+		}
+
+		/**
+		 * @return the addTFQues
+		 */
+		public JButton getAddTFQues() {
+			return addTFQues;
+		}
+
+		/**
+		 * @return the addMultiQues
+		 */
+		public JButton getAddMultiQues() {
+			return addMultiQues;
+		}
+
+		/**
+		 * @return the addUniqQues
+		 */
+		public JButton getAddUniqQues() {
+			return addUniqQues;
+		}
+
+		/**
+		 * @return the addOpenQues
+		 */
+		public JButton getAddOpenQues() {
+			return addOpenQues;
+		}
+
+		/**
+		 * @return the eqValued
+		 */
+		public JCheckBox getEqValued() {
+			return eqValued;
+		}
+
+		/**
+		 * @return the addQuesPanel
+		 */
+		public JPanel getAddQuesPanel() {
+			return addQuesPanel;
+		}
+
+		/**
+		 * @return the quesModel
+		 */
+		public DefaultListModel<Question> getQuesModel() {
+			return quesModel;
+		}
+
+		/**
+		 * @return the quesList
+		 */
+		public JList<Question> getQuesList() {
+			return quesList;
+		}
+
+		/**
+		 * @return the quesPane
+		 */
+		public JScrollPane getQuesPane() {
+			return quesPane;
+		}
+
+		/**
+		 * @return the quesLabel
+		 */
+		public JLabel getQuesLabel() {
+			return quesLabel;
+		}
+
+		/**
+		 * @return the edit
+		 */
+		public JButton getEdit() {
+			return edit;
+		}
+
+		/**
+		 * @return the delete
+		 */
+		public JButton getDelete() {
+			return delete;
+		}
+
+		/**
+		 * @return the hide
+		 */
+		public JCheckBox getHide() {
+			return hide;
+		}
+
+		/**
+		 * @return the aleatOrder
+		 */
+		public JCheckBox getAleatOrder() {
+			return aleatOrder;
+		}
+
+		/**
+		 * @return the penalLabel
+		 */
+		public JLabel getPenalLabel() {
+			return penalLabel;
+		}
+
+		/**
+		 * @return the penalField
+		 */
+		public JTextField getPenalField() {
+			return penalField;
+		}
+
+		/**
+		 * @return the create
+		 */
+		public JButton getCreate() {
+			return create;
+		}
+
+		/**
+		 * @return the cancel
+		 */
+		public JButton getCancel() {
+			return cancel;
+		}
+
+		/**
+		 * @return the layout2
+		 */
+		public SpringLayout getLayout2() {
+			return layout2;
+		}
+		
+		
 
 }

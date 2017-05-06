@@ -6,6 +6,8 @@ import java.util.*;
 
 import javax.swing.*;
 
+import es.uam.eps.padsof.p3.exercise.Option;
+
 public class ModifyQuestionOTPanel extends JDialog{
 	
 	private JPanel jp = new JPanel();
@@ -18,8 +20,8 @@ public class ModifyQuestionOTPanel extends JDialog{
 	private JLabel solutionLabel = new JLabel("Add a solution");
 	private JButton addSolution = new JButton("Add");
 	private JTextField solutionField = new JTextField(20);
-	private DefaultListModel<String> solutionModel = new DefaultListModel<String>(); 
-	JList<String> solutionList;
+	private DefaultListModel<Option> solutionModel = new DefaultListModel<Option>(); 
+	JList<Option> solutionList;
 	private JButton delSolution = new JButton("Delete solution");
 	private JScrollPane solutionPane;
 	
@@ -31,7 +33,7 @@ public class ModifyQuestionOTPanel extends JDialog{
 			
 	private SpringLayout layout = new SpringLayout();
 	
-	public ModifyQuestionOTPanel(String title, ArrayList<String> sol, String wei){
+	public ModifyQuestionOTPanel(String title, ArrayList<Option> sol, String wei){
 		this.jp.setVisible(true);
 		this.jp.setPreferredSize(new Dimension(500, 500));
 		this.jp.setLayout(layout);
@@ -43,10 +45,10 @@ public class ModifyQuestionOTPanel extends JDialog{
 		this.titleField.setText(title);
 		this.weightField.setText(wei);
 		
-		for (String s : sol) {
+		for (Option s : sol) {
 			this.solutionModel.addElement(s);
 		}
-		this.solutionList = new JList<String>(solutionModel);
+		this.solutionList = new JList<Option>(solutionModel);
 		this.solutionPane = new JScrollPane(this.solutionList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.solutionPane.setPreferredSize(new Dimension(400,200));
 		

@@ -29,7 +29,7 @@ public class ViewNoteStudentPanel extends JPanel{
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	public ViewNoteStudentPanel(String name, String desc, String content){
+	public ViewNoteStudentPanel(String studName, String name, String desc, String content){
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
 		this.setLayout(layout2);
@@ -40,7 +40,7 @@ public class ViewNoteStudentPanel extends JPanel{
 		this.supPanel.setBackground(Color.decode("#228B22"));
 		this.supPanel.setLayout(layout);
 		
-		this.student = new JLabel("Student: "+ name);
+		this.student = new JLabel("Student: "+ studName);
 		this.imgLabel.setVisible(true);
 		this.imgLabel.setBounds(0,0,200,200);
 		

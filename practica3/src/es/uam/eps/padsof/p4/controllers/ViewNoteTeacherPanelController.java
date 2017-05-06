@@ -24,7 +24,7 @@ import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
  *
  */
 public class ViewNoteTeacherPanelController implements ActionListener{
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	private ViewNoteTeacherPanel view;
 	private Educagram edu = Educagram.getInstance();

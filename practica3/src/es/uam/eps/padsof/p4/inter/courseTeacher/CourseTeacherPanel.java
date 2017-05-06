@@ -499,6 +499,7 @@ public class CourseTeacherPanel extends JPanel{
 		this.createSubunit.addActionListener((ActionListener) c);
 		this.createNote.addActionListener((ActionListener) c);
 		this.view.addActionListener((ActionListener) c);
+		this.createExer.addActionListener((ActionListener) c);
 		this.delete.addActionListener((ActionListener) c);
 		this.hide.addActionListener((ActionListener) c);
 		this.go.addActionListener((ActionListener) c);

@@ -1,10 +1,13 @@
 package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.Map;
 
 import javax.swing.*;
+
+import es.uam.eps.padsof.p3.exercise.Option;
 
 public class AddQuestionMQPanel extends JDialog{
 	
@@ -18,14 +21,15 @@ public class AddQuestionMQPanel extends JDialog{
 	private JLabel solutionLabel = new JLabel("Add an option");
 	private JButton addSolution = new JButton("Add");
 	private JTextField solutionField = new JTextField(20);
-	private DefaultListModel<String> solutionModel = new DefaultListModel<String>(); 
-	JList<String> solutionList;
+	private DefaultListModel<Option> solutionModel = new DefaultListModel<Option>(); 
+	JList<Option> solutionList;
 	private JButton delSolution = new JButton("Delete solution");
 	private JScrollPane solutionPane;
 	
-	private DefaultListModel<String> optionsModel = new DefaultListModel<String>(); 
-	JList<String> optionsList;
-	private JButton option2Solution = new JButton("Add solution");
+	private DefaultListModel<Option> optionsModel = new DefaultListModel<Option>(); 
+	JList<Option> optionsList;	
+	private JButton option2Solution = new JButton("Add sol");
+	private JButton deleteOption = new JButton("Delete");
 	private JScrollPane optionsPane;
 	
 	private JLabel weightLabel = new JLabel("Weight:");
@@ -46,11 +50,11 @@ public class AddQuestionMQPanel extends JDialog{
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		this.firstLabel.setFont(this.firstLabel.getFont().deriveFont(attributes));
 		
-		this.solutionList = new JList<String>(solutionModel);
+		this.solutionList = new JList<Option>(solutionModel);
 		this.solutionPane = new JScrollPane(this.solutionList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.solutionPane.setPreferredSize(new Dimension(200,200));
 		
-		this.optionsList = new JList<String>(optionsModel);
+		this.optionsList = new JList<Option>(optionsModel);
 		this.optionsPane = new JScrollPane(this.optionsList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.optionsPane.setPreferredSize(new Dimension(200,200));
 		
@@ -67,6 +71,7 @@ public class AddQuestionMQPanel extends JDialog{
 		this.jp.add(this.addSolution);
 		this.jp.add(this.delSolution);
 		this.jp.add(this.optionsPane);
+		this.jp.add(this.deleteOption);
 		this.jp.add(this.option2Solution);
 		this.jp.add(this.aleat);
 		
@@ -88,8 +93,11 @@ public class AddQuestionMQPanel extends JDialog{
 		layout.putConstraint(SpringLayout.WEST, this.solutionPane, 10, SpringLayout.EAST, this.optionsPane);
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.optionsPane, 0, SpringLayout.VERTICAL_CENTER, this.solutionPane);
 		
-		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.option2Solution, 0, SpringLayout.HORIZONTAL_CENTER, this.optionsPane);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.option2Solution, -30, SpringLayout.HORIZONTAL_CENTER, this.optionsPane);
 		layout.putConstraint(SpringLayout.NORTH, this.option2Solution, 10, SpringLayout.SOUTH, this.solutionPane);
+		
+		layout.putConstraint(SpringLayout.WEST, this.deleteOption, 2, SpringLayout.EAST, this.option2Solution);
+		layout.putConstraint(SpringLayout.NORTH, this.deleteOption, 10, SpringLayout.SOUTH, this.solutionPane);
 		
 		layout.putConstraint(SpringLayout.WEST, this.solutionField, 10, SpringLayout.EAST, this.solutionLabel);
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.solutionField, 0, SpringLayout.VERTICAL_CENTER, this.solutionLabel);
@@ -119,4 +127,184 @@ public class AddQuestionMQPanel extends JDialog{
 		this.setVisible(true);
 		this.setSize(new Dimension(500,500));
 	}
+	
+	public String getName(){
+		return this.titleField.getText();
+	}
+
+	public String getWeightText(){
+		if(this.weightField.isVisible() == false){
+			return null;
+		}
+		return this.weightField.getText();
+	}
+	
+	public String getAddingSolution(){
+		return this.solutionField.getText();
+	}
+	
+	public void setController(ActionListener c) {
+		this.create.addActionListener(c);
+		this.cancel.addActionListener(c);
+		this.addSolution.addActionListener(c);
+		this.delSolution.addActionListener(c);
+		this.deleteOption.addActionListener(c);
+		this.option2Solution.addActionListener(c);
+	}
+
+	/**
+	 * @return the jp
+	 */
+	public JPanel getJp() {
+		return jp;
+	}
+
+	/**
+	 * @return the firstLabel
+	 */
+	public JLabel getFirstLabel() {
+		return firstLabel;
+	}
+
+	/**
+	 * @return the titleLabel
+	 */
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
+
+	/**
+	 * @return the titleField
+	 */
+	public JTextField getTitleField() {
+		return titleField;
+	}
+
+	/**
+	 * @return the solutionLabel
+	 */
+	public JLabel getSolutionLabel() {
+		return solutionLabel;
+	}
+
+	/**
+	 * @return the addSolution
+	 */
+	public JButton getAddSolution() {
+		return addSolution;
+	}
+
+	/**
+	 * @return the solutionField
+	 */
+	public JTextField getSolutionField() {
+		return solutionField;
+	}
+
+	/**
+	 * @return the solutionModel
+	 */
+	public DefaultListModel<Option> getSolutionModel() {
+		return solutionModel;
+	}
+
+	/**
+	 * @return the solutionList
+	 */
+	public JList<Option> getSolutionList() {
+		return solutionList;
+	}
+
+	/**
+	 * @return the delSolution
+	 */
+	public JButton getDelSolution() {
+		return delSolution;
+	}
+
+	/**
+	 * @return the solutionPane
+	 */
+	public JScrollPane getSolutionPane() {
+		return solutionPane;
+	}
+
+	/**
+	 * @return the optionsModel
+	 */
+	public DefaultListModel<Option> getOptionsModel() {
+		return optionsModel;
+	}
+
+	/**
+	 * @return the optionsList
+	 */
+	public JList<Option> getOptionsList() {
+		return optionsList;
+	}
+
+	/**
+	 * @return the option2Solution
+	 */
+	public JButton getOption2Solution() {
+		return option2Solution;
+	}
+
+	/**
+	 * @return the deleteOption
+	 */
+	public JButton getDeleteOption() {
+		return deleteOption;
+	}
+
+	/**
+	 * @return the optionsPane
+	 */
+	public JScrollPane getOptionsPane() {
+		return optionsPane;
+	}
+
+	/**
+	 * @return the weightLabel
+	 */
+	public JLabel getWeightLabel() {
+		return weightLabel;
+	}
+
+	/**
+	 * @return the weightField
+	 */
+	public JTextField getWeightField() {
+		return weightField;
+	}
+
+	/**
+	 * @return the aleat
+	 */
+	public JCheckBox getAleat() {
+		return aleat;
+	}
+
+	/**
+	 * @return the create
+	 */
+	public JButton getCreate() {
+		return create;
+	}
+
+	/**
+	 * @return the cancel
+	 */
+	public JButton getCancel() {
+		return cancel;
+	}
+
+	/**
+	 * @return the layout
+	 */
+	public SpringLayout getLayout() {
+		return layout;
+	}
+	
+	
 }

@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.swing.*;
 
+import es.uam.eps.padsof.p3.exercise.Option;
+
 public class ModifyQuestionMQPanel extends JDialog{
 	
 	private JPanel jp = new JPanel();
@@ -19,14 +21,15 @@ public class ModifyQuestionMQPanel extends JDialog{
 	private JLabel solutionLabel = new JLabel("Add an option");
 	private JButton addSolution = new JButton("Add");
 	private JTextField solutionField = new JTextField(20);
-	private DefaultListModel<String> solutionModel = new DefaultListModel<String>(); 
-	JList<String> solutionList;
+	private DefaultListModel<Option> solutionModel = new DefaultListModel<Option>(); 
+	JList<Option> solutionList;
 	private JButton delSolution = new JButton("Delete solution");
 	private JScrollPane solutionPane;
 	
-	private DefaultListModel<String> optionsModel = new DefaultListModel<String>(); 
-	JList<String> optionsList;
-	private JButton option2Solution = new JButton("Add solution");
+	private DefaultListModel<Option> optionsModel = new DefaultListModel<Option>(); 
+	JList<Option> optionsList;
+	private JButton option2Solution = new JButton("Add sol");
+	private JButton deleteOption = new JButton("Delete");
 	private JScrollPane optionsPane;
 	
 	private JLabel weightLabel = new JLabel("Weight:");
@@ -38,7 +41,7 @@ public class ModifyQuestionMQPanel extends JDialog{
 			
 	private SpringLayout layout = new SpringLayout();
 	
-	public ModifyQuestionMQPanel(String title, ArrayList<String> options, ArrayList<String> solutions, String wei, boolean aleatory){
+	public ModifyQuestionMQPanel(String title, ArrayList<Option> options, ArrayList<Option> solutions, String wei, boolean aleatory){
 		this.jp.setVisible(true);
 		this.jp.setPreferredSize(new Dimension(500, 500));
 		this.jp.setLayout(layout);
@@ -47,17 +50,17 @@ public class ModifyQuestionMQPanel extends JDialog{
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		this.firstLabel.setFont(this.firstLabel.getFont().deriveFont(attributes));
 		
-		for (String s : solutions) {
+		for (Option s : solutions) {
 			this.solutionModel.addElement(s);
 		}
-		this.solutionList = new JList<String>(solutionModel);
+		this.solutionList = new JList<Option>(solutionModel);
 		this.solutionPane = new JScrollPane(this.solutionList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.solutionPane.setPreferredSize(new Dimension(200,200));
 		
-		for (String s : options) {
+		for (Option s : options) {
 			this.optionsModel.addElement(s);
 		}
-		this.optionsList = new JList<String>(optionsModel);
+		this.optionsList = new JList<Option>(optionsModel);
 		this.optionsPane = new JScrollPane(this.optionsList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.optionsPane.setPreferredSize(new Dimension(200,200));
 		
@@ -76,6 +79,7 @@ public class ModifyQuestionMQPanel extends JDialog{
 		this.jp.add(this.solutionPane);
 		this.jp.add(this.solutionField);
 		this.jp.add(this.addSolution);
+		this.jp.add(this.deleteOption);
 		this.jp.add(this.delSolution);
 		this.jp.add(this.optionsPane);
 		this.jp.add(this.option2Solution);
@@ -99,7 +103,7 @@ public class ModifyQuestionMQPanel extends JDialog{
 		layout.putConstraint(SpringLayout.WEST, this.solutionPane, 10, SpringLayout.EAST, this.optionsPane);
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.optionsPane, 0, SpringLayout.VERTICAL_CENTER, this.solutionPane);
 		
-		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.option2Solution, 0, SpringLayout.HORIZONTAL_CENTER, this.optionsPane);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.option2Solution, -30, SpringLayout.HORIZONTAL_CENTER, this.optionsPane);
 		layout.putConstraint(SpringLayout.NORTH, this.option2Solution, 10, SpringLayout.SOUTH, this.solutionPane);
 		
 		layout.putConstraint(SpringLayout.WEST, this.solutionField, 10, SpringLayout.EAST, this.solutionLabel);
@@ -113,6 +117,9 @@ public class ModifyQuestionMQPanel extends JDialog{
 		
 		layout.putConstraint(SpringLayout.WEST, this.weightLabel, 0, SpringLayout.WEST, this.titleLabel);
 		layout.putConstraint(SpringLayout.NORTH, this.weightLabel, 20, SpringLayout.SOUTH, this.delSolution);
+		
+		layout.putConstraint(SpringLayout.WEST, this.deleteOption, 2, SpringLayout.EAST, this.option2Solution);
+		layout.putConstraint(SpringLayout.NORTH, this.deleteOption, 10, SpringLayout.SOUTH, this.solutionPane);
 		
 		layout.putConstraint(SpringLayout.WEST, this.weightField, 10, SpringLayout.EAST, this.weightLabel);
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.weightField, 0, SpringLayout.VERTICAL_CENTER, this.weightLabel);

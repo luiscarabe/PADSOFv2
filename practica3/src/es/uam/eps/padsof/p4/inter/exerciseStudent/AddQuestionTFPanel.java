@@ -1,6 +1,7 @@
 package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.Map;
 
@@ -88,4 +89,121 @@ public class AddQuestionTFPanel extends JDialog{
 		this.setVisible(true);
 		this.setSize(new Dimension(500,300));
 	}
+	
+	public String getName(){
+		return this.titleField.getText();
+	}
+
+	public String getWeightText(){
+		if(this.weightField.isVisible() == false){
+			return null;
+		}
+		return this.weightField.getText();
+	}
+	
+	public void setController(ActionListener c) {
+		this.create.addActionListener(c);
+		this.cancel.addActionListener(c);
+	}
+	
+	/**
+	 * @return the jp
+	 */
+	public JPanel getJp() {
+		return jp;
+	}
+
+	/**
+	 * @return the firstLabel
+	 */
+	public JLabel getFirstLabel() {
+		return firstLabel;
+	}
+
+	/**
+	 * @return the titleLabel
+	 */
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
+
+	/**
+	 * @return the titleField
+	 */
+	public JTextField getTitleField() {
+		return titleField;
+	}
+
+	/**
+	 * @return the solutionLabel
+	 */
+	public JLabel getSolutionLabel() {
+		return solutionLabel;
+	}
+
+	/**
+	 * @return the solutionT
+	 */
+	public JRadioButton getSolutionT() {
+		return solutionT;
+	}
+
+	/**
+	 * @return the solutionF
+	 */
+	public JRadioButton getSolutionF() {
+		return solutionF;
+	}
+
+	/**
+	 * @return the solutionGroup
+	 */
+	public ButtonGroup getSolutionGroup() {
+		return solutionGroup;
+	}
+
+	/**
+	 * @return the solutionPanel
+	 */
+	public JPanel getSolutionPanel() {
+		return solutionPanel;
+	}
+
+	/**
+	 * @return the weightLabel
+	 */
+	public JLabel getWeightLabel() {
+		return weightLabel;
+	}
+
+	/**
+	 * @return the weightField
+	 */
+	public JTextField getWeightField() {
+		return weightField;
+	}
+
+	/**
+	 * @return the create
+	 */
+	public JButton getCreate() {
+		return create;
+	}
+
+	/**
+	 * @return the cancel
+	 */
+	public JButton getCancel() {
+		return cancel;
+	}
+
+	/**
+	 * @return the layout
+	 */
+	public SpringLayout getLayout() {
+		return layout;
+	}
+	
+	
+	
 }

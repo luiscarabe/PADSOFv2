@@ -16,8 +16,7 @@ public class TakeTFExercisePanel extends JPanel{
 		private JButton signOut = new JButton("Sign out");
 		private SpringLayout layout = new SpringLayout();
 		
-		private JTextArea questionArea = new JTextArea();
-		private JScrollPane questionPane = new JScrollPane(this.questionArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		private JLabel question;
 		
 		//Inf
 		private JButton previous = new JButton("Previous");
@@ -26,17 +25,11 @@ public class TakeTFExercisePanel extends JPanel{
 		private JButton send = new JButton("Send");
 		private JPanel infPanel = new JPanel();
 		
-		// Solution
-		private JRadioButton solutionT = new JRadioButton("True");
-		private JRadioButton solutionF = new JRadioButton("False");
-		private ButtonGroup solutionGroup = new ButtonGroup();
-		private JPanel solutionPanel = new JPanel(new GridLayout(1, 2));
-		
 		private SpringLayout layout2 = new SpringLayout();
 		
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		public TakeTFExercisePanel(String nameStud, String nameExer, String nameQues, float wei){
+		public TakeTFExercisePanel(String nameStud, String nameExer, String nameQues){
 			this.setVisible(true);
 			this.setSize(screenSize.width, screenSize.height);
 			this.setLayout(layout2);
@@ -89,27 +82,11 @@ public class TakeTFExercisePanel extends JPanel{
 			this.infPanel.add(this.cancel);
 			this.infPanel.add(this.next);
 			
-			this.questionArea.setText("("+wei+" points) " + nameQues);
-			this.questionArea.setFont(this.questionArea.getFont().deriveFont(15f));
-			this.questionArea.setLineWrap(true);
-			this.questionArea.setWrapStyleWord(true);
-			this.questionPane.setPreferredSize(new Dimension(500, 80));
-			this.questionArea.setEditable(false);
-			this.questionArea.setBackground(this.getBackground());
-			this.questionPane.setBorder(null);
+			this.question = new JLabel(nameQues);
 			
-			this.solutionGroup.add(solutionT);
-			this.solutionGroup.add(solutionF);
-			this.solutionPanel.add(this.solutionT);
-			this.solutionPanel.add(this.solutionF);
-			this.solutionF.setBackground(this.getBackground());
-			this.solutionT.setBackground(this.getBackground());
-			this.solutionPanel.setBackground(this.getBackground());
 			
 			this.add(this.supPanel);
 			this.add(this.infPanel);
-			this.add(this.questionPane);
-			this.add(this.solutionPanel);
 			
 			
 			layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
@@ -119,11 +96,5 @@ public class TakeTFExercisePanel extends JPanel{
 			
 			layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.infPanel, 0, SpringLayout.HORIZONTAL_CENTER, this);
 			layout2.putConstraint(SpringLayout.SOUTH, this.infPanel, -10, SpringLayout.SOUTH, this);
-			
-			layout2.putConstraint(SpringLayout.WEST, this.questionPane, 10, SpringLayout.WEST, this);
-			layout2.putConstraint(SpringLayout.NORTH, this.questionPane, 10, SpringLayout.SOUTH, this.supPanel);
-			
-			layout2.putConstraint(SpringLayout.WEST, this.solutionPanel, 0, SpringLayout.WEST, this.questionPane);
-			layout2.putConstraint(SpringLayout.NORTH, this.solutionPanel, 10, SpringLayout.SOUTH, this.questionPane);
 		}
 }

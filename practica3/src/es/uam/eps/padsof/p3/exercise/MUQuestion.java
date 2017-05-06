@@ -73,12 +73,9 @@ public abstract class MUQuestion extends Question implements Serializable {
 	 * @param sol
 	 */
 	
-	public Option addOption(String sol){
-		Option opt;
-		opt = new Option(sol);
-		this.answers.add(opt);
+	public void addOption(Option sol){
+		this.answers.add(sol);
 		this.numAns ++;
-		return opt;
 	}
 	
 	/**

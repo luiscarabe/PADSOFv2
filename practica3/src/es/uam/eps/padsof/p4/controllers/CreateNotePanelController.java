@@ -37,7 +37,6 @@ public class CreateNotePanelController implements ActionListener{
 		// TODO Auto-generated method stub
 		JPanel newview;
 		// esto sera la de course !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		HomePanelTeacher hpt;
 		JComponent source = (JComponent) e.getSource();
 		String title = view.getName();
 		String desc = view.getDesc();
@@ -77,6 +76,7 @@ public class CreateNotePanelController implements ActionListener{
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);
+			return;
 		}else if(source == this.view.getCancel()){
 			newview = MainFrame.getInstance().getCtp();
 			MainFrame.getInstance().setContentPane(newview);

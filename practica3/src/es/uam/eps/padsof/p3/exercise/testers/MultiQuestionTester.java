@@ -71,9 +71,9 @@ public class MultiQuestionTester {
 	@Test
 	public void testAddOption() {
 		
-		o = m.addOption("-2");
-		o1 = m.addOption("8");
-		o2 = m.addOption("5");
+		m.addOption(new Option("-2"));
+		m.addOption(new Option("8"));
+		m.addOption(new Option("5"));
 		
 		assertTrue(m.getAnswers().contains(o));
 		assertTrue(m.getAnswers().contains(o1));
@@ -94,7 +94,7 @@ public class MultiQuestionTester {
 	 */
 	@Test
 	public void testDeleteOption() {
-		o = m.addOption("2");
+		m.addOption(new Option("2"));
 		assertTrue(m.deleteOption(o));
 		assertFalse(m.getAnswers().contains(o));
 		
@@ -116,8 +116,8 @@ public class MultiQuestionTester {
 	 */
 	@Test
 	public void testAddSolution() {
-		o1 = m.addOption("8");
-		o2 = m.addOption("5");
+		m.addOption(new Option("8"));
+		m.addOption(new Option("5"));
 		assertTrue(m.addSolution(o1));
 		assertTrue(m.addSolution(o2));
 		assertTrue(m.getSolution().contains(o1));
@@ -140,7 +140,7 @@ public class MultiQuestionTester {
 	 */
 	@Test
 	public void testDeleteSolution() {
-		o2 = m.addOption("5");
+		m.addOption(new Option("5"));
 		m.addSolution(o2);
 		assertTrue(m.deleteSolution(o2));
 		assertFalse(m.getSolution().contains(o2));
@@ -170,9 +170,8 @@ public class MultiQuestionTester {
 	 */
 	@Test
 	public void testRandomizeOrderCorrect(){
-		o1 = m.addOption("8");
-		o2 = m.addOption("5");
-		o3 = m.addOption("7");
+		m.addOption(new Option("8"));
+		m.addOption(new Option("5"));
 		
 		m.setRandomOrder(true);
 		
@@ -190,9 +189,9 @@ public class MultiQuestionTester {
 	 */
 	@Test
 	public void testRandomizeOrderError(){
-		o1 = m.addOption("8");
-		o2 = m.addOption("5");
-		o3 = m.addOption("7");
+		m.addOption(new Option("8"));
+		m.addOption(new Option("8"));
+		m.addOption(new Option("5"));
 		
 		m.setRandomOrder(false);
 		

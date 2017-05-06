@@ -12,6 +12,11 @@ import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
 import es.uam.eps.padsof.p3.user.*;
 import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionMQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionOTPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionTFPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
 
 public class testingtesteando {
 
@@ -36,8 +41,8 @@ public class testingtesteando {
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
-		CourseStudentPanel lo = new CourseStudentPanel("Paco", ar, lcour.get(0));
-		MainFrame.getInstance().setCsp(lo, lcour.get(0));
+		AddQuestionMQPanel lo = new AddQuestionMQPanel();
+		//MainFrame.getInstance().setCsp(lo, lcour.get(0));
 		Unit u1 = new Unit("Unidad 1", "hola", false, null);
 		Unit u2 = new Unit("Subunidad 1", "adios", false, null);
 		Unit u3 = new Unit("Subunidad 2", "adios", false, null);
@@ -47,20 +52,20 @@ public class testingtesteando {
 		Exercise e1 = new Exercise("Ejercicio 1", "A", false, null);
 		Exercise e2 = new Exercise("Ejercicio 2", "A", false, null);
 		Exercise e3 = new Exercise("Ejercicio 3", "A", false, null);
-		lo.addUnit(u1);
-		lo.addUnit(u4);
-		lo.addSubunit(u2, u1);
-		lo.addSubunit(u3, u1);
-		lo.addNote(n1, u2);
-		lo.addNote(n2, u4);
-		lo.addExercise(e1, u3);
-		lo.addExercise(e2, u1);
-		lo.addExercise(e3, u1);
-		
-		lo.removeExercise(e2, u1);
-		lo.removeNote(n2,u4);
-		
-		lo.setDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//		lo.addUnit(u1);
+//		lo.addUnit(u4);
+//		lo.addSubunit(u2, u1);
+//		lo.addSubunit(u3, u1);
+//		lo.addNote(n1, u2);
+//		lo.addNote(n2, u4);
+//		lo.addExercise(e1, u3);
+//		lo.addExercise(e2, u1);
+//		lo.addExercise(e3, u1);
+//		
+//		lo.removeExercise(e2, u1);
+//		lo.removeNote(n2,u4);
+//		
+//		lo.setDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		
 		//Container container = ma.getContentPane();
 		//ma.setLayout(new FlowLayout());

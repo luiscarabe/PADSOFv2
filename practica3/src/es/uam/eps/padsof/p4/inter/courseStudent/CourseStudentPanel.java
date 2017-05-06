@@ -452,6 +452,7 @@ public class CourseStudentPanel extends JPanel{
 				this.signOut.addActionListener((ActionListener) c);
 				this.searchCour.addActionListener((ActionListener) c);
 				this.go.addActionListener((ActionListener) c);
+				this.view.addActionListener((ActionListener) c);
 				this.courTree.addTreeSelectionListener((TreeSelectionListener) c);
 				
 			}

@@ -11,12 +11,14 @@ import javax.swing.*;
 import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.course.Note;
 import es.uam.eps.padsof.p3.course.Unit;
+import es.uam.eps.padsof.p3.exercise.Question;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.controllers.*;
 import es.uam.eps.padsof.p4.inter.courseStudent.AppliedCourPanel;
 import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseStudent.NotAppliedCourPanel;
 import es.uam.eps.padsof.p4.inter.courseStudent.SearchCourStudentPanel;
+import es.uam.eps.padsof.p4.inter.courseStudent.ViewNoteStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CreateCoursePanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CreateNotePanel;
@@ -29,8 +31,13 @@ import es.uam.eps.padsof.p4.inter.courseTeacher.ModifyUnitPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.SearchCourTeacherPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.StudentsOfCourPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionOTPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionTFPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
 
 import java.util.*;
+import java.util.List;
 
 
 /**
@@ -65,6 +72,11 @@ public class MainFrame extends JFrame{
 	private ModifySubunitPanel msup;
 	private ModifyNotePanel mnp;
 	private ViewNoteTeacherPanel vntp;
+	private ViewNoteStudentPanel vnsp;
+	private CreateExercisePanel cep;
+	private AddQuestionTFPanel aqtfp;
+	private AddQuestionOTPanel aqotp;
+	private AddQuestionUQPanel aquqp;
 	
 	
 	/* Controllers */
@@ -87,6 +99,11 @@ public class MainFrame extends JFrame{
 	private ModifySubUnitPanelController msupc;
 	private ModifyNotePanelController mnpc;
 	private ViewNoteTeacherPanelController vntpc;
+	private ViewNoteStudentPanelController vnspc;
+	private CreateExercisePanelController cepc;
+	private AddQuestionTFPanelController aqtfpc;
+	private AddQuestionOTPanelController aqotpc;
+	private AddQuestionUQPanelController aquqpc;
 	
 	
 	
@@ -490,6 +507,106 @@ public class MainFrame extends JFrame{
 		this.vntpc = new ViewNoteTeacherPanelController(vntp);
 		vntp.setController(this.vntpc);
 		this.vntp = vntp;
+	}
+
+
+
+	/**
+	 * @return the vnsp
+	 */
+	public ViewNoteStudentPanel getVnsp() {
+		return vnsp;
+	}
+
+
+
+	/**
+	 * @param vnsp the vnsp to set
+	 */
+	public void setVnsp(ViewNoteStudentPanel vnsp) {
+		this.vnspc = new ViewNoteStudentPanelController(vnsp);
+		vnsp.setController(this.vnspc);
+		this.vnsp = vnsp;
+	}
+
+
+
+	/**
+	 * @return the cep
+	 */
+	public CreateExercisePanel getCep() {
+		return cep;
+	}
+
+
+
+	/**
+	 * @param cep the cep to set
+	 */
+	public void setCep(CreateExercisePanel cep, Course course, Unit unit) {
+		this.cepc = new CreateExercisePanelController(cep, course, unit);
+		cep.setController(this.cepc);
+		this.cep = cep;
+	}
+
+
+
+	/**
+	 * @return the aqtfp
+	 */
+	public AddQuestionTFPanel getAqtfp() {
+		return aqtfp;
+	}
+
+
+
+	/**
+	 * @param aqtfp the aqtfp to set
+	 */
+	public void setAqtfp(AddQuestionTFPanel aqtfp, Course course, List<Question> questions, boolean eqValue) {
+		this.aqtfpc = new AddQuestionTFPanelController(aqtfp, course, questions, eqValue);
+		aqtfp.setController(this.aqtfpc);
+		this.aqtfp = aqtfp;
+	}
+
+
+
+	/**
+	 * @return the aqotp
+	 */
+	public AddQuestionOTPanel getAqotp() {
+		return aqotp;
+	}
+
+
+
+	/**
+	 * @param aqotp the aqotp to set
+	 */
+	public void setAqotp(AddQuestionOTPanel aqotp, Course course, List<Question> questions, boolean eqValue) {
+		this.aqotpc = new AddQuestionOTPanelController(aqotp, course, questions, eqValue);
+		aqotp.setController(this.aqotpc);
+		this.aqotp = aqotp;
+	}
+
+
+
+	/**
+	 * @return the aquqp
+	 */
+	public AddQuestionUQPanel getAquqp() {
+		return aquqp;
+	}
+
+
+
+	/**
+	 * @param aquqp the aquqp to set
+	 */
+	public void setAquqp(AddQuestionUQPanel aquqp, Course course, List<Question> questions, boolean eqValue) {
+		this.aquqpc = new AddQuestionUQPanelController(aquqp, course, questions, eqValue);
+		aquqp.setController(this.aquqpc);
+		this.aquqp = aquqp;
 	}
 	
 	

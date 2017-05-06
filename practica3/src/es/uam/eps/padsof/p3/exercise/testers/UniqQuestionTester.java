@@ -32,9 +32,9 @@ public class UniqQuestionTester {
 		e = new Exercise("Exercise1", "descExercise1", true, c);		
 		u = new UniqQuestion("How many bits correspond to one byte?", 4.5, false, e);
 		
-		o = u.addOption("2");
-		o1 = u.addOption("8");
-		o2 = u.addOption("5");
+		u.addOption(new Option("2"));
+		u.addOption(new Option("8"));
+		u.addOption(new Option("5"));
 		o3 = new Option("Four");
 		
 		b1 = u.addSolution(o1);
@@ -126,9 +126,9 @@ public class UniqQuestionTester {
 	@Test
 	public void testRandomizeOrderCorrect(){
 		u.getAnswers().clear();
-		o1 = u.addOption("8");
-		o2 = u.addOption("5");
-		o3 = u.addOption("7");
+		u.addOption(new Option("8"));
+		u.addOption(new Option("5"));
+		u.addOption(new Option("7"));
 		
 		u.setRandomOrder(true);
 		
@@ -147,9 +147,9 @@ public class UniqQuestionTester {
 	@Test
 	public void testRandomizeOrderError(){
 		u.getAnswers().clear();
-		o1 = u.addOption("8");
-		o2 = u.addOption("5");
-		o3 = u.addOption("7");
+		u.addOption(new Option("8"));
+		u.addOption(new Option("5"));
+		u.addOption(new Option("7"));
 		
 		u.setRandomOrder(false);
 		
