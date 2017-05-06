@@ -1,13 +1,12 @@
-package es.uam.eps.padsof.p4.inter.exercise;
+package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.*;
 import java.awt.font.TextAttribute;
-import java.util.ArrayList;
 import java.util.Map;
 
 import javax.swing.*;
 
-public class ModifyQuestionMQPanel extends JDialog{
+public class AddQuestionMQPanel extends JDialog{
 	
 	private JPanel jp = new JPanel();
 	
@@ -38,7 +37,7 @@ public class ModifyQuestionMQPanel extends JDialog{
 			
 	private SpringLayout layout = new SpringLayout();
 	
-	public ModifyQuestionMQPanel(String title, ArrayList<String> options, ArrayList<String> solutions, String wei, boolean aleatory){
+	public AddQuestionMQPanel(){
 		this.jp.setVisible(true);
 		this.jp.setPreferredSize(new Dimension(500, 500));
 		this.jp.setLayout(layout);
@@ -47,23 +46,13 @@ public class ModifyQuestionMQPanel extends JDialog{
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		this.firstLabel.setFont(this.firstLabel.getFont().deriveFont(attributes));
 		
-		for (String s : solutions) {
-			this.solutionModel.addElement(s);
-		}
 		this.solutionList = new JList<String>(solutionModel);
 		this.solutionPane = new JScrollPane(this.solutionList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.solutionPane.setPreferredSize(new Dimension(200,200));
 		
-		for (String s : options) {
-			this.optionsModel.addElement(s);
-		}
 		this.optionsList = new JList<String>(optionsModel);
 		this.optionsPane = new JScrollPane(this.optionsList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.optionsPane.setPreferredSize(new Dimension(200,200));
-		
-		this.titleField.setText(title);
-		this.weightField.setText(wei);
-		this.aleat.setSelected(aleatory);
 		
 		this.jp.add(this.solutionLabel);
 		this.jp.add(this.titleLabel);

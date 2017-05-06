@@ -1,4 +1,4 @@
-package es.uam.eps.padsof.p4.inter.exercise;
+package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.*;
 import java.awt.font.TextAttribute;
@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.swing.*;
 
-public class ModifyQuestionTFPanel extends JDialog{
+public class AddQuestionTFPanel extends JDialog{
 	
 	private JPanel jp = new JPanel();
 	
@@ -29,13 +29,14 @@ public class ModifyQuestionTFPanel extends JDialog{
 			
 	private SpringLayout layout = new SpringLayout();
 	
-	public ModifyQuestionTFPanel(String title, String wei, boolean sol){
+	public AddQuestionTFPanel(){
 		this.jp.setVisible(true);
 		this.jp.setPreferredSize(new Dimension(300, 300));
 		this.jp.setLayout(layout);
 
 		this.solutionGroup.add(solutionT);
 		this.solutionGroup.add(solutionF);
+		this.solutionT.setSelected(true);
 		this.solutionPanel.add(this.solutionT);
 		this.solutionPanel.add(this.solutionF);
 		
@@ -45,13 +46,6 @@ public class ModifyQuestionTFPanel extends JDialog{
 		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 		this.firstLabel.setFont(this.firstLabel.getFont().deriveFont(attributes));
 		
-		this.titleField.setText(title);
-		this.weightField.setText(wei);
-		if(sol == true)
-			this.solutionT.setSelected(true);
-		else
-			this.solutionF.setSelected(true);
-			
 
 		this.jp.add(this.solutionLabel);
 		this.jp.add(this.titleLabel);

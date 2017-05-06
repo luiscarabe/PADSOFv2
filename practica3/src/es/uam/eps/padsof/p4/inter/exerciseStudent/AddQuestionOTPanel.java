@@ -1,4 +1,4 @@
-package es.uam.eps.padsof.p4.inter.exercise;
+package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.*;
 import java.awt.font.TextAttribute;
@@ -6,16 +6,16 @@ import java.util.Map;
 
 import javax.swing.*;
 
-public class AddQuestionUQPanel extends JDialog{
+public class AddQuestionOTPanel extends JDialog{
 	
 	private JPanel jp = new JPanel();
 	
-	private JLabel firstLabel = new JLabel("Uniq choice Question");
+	private JLabel firstLabel = new JLabel("Open text Question");
 	
 	private JLabel titleLabel = new JLabel("Question:");
 	private JTextField titleField = new JTextField(20);
 	
-	private JLabel solutionLabel = new JLabel("Add an option");
+	private JLabel solutionLabel = new JLabel("Add a solution");
 	private JButton addSolution = new JButton("Add");
 	private JTextField solutionField = new JTextField(20);
 	private DefaultListModel<String> solutionModel = new DefaultListModel<String>(); 
@@ -23,21 +23,15 @@ public class AddQuestionUQPanel extends JDialog{
 	private JButton delSolution = new JButton("Delete solution");
 	private JScrollPane solutionPane;
 	
-	private DefaultListModel<String> optionsModel = new DefaultListModel<String>(); 
-	JList<String> optionsList;
-	private JButton option2Solution = new JButton("Add solution");
-	private JScrollPane optionsPane;
-	
 	private JLabel weightLabel = new JLabel("Weight:");
 	private JTextField weightField = new JTextField(10);
 	
-	private JCheckBox aleat = new JCheckBox("Aleat order");
 	private JButton create = new JButton("Create");
 	private JButton cancel = new JButton("Cancel");
 			
 	private SpringLayout layout = new SpringLayout();
 	
-	public AddQuestionUQPanel(){
+	public AddQuestionOTPanel(){
 		this.jp.setVisible(true);
 		this.jp.setPreferredSize(new Dimension(500, 500));
 		this.jp.setLayout(layout);
@@ -48,13 +42,9 @@ public class AddQuestionUQPanel extends JDialog{
 		
 		this.solutionList = new JList<String>(solutionModel);
 		this.solutionPane = new JScrollPane(this.solutionList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		this.solutionPane.setPreferredSize(new Dimension(200,200));
+		this.solutionPane.setPreferredSize(new Dimension(400,200));
 		
-		this.optionsList = new JList<String>(optionsModel);
-		this.optionsPane = new JScrollPane(this.optionsList,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		this.optionsPane.setPreferredSize(new Dimension(200,200));
-		this.optionsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		this.jp.add(this.solutionLabel);
 		this.jp.add(this.titleLabel);
 		this.jp.add(this.titleField);
@@ -67,9 +57,6 @@ public class AddQuestionUQPanel extends JDialog{
 		this.jp.add(this.solutionField);
 		this.jp.add(this.addSolution);
 		this.jp.add(this.delSolution);
-		this.jp.add(this.optionsPane);
-		this.jp.add(this.option2Solution);
-		this.jp.add(this.aleat);
 		
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.firstLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.jp);
 		layout.putConstraint(SpringLayout.NORTH, this.firstLabel, 10, SpringLayout.NORTH, this.jp);
@@ -86,16 +73,10 @@ public class AddQuestionUQPanel extends JDialog{
 		layout.putConstraint(SpringLayout.WEST, this.addSolution, 10, SpringLayout.EAST, this.solutionField);
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.addSolution, 0, SpringLayout.VERTICAL_CENTER, this.solutionLabel);
 		
-		layout.putConstraint(SpringLayout.WEST, this.solutionPane, 10, SpringLayout.EAST, this.optionsPane);
-		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.optionsPane, 0, SpringLayout.VERTICAL_CENTER, this.solutionPane);
-		
-		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.option2Solution, 0, SpringLayout.HORIZONTAL_CENTER, this.optionsPane);
-		layout.putConstraint(SpringLayout.NORTH, this.option2Solution, 10, SpringLayout.SOUTH, this.solutionPane);
-		
 		layout.putConstraint(SpringLayout.WEST, this.solutionField, 10, SpringLayout.EAST, this.solutionLabel);
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.solutionField, 0, SpringLayout.VERTICAL_CENTER, this.solutionLabel);
 		
-		layout.putConstraint(SpringLayout.WEST, this.optionsPane, 10, SpringLayout.WEST, this.jp);
+		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.solutionPane, 0, SpringLayout.HORIZONTAL_CENTER, this.solutionField);
 		layout.putConstraint(SpringLayout.NORTH, this.solutionPane, 10, SpringLayout.SOUTH, this.solutionLabel);
 		
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.delSolution, 0, SpringLayout.HORIZONTAL_CENTER, this.solutionPane);
@@ -106,9 +87,6 @@ public class AddQuestionUQPanel extends JDialog{
 		
 		layout.putConstraint(SpringLayout.WEST, this.weightField, 10, SpringLayout.EAST, this.weightLabel);
 		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.weightField, 0, SpringLayout.VERTICAL_CENTER, this.weightLabel);
-		
-		layout.putConstraint(SpringLayout.WEST, this.aleat, 0, SpringLayout.WEST, this.titleLabel);
-		layout.putConstraint(SpringLayout.NORTH, this.aleat, 10, SpringLayout.SOUTH, this.weightField);
 		
 		layout.putConstraint(SpringLayout.WEST, this.create, 150, SpringLayout.WEST, this.jp);
 		layout.putConstraint(SpringLayout.NORTH, this.create, 50, SpringLayout.SOUTH, this.weightLabel);

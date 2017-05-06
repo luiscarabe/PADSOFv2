@@ -238,7 +238,7 @@ public class CourseTeacherPanel extends JPanel{
 		layout2.putConstraint(SpringLayout.WEST, this.coursePane, 0, SpringLayout.WEST, this.courseLabel);
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.commonButtons, -5, SpringLayout.NORTH, this.studentsButton);
-		layout2.putConstraint(SpringLayout.WEST, this.commonButtons, 650, SpringLayout.WEST, this);
+		layout2.putConstraint(SpringLayout.WEST, this.commonButtons, 700, SpringLayout.WEST, this);
 		
 		layout2.putConstraint(SpringLayout.NORTH, this.unitButtons, -5, SpringLayout.SOUTH, this.commonButtons);
 		layout2.putConstraint(SpringLayout.WEST, this.unitButtons, 0, SpringLayout.WEST, this.commonButtons);

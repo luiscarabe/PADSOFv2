@@ -1,4 +1,4 @@
-package es.uam.eps.padsof.p4.inter.exercise;
+package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.*;
 import java.awt.font.TextAttribute;
