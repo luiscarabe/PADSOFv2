@@ -51,7 +51,9 @@ public class CreateExercisePanel extends JPanel{
 		private JCheckBox aleatOrder = new JCheckBox("Aleatory order");
 		private JLabel penalLabel = new JLabel("Penalty (0 if not wanted) out of 10:");
 		private JTextField penalField = new JTextField(10);
-		
+		private JLabel weightLabel = new JLabel("Weight of this exercise in the course:");
+		private JTextField weightField = new JTextField(10);
+		 
 		private JButton create = new JButton("Create");
 		private JButton cancel = new JButton("Cancel");
 		
@@ -160,6 +162,8 @@ public class CreateExercisePanel extends JPanel{
 			this.add(this.aleatOrder);
 			this.add(this.create);
 			this.add(this.cancel);
+			this.add(this.weightField);
+			this.add(this.weightLabel);
 		
 			
 			layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
@@ -204,9 +208,9 @@ public class CreateExercisePanel extends JPanel{
 			layout2.putConstraint(SpringLayout.WEST, this.penalLabel, 10, SpringLayout.EAST, this.quesPane);
 
 			layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.penalField, 0, SpringLayout.VERTICAL_CENTER, this.penalLabel);
-			layout2.putConstraint(SpringLayout.WEST, this.penalField, 10, SpringLayout.EAST, this.penalLabel);
+			layout2.putConstraint(SpringLayout.WEST, this.penalField, 0, SpringLayout.WEST, this.weightField);
 
-			layout2.putConstraint(SpringLayout.NORTH, this.hide, 10, SpringLayout.SOUTH, this.penalLabel);
+			layout2.putConstraint(SpringLayout.NORTH, this.hide, 10, SpringLayout.SOUTH, this.weightLabel);
 			layout2.putConstraint(SpringLayout.WEST, this.hide, 0, SpringLayout.WEST, this.penalLabel);
 
 			layout2.putConstraint(SpringLayout.NORTH, this.aleatOrder, 10, SpringLayout.SOUTH, this.hide);
@@ -217,6 +221,12 @@ public class CreateExercisePanel extends JPanel{
 			
 			layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.cancel, 0, SpringLayout.VERTICAL_CENTER, this.create);
 			layout2.putConstraint(SpringLayout.WEST, this.cancel, 10, SpringLayout.EAST, this.create);		
+
+			layout2.putConstraint(SpringLayout.NORTH, this.weightLabel, 10, SpringLayout.SOUTH, this.penalLabel);
+			layout2.putConstraint(SpringLayout.WEST, this.weightLabel, 0, SpringLayout.WEST, this.penalLabel);	
+
+			layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.weightField, 0, SpringLayout.VERTICAL_CENTER, this.weightLabel);
+			layout2.putConstraint(SpringLayout.WEST, this.weightField, 10, SpringLayout.EAST, this.weightLabel);	
 		}
 		
 		public String getName(){

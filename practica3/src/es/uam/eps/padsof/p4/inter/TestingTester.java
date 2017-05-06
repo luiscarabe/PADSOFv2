@@ -12,6 +12,7 @@ import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
 import es.uam.eps.padsof.p3.user.*;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionMQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeTFExercisePanel;
 
@@ -38,7 +39,7 @@ public class TestingTester {
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
-		TakeTFExercisePanel lo = new TakeTFExercisePanel("lansf", "oasibfoib");
+		CreateExercisePanel lo = new CreateExercisePanel();
 		Unit u1 = new Unit("Unidad 1", "hola", false, null);
 		Unit u2 = new Unit("Subunidad 1", "adios", false, null);
 		Unit u3 = new Unit("Subunidad 2", "adios", false, null);
