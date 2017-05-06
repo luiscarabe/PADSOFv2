@@ -76,4 +76,8 @@ public abstract class Question implements Serializable{
 
 	public abstract List<Option> getSolution();
 	
+	public String toString(){
+		return this.title;
+	}
+	
 }

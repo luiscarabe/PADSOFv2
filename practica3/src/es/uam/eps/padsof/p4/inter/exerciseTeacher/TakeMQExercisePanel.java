@@ -1,11 +1,11 @@
 package es.uam.eps.padsof.p4.inter.exerciseTeacher;
 
 import java.awt.*;
-import java.util.Arrays;
+import java.util.*;
 
 import javax.swing.*;
 
-public class TakeTFExercisePanel extends JPanel{
+public class TakeMQExercisePanel extends JPanel{
 		//Superior Panel
 		private JPanel supPanel = new JPanel();
 		private ImageIcon image = new ImageIcon("logov3.png");
@@ -16,6 +16,7 @@ public class TakeTFExercisePanel extends JPanel{
 		private JButton signOut = new JButton("Sign out");
 		private SpringLayout layout = new SpringLayout();
 		
+
 		private JTextArea questionArea = new JTextArea();
 		private JScrollPane questionPane = new JScrollPane(this.questionArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
@@ -27,16 +28,15 @@ public class TakeTFExercisePanel extends JPanel{
 		private JPanel infPanel = new JPanel();
 		
 		// Solution
-		private JRadioButton solutionT = new JRadioButton("True");
-		private JRadioButton solutionF = new JRadioButton("False");
-		private ButtonGroup solutionGroup = new ButtonGroup();
-		private JPanel solutionPanel = new JPanel(new GridLayout(1, 2));
+		private ArrayList<JCheckBox> solutionGroup = new ArrayList<JCheckBox>();
+		private JPanel solutionPanel;
+		private JScrollPane solutionPane;
 		
 		private SpringLayout layout2 = new SpringLayout();
 		
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		public TakeTFExercisePanel(String nameStud, String nameExer, String nameQues, float wei){
+		public TakeMQExercisePanel(String nameStud, String nameExer, String nameQues, float wei, ArrayList<String> options){
 			this.setVisible(true);
 			this.setSize(screenSize.width, screenSize.height);
 			this.setLayout(layout2);
@@ -98,18 +98,24 @@ public class TakeTFExercisePanel extends JPanel{
 			this.questionArea.setBackground(this.getBackground());
 			this.questionPane.setBorder(null);
 			
-			this.solutionGroup.add(solutionT);
-			this.solutionGroup.add(solutionF);
-			this.solutionPanel.add(this.solutionT);
-			this.solutionPanel.add(this.solutionF);
-			this.solutionF.setBackground(this.getBackground());
-			this.solutionT.setBackground(this.getBackground());
+			//Solution
+			this.solutionPanel= new JPanel(new GridLayout(options.size()+1, 1));
+			this.solutionPanel.setVisible(true);
+			for (String s: options){
+				JCheckBox sol = new JCheckBox(s);
+				sol.setBackground(this.getBackground());
+				this.solutionGroup.add(sol);
+				this.solutionPanel.add(sol);
+			}
+			this.solutionPane =  new JScrollPane(this.solutionPanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			this.solutionPane.setPreferredSize(new Dimension (500,300));
+			this.solutionPane.setBorder(null);
 			this.solutionPanel.setBackground(this.getBackground());
 			
 			this.add(this.supPanel);
 			this.add(this.infPanel);
 			this.add(this.questionPane);
-			this.add(this.solutionPanel);
+			this.add(this.solutionPane);
 			
 			
 			layout2.putConstraint(SpringLayout.NORTH, this.supPanel, 0, SpringLayout.NORTH, this);
@@ -123,7 +129,7 @@ public class TakeTFExercisePanel extends JPanel{
 			layout2.putConstraint(SpringLayout.WEST, this.questionPane, 10, SpringLayout.WEST, this);
 			layout2.putConstraint(SpringLayout.NORTH, this.questionPane, 10, SpringLayout.SOUTH, this.supPanel);
 			
-			layout2.putConstraint(SpringLayout.WEST, this.solutionPanel, 0, SpringLayout.WEST, this.questionPane);
-			layout2.putConstraint(SpringLayout.NORTH, this.solutionPanel, 10, SpringLayout.SOUTH, this.questionPane);
+			layout2.putConstraint(SpringLayout.WEST, this.solutionPane, 0, SpringLayout.WEST, this.questionPane);
+			layout2.putConstraint(SpringLayout.NORTH, this.solutionPane, 10, SpringLayout.SOUTH, this.questionPane);
 		}
 }
