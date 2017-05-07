@@ -11,6 +11,7 @@ import javax.swing.*;
 import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.course.Note;
 import es.uam.eps.padsof.p3.course.Unit;
+import es.uam.eps.padsof.p3.exercise.Exercise;
 import es.uam.eps.padsof.p3.exercise.Question;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.controllers.*;
@@ -36,9 +37,12 @@ import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionOTPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionTFPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionMQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionOTPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionTFPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionUQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeExercisePanel;
 
 import java.util.*;
 import java.util.List;
@@ -85,6 +89,9 @@ public class MainFrame extends JFrame{
 	private ModifyQuestionTFPanel mqtfp;
 	private ModifyQuestionOTPanel mqotp;
 	private ModifyQuestionUQPanel mquqp;
+	private ModifyQuestionMQPanel mqmqp;
+	private ModifyExercisePanel mep;
+	private TakeExercisePanel tep;
 	
 	
 	/* Controllers */
@@ -116,6 +123,9 @@ public class MainFrame extends JFrame{
 	private ModifyQuestionTFPanelController mqtfpc;
 	private ModifyQuestionOTPanelController mqotpc;
 	private ModifyQuestionUQPanelController mquqpc;
+	private ModifyQuestionMQPanelController mqmqpc;
+	private ModifyExercisePanelController mepc;
+	private TakeExercisePanelController tepc;
 	
 	
 	
@@ -699,6 +709,60 @@ public class MainFrame extends JFrame{
 		this.mquqpc = new ModifyQuestionUQPanelController(mquqp, course, questions, eqValue, question);
 		mquqp.setController(this.mquqpc);
 		this.mquqp = mquqp;
+	}
+
+
+
+	/**
+	 * @return the mqmqp
+	 */
+	public ModifyQuestionMQPanel getMqmqp() {
+		return mqmqp;
+	}
+
+
+
+	/**
+	 * @param mqmqp the mqmqp to set
+	 */
+	public void setMqmqp(ModifyQuestionMQPanel mqmqp, Course course, List<Question> questions, boolean eqValue, Question question) {
+		this.mqmqpc = new ModifyQuestionMQPanelController(mqmqp, course, questions, eqValue, question);
+		mqmqp.setController(this.mqmqpc);
+		this.mqmqp = mqmqp;
+	}
+
+
+
+	public ModifyExercisePanel getMep() {
+		return mep;
+	}
+
+
+
+	public void setMep(ModifyExercisePanel mep, Course course, Unit unit, Exercise exercise) {
+		this.mepc = new ModifyExercisePanelController(mep, course, unit, exercise);
+		mep.setController(this.mepc);
+		this.mep = mep;
+	}
+
+
+
+	/**
+	 * @return the tep
+	 */
+	public TakeExercisePanel getTep() {
+		return tep;
+	}
+
+
+
+	/**
+	 * @param tep the tep to set
+	 */
+	public void setTep(TakeExercisePanel tep, Exercise exercise) {
+		this.tepc = new TakeExercisePanelController(tep, exercise);
+		tep.setController(this.tepc);
+		this.tep = tep;
 	}
 	
 	

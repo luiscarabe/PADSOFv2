@@ -83,7 +83,13 @@ public class ModifyQuestionOTPanelController implements ActionListener{
 					newview = MainFrame.getInstance().getCep();
 					newview.validate();
 					newview.repaint();
-					
+					try{
+						newview = MainFrame.getInstance().getMep();
+						newview.validate();
+						newview.repaint();
+					}catch(NullPointerException ex){
+						this.view.dispose();
+					}
 					this.view.dispose();
 					
 					return;
@@ -100,6 +106,11 @@ public class ModifyQuestionOTPanelController implements ActionListener{
 						return;
 					}
 					
+					if(weight < 0){
+						JOptionPane.showMessageDialog(view, "Weight must be positive", "Error", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					
 					question.setTitle(title);
 					question.setWeight(weight);
 					for(Option aux: sols){
@@ -110,7 +121,13 @@ public class ModifyQuestionOTPanelController implements ActionListener{
 					newview = MainFrame.getInstance().getCep();
 					newview.validate();
 					newview.repaint();
-					
+					try{
+						newview = MainFrame.getInstance().getMep();
+						newview.validate();
+						newview.repaint();
+					}catch(NullPointerException ex){
+						this.view.dispose();
+					}
 					this.view.dispose();
 					return;
 				}

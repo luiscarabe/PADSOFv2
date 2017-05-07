@@ -16,40 +16,38 @@ import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.MUQuestion;
 import es.uam.eps.padsof.p3.exercise.MultiQuestion;
-import es.uam.eps.padsof.p3.exercise.OpenQuestion;
 import es.uam.eps.padsof.p3.exercise.Option;
 import es.uam.eps.padsof.p3.exercise.Question;
-import es.uam.eps.padsof.p3.exercise.TFQuestion;
-import es.uam.eps.padsof.p3.exercise.UniqQuestion;
 import es.uam.eps.padsof.p4.inter.MainFrame;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionMQPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionOTPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionMQPanel;
 
 /**
  * @author Miguel
  *
  */
-public class AddQuestionMQPanelController implements ActionListener{
+public class ModifyQuestionMQPanelController implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
-	private AddQuestionMQPanel view;
+	private ModifyQuestionMQPanel view;
 	private Educagram edu = Educagram.getInstance();
 	private Course course;
 	private List<Question> questions;
 	private List<Option> solutions;
+	private List<Option> oldOptions;
 	private List<Option> options; 
 	private boolean eqValue;
+	private Question question;
 	
-	public AddQuestionMQPanelController(AddQuestionMQPanel view, Course course, List<Question> questions, boolean eqValue) {
+	public ModifyQuestionMQPanelController(ModifyQuestionMQPanel view, Course course, List<Question> questions, boolean eqValue, Question question) {
 		this.view = view;
 		this.course = course;
 		this.questions = questions;
 		this.eqValue = eqValue;
-		this.options = new ArrayList<Option>();
-		this.solutions = new ArrayList<Option>();
+		this.options = ((MUQuestion)question).getAnswers();
+		this.solutions = question.getSolution();
+		this.question = question;
 		
 		if(eqValue == true){
 			this.view.getWeightLabel().setVisible(false);
@@ -68,7 +66,6 @@ public class AddQuestionMQPanelController implements ActionListener{
 			String title = view.getName();
 			String desc = view.getWeightText();
 			String solutionAdding = view.getAddingSolution();
-			Question question;
 			List<Option> todelete = new ArrayList<Option>();
 			List<Option> tosolution = new ArrayList<Option>();
 			
@@ -93,28 +90,20 @@ public class AddQuestionMQPanelController implements ActionListener{
 						return;
 					}
 					
+					question.setTitle(title);
 					if(this.view.getAleat().isSelected() == true){
-						question = new MultiQuestion(title, 0, true, null);
+						((MUQuestion)question).setRandomOrder(true);
 					}else{
-						question = new MultiQuestion(title, 0, false, null);
+						((MUQuestion)question).setRandomOrder(false);
 					}
 					
-					for(Option aux: options){
-						((MUQuestion)question).addOption(aux);
-					}
 					
-					for(Option aux: solutions){
-						((MultiQuestion)question).addSolution(aux);
-					}
-					questions.add(question);
-					
+				
 					newview = MainFrame.getInstance().getCep();
-					((CreateExercisePanel)newview).getQuesModel().addElement(question);
 					newview.validate();
 					newview.repaint();
 					try{
 						newview = MainFrame.getInstance().getMep();
-						((ModifyExercisePanel)newview).getQuesModel().addElement(question);
 						newview.validate();
 						newview.repaint();
 					}catch(NullPointerException ex){
@@ -126,7 +115,7 @@ public class AddQuestionMQPanelController implements ActionListener{
 				}else if(this.eqValue == false){
 					double weight;
 					if(title.equals("") || this.view.getSolutionModel().isEmpty() == true || desc.equals("")){
-						JOptionPane.showMessageDialog(view, "The question must have title, some solution and weight", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(view, "The question must have title, any solution and weight", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					
@@ -146,29 +135,23 @@ public class AddQuestionMQPanelController implements ActionListener{
 						return;
 					}
 					
+					question.setTitle(title);
 					if(this.view.getAleat().isSelected() == true){
-						question = new MultiQuestion(title, weight, true, null);
+						((MUQuestion)question).setRandomOrder(true);
 					}else{
-						question = new MultiQuestion(title, weight, false, null);
+						((MUQuestion)question).setRandomOrder(false);
 					}
 					
 					
-					for(Option aux: options){
-						((MUQuestion)question).addOption(aux);
-					}
 					
-					for(Option aux: solutions){
-						((MultiQuestion)question).addSolution(aux);
-					}
-					questions.add(question);
+					
+					
 					
 					newview = MainFrame.getInstance().getCep();
-					((CreateExercisePanel)newview).getQuesModel().addElement(question);
 					newview.validate();
 					newview.repaint();
 					try{
 						newview = MainFrame.getInstance().getMep();
-						((ModifyExercisePanel)newview).getQuesModel().addElement(question);
 						newview.validate();
 						newview.repaint();
 					}catch(NullPointerException ex){

@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SpinnerDateModel;
 
 import es.uam.eps.padsof.p3.course.Course;
+import es.uam.eps.padsof.p3.course.CourseElement;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
@@ -28,14 +29,13 @@ import es.uam.eps.padsof.p3.exercise.Question;
 import es.uam.eps.padsof.p3.exercise.TFQuestion;
 import es.uam.eps.padsof.p3.exercise.UniqQuestion;
 import es.uam.eps.padsof.p4.inter.MainFrame;
-import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
-import es.uam.eps.padsof.p4.inter.courseTeacher.CreateNotePanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionMQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionOTPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionTFPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyExercisePanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionMQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionOTPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionTFPanel;
@@ -45,20 +45,22 @@ import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionUQPanel;
  * @author Miguel
  *
  */
-public class CreateExercisePanelController implements ActionListener{
+public class ModifyExercisePanelController implements ActionListener{
 	private static final long serialVersionUID = 1L;
 
-	private CreateExercisePanel view;
+	private ModifyExercisePanel view;
 	private Educagram edu = Educagram.getInstance();
 	private Course course;
 	private Unit unit;
 	private List<Question> questions;
+	private Exercise exer;
 	
-	public CreateExercisePanelController(CreateExercisePanel view, Course course, Unit unit) {
+	public ModifyExercisePanelController(ModifyExercisePanel view, Course course, Unit unit, Exercise exer) {
 		this.view = view;
 		this.course = course;
 		this.unit = unit;
-		this.questions = new ArrayList<Question>();
+		this.questions = exer.getQuestions();
+		this.exer = exer;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -205,7 +207,7 @@ public class CreateExercisePanelController implements ActionListener{
 			double weight;
 			double penalty;
 			boolean bool;
-			Exercise exercise;
+			int flag = 0;
 			
 			if(title.equals("") || pesop.equals("") || penal.equals("")){
 				JOptionPane.showMessageDialog(view, "The exercise must have a title, weight and penalty.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -231,43 +233,50 @@ public class CreateExercisePanelController implements ActionListener{
 				JOptionPane.showMessageDialog(view, "Weight and penalty must be positive", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			
-			exercise = unit.createExercise(title, desc, unit.isHidden());             
-			if(exercise == null){
+			for(CourseElement aux: this.course.getCourseElements()){
+				if(title.equals(aux.getTitle())){
+					flag = 1;
+					break;
+				}
+			}
+			            
+			if(flag == 1){
 				JOptionPane.showMessageDialog(view, "There is already an element of the course with this name.", "Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			
-			bool = exercise.addStartDate(iniLD);
+			exer.setTitle(title);
+			exer.setDesc(desc);
+			bool = exer.addStartDate(iniLD);
 			if(bool == false){
 				JOptionPane.showMessageDialog(view, "Incorrect initial date.", "Error", JOptionPane.ERROR_MESSAGE);
-				unit.deleteExercise(exercise);
 				return;
 			}
-			bool = exercise.addExpirationDate(finLD);
+			bool = exer.addExpirationDate(finLD);
 			if(bool == false){
 				JOptionPane.showMessageDialog(view, "Incorrect expiration date.", "Error", JOptionPane.ERROR_MESSAGE);
-				unit.deleteExercise(exercise);
 				return;
 			}
 			
-			exercise.setPenalty(penalty);
-			exercise.setWeight(weight);
-			exercise.setNumQues(questions.size());
-			exercise.setQuestions(questions);
-			exercise.setRandomness(this.view.getAleatOrder().isSelected());
-			exercise.setEqValue(this.view.getEqValued().isSelected());
+			exer.setPenalty(penalty);
+			exer.setWeight(weight);
+			exer.setNumQues(questions.size());
+			exer.setRandomness(this.view.getAleatOrder().isSelected());
+			exer.setEqValue(this.view.getEqValued().isSelected());
 			
 			if(this.view.getEqValued().isSelected() == true){
-				for(Question aux : exercise.getQuestions()){
-					aux.setWeight(weight/exercise.getNumQues());
+				for(Question aux : exer.getQuestions()){
+					aux.setWeight(weight/exer.getNumQues());
 				}
 			}
 			
 			newview = MainFrame.getInstance().getCtp();
-			((CourseTeacherPanel) newview).addExercise(exercise, this.unit);
 			
+			((CourseTeacherPanel) newview).getDesc().setText(this.exer.getTitle() + ":\n" + this.exer.getDesc());
+			((CourseTeacherPanel) newview).getDesc().repaint();
+			((CourseTeacherPanel) newview).getDesc().revalidate();
 			MainFrame.getInstance().setContentPane(newview);
+			newview.revalidate();
+			newview.repaint();
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
@@ -280,5 +289,6 @@ public class CreateExercisePanelController implements ActionListener{
 		}
 		
 	}
+
 
 }

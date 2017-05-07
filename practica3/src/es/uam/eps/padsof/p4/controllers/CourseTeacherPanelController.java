@@ -42,6 +42,7 @@ import es.uam.eps.padsof.p4.inter.courseTeacher.SearchCourTeacherPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.StudentsOfCourPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyExercisePanel;
 
 /**
  * @author Miguel
@@ -367,8 +368,12 @@ public class CourseTeacherPanelController implements ActionListener, TreeSelecti
 				view.setVisible(false);
 				return;
 			} else if (this.nodo instanceof Exercise) {
-				// codigo ejercicio
-
+				MainFrame.getInstance().setMep(new ModifyExercisePanel((Exercise) this.nodo, ((Exercise) this.nodo).isEqValue(), ((Exercise) this.nodo).isHidden(), 
+						((Exercise) this.nodo).isRandomness()), course, (Unit)this.padre, (Exercise)this.nodo);
+				newview = MainFrame.getInstance().getMep();
+				MainFrame.getInstance().setContentPane(newview);
+				newview.setVisible(true);
+				view.setVisible(false);
 				return;
 			}
 		} else if (source == this.view.getView()) {

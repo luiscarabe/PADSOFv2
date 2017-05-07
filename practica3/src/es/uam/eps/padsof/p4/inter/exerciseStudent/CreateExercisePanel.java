@@ -237,6 +237,13 @@ public class CreateExercisePanel extends JPanel{
 			return this.descField.getText();
 		}
 		
+		public String getPenaltyText(){
+			return this.penalField.getText();
+		}
+		public String getWeightText(){
+			return this.weightField.getText();
+		}
+		
 		public void setController(ActionListener c) {
 			this.signOut.addActionListener(c);
 			this.create.addActionListener(c);

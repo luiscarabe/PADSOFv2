@@ -24,6 +24,7 @@ public class Exercise extends CourseElement implements Serializable{
 	private double weight;
 	private double penalty;
 	private int numQues;
+	private boolean eqValue;
 	private boolean randomness;
 	private ExerciseStat stats;
 	private List<Question> questions;
@@ -178,9 +179,25 @@ public class Exercise extends CourseElement implements Serializable{
 		this.answers = answers;
 	}
 	
+	/**
+	 * @return the eqValue
+	 */
+	public boolean isEqValue() {
+		return eqValue;
+	}
+
+	/**
+	 * @param eqValue the eqValue to set
+	 */
+	public void setEqValue(boolean eqValue) {
+		this.eqValue = eqValue;
+	}
+	
 	/* Methods */
 	
 	
+	
+
 	/**
 	 * Method that informs the professor if an exercise is still modifiable
 	 * @return true if there is any student that has taken the exercise, false if not

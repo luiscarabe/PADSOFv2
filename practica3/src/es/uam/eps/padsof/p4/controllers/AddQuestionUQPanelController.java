@@ -24,6 +24,7 @@ import es.uam.eps.padsof.p4.inter.MainFrame;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionOTPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyExercisePanel;
 
 /**
  * @author Miguel
@@ -95,18 +96,28 @@ public class AddQuestionUQPanelController implements ActionListener{
 						question = new UniqQuestion(title, 0, false, null);
 					}
 					
-					((UniqQuestion)question).addSolution(solution);
+					
 					
 					for(Option aux: options){
 						((MUQuestion)question).addOption(aux);
 					}
+					
+					((UniqQuestion)question).addSolution(solution);
+					
 					questions.add(question);
 					
 					newview = MainFrame.getInstance().getCep();
 					((CreateExercisePanel)newview).getQuesModel().addElement(question);
 					newview.validate();
 					newview.repaint();
-					
+					try{
+						newview = MainFrame.getInstance().getMep();
+						((ModifyExercisePanel)newview).getQuesModel().addElement(question);
+						newview.validate();
+						newview.repaint();
+					}catch(NullPointerException ex){
+						this.view.dispose();
+					}
 					this.view.dispose();
 					
 					return;
@@ -127,23 +138,38 @@ public class AddQuestionUQPanelController implements ActionListener{
 						JOptionPane.showMessageDialog(view, "The weight must be a number", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
+					
+					if(weight < 0){
+						JOptionPane.showMessageDialog(view, "Weight must be positive", "Error", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
 					if(this.view.getAleat().isSelected() == true){
 						question = new UniqQuestion(title, weight, true, null);
 					}else{
 						question = new UniqQuestion(title, weight, false, null);
 					}
 					
-					((UniqQuestion)question).addSolution(solution);
+					
 					
 					for(Option aux: options){
 						((MUQuestion)question).addOption(aux);
 					}
+					
+					((UniqQuestion)question).addSolution(solution);
 					questions.add(question);
 					
 					newview = MainFrame.getInstance().getCep();
 					((CreateExercisePanel)newview).getQuesModel().addElement(question);
 					newview.validate();
 					newview.repaint();
+					try{
+						newview = MainFrame.getInstance().getMep();
+						((ModifyExercisePanel)newview).getQuesModel().addElement(question);
+						newview.validate();
+						newview.repaint();
+					}catch(NullPointerException ex){
+						this.view.dispose();
+					}
 					
 					this.view.dispose();
 					

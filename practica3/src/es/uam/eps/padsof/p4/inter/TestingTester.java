@@ -39,13 +39,13 @@ public class TestingTester {
 		ar.add("Hola");
 		ar.add("Adios");
 		ar.add("Holaaaaaaaaaaaaaaaaaaaaaaaa");
-		ar.add("Adiosafs");
-		ar.add("Holaeg");
-		ar.add("Adisdgos");
-		ar.add("Holega");
-		ar.add("Adisdbos");
-		ar.add("Howetla");
-		ar.add("Adi42os");
+		ar.add("Adios");
+		ar.add("Hola");
+		ar.add("Adios");
+		ar.add("Hola");
+		ar.add("Adios");
+		ar.add("Hola");
+		ar.add("Adios");
 		
 		Unit u1 = new Unit("Unidad 1", "hola", false, null);
 		Unit u2 = new Unit("Subunidad 1", "adios", false, null);
@@ -56,11 +56,6 @@ public class TestingTester {
 		Exercise e1 = new Exercise("Ejercicio 1", "A", false, null);
 		Exercise e2 = new Exercise("Ejercicio 2", "A", false, null);
 		Exercise e3 = new Exercise("Ejercicio 3", "A", false, null);
-		
-		ArrayList<String> ar2 = new ArrayList<String>();
-		ar2.add("Hola");
-		ar2.add("Adi42os");
-		
 		
 		ArrayList<Answer> ans = new ArrayList<Answer>();
 		Answer a1 = new Answer(e1,st, 0);
@@ -78,12 +73,12 @@ public class TestingTester {
 		ArrayList<Option> os = new ArrayList<Option>();
 		os.add(o);
 		
-		UQResolvedPanel lo = new UQResolvedPanel("aaaaa", "bbbb", "miii", 2, ar, ar.get(5), true);
-		/*TakeTFExercisePanel aa = new TakeTFExercisePanel("ua", "ua", "uammmmmm", 30);
+		TakeExercisePanel lo = new TakeExercisePanel("Lusi in the sky", "ashh");
+		TakeTFExercisePanel aa = new TakeTFExercisePanel("ua", "ua", "uammmmmm", 30);
 		TakeOTExercisePanel ab = new TakeOTExercisePanel("ua", "ua", "uammmmmm", 30);
 		lo.getExerTabs().add("Ques", aa);
 		lo.getExerTabs().add("Ques", ab);
-		*/
+		
 		/*lo.addUnit(u1);
 		lo.addUnit(u4);
 		lo.addSubunit(u2, u1);

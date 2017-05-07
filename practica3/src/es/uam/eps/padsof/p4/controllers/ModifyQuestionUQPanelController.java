@@ -38,7 +38,7 @@ public class ModifyQuestionUQPanelController implements ActionListener{
 		this.questions = questions;
 		this.eqValue = eqValue;
 		this.options = new ArrayList<Option>();
-		this.solution = null;
+		this.solution = question.getSolution().get(0);//
 		this.question = question;
 		
 		if(eqValue == true){
@@ -81,21 +81,31 @@ public class ModifyQuestionUQPanelController implements ActionListener{
 						return;
 					}
 					
+					
+					question.setTitle(title);
 					if(this.view.getAleat().isSelected() == true){
 						((MUQuestion)question).setRandomOrder(true);
 					}else{
 						((MUQuestion)question).setRandomOrder(false);
 					}
 					
-					((UniqQuestion)question).addSolution(solution);
+					
 					
 					for(Option aux: options){
 						((MUQuestion)question).addOption(aux);
 					}
-					
+					((UniqQuestion)question).addSolution(solution);
 					newview = MainFrame.getInstance().getCep();
 					newview.validate();
 					newview.repaint();
+					
+					try{
+						newview = MainFrame.getInstance().getMep();
+						newview.validate();
+						newview.repaint();
+					}catch(NullPointerException ex){
+						this.view.dispose();
+					}
 					
 					this.view.dispose();
 					
@@ -107,7 +117,7 @@ public class ModifyQuestionUQPanelController implements ActionListener{
 						return;
 					}
 					
-					if(options.size() < 2){
+					if(((MUQuestion)question).getAnswers().size() < 2){
 						JOptionPane.showMessageDialog(view, "The question must have more than one option", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
@@ -117,6 +127,13 @@ public class ModifyQuestionUQPanelController implements ActionListener{
 						JOptionPane.showMessageDialog(view, "The weight must be a number", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
+					
+					if(weight < 0){
+						JOptionPane.showMessageDialog(view, "Weight must be positive", "Error", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					
+					question.setTitle(title);
 					if(this.view.getAleat().isSelected() == true){
 						((MUQuestion)question).setRandomOrder(true);
 					}else{
@@ -124,15 +141,23 @@ public class ModifyQuestionUQPanelController implements ActionListener{
 					}
 					
 					((MUQuestion)question).setWeight(weight);
-					((UniqQuestion)question).addSolution(solution);
+					
 					
 					for(Option aux: options){
 						((MUQuestion)question).addOption(aux);
 					}
-					
+					((UniqQuestion)question).addSolution(solution);
 					newview = MainFrame.getInstance().getCep();
 					newview.validate();
 					newview.repaint();
+					
+					try{
+						newview = MainFrame.getInstance().getMep();
+						newview.validate();
+						newview.repaint();
+					}catch(NullPointerException ex){
+						this.view.dispose();
+					}
 					
 					this.view.dispose();
 					

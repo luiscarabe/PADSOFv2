@@ -29,6 +29,7 @@ import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseStudent.SearchCourStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseStudent.ViewNoteStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeExercisePanel;
 
 /**
  * @author Miguel
@@ -219,6 +220,13 @@ public class CourseStudentPanelController implements ActionListener, TreeSelecti
 			MainFrame.getInstance().setVnsp(new ViewNoteStudentPanel(current.getName(), ((Note) this.nodo).getTitle(),
 					((Note) this.nodo).getDesc(), ((Note) this.nodo).getText()));
 			newview = MainFrame.getInstance().getVnsp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+			return;
+		}else if(source == this.view.getTake()){
+			MainFrame.getInstance().setTep(new TakeExercisePanel(current.getName(), ((Exercise)this.nodo).getTitle()), ((Exercise)this.nodo));
+			newview = MainFrame.getInstance().getTep();
 			MainFrame.getInstance().setContentPane(newview);
 			newview.setVisible(true);
 			view.setVisible(false);

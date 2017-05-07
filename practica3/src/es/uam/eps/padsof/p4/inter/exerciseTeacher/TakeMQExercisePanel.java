@@ -5,15 +5,12 @@ import java.util.*;
 
 import javax.swing.*;
 
+import es.uam.eps.padsof.p3.exercise.Option;
+
 public class TakeMQExercisePanel extends JPanel{
 
 		private JTextArea questionArea = new JTextArea();
 		private JScrollPane questionPane = new JScrollPane(this.questionArea,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		
-		//Inf
-		private JButton cancel = new JButton("Cancel");
-		private JButton send = new JButton("Send");
-		private JPanel infPanel = new JPanel();
 		
 		// Solution
 		private ArrayList<JCheckBox> solutionGroup = new ArrayList<JCheckBox>();
@@ -31,17 +28,6 @@ public class TakeMQExercisePanel extends JPanel{
 			this.setLayout(layout2);
 			this.setBackground(Color.decode("#98FB98"));
 
-			//Inf panel
-			
-			this.infPanel.setVisible(true);
-			this.infPanel.setPreferredSize(new Dimension(350, 80));
-			this.infPanel.setBackground(this.getBackground());
-			this.infPanel.setLayout(new FlowLayout());
-			this.send.setForeground(Color.GREEN);
-			this.cancel.setForeground(Color.RED);
-			this.infPanel.add(this.send);
-			this.infPanel.add(this.cancel);
-			
 			this.questionArea.setText("("+wei+" points) " + nameQues);
 			this.questionArea.setFont(this.questionArea.getFont().deriveFont(15f));
 			this.questionArea.setLineWrap(true);
@@ -65,13 +51,9 @@ public class TakeMQExercisePanel extends JPanel{
 			this.solutionPane.setBorder(null);
 			this.solutionPanel.setBackground(this.getBackground());
 			
-			this.add(this.infPanel);
+		
 			this.add(this.questionPane);
 			this.add(this.solutionPane);
-			
-			
-			layout2.putConstraint(SpringLayout.WEST, this.infPanel, 0, SpringLayout.WEST, this.solutionPanel);
-			layout2.putConstraint(SpringLayout.NORTH, this.infPanel, 20, SpringLayout.SOUTH, this.solutionPanel);
 			
 			layout2.putConstraint(SpringLayout.WEST, this.questionPane, 10, SpringLayout.WEST, this);
 			layout2.putConstraint(SpringLayout.NORTH, this.questionPane, 10, SpringLayout.NORTH, this);
@@ -79,4 +61,48 @@ public class TakeMQExercisePanel extends JPanel{
 			layout2.putConstraint(SpringLayout.WEST, this.solutionPane, 0, SpringLayout.WEST, this.questionPane);
 			layout2.putConstraint(SpringLayout.NORTH, this.solutionPane, 10, SpringLayout.SOUTH, this.questionPane);
 		}
+
+		/**
+		 * @return the questionArea
+		 */
+		public JTextArea getQuestionArea() {
+			return questionArea;
+		}
+
+		/**
+		 * @return the questionPane
+		 */
+		public JScrollPane getQuestionPane() {
+			return questionPane;
+		}
+
+		/**
+		 * @return the solutionGroup
+		 */
+		public ArrayList<JCheckBox> getSolutionGroup() {
+			return solutionGroup;
+		}
+
+		/**
+		 * @return the solutionPanel
+		 */
+		public JPanel getSolutionPanel() {
+			return solutionPanel;
+		}
+
+		/**
+		 * @return the solutionPane
+		 */
+		public JScrollPane getSolutionPane() {
+			return solutionPane;
+		}
+
+		/**
+		 * @return the layout2
+		 */
+		public SpringLayout getLayout2() {
+			return layout2;
+		}
+		
+		
 }

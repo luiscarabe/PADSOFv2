@@ -68,8 +68,10 @@ public class MultiQuestion extends MUQuestion implements Serializable{
 	
 	public boolean addSolution(Option o){
 		if (!this.getAnswers().contains(o) || this.solution.contains(o)){
+			System.out.println("cachooopo");
 			return false;
 		}
+		System.out.println("cachooopo22222");
 		this.solution.add(o);
 		this.numSol ++;
 		return true;

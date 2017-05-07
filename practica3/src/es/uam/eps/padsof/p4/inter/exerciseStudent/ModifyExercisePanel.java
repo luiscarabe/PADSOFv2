@@ -1,6 +1,7 @@
 package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -108,6 +109,7 @@ public class ModifyExercisePanel extends JPanel{
 			this.descLabel.setLabelFor(this.descField);
 			this.descField.setText(e.getDesc());
 			
+			this.weightField.setText(""+e.getWeight());
 		
 			this.descPane.setPreferredSize(new Dimension(700,70));
 			
@@ -247,6 +249,293 @@ public class ModifyExercisePanel extends JPanel{
 
 			layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.weightField, 0, SpringLayout.VERTICAL_CENTER, this.weightLabel);
 			layout2.putConstraint(SpringLayout.WEST, this.weightField, 10, SpringLayout.EAST, this.weightLabel);	
+		}
+		
+		public String getName(){
+			return this.titleField.getText();
+		}
+		
+		public String getDesc(){
+			return this.descField.getText();
+		}
+		
+		public String getPenaltyText(){
+			return this.penalField.getText();
+		}
+		public String getWeightText(){
+			return this.weightField.getText();
+		}
+		
+		public void setController(ActionListener c) {
+			this.signOut.addActionListener(c);
+			this.create.addActionListener(c);
+			this.cancel.addActionListener(c);
+			this.edit.addActionListener(c);
+			this.delete.addActionListener(c);
+			this.addTFQues.addActionListener(c);
+			this.addMultiQues.addActionListener(c);
+			this.addOpenQues.addActionListener(c);
+			this.addUniqQues.addActionListener(c);
+			this.eqValued.addActionListener(c);
+		}
+
+		/**
+		 * @return the supPanel
+		 */
+		public JPanel getSupPanel() {
+			return supPanel;
+		}
+
+		/**
+		 * @return the image
+		 */
+		public ImageIcon getImage() {
+			return image;
+		}
+
+		/**
+		 * @return the imgLabel
+		 */
+		public JLabel getImgLabel() {
+			return imgLabel;
+		}
+
+		/**
+		 * @return the creatLabel
+		 */
+		public JLabel getCreatLabel() {
+			return creatLabel;
+		}
+
+		/**
+		 * @return the professor
+		 */
+		public JLabel getProfessor() {
+			return professor;
+		}
+
+		/**
+		 * @return the signOut
+		 */
+		public JButton getSignOut() {
+			return signOut;
+		}
+
+		/**
+		 * @return the layout
+		 */
+		public SpringLayout getLayout() {
+			return layout;
+		}
+
+		/**
+		 * @return the titleLabel
+		 */
+		public JLabel getTitleLabel() {
+			return titleLabel;
+		}
+
+		/**
+		 * @return the titleField
+		 */
+		public JTextField getTitleField() {
+			return titleField;
+		}
+
+		/**
+		 * @return the descLabel
+		 */
+		public JLabel getDescLabel() {
+			return descLabel;
+		}
+
+		/**
+		 * @return the descField
+		 */
+		public JTextArea getDescField() {
+			return descField;
+		}
+
+		/**
+		 * @return the descPane
+		 */
+		public JScrollPane getDescPane() {
+			return descPane;
+		}
+
+		/**
+		 * @return the iniDateLabel
+		 */
+		public JLabel getIniDateLabel() {
+			return iniDateLabel;
+		}
+
+		/**
+		 * @return the finDateLabel
+		 */
+		public JLabel getFinDateLabel() {
+			return finDateLabel;
+		}
+
+		/**
+		 * @return the iniDate
+		 */
+		public JSpinner getIniDate() {
+			return iniDate;
+		}
+
+		/**
+		 * @return the finDate
+		 */
+		public JSpinner getFinDate() {
+			return finDate;
+		}
+
+		/**
+		 * @return the date
+		 */
+		public JPanel getDate() {
+			return date;
+		}
+
+		/**
+		 * @return the addQuesLabel
+		 */
+		public JLabel getAddQuesLabel() {
+			return addQuesLabel;
+		}
+
+		/**
+		 * @return the addTFQues
+		 */
+		public JButton getAddTFQues() {
+			return addTFQues;
+		}
+
+		/**
+		 * @return the addMultiQues
+		 */
+		public JButton getAddMultiQues() {
+			return addMultiQues;
+		}
+
+		/**
+		 * @return the addUniqQues
+		 */
+		public JButton getAddUniqQues() {
+			return addUniqQues;
+		}
+
+		/**
+		 * @return the addOpenQues
+		 */
+		public JButton getAddOpenQues() {
+			return addOpenQues;
+		}
+
+		/**
+		 * @return the eqValued
+		 */
+		public JCheckBox getEqValued() {
+			return eqValued;
+		}
+
+		/**
+		 * @return the addQuesPanel
+		 */
+		public JPanel getAddQuesPanel() {
+			return addQuesPanel;
+		}
+
+		/**
+		 * @return the quesModel
+		 */
+		public DefaultListModel<Question> getQuesModel() {
+			return quesModel;
+		}
+
+		/**
+		 * @return the quesList
+		 */
+		public JList<Question> getQuesList() {
+			return quesList;
+		}
+
+		/**
+		 * @return the quesPane
+		 */
+		public JScrollPane getQuesPane() {
+			return quesPane;
+		}
+
+		/**
+		 * @return the quesLabel
+		 */
+		public JLabel getQuesLabel() {
+			return quesLabel;
+		}
+
+		/**
+		 * @return the edit
+		 */
+		public JButton getEdit() {
+			return edit;
+		}
+
+		/**
+		 * @return the delete
+		 */
+		public JButton getDelete() {
+			return delete;
+		}
+
+		/**
+		 * @return the hide
+		 */
+		public JCheckBox getHide() {
+			return hide;
+		}
+
+		/**
+		 * @return the aleatOrder
+		 */
+		public JCheckBox getAleatOrder() {
+			return aleatOrder;
+		}
+
+		/**
+		 * @return the penalLabel
+		 */
+		public JLabel getPenalLabel() {
+			return penalLabel;
+		}
+
+		/**
+		 * @return the penalField
+		 */
+		public JTextField getPenalField() {
+			return penalField;
+		}
+
+		/**
+		 * @return the create
+		 */
+		public JButton getCreate() {
+			return create;
+		}
+
+		/**
+		 * @return the cancel
+		 */
+		public JButton getCancel() {
+			return cancel;
+		}
+
+		/**
+		 * @return the layout2
+		 */
+		public SpringLayout getLayout2() {
+			return layout2;
 		}
 
 }

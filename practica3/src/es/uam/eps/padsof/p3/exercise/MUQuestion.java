@@ -104,6 +104,15 @@ public abstract class MUQuestion extends Question implements Serializable {
 	 */
 	
 	public abstract boolean deleteSolution(Option sol);
+	
+	public Option searchOption(String name){
+		for(Option aux: this.answers){
+			if(aux.getOption().equals(name)){
+				return aux;
+			}
+		}
+		return null;
+	}
 
 	
 }
