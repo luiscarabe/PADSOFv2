@@ -15,7 +15,7 @@ import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.user.Application;
 import es.uam.eps.padsof.p3.user.Student;
-import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.StudentsOfCourPanel;
 

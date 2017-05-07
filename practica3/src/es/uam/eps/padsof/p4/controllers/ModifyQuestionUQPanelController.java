@@ -15,10 +15,10 @@ import es.uam.eps.padsof.p3.exercise.MUQuestion;
 import es.uam.eps.padsof.p3.exercise.Option;
 import es.uam.eps.padsof.p3.exercise.Question;
 import es.uam.eps.padsof.p3.exercise.UniqQuestion;
-import es.uam.eps.padsof.p4.inter.MainFrame;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionUQPanel;
+import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionUQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionUQPanel;
 
 public class ModifyQuestionUQPanelController implements ActionListener{
 	private static final long serialVersionUID = 1L;

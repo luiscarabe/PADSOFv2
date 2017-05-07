@@ -27,13 +27,13 @@ import es.uam.eps.padsof.p3.exercise.UniqQuestion;
 import es.uam.eps.padsof.p3.stat.Answer;
 import es.uam.eps.padsof.p3.stat.SpecificAnswer;
 import es.uam.eps.padsof.p3.user.Student;
-import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
 import es.uam.eps.padsof.p4.inter.courseStudent.ViewNoteStudentPanel;
-import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeExercisePanel;
-import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeMQExercisePanel;
-import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeOTExercisePanel;
-import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeTFExercisePanel;
-import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeUQExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.TakeExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.TakeMQExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.TakeOTExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.TakeTFExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.TakeUQExercisePanel;
 
 /**
  * @author Miguel

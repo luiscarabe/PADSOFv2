@@ -192,7 +192,7 @@ public class CourseTeacherPanel extends JPanel{
 		this.desc = new JTextArea();
 		this.desc.setEditable(false);
 		this.desc.setText("cachopo");
-		this.desc.setBackground(Color.decode("#D3D3D3"));
+		//this.desc.setBackground(Color.decode("#D3D3D3"));
 		this.desc.setLineWrap(true);
 		this.desc.setWrapStyleWord(true);
 		this.descPane = new JScrollPane(this.desc, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

@@ -5,14 +5,14 @@
  */
 package es.uam.eps.padsof.p4.controllers;
 
-import es.uam.eps.padsof.p4.inter.HomePanelStudent;
-import es.uam.eps.padsof.p4.inter.HomePanelTeacher;
-import es.uam.eps.padsof.p4.inter.LoginPanel;
-import es.uam.eps.padsof.p4.inter.MainFrame;
 import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.educagram.*;
 import es.uam.eps.padsof.p3.user.Student;
 import es.uam.eps.padsof.p3.user.User;
+import es.uam.eps.padsof.p4.inter.Educagram.HomePanelStudent;
+import es.uam.eps.padsof.p4.inter.Educagram.HomePanelTeacher;
+import es.uam.eps.padsof.p4.inter.Educagram.LoginPanel;
+import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
 
 import java.awt.event.*;
 import java.util.ArrayList;

@@ -27,19 +27,19 @@ import es.uam.eps.padsof.p3.exercise.Option;
 import es.uam.eps.padsof.p3.exercise.Question;
 import es.uam.eps.padsof.p3.exercise.TFQuestion;
 import es.uam.eps.padsof.p3.exercise.UniqQuestion;
-import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
 import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CreateNotePanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionMQPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionOTPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionTFPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionMQPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionOTPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionTFPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionUQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionMQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionOTPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionTFPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionUQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionMQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionOTPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionTFPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionUQPanel;
 
 /**
  * @author Miguel

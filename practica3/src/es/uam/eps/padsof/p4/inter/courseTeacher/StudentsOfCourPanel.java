@@ -100,7 +100,7 @@ public class StudentsOfCourPanel extends JPanel {
 		this.enrolPane = new JScrollPane(this.enrolList, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.enrolPane.setPreferredSize(new Dimension(250, 500));
-		this.enrolList.setBackground(Color.decode("#B5B5B5"));
+		this.enrolList.setBackground(Color.decode("#20B2AA"));
 		this.enrolLabel.setFont(font.deriveFont(attributes));
 		this.enrolLabel.setFont(this.enrolLabel.getFont().deriveFont(15f));
 

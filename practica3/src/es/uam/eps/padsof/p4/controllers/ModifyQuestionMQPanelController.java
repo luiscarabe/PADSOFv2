@@ -18,10 +18,10 @@ import es.uam.eps.padsof.p3.exercise.MUQuestion;
 import es.uam.eps.padsof.p3.exercise.MultiQuestion;
 import es.uam.eps.padsof.p3.exercise.Option;
 import es.uam.eps.padsof.p3.exercise.Question;
-import es.uam.eps.padsof.p4.inter.MainFrame;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionMQPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionMQPanel;
+import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionMQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionMQPanel;
 
 /**
  * @author Miguel

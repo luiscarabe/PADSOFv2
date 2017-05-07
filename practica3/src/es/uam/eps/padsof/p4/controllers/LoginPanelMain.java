@@ -6,8 +6,8 @@ package es.uam.eps.padsof.p4.controllers;
 import javax.swing.JFrame;
 
 import es.uam.eps.padsof.p3.educagram.Educagram;
-import es.uam.eps.padsof.p4.inter.LoginPanel;
-import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.Educagram.LoginPanel;
+import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
 
 /**
  * @author YOLANDA B

@@ -26,7 +26,7 @@ import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
 import es.uam.eps.padsof.p3.user.Application;
 import es.uam.eps.padsof.p3.user.Student;
-import es.uam.eps.padsof.p4.inter.MainFrame;
+import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
 import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseStudent.SearchCourStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
@@ -41,8 +41,8 @@ import es.uam.eps.padsof.p4.inter.courseTeacher.ModifyUnitPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.SearchCourTeacherPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.StudentsOfCourPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyExercisePanel;
 
 /**
  * @author Miguel

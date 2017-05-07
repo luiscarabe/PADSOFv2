@@ -20,11 +20,11 @@ import es.uam.eps.padsof.p3.exercise.Option;
 import es.uam.eps.padsof.p3.exercise.Question;
 import es.uam.eps.padsof.p3.exercise.TFQuestion;
 import es.uam.eps.padsof.p3.exercise.UniqQuestion;
-import es.uam.eps.padsof.p4.inter.MainFrame;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionOTPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
-import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyExercisePanel;
+import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionOTPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionUQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyExercisePanel;
 
 /**
  * @author Miguel
