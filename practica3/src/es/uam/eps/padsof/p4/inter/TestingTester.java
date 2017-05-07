@@ -10,6 +10,8 @@ import es.uam.eps.padsof.p3.course.Note;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
+import es.uam.eps.padsof.p3.stat.Answer;
+import es.uam.eps.padsof.p3.stat.ExerciseStat;
 import es.uam.eps.padsof.p3.user.*;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
@@ -20,7 +22,9 @@ public class TestingTester {
 
 	public static void main(String[] args) {
 		Educagram edu = Educagram.getInstance();
-		edu.setCurrentUser(new Student("Paco", "PAco", "Paco"));
+		Student st = new Student("Paco", "PAco", "Paco");
+		Student st2 = new Student("Pac222o", "PA22co", "Pac22");
+		edu.setCurrentUser(st);
 		//Professor p = (Professor) Educagram.getInstance().getCurrentUser();
 		//p.createCourse("Manolo", "Interesante");
 		//System.out.println(Educagram.getInstance().getCourses().get(0));
@@ -39,7 +43,7 @@ public class TestingTester {
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
-		CreateExercisePanel lo = new CreateExercisePanel();
+		
 		Unit u1 = new Unit("Unidad 1", "hola", false, null);
 		Unit u2 = new Unit("Subunidad 1", "adios", false, null);
 		Unit u3 = new Unit("Subunidad 2", "adios", false, null);
@@ -49,6 +53,19 @@ public class TestingTester {
 		Exercise e1 = new Exercise("Ejercicio 1", "A", false, null);
 		Exercise e2 = new Exercise("Ejercicio 2", "A", false, null);
 		Exercise e3 = new Exercise("Ejercicio 3", "A", false, null);
+		
+		ArrayList<Answer> ans = new ArrayList<Answer>();
+		Answer a1 = new Answer(e1,st, 0);
+		Answer a2 = new Answer(e1,st2, 0);
+		ans.add(a1);
+		ans.add(a2);
+		
+		e1.setAnswers(ans);
+		
+		ExerciseStat es = new ExerciseStat(e1);
+		
+		ExerciseStatPanel lo = new ExerciseStatPanel(es);
+		
 		/*lo.addUnit(u1);
 		lo.addUnit(u4);
 		lo.addSubunit(u2, u1);
@@ -67,10 +84,10 @@ public class TestingTester {
 		//ma.setLayout(new FlowLayout());
 		//ma.setContentPane(lo);
 		
-		ma.add(lo);
+		/*ma.add(lo);
 		ma.setVisible(true);
 		ma.setSize(ma.screenSize.width,ma.screenSize.height);		
-		ma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 	}
 
 }
