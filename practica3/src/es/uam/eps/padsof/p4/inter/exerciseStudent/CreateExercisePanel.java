@@ -247,8 +247,6 @@ public class CreateExercisePanel extends JPanel{
 			this.addMultiQues.addActionListener(c);
 			this.addOpenQues.addActionListener(c);
 			this.addUniqQues.addActionListener(c);
-			this.aleatOrder.addActionListener(c);
-			this.hide.addActionListener(c);
 			this.eqValued.addActionListener(c);
 		}
 

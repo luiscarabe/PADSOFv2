@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.MUQuestion;
+import es.uam.eps.padsof.p3.exercise.MultiQuestion;
 import es.uam.eps.padsof.p3.exercise.OpenQuestion;
 import es.uam.eps.padsof.p3.exercise.Option;
 import es.uam.eps.padsof.p3.exercise.Question;
@@ -68,6 +69,7 @@ public class AddQuestionMQPanelController implements ActionListener{
 			String solutionAdding = view.getAddingSolution();
 			Question question;
 			List<Option> todelete = new ArrayList<Option>();
+			List<Option> tosolution = new ArrayList<Option>();
 			
 			Option opt;
 //			
@@ -85,18 +87,19 @@ public class AddQuestionMQPanelController implements ActionListener{
 						JOptionPane.showMessageDialog(view, "The question must have title and solution", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-					if(options.size() < 2){
-						JOptionPane.showMessageDialog(view, "The question must have more than one option", "Error", JOptionPane.ERROR_MESSAGE);
+					if(options.size() <= solutions.size()){
+						JOptionPane.showMessageDialog(view, "The question must have more options than solutions.", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					
 					if(this.view.getAleat().isSelected() == true){
-						question = new UniqQuestion(title, 0, true, null);
+						question = new MultiQuestion(title, 0, true, null);
 					}else{
-						question = new UniqQuestion(title, 0, false, null);
+						question = new MultiQuestion(title, 0, false, null);
 					}
-					
-					((UniqQuestion)question).addSolution(solution);
+					for(Option aux: solutions){
+						((MultiQuestion)question).addSolution(aux);
+					}
 					
 					for(Option aux: options){
 						((MUQuestion)question).addOption(aux);
@@ -112,29 +115,31 @@ public class AddQuestionMQPanelController implements ActionListener{
 					
 					return;
 				}else if(this.eqValue == false){
-					int weight;
+					double weight;
 					if(title.equals("") || this.view.getSolutionModel().isEmpty() == true || desc.equals("")){
 						JOptionPane.showMessageDialog(view, "The question must have title, any solution and weight", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					
-					if(options.size() < 2){
-						JOptionPane.showMessageDialog(view, "The question must have more than one option", "Error", JOptionPane.ERROR_MESSAGE);
+					if(options.size() <= solutions.size()){
+						JOptionPane.showMessageDialog(view, "The question must have more options than solutions.", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					try{
-						weight = Integer.parseInt(desc);
+						weight = Double.parseDouble(desc);
 					}catch(NumberFormatException ex){
 						JOptionPane.showMessageDialog(view, "The weight must be a number", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					if(this.view.getAleat().isSelected() == true){
-						question = new UniqQuestion(title, weight, true, null);
+						question = new MultiQuestion(title, weight, true, null);
 					}else{
-						question = new UniqQuestion(title, weight, false, null);
+						question = new MultiQuestion(title, weight, false, null);
 					}
 					
-					((UniqQuestion)question).addSolution(solution);
+					for(Option aux: solutions){
+						((MultiQuestion)question).addSolution(aux);
+					}
 					
 					for(Option aux: options){
 						((MUQuestion)question).addOption(aux);
@@ -152,47 +157,56 @@ public class AddQuestionMQPanelController implements ActionListener{
 				}
 			}else if(source == this.view.getAddSolution()){
 				if(solutionAdding.equals("")){
-					JOptionPane.showMessageDialog(view, "The solution musn't be blank", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(view, "The option musn't be blank", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				opt = new Option(solutionAdding);
 				options.add(opt);
-				System.out.println(options.size());
 				this.view.getOptionsModel().addElement(opt);
 				this.view.validate();
 				this.view.repaint();
 			}else if(source == this.view.getOption2Solution()){
-				opt = this.view.getOptionsList().getSelectedValue();
-				if(opt == null){
+				tosolution = this.view.getOptionsList().getSelectedValuesList();
+				if(tosolution == null){
 					return;
 				}
-				if(solution != null){
-					JOptionPane.showMessageDialog(view, "There is already a solution. Delete first.", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
+
+				for(Option aux: tosolution){
+					this.view.getSolutionModel().addElement(aux);
+					solutions.add(aux);
 				}
-				this.view.getSolutionModel().addElement(opt);
 				this.view.validate();
 				this.view.repaint();
-				solution = opt;
 				return;
 			}else if(source == this.view.getDelSolution()){
-				if(solution == null){
+				todelete = this.view.getSolutionList().getSelectedValuesList();
+				if(todelete == null){
 					return;
 				}
 				
-				this.view.getSolutionModel().removeElement(solution);
+				for(Option aux: todelete){
+					this.view.getSolutionModel().removeElement(aux);
+					solutions.remove(aux);
+				}
+				
 				this.view.validate();
 				this.view.repaint();
-				solution = null;
 				return;
 			}else if(source == this.view.getDeleteOption()){
-				opt = this.view.getOptionsList().getSelectedValue();
-				if(opt == null){
+				todelete = this.view.getOptionsList().getSelectedValuesList();
+				if(todelete == null){
 					return;
 				}
+				for(Option aux: todelete){
+					this.view.getOptionsModel().removeElement(aux);
+					options.remove(aux);
+					
+					if(solutions.contains(aux)){
+						this.view.getSolutionModel().removeElement(aux);
+						solutions.remove(aux);
+					}
+				}
 				
-				options.remove(opt);
-				this.view.getOptionsModel().removeElement(opt);
 				this.view.validate();
 				this.view.repaint();
 				return;
