@@ -31,10 +31,14 @@ import es.uam.eps.padsof.p4.inter.courseTeacher.ModifyUnitPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.SearchCourTeacherPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.StudentsOfCourPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionMQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionOTPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionTFPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionOTPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionTFPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionUQPanel;
 
 import java.util.*;
 import java.util.List;
@@ -77,6 +81,10 @@ public class MainFrame extends JFrame{
 	private AddQuestionTFPanel aqtfp;
 	private AddQuestionOTPanel aqotp;
 	private AddQuestionUQPanel aquqp;
+	private AddQuestionMQPanel aqmqp;
+	private ModifyQuestionTFPanel mqtfp;
+	private ModifyQuestionOTPanel mqotp;
+	private ModifyQuestionUQPanel mquqp;
 	
 	
 	/* Controllers */
@@ -104,6 +112,10 @@ public class MainFrame extends JFrame{
 	private AddQuestionTFPanelController aqtfpc;
 	private AddQuestionOTPanelController aqotpc;
 	private AddQuestionUQPanelController aquqpc;
+	private AddQuestionMQPanelController aqmqpc;
+	private ModifyQuestionTFPanelController mqtfpc;
+	private ModifyQuestionOTPanelController mqotpc;
+	private ModifyQuestionUQPanelController mquqpc;
 	
 	
 	
@@ -607,6 +619,86 @@ public class MainFrame extends JFrame{
 		this.aquqpc = new AddQuestionUQPanelController(aquqp, course, questions, eqValue);
 		aquqp.setController(this.aquqpc);
 		this.aquqp = aquqp;
+	}
+
+
+
+	/**
+	 * @return the aqmqp
+	 */
+	public AddQuestionMQPanel getAqmqp() {
+		return aqmqp;
+	}
+
+
+
+	/**
+	 * @param aqmqp the aqmqp to set
+	 */
+	public void setAqmqp(AddQuestionMQPanel aqmqp, Course course, List<Question> questions, boolean eqValue) {
+		this.aqmqpc = new AddQuestionMQPanelController(aqmqp, course, questions, eqValue);
+		aqmqp.setController(this.aqmqpc);
+		this.aqmqp = aqmqp;
+	}
+
+
+
+	/**
+	 * @return the mqtfp
+	 */
+	public ModifyQuestionTFPanel getMqtfp() {
+		return mqtfp;
+	}
+
+
+
+	/**
+	 * @param mqtfp the mqtfp to set
+	 */
+	public void setMqtfp(ModifyQuestionTFPanel mqtfp, Course course, List<Question> questions, boolean eqValue, Question question) {
+		this.mqtfpc = new ModifyQuestionTFPanelController(mqtfp, course, questions, eqValue, question);
+		mqtfp.setController(this.mqtfpc);
+		this.mqtfp = mqtfp;
+	}
+
+
+
+	/**
+	 * @return the mqotp
+	 */
+	public ModifyQuestionOTPanel getMqotp() {
+		return mqotp;
+	}
+
+
+
+	/**
+	 * @param mqotp the mqotp to set
+	 */
+	public void setMqotp(ModifyQuestionOTPanel mqotp, Course course, List<Question> questions, boolean eqValue, Question question) {
+		this.mqotpc = new ModifyQuestionOTPanelController(mqotp, course, questions, eqValue, question);
+		mqotp.setController(this.mqotpc);
+		this.mqotp = mqotp;
+	}
+
+
+
+	/**
+	 * @return the mquqp
+	 */
+	public ModifyQuestionUQPanel getMquqp() {
+		return mquqp;
+	}
+
+
+
+	/**
+	 * @param mquqp the mquqp to set
+	 */
+	public void setMquqp(ModifyQuestionUQPanel mquqp, Course course, List<Question> questions, boolean eqValue, Question question) {
+		this.mquqpc = new ModifyQuestionUQPanelController(mquqp, course, questions, eqValue, question);
+		mquqp.setController(this.mquqpc);
+		this.mquqp = mquqp;
 	}
 	
 	

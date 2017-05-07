@@ -19,15 +19,25 @@ import javax.swing.SpinnerDateModel;
 import es.uam.eps.padsof.p3.course.Course;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
+import es.uam.eps.padsof.p3.exercise.MUQuestion;
+import es.uam.eps.padsof.p3.exercise.MultiQuestion;
+import es.uam.eps.padsof.p3.exercise.OpenQuestion;
+import es.uam.eps.padsof.p3.exercise.Option;
 import es.uam.eps.padsof.p3.exercise.Question;
+import es.uam.eps.padsof.p3.exercise.TFQuestion;
+import es.uam.eps.padsof.p3.exercise.UniqQuestion;
 import es.uam.eps.padsof.p4.inter.MainFrame;
 import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CreateNotePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionMQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionOTPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionTFPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.AddQuestionUQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionOTPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionTFPanel;
+import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionUQPanel;
 
 /**
  * @author Miguel
@@ -54,6 +64,7 @@ public class CreateExercisePanelController implements ActionListener{
 		JPanel newview;
 		
 		JComponent source = (JComponent) e.getSource();
+		Question editable;
 		
 		// esto sera la de course !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		String title = view.getName();
@@ -102,7 +113,71 @@ public class CreateExercisePanelController implements ActionListener{
 			}
 			return;
 		}else if(source == this.view.getAddMultiQues()){
-			MainFrame.getInstance().setAqtfp(new AddQuestionTFPanel(), course, questions, true);
+			if(this.view.getEqValued().isSelected() == true){
+				MainFrame.getInstance().setAqmqp(new AddQuestionMQPanel(), course, questions, true);
+			}else{
+				MainFrame.getInstance().setAqmqp(new AddQuestionMQPanel(), course, questions, false);
+			}
+			return;
+		}else if(source == this.view.getEdit()){
+			editable =  this.view.getQuesList().getSelectedValue();
+			if(editable == null){
+				return;
+			}
+			if(editable instanceof TFQuestion){
+				double wei = editable.getWeight();
+				String strwei = String.valueOf(wei);
+				List<Option> sol = editable.getSolution();
+				String au = sol.get(0).getOption();
+				boolean boolsol;
+				if(au.equals("T") || au.equals("t")){
+					boolsol = true;
+				}else{
+					boolsol = false;
+				}
+				if(this.view.getEqValued().isSelected() == true){
+					MainFrame.getInstance().setMqtfp(new ModifyQuestionTFPanel(editable.getTitle(), strwei, boolsol), course, questions, true, editable);
+				}else{
+					MainFrame.getInstance().setMqtfp(new ModifyQuestionTFPanel(editable.getTitle(), strwei, boolsol), course, questions, false, editable);
+				}
+				return;
+			}else if(editable instanceof OpenQuestion){
+				double wei = editable.getWeight();
+				String strwei = String.valueOf(wei);
+				List<Option> sol = editable.getSolution();
+				if(this.view.getEqValued().isSelected() == true){
+					MainFrame.getInstance().setMqotp(new ModifyQuestionOTPanel(editable.getTitle(), (ArrayList<Option>) sol, strwei), course, questions, true, editable);
+				}else{
+					MainFrame.getInstance().setMqotp(new ModifyQuestionOTPanel(editable.getTitle(), (ArrayList<Option>) sol, strwei), course, questions,false, editable);
+				}
+				return;
+			}else if(editable instanceof UniqQuestion){
+				double wei = editable.getWeight();
+				String strwei = String.valueOf(wei);
+				List<Option> sol = editable.getSolution();
+				if(this.view.getEqValued().isSelected() == true){
+					MainFrame.getInstance().setMquqp(new ModifyQuestionUQPanel(editable.getTitle(), (ArrayList<Option>) ((UniqQuestion) editable).getAnswers(), editable.getSolution().get(0), strwei, ((MUQuestion)editable).isRandomOrder()), course, questions, true, editable);
+				}else{
+					MainFrame.getInstance().setMquqp(new ModifyQuestionUQPanel(editable.getTitle(), (ArrayList<Option>) ((UniqQuestion) editable).getAnswers(), editable.getSolution().get(0), strwei, ((MUQuestion)editable).isRandomOrder()), course, questions, false, editable);
+					}
+				return;
+			}else if(editable instanceof MultiQuestion){
+				if(this.view.getEqValued().isSelected() == true){
+					MainFrame.getInstance().setAqmqp(new AddQuestionMQPanel(), course, questions, true);
+				}else{
+					MainFrame.getInstance().setAqmqp(new AddQuestionMQPanel(), course, questions, false);
+				}
+				return;
+			}
+			return;
+		}else if(source == this.view.getEqValued()){
+			if(this.view.getQuesModel().isEmpty() == false){
+				if(this.view.getEqValued().isSelected() == true){
+					this.view.getEqValued().setSelected(false);
+				}else {
+					this.view.getEqValued().setSelected(true);
+				}
+			}
 			return;
 		}else if(source == this.view.getCreate()){
 //			if(title.equals("") || content.equals("")){

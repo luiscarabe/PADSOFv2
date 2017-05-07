@@ -96,13 +96,13 @@ public class AddQuestionOTPanelController implements ActionListener{
 					
 					return;
 				}else if(this.eqValue == false){
-					int weight;
+					double weight;
 					if(title.equals("") || this.view.getSolutionModel().isEmpty() == true || desc.equals("")){
 						JOptionPane.showMessageDialog(view, "The question must have title, any solution and weight", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 					try{
-						weight = Integer.parseInt(desc);
+						weight = Double.parseDouble(desc);
 					}catch(NumberFormatException ex){
 						JOptionPane.showMessageDialog(view, "The weight must be a number", "Error", JOptionPane.ERROR_MESSAGE);
 						return;
