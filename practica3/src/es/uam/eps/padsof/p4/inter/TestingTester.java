@@ -10,12 +10,15 @@ import es.uam.eps.padsof.p3.course.Note;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
+import es.uam.eps.padsof.p3.exercise.Option;
 import es.uam.eps.padsof.p3.stat.Answer;
 import es.uam.eps.padsof.p3.stat.ExerciseStat;
 import es.uam.eps.padsof.p3.user.*;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.CreateExercisePanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.ModifyQuestionMQPanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeOTExercisePanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.TakeTFExercisePanel;
 
 public class TestingTester {
@@ -36,13 +39,13 @@ public class TestingTester {
 		ar.add("Hola");
 		ar.add("Adios");
 		ar.add("Holaaaaaaaaaaaaaaaaaaaaaaaa");
-		ar.add("Adios");
-		ar.add("Hola");
-		ar.add("Adios");
-		ar.add("Hola");
-		ar.add("Adios");
-		ar.add("Hola");
-		ar.add("Adios");
+		ar.add("Adiosafs");
+		ar.add("Holaeg");
+		ar.add("Adisdgos");
+		ar.add("Holega");
+		ar.add("Adisdbos");
+		ar.add("Howetla");
+		ar.add("Adi42os");
 		
 		Unit u1 = new Unit("Unidad 1", "hola", false, null);
 		Unit u2 = new Unit("Subunidad 1", "adios", false, null);
@@ -54,6 +57,11 @@ public class TestingTester {
 		Exercise e2 = new Exercise("Ejercicio 2", "A", false, null);
 		Exercise e3 = new Exercise("Ejercicio 3", "A", false, null);
 		
+		ArrayList<String> ar2 = new ArrayList<String>();
+		ar2.add("Hola");
+		ar2.add("Adi42os");
+		
+		
 		ArrayList<Answer> ans = new ArrayList<Answer>();
 		Answer a1 = new Answer(e1,st, 0);
 		Answer a2 = new Answer(e1,st2, 0);
@@ -63,9 +71,19 @@ public class TestingTester {
 		e1.setAnswers(ans);
 		
 		ExerciseStat es = new ExerciseStat(e1);
+		es.setAll();
 		
-		ExerciseStatPanel lo = new ExerciseStatPanel(es);
+		Option o = new Option("T");
 		
+		ArrayList<Option> os = new ArrayList<Option>();
+		os.add(o);
+		
+		UQResolvedPanel lo = new UQResolvedPanel("aaaaa", "bbbb", "miii", 2, ar, ar.get(5), true);
+		/*TakeTFExercisePanel aa = new TakeTFExercisePanel("ua", "ua", "uammmmmm", 30);
+		TakeOTExercisePanel ab = new TakeOTExercisePanel("ua", "ua", "uammmmmm", 30);
+		lo.getExerTabs().add("Ques", aa);
+		lo.getExerTabs().add("Ques", ab);
+		*/
 		/*lo.addUnit(u1);
 		lo.addUnit(u4);
 		lo.addSubunit(u2, u1);
@@ -84,10 +102,10 @@ public class TestingTester {
 		//ma.setLayout(new FlowLayout());
 		//ma.setContentPane(lo);
 		
-		/*ma.add(lo);
+		ma.add(lo);
 		ma.setVisible(true);
 		ma.setSize(ma.screenSize.width,ma.screenSize.height);		
-		ma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+		ma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }

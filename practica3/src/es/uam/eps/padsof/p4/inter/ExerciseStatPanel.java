@@ -18,13 +18,14 @@ public class ExerciseStatPanel extends JDialog{
 	
 	private JPanel marksPanel = new JPanel();
 	private JScrollPane marksPane = new JScrollPane(this.marksPanel,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	private JButton back = new JButton("Return");
 	
+	private JTable table;
+	private JScrollPane tablePane;
 	private SpringLayout layout = new SpringLayout();
 	
 	public ExerciseStatPanel(ExerciseStat es){
 		this.jp.setVisible(true);
-		this.jp.setPreferredSize(new Dimension(900, 500));
+		this.jp.setPreferredSize(new Dimension(900, 600));
 		this.jp.setLayout(layout);
 
 		this.firstLabel.setText(es.getExercise().getTitle());
@@ -40,21 +41,40 @@ public class ExerciseStatPanel extends JDialog{
 		}
 		this.marksPane.setPreferredSize(new Dimension(300,450));
 		this.marksPane.setBorder(null);
-		this.marksPanel.setBackground(Color.BLACK);
-		this.marksPane.setBackground(Color.black);
+
+		
+		//Table
+		
+		String[] titles = {"Tot. ans.", "Right", "Wrong", "Not ans."};
+		
+		Object[][] a = new Object[es.getqAnswered().length][4];
+		
+		for(int i = 0; i < es.getqAnswered().length; i++){
+			Object aux[] = {es.getqAnswered()[i], es.getRightAns()[i], es.getWrongAns()[i], es.getqNotAnswered()[i]};
+			a[i] = aux;
+		}
+		this.table = new JTable(a, titles);
+		this.table.setPreferredScrollableViewportSize(new Dimension(400,450));
+		this.tablePane = new JScrollPane(this.table,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		this.tablePane.setVisible(true);
+		this.tablePane.setPreferredSize(new Dimension(500,450));
 		
 		this.jp.add(this.marksPane);
 		this.jp.add(this.firstLabel);
+		this.jp.add(this.tablePane);
 		
 		layout.putConstraint(SpringLayout.NORTH, this.firstLabel, 10, SpringLayout.NORTH, this.jp);
 		layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.firstLabel, 0, SpringLayout.HORIZONTAL_CENTER, this.jp);
 	
 		layout.putConstraint(SpringLayout.NORTH, this.marksPane, 10, SpringLayout.SOUTH, this.firstLabel);
-		layout.putConstraint(SpringLayout.WEST, this.marksPane, 10, SpringLayout.WEST, this.jp);
+		layout.putConstraint(SpringLayout.WEST, this.marksPane, 15, SpringLayout.WEST, this.jp);
+		
+		layout.putConstraint(SpringLayout.VERTICAL_CENTER, this.tablePane, 0, SpringLayout.VERTICAL_CENTER, this.marksPane);
+		layout.putConstraint(SpringLayout.WEST, this.tablePane, 10, SpringLayout.EAST, this.marksPane);
 		
 		this.setContentPane(this.jp);
 		this.setVisible(true);
-		this.setSize(new Dimension(900,500));
+		this.setSize(new Dimension(850,550));
 	}
 	
 }
