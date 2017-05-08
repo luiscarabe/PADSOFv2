@@ -16,5 +16,3 @@ Javier;Carrera;Javier.Carrera@aadu.es;4442;er.Carrera@ar;
 Roberto;Paz;Roberto.Paz@aadu.es;5766;Rerto;
 Carlos;Redondo;Carlos.Redondo@aadu.es;8411;a.Redond;
 David;Prieto;David.Prieto@aadu.es;9113;idPrieto;
-David;cvxca;a@a.es;911;a;
-Davisdbdsfd;cvxsca;b@b.es;93;b;

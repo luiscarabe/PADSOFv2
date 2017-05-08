@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.stats;
 
 import java.awt.Color;
@@ -32,7 +37,14 @@ public class MQResolvedPanel extends JPanel {
 	private SpringLayout layout2 = new SpringLayout();
 
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
+	/**
+	 * Constructor of MQResolvedPanel
+	 * @param nameExer
+	 * @param nameQues
+	 * @param wei
+	 * @param options
+	 * @param solution
+	 */
 	public MQResolvedPanel(String nameExer, String nameQues, float wei, ArrayList<String> options, ArrayList<String> solution){
 		this.setVisible(true);
 		this.setSize(new Dimension(screenSize.width, 800));
@@ -75,13 +87,25 @@ public class MQResolvedPanel extends JPanel {
 		layout2.putConstraint(SpringLayout.WEST, this.solutionPane, 0, SpringLayout.WEST, this.questionPane);
 		layout2.putConstraint(SpringLayout.NORTH, this.solutionPane, 10, SpringLayout.SOUTH, this.questionPane);
 	}
-	public MQResolvedPanel( String nameExer, String nameQues, float wei, ArrayList<String> options, ArrayList<String> solution, boolean correct){
+	/**
+	 * Constructor of MQResolvedPanel (answers of student)
+	 * @param nameExer
+	 * @param nameQues
+	 * @param wei
+	 * @param options
+	 * @param solution
+	 * @param correct
+	 * @param penal
+	 */
+	public MQResolvedPanel( String nameExer, String nameQues, float wei, ArrayList<String> options, ArrayList<String> solution, boolean correct, float penal){
 		this( nameExer, nameQues, wei, options, solution);
 		JLabel yourMark = new JLabel();
 		if (correct == true)
 			yourMark.setText("Your mark: " + wei + "/" + wei);
-		else
-			yourMark.setText("Yout mark: 0/" + wei);
+		else{
+			float aux = 0 - penal;
+			yourMark.setText("Yout mark: "+aux+"/" + wei);	
+		}
 		this.add(yourMark);
 		
 		layout2.putConstraint(SpringLayout.WEST, this.solutionPane, 0, SpringLayout.WEST, this.questionPane);

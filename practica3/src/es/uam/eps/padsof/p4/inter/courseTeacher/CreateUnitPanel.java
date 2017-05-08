@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.courseTeacher;
 
 import java.awt.*;
@@ -28,6 +33,10 @@ public class CreateUnitPanel extends JPanel{
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	
+	/**
+	 * Constructor of CreateUnitPanel
+	 */
 	
 	public CreateUnitPanel(){
 		this.setVisible(true);
@@ -105,13 +114,24 @@ public class CreateUnitPanel extends JPanel{
 		
 
 	}
+	/**
+	 * 
+	 */
 	public String getName() {
 		return this.nameField.getText();
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	
 	public String getDesc() {
 		return this.descField.getText();
 	}
+	/**
+	 * Method to set the controllers
+	 * @param c
+	 */
 
 	public void setController(ActionListener c) {
 		this.signOut.addActionListener(c);

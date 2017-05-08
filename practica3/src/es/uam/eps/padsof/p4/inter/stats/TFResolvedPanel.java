@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.stats;
 
 import java.awt.*;
@@ -21,7 +26,13 @@ public class TFResolvedPanel extends JPanel{
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
+	/**
+	 * Constructor of TFResolvedPanel
+	 * @param nameExer
+	 * @param nameQues
+	 * @param wei
+	 * @param op
+	 */
 	public TFResolvedPanel(String nameExer, String nameQues, float wei, Option op){
 		this.setVisible(true);
 		this.setSize(new Dimension(screenSize.width, 800));
@@ -49,7 +60,7 @@ public class TFResolvedPanel extends JPanel{
 		
 		if(op.getOption().equals("T"))
 			this.solutionT.setSelected(true);
-		else
+		else if(op.getOption().equals("F"))
 			this.solutionF.setSelected(true);
 		
 		this.solutionF.setEnabled(false);
@@ -64,14 +75,25 @@ public class TFResolvedPanel extends JPanel{
 		layout2.putConstraint(SpringLayout.WEST, this.solutionPanel, 0, SpringLayout.WEST, this.questionPane);
 		layout2.putConstraint(SpringLayout.NORTH, this.solutionPanel, 10, SpringLayout.SOUTH, this.questionPane);
 	}
+	/**
+	 * Constructor of TFResolvedPanel (the answers of the student)
+	 * @param nameExer
+	 * @param nameQues
+	 * @param wei
+	 * @param op
+	 * @param correct
+	 * @param penal
+	 */
 	
-	public TFResolvedPanel(String nameExer, String nameQues, float wei, Option op, boolean correct){
+	public TFResolvedPanel(String nameExer, String nameQues, float wei, Option op, boolean correct, float penal){
 		this( nameExer, nameQues, wei, op);
 		JLabel yourMark = new JLabel();
 		if (correct == true)
 			yourMark.setText("Your mark: "+ wei +"/"+ wei);
-		else
-			yourMark.setText("Yout mark: 0/" + wei);
+		else{
+			float aux = 0 - penal;
+			yourMark.setText("Yout mark: "+aux+"/" + wei);
+		}
 		this.add(yourMark);
 		
 		layout2.putConstraint(SpringLayout.NORTH, yourMark, 10, SpringLayout.SOUTH, this.solutionPanel);

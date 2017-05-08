@@ -1,6 +1,7 @@
 /**
- * 
- */
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
 package es.uam.eps.padsof.p4.inter.courseTeacher;
 
 import java.awt.Color;
@@ -15,10 +16,6 @@ import java.util.Map;
 
 import javax.swing.*;
 
-/**
- * @author e341020
- *
- */
 public class SearchCourTeacherPanel extends JPanel{
 	private JPanel supPanel = new JPanel();
 	private ImageIcon image = new ImageIcon("logov3.png");
@@ -47,7 +44,10 @@ public class SearchCourTeacherPanel extends JPanel{
 	
 	private SpringLayout layout2 = new SpringLayout();
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
+	/**
+	 * Constructor of SearchCourTeacherPanel
+	 * @param allCour
+	 */
 	public SearchCourTeacherPanel(ArrayList<String> allCour){
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
@@ -170,14 +170,23 @@ public class SearchCourTeacherPanel extends JPanel{
 		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.searchButton, 0, SpringLayout.HORIZONTAL_CENTER, this.searchField);
 		layout2.putConstraint(SpringLayout.NORTH, this.searchButton, 10, SpringLayout.SOUTH, this.searchField);
 	}
+	/**
+	 * Method to set controllers
+	 * @param c
+	 */
 	
 	public void setController(ActionListener c) {
 		this.signOut.addActionListener(c);
 		this.searchCour.addActionListener(c);
 		this.searchButton.addActionListener(c);
 		this.go.addActionListener(c);
+		this.createCourse.addActionListener(c);
 		this.courButton.addActionListener(c);
 	}
+	/**
+	 * 
+	 * @return the searchField
+	 */
 	
 	public String getScourse(){
 		return this.searchField.getText();

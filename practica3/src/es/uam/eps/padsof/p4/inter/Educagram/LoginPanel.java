@@ -1,6 +1,7 @@
 /**
- * 
- */
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
 package es.uam.eps.padsof.p4.inter.Educagram;
 
 
@@ -11,10 +12,7 @@ import javax.swing.*;
 
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.controllers.LoginPanelController;
-/**
- * @author e341020
- *
- */
+
 public class LoginPanel extends JPanel{
 	private JButton enter = new JButton("Enter");
 	private JPanel logWindow = new JPanel();
@@ -29,7 +27,9 @@ public class LoginPanel extends JPanel{
 
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	
+	/**
+	 * Constructor of LoginPanel
+	 */
 	public LoginPanel(){
 		imgLabel.setVisible(true);
 		imgLabel.setBounds(15,20,200,200);
@@ -84,15 +84,26 @@ public class LoginPanel extends JPanel{
 		
 
 	}
+	/**
+	 * Method to set the controllers
+	 * @param c
+	 */
 			
 		public void setController(ActionListener c) {
 			this.enter.addActionListener(c);
 		}
 		
-		// Get the name of a task from the JTextField
+		/**
+		 *  Get the name of a task from the JTextField
+		 * @return
+		 */
 		public String getId() {
 			return this.idField.getText();
 		}
+		/**
+		 * 
+		 * @return the pswField
+		 */
 		
 		public String getPsw() {
 			return this.pswField.getText();

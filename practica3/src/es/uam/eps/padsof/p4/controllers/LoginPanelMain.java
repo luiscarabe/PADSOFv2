@@ -25,13 +25,5 @@ public class LoginPanelMain {
 		ma.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ma.setVisible(true);
 		
-		// model
-		
-		try{
-			model.readFile();
-		}catch( Exception e){
-			System.out.println("Errrrrrrorrr");
-		}
-		
 	}
 }

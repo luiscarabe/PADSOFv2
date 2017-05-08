@@ -1,3 +1,7 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
 package es.uam.eps.padsof.p4.inter.courseTeacher;
 
 import java.awt.*;
@@ -27,7 +31,12 @@ public class ViewNoteTeacherPanel extends JPanel{
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
+	/**
+	 * Constructor of ViewNoteTeacherPanel
+	 * @param name
+	 * @param desc
+	 * @param content
+	 */
 	public ViewNoteTeacherPanel(String name, String desc, String content){
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
@@ -109,23 +118,41 @@ public class ViewNoteTeacherPanel extends JPanel{
 		
 
 	}
-	
+	/**
+	 * 
+	 * @param c
+	 */
 	public void setController(ActionListener c) {
 		this.signOut.addActionListener(c);
 		this.ok.addActionListener(c);
 	}
-
+	/**
+	 * 
+	 * @return the signOut
+	 */
 	public JButton getSignOut() {
 		return signOut;
 	}
+	/**
+	 * 
+	 * @return the descField
+	 */
 
 	public String getDesc() {
 		return descField.getText();
 	}
+	/**
+	 * 
+	 * @return the contentField
+	 */
 
 	public String getContent() {
 		return contentField.getText();
 	}
+	/**
+	 * 
+	 * @return the ok
+	 */
 
 	public JButton getOk() {
 		return ok;

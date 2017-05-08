@@ -25,7 +25,7 @@ public class Educagram implements Serializable{
 	private User currentUser;
 	private int firstLogin = 0;
 	
-	private static final Educagram Instance = new Educagram();
+	private static Educagram Instance = null;
 	
 	/**
 	 * Private constructor of Educagram, it creates an instance of the
@@ -36,14 +36,31 @@ public class Educagram implements Serializable{
 		courses = new ArrayList<Course>();
 		students = new ArrayList<Student>();
 		professor = new Professor("Teacher", "teacher@teadu.com", "lovingPADSOF");
+
+		try{
+			this.readFile();
+		}catch( Exception e){
+			System.out.println("Errrrrrrorrr");
+		}
+		
 		currentUser = null;
 	}
     
 	/**
 	 * @return
+	 * @throws Exception 
 	 */
 	public static Educagram getInstance(){
-		return Educagram.Instance;
+		if(Instance == null){
+			try {
+				Educagram.Instance = Educagram.readEducagram();
+				return Educagram.Instance;
+			} catch (IOException | ClassNotFoundException ex) {
+				Instance = new Educagram();
+				return Instance;
+			}
+		}
+		return Instance;
 	}
 	/**
 	 * @return the courses
@@ -143,7 +160,7 @@ public class Educagram implements Serializable{
 	 */
 	
 	public User signIn(String email, String psw) throws Exception{
-		Educagram.readEducagram();
+		Educagram.Instance = Educagram.getInstance();
 		if (this.currentUser != null){
 			return null;
 		}
@@ -231,12 +248,13 @@ public class Educagram implements Serializable{
 	 * @throws Exception
 	 */
 	
-	public static Educagram readEducagram() throws Exception {
+	public static Educagram readEducagram() throws IOException, ClassNotFoundException {
 		Educagram e;
 		ObjectInputStream inputObject = new ObjectInputStream( new FileInputStream("Educagram.objectData") );
 		e = (Educagram)inputObject.readObject();
 		inputObject.close();
-		System.out.println("Educagram readed.");
+		System.out.println("Educagram read.");
 		return e;
+		
 	}	
 }

@@ -36,6 +36,8 @@ public class Option implements Serializable{
 	public void setOption(String option) {
 		this.option = option;
 	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -55,8 +57,18 @@ public class Option implements Serializable{
 		} else if (!option.equals(other.option))
 			return false;
 		return true;
-	}	
+	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((option == null) ? 0 : option.hashCode());
+		return result;
+	}
+
+	
+
 	public String toString(){
 		return this.getOption();
 	}

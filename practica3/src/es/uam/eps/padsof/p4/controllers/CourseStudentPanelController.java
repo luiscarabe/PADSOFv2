@@ -32,6 +32,8 @@ import es.uam.eps.padsof.p4.inter.courseStudent.ViewNoteStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.TakeExercisePanel;
 import es.uam.eps.padsof.p4.inter.stats.CourseMarksPanel;
+import es.uam.eps.padsof.p4.inter.stats.ExerciseAnswersPanel;
+import es.uam.eps.padsof.p4.inter.stats.ExerciseSolutionPanel;
 
 /**
  * @author Miguel
@@ -233,6 +235,25 @@ public class CourseStudentPanelController implements ActionListener, TreeSelecti
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
+		}else if(source == this.view.getYourAns()){
+			//maaaaaal
+			System.out.println("Holap");
+			MainFrame.getInstance().setEap(new ExerciseAnswersPanel(current.getName(), ((Exercise)this.nodo).getTitle()), ((Exercise)this.nodo));
+			newview = MainFrame.getInstance().getEap();
+			System.out.println("Holapppppp");
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+			return;
+		}else if (source == this.view.getSolution()){
+			System.out.println("H");
+			MainFrame.getInstance().setEsolp(new ExerciseSolutionPanel(current.getName(), ((Exercise)this.nodo).getTitle()), ((Exercise)this.nodo));
+			newview = MainFrame.getInstance().getEsolp();
+			System.out.println("Hhhhhhhhhhhhhhhhhhhhhhhhhh");
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+			return;
 		}else if(source == this.view.getMarks()){
 			CMark del = null;
 			CMark cmark = new CMark(this.course, current);
@@ -352,20 +373,25 @@ public class CourseStudentPanelController implements ActionListener, TreeSelecti
 			this.nodo = (CourseElement) source;
 			this.padre = (CourseElement) parent;
 			/* this.view.setDescription(((Exercise)source).getDesc()); */
-			this.view.getDesc().setText(((Exercise) source).getTitle() + ":\n" + ((Exercise) source).getDesc());
+			this.view.getDesc().setText(((Exercise) source).getTitle() + ":\n" + ((Exercise) source).getDesc()+ "\n -Start Date: " + ((Exercise) source).getStartDate() + "\n -Expiration Date: " + ((Exercise) source).getExpDate());
 			this.view.getDesc().revalidate();
 
 			this.view.getOtherButtons().setVisible(true);
 			this.view.getView().setVisible(false);
-			if(((Exercise)this.nodo).isTakenExerciseByStudent((Student) edu.getCurrentUser())){
-				this.view.getTake().setVisible(false);
-			}else {
+			if(((Exercise)this.nodo).canTakeExercise((Student)edu.getInstance().getCurrentUser())){
 				this.view.getTake().setVisible(true);
+			}else{
+				this.view.getTake().setVisible(false);
+			}
+			if(((Exercise)this.nodo).isAllowedToShow()){
+				this.view.getExerReady().setVisible(true);
+			}else {
+				this.view.getExerReady().setVisible(false);
 			}
 			
 			this.view.getMarks().setVisible(true);
 
-			this.view.getExerReady().setVisible(true);
+			
 
 			this.view.getOtherButtons().validate();
 			this.view.getOtherButtons().repaint();

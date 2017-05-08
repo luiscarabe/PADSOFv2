@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.courseStudent;
 
 import java.awt.Color;
@@ -35,6 +40,12 @@ public class NotAppliedCourPanel extends JPanel{
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
+	/**
+	 * Constructor of NotAppliedCourPanel
+	 * @param name
+	 * @param enrCourses
+	 * @param courName
+	 */
 	public NotAppliedCourPanel(String name, ArrayList<String> enrCourses, String courName){
 		String[] strCourses = {};
 		this.setVisible(true);
@@ -134,6 +145,10 @@ public class NotAppliedCourPanel extends JPanel{
 		layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.applyButton, 0, SpringLayout.VERTICAL_CENTER, this.applyLabel);
 		
 	}
+	/**
+	 * Method to set controllers
+	 * @param c
+	 */
 	
 	public void setController(ActionListener c){
 		this.signOut.addActionListener(c);

@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.exerciseTeacher;
 
 import java.awt.*;
@@ -33,7 +38,12 @@ public class ModifyQuestionOTPanel extends JDialog{
 	private JButton cancel = new JButton("Cancel");
 			
 	private SpringLayout layout = new SpringLayout();
-	
+	/**
+	 * Constructor of ModifyQuestionOTPanel
+	 * @param title
+	 * @param sol
+	 * @param wei
+	 */
 	public ModifyQuestionOTPanel(String title, ArrayList<Option> sol, String wei){
 		this.jp.setVisible(true);
 		this.jp.setPreferredSize(new Dimension(500, 500));
@@ -107,10 +117,16 @@ public class ModifyQuestionOTPanel extends JDialog{
 		this.setVisible(true);
 		this.setSize(new Dimension(500,500));
 	}
-	
+	/**
+	 * @return the titleField
+	 */
 	public String getName(){
 		return this.titleField.getText();
 	}
+	/**
+	 * 
+	 * @return the wightField
+	 */
 
 	public String getWeightText(){
 		if(this.weightField.isVisible() == false){
@@ -118,10 +134,18 @@ public class ModifyQuestionOTPanel extends JDialog{
 		}
 		return this.weightField.getText();
 	}
+	/**
+	 * 
+	 * @return the solutionField
+	 */
 	
 	public String getAddingSolution(){
 		return this.solutionField.getText();
 	}
+	/**
+	 * Method to set controllers
+	 * @param c
+	 */
 	
 	public void setController(ActionListener c) {
 		this.create.addActionListener(c);

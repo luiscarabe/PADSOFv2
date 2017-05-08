@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.courseStudent;
 
 import java.awt.*;
@@ -8,7 +13,11 @@ import java.util.*;
 import javax.swing.*;
 
 public class AppliedCourPanel extends JPanel{
-	//Superior Panel
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		//Superior Panel
 		private JPanel supPanel = new JPanel();
 		private ImageIcon image = new ImageIcon("logov3.png");
 		private JLabel imgLabel = new JLabel(image);
@@ -28,6 +37,13 @@ public class AppliedCourPanel extends JPanel{
 		private SpringLayout layout2 = new SpringLayout();
 		
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		/**
+		 * Constructor of AppliedCourPanel
+		 * @param name
+		 * @param enrCourses
+		 * @param courName
+		 */
 		
 		public AppliedCourPanel(String name, ArrayList<String> enrCourses, String courName){
 			String[] strCourses = {};
@@ -130,6 +146,10 @@ public class AppliedCourPanel extends JPanel{
 			
 			
 		}
+		/**
+		 * Method to set controllers
+		 * @param c
+		 */
 		
 		public void setController(ActionListener c){
 			this.signOut.addActionListener(c);

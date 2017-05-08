@@ -1,3 +1,7 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
 package es.uam.eps.padsof.p4.inter.stats;
 
 import java.awt.Color;
@@ -34,7 +38,11 @@ public class GlobalStatsPanel extends JPanel {
 		private SpringLayout layout2 = new SpringLayout();
 		
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		
+		/**
+		 * Constructor of GlobalStatsPabel
+		 * @param cs
+		 * @param courName
+		 */
 		public GlobalStatsPanel(CourseStat cs, String courName){
 			this.setVisible(true);
 			this.setSize(screenSize.width, screenSize.height);
@@ -116,6 +124,10 @@ public class GlobalStatsPanel extends JPanel {
 			
 			
 		}
+		/**
+		 * Method to add the controllers
+		 * @param c
+		 */
 		
 		public void setController(ActionListener c){
 			this.signOut.addActionListener(c);

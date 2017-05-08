@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.Color;
@@ -33,7 +38,11 @@ public class TakeExercisePanel extends JPanel{
 		
 		private SpringLayout layout2 = new SpringLayout();
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			
+		/**
+		 * Constructor of TakeExercisePanel
+		 * @param nameStud
+		 * @param nameExer
+		 */
 		public TakeExercisePanel(String nameStud, String nameExer){
 			this.setVisible(true);
 			this.setSize(screenSize.width, screenSize.height);
@@ -102,6 +111,10 @@ public class TakeExercisePanel extends JPanel{
 			layout2.putConstraint(SpringLayout.WEST, this.exerTabs, 0, SpringLayout.WEST, this);
 			
 		}
+		/**
+		 * Method to set controllers
+		 * @param c
+		 */
 
 		public void setController(ActionListener c){
 			this.signOut.addActionListener(c);

@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.courseTeacher;
 
 import java.awt.Color;
@@ -29,7 +34,11 @@ public class ModifySubunitPanel extends JPanel {
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
+	/**
+	 * Constructor of ModifySubunitPanel
+	 * @param name
+	 * @param desc
+	 */
 	public ModifySubunitPanel(String name, String desc){
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
@@ -109,16 +118,27 @@ public class ModifySubunitPanel extends JPanel {
 		
 
 	}
+	/**
+	 * Method to set the controllers
+	 * @param c
+	 */
 	
 	public void setController(ActionListener c) {
 		this.signOut.addActionListener(c);
 		this.ok.addActionListener(c);
 		this.cancel.addActionListener(c);
 	}
+	/**
+	 * @return the nameField
+	 */
 	
 	public String getName() {
 		return this.nameField.getText();
 	}
+	/**
+	 * 
+	 * @return the descField
+	 */
 	
 	public String getDesc() {
 		return this.descField.getText();

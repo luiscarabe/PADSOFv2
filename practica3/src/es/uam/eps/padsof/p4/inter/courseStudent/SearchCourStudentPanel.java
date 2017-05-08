@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.courseStudent;
 
 import java.awt.Color;
@@ -61,7 +66,14 @@ public class SearchCourStudentPanel extends JPanel{
 		private SpringLayout layout2 = new SpringLayout();
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		
+		/**
+		 * Constructor of SearchCourStudentPanel
+		 * @param name
+		 * @param enrCour
+		 * @param applyCour
+		 * @param appliedCour
+		 * @param expelCour
+		 */
 		public SearchCourStudentPanel(String name, ArrayList<String> enrCour, ArrayList<String> applyCour, ArrayList<String> appliedCour, ArrayList<String> expelCour){
 			String[] strCourses = {};
 			this.setVisible(true);
@@ -246,33 +258,65 @@ public class SearchCourStudentPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.NORTH, this.enrolButton, 10, SpringLayout.SOUTH, this.enrolPane);
 		}
 		
+		/**
+		 * @return
+		 */
+		
 		public String getSearched(){
 			return this.searchField.getText();
 		}
+		/**
+		 * 
+		 * @param name
+		 */
 		
 		public void addEnrCourse(String name){
 			this.enrolModel.addElement(name);
 		}
+		/**
+		 * 
+		 * @param name
+		 */
 		
 		public void delEnrCourse(String name){
 			this.enrolModel.removeElement(name);
 		}
+		/**
+		 * 
+		 * @param name
+		 */
 		
 		public void addApplyCourse(String name){
 			this.applyModel.addElement(name);
 		}
+		/**
+		 * 
+		 * @param name
+		 */
 		
 		public void delApplyCourse(String name){
 			this.applyModel.removeElement(name);
 		}
+		/**
+		 * 
+		 * @param name
+		 */
 		
 		public void addAppliedCourse(String name){
 			this.appliedModel.addElement(name);
 		}
+		/**
+		 * 
+		 * @param name
+		 */
 		
 		public void delAppliedCourse(String name){
 			this.appliedModel.removeElement(name);
 		}
+		/**
+		 * Method to set controllers
+		 * @param c
+		 */
 		
 		public void setController(ActionListener c) {
 			this.signOut.addActionListener(c);
@@ -283,6 +327,10 @@ public class SearchCourStudentPanel extends JPanel{
 			this.go.addActionListener(c);
 			this.enrolButton.addActionListener(c);
 		}
+		/**
+		 * 
+		 * @return
+		 */
 		
 		public String getScourse(){
 			return this.searchField.getText();

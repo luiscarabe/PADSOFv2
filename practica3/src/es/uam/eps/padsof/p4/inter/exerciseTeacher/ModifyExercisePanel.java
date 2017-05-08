@@ -1,3 +1,7 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
 package es.uam.eps.padsof.p4.inter.exerciseTeacher;
 
 import java.awt.*;
@@ -64,7 +68,13 @@ public class ModifyExercisePanel extends JPanel{
 		
 		private SpringLayout layout2 = new SpringLayout();
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		
+		/**
+		 * Constructor of ModifyExercisePanel
+		 * @param e
+		 * @param eqValued
+		 * @param hide
+		 * @param aleat
+		 */
 		public ModifyExercisePanel(Exercise e, boolean eqValued, boolean hide, boolean aleat){
 			this.setVisible(true);
 			this.setSize(screenSize.width, screenSize.height);
@@ -250,21 +260,41 @@ public class ModifyExercisePanel extends JPanel{
 			layout2.putConstraint(SpringLayout.VERTICAL_CENTER, this.weightField, 0, SpringLayout.VERTICAL_CENTER, this.weightLabel);
 			layout2.putConstraint(SpringLayout.WEST, this.weightField, 10, SpringLayout.EAST, this.weightLabel);	
 		}
+		/**
+		 * @return the titleField
+		 */
 		
 		public String getName(){
 			return this.titleField.getText();
 		}
+		/**
+		 * 
+		 * @return the descField
+		 */
 		
 		public String getDesc(){
 			return this.descField.getText();
 		}
+		/**
+		 * 
+		 * @return the penalField
+		 */
 		
 		public String getPenaltyText(){
 			return this.penalField.getText();
 		}
+		
+		/**
+		 * 
+		 * @return the weightField
+		 */
 		public String getWeightText(){
 			return this.weightField.getText();
 		}
+		/**
+		 * Method to set the controllers
+		 * @param c
+		 */
 		
 		public void setController(ActionListener c) {
 			this.signOut.addActionListener(c);

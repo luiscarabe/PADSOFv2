@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.courseTeacher;
 
 import java.awt.*;
@@ -63,7 +68,11 @@ public class CourseTeacherPanel extends JPanel{
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
+	/**
+	 * Constructor of CourseTeacherPanel
+	 * @param cour
+	 * @param allCour
+	 */
 	public CourseTeacherPanel( Course cour, ArrayList<String> allCour){
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
@@ -277,11 +286,19 @@ public class CourseTeacherPanel extends JPanel{
 		this.otherButtons.validate();
 		this.otherButtons.repaint();
 	}
+	/**
+	 * Method to add an unit to the course tree
+	 * @param u
+	 */
 	
 	public void addUnit(Unit u){
 		DefaultMutableTreeNode aux = new DefaultMutableTreeNode(u);
 		this.courseModel.insertNodeInto(aux, this.root, this.courseModel.getChildCount(this.root));
 	}
+	/**
+	 * Method to remove an unit from the course tree
+	 * @param u
+	 */
 	
 	public void removeUnit(Unit u){
 		int numNodes = this.courseModel.getChildCount(root);
@@ -295,6 +312,11 @@ public class CourseTeacherPanel extends JPanel{
 		this.courseModel.removeNodeFromParent(aux);
 		this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 	}
+	/**
+	 * Method to add a subunit to the course tree
+	 * @param subunit
+	 * @param parentUnit
+	 */
 	
 	public void addSubunit(Unit subunit, Unit parentUnit){
 		int numNodes = this.courseModel.getChildCount(root);
@@ -309,6 +331,11 @@ public class CourseTeacherPanel extends JPanel{
 		DefaultMutableTreeNode subNode = new DefaultMutableTreeNode(subunit);
 		this.courseModel.insertNodeInto(subNode, aux, this.courseModel.getChildCount(aux));
 	}
+	/**
+	 * Method to remove a subunit from the course tree
+	 * @param subunit
+	 * @param parentUnit
+	 */
 	
 	public void removeSubunit(Unit subunit, Unit parentUnit){
 		int numNodes = this.courseModel.getChildCount(root);
@@ -330,7 +357,11 @@ public class CourseTeacherPanel extends JPanel{
 		this.courseModel.removeNodeFromParent(aux2);
 		this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 	}
-	
+	/**
+	 * Method to add a note to the course tree
+	 * @param note
+	 * @param u
+	 */
 	public void addNote(Note note, Unit u){
 		int numNodes = this.courseModel.getChildCount(root);
 		int numNodes1 = 0;
@@ -357,6 +388,11 @@ public class CourseTeacherPanel extends JPanel{
 		else
 			this.courseModel.insertNodeInto(new DefaultMutableTreeNode(note), aux, this.courseModel.getChildCount(aux));
 	}
+	/**
+	 * Method to remove note from the course tree
+	 * @param note
+	 * @param u
+	 */
 	
 	public void removeNote(Note note, Unit u){
 		int numNodes = this.courseModel.getChildCount(root);
@@ -402,6 +438,12 @@ public class CourseTeacherPanel extends JPanel{
 			this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 	}
 	
+	/**
+	 * Method to add an exercise to the course tree
+	 * @param exer
+	 * @param u
+	 */
+	
 	public void addExercise(Exercise exer, Unit u){
 		int numNodes = this.courseModel.getChildCount(root);
 		int numNodes1 = 0;
@@ -428,6 +470,12 @@ public class CourseTeacherPanel extends JPanel{
 		else
 			this.courseModel.insertNodeInto(new DefaultMutableTreeNode(exer), aux, this.courseModel.getChildCount(aux));
 	}
+	
+	/**
+	 * Method to remove an exercise from the course tree
+	 * @param exer
+	 * @param u
+	 */
 	
 	public void removeExercise(Exercise exer, Unit u){
 		int numNodes = this.courseModel.getChildCount(root);
@@ -474,6 +522,11 @@ public class CourseTeacherPanel extends JPanel{
 			this.courTree.setLeadSelectionPath(new TreePath(root.getPath()));
 	}
 	
+	/**
+	 * Method to set the visible description
+	 * @param desc
+	 */
+	
 	public void setDescription(String desc){
 		this.desc = new JTextArea(desc);
 		this.desc.setEditable(false);
@@ -489,6 +542,10 @@ public class CourseTeacherPanel extends JPanel{
 		layout2.putConstraint(SpringLayout.NORTH, this.descPane, 5, SpringLayout.SOUTH, this.descLabel);
 		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.descPane, 0, SpringLayout.HORIZONTAL_CENTER, this.descLabel);
 	}
+	/**
+	 * Method to set the controllers
+	 * @param c
+	 */
 	
 	public void setController(EventListener c){
 		this.signOut.addActionListener((ActionListener) c);
@@ -510,6 +567,11 @@ public class CourseTeacherPanel extends JPanel{
 		this.courTree.addTreeSelectionListener((TreeSelectionListener) c);
 		/*this.courseModel.addTreeModelListener((TreeModelListener) c);*/
 	}
+	/**
+	 * Method to get the parent of an CourseElement
+	 * @param c
+	 * @return
+	 */
 	
 	public Object getParent(CourseElement c){
 		int numNodes = this.courseModel.getChildCount(root);

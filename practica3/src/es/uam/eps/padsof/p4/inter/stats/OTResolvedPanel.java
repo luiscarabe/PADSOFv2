@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.stats;
 
 import java.awt.*;
@@ -20,7 +25,12 @@ public class OTResolvedPanel extends JPanel {
 	private SpringLayout layout2 = new SpringLayout();
 
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
+	/**
+	 * Common constructor of OTResolvedPanel
+	 * @param nameExer
+	 * @param nameQues
+	 * @param wei
+	 */
 	private OTResolvedPanel( String nameExer, String nameQues, float wei) {
 		this.setVisible(true);
 		this.setSize(new Dimension(screenSize.width, 800));
@@ -53,7 +63,13 @@ public class OTResolvedPanel extends JPanel {
 		layout2.putConstraint(SpringLayout.WEST, this.solutionPane, 0, SpringLayout.WEST, this.questionPane);
 		layout2.putConstraint(SpringLayout.NORTH, this.solutionPane, 10, SpringLayout.SOUTH, this.questionPane);
 	}
-
+	/**
+	 * Constructor of OTResolvedPanel
+	 * @param nameExer
+	 * @param nameQues
+	 * @param wei
+	 * @param op
+	 */
 	public OTResolvedPanel( String nameExer, String nameQues, float wei, ArrayList<Option> op) {
 		this( nameExer, nameQues, wei);
 		for (Option o : op) {
@@ -65,8 +81,17 @@ public class OTResolvedPanel extends JPanel {
 		this.solutionPane.setPreferredSize(new Dimension(400, 200));
 		this.solutionPane.setBackground(this.getBackground());
 	}
+	/**
+	 * Constructor of OTResolvedPanel (the answers of the student)
+	 * @param nameExer
+	 * @param nameQues
+	 * @param wei
+	 * @param op
+	 * @param correct
+	 * @param penal
+	 */
 
-	public OTResolvedPanel( String nameExer, String nameQues, float wei, Option op, boolean correct) {
+	public OTResolvedPanel( String nameExer, String nameQues, float wei, Option op, boolean correct, float penal) {
 		this( nameExer, nameQues, wei);
 
 		this.solutionModel.addElement(op);
@@ -79,8 +104,10 @@ public class OTResolvedPanel extends JPanel {
 		JLabel yourMark = new JLabel();
 		if (correct == true)
 			yourMark.setText("Your mark: " + wei + "/" + wei);
-		else
-			yourMark.setText("Yout mark: 0/" + wei);
+		else{
+			float aux = 0 - penal;
+			yourMark.setText("Yout mark: "+aux+"/" + wei);	
+		}
 		this.add(yourMark);
 		
 		layout2.putConstraint(SpringLayout.WEST, this.solutionPane, 0, SpringLayout.WEST, this.questionPane);

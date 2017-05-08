@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.stats;
 
 import java.awt.*;
@@ -22,7 +27,10 @@ public class ExerciseStatPanel extends JDialog{
 	private JTable table;
 	private JScrollPane tablePane;
 	private SpringLayout layout = new SpringLayout();
-	
+	/**
+	 * Constructor of ExeriseStatPanel
+	 * @param es
+	 */
 	public ExerciseStatPanel(ExerciseStat es){
 		this.jp.setVisible(true);
 		this.jp.setPreferredSize(new Dimension(900, 600));

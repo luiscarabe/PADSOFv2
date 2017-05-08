@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.stats;
 
 import java.awt.Color;
@@ -32,7 +37,11 @@ public class ExerciseAnswersPanel extends JPanel{
 		
 		private SpringLayout layout2 = new SpringLayout();
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			
+		/**
+		 * Constructor of ExerciseAnswersPanel
+		 * @param nameStud
+		 * @param nameExer
+		 */
 		public ExerciseAnswersPanel(String nameStud, String nameExer){
 			this.setVisible(true);
 			this.setSize(screenSize.width, screenSize.height);
@@ -98,6 +107,10 @@ public class ExerciseAnswersPanel extends JPanel{
 			layout2.putConstraint(SpringLayout.WEST, this.exerTabs, 0, SpringLayout.WEST, this);
 			
 		}
+		/**
+		 * Method to set the controller
+		 * @param c
+		 */
 
 		public void setController(ActionListener c){
 			this.signOut.addActionListener(c);

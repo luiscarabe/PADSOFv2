@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.Educagram;
 
 import java.awt.*;
@@ -31,7 +36,11 @@ public class HomePanelStudent extends JPanel{
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
+	/**
+	 * Constructor of HomePanelStudent
+	 * @param name
+	 * @param enrCourses
+	 */
 	public HomePanelStudent(String name, ArrayList<String> enrCourses){
 		String[] strCourses = {};
 		this.setVisible(true);
@@ -119,6 +128,10 @@ public class HomePanelStudent extends JPanel{
 		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.noCourse, 0, SpringLayout.HORIZONTAL_CENTER, this);
 
 	}
+	/**
+	 * Method to set the controllers
+	 * @param c
+	 */
 	
 	public void setController(ActionListener c) {
 		this.signOut.addActionListener(c);

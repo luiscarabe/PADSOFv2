@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.*;
@@ -18,7 +23,14 @@ public class TakeUQExercisePanel extends JPanel{
 		private SpringLayout layout2 = new SpringLayout();
 		
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		
+		/**
+		 * Constructor of TakeUQExercisePanel
+		 * @param nameStud
+		 * @param nameExer
+		 * @param nameQues
+		 * @param wei
+		 * @param options
+		 */
 		public TakeUQExercisePanel(String nameStud, String nameExer, String nameQues, float wei, ArrayList<String> options){
 			this.setVisible(true);
 			this.setSize(new Dimension(screenSize.width, 800));

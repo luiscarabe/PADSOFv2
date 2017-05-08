@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.courseTeacher;
 
 import java.awt.Color;
@@ -45,7 +50,13 @@ public class StudentsOfCourPanel extends JPanel {
 
 	private SpringLayout layout2 = new SpringLayout();
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
+	/**
+	 * Constructor of StudentsOfCourPanel
+	 * @param courName
+	 * @param enrStud
+	 * @param expStud
+	 * @param appliedStud
+	 */
 	public StudentsOfCourPanel(String courName, ArrayList<String> enrStud, ArrayList<String> expStud, ArrayList<String> appliedStud) {
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
@@ -180,29 +191,55 @@ public class StudentsOfCourPanel extends JPanel {
 		layout2.putConstraint(SpringLayout.EAST, this.returning, -50, SpringLayout.EAST, this);
 		layout2.putConstraint(SpringLayout.NORTH, this.returning, 0, SpringLayout.NORTH, this.appliedAcceptButton);
 	}
+	/**
+	 * 
+	 * @param name
+	 */
 	public void addEnrStudent(String name){
 		this.enrolModel.addElement(name);
 	}
+	/**
+	 * 
+	 * @param name
+	 */
 	
 	public void delEnrStudent(String name){
 		this.enrolModel.removeElement(name);
 	}
-	
+	/**
+	 * 
+	 * @param name
+	 */
 	public void addExpelStudent(String name){
 		this.expelModel.addElement(name);
 	}
-	
+	/**
+	 * 
+	 * @param name
+	 */
 	public void delExpelStudent(String name){
 		this.expelModel.removeElement(name);
 	}
+	/**
+	 * 
+	 * @param name
+	 */
 	
 	public void addAppliedStudent(String name){
 		this.appliedModel.addElement(name);
 	}
+	/**
+	 * 
+	 * @param name
+	 */
 	
 	public void delAppliedStudent(String name){
 		this.appliedModel.removeElement(name);
 	}
+	/**
+	 * Method to set controllers
+	 * @param c
+	 */
 	
 	public void setController(ActionListener c){
 		this.signOut.addActionListener(c);

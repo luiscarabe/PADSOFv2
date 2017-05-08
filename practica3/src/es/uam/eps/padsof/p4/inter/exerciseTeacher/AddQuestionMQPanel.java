@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.exerciseTeacher;
 
 import java.awt.*;
@@ -40,7 +45,9 @@ public class AddQuestionMQPanel extends JDialog{
 	private JButton cancel = new JButton("Cancel");
 			
 	private SpringLayout layout = new SpringLayout();
-	
+	/**
+	 * Constructor of AddQuestionMQPanel
+	 */
 	public AddQuestionMQPanel(){
 		this.jp.setVisible(true);
 		this.jp.setPreferredSize(new Dimension(500, 500));
@@ -127,10 +134,17 @@ public class AddQuestionMQPanel extends JDialog{
 		this.setVisible(true);
 		this.setSize(new Dimension(500,500));
 	}
+	/**
+	 * @return the titleField
+	 */
 	
 	public String getName(){
 		return this.titleField.getText();
 	}
+	/**
+	 * 
+	 * @return the weightField
+	 */
 
 	public String getWeightText(){
 		if(this.weightField.isVisible() == false){
@@ -138,10 +152,18 @@ public class AddQuestionMQPanel extends JDialog{
 		}
 		return this.weightField.getText();
 	}
+	/**
+	 * 
+	 * @return the solutionField
+	 */
 	
 	public String getAddingSolution(){
 		return this.solutionField.getText();
 	}
+	/**
+	 * Method to set the controllers
+	 * @param c
+	 */
 	
 	public void setController(ActionListener c) {
 		this.create.addActionListener(c);

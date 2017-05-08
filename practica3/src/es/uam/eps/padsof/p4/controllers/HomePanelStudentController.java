@@ -32,6 +32,7 @@ public class HomePanelStudentController implements ActionListener{
 		JPanel newview;
 		JComponent source = (JComponent) e.getSource();
 		Student current = (Student)edu.getCurrentUser();
+		System.out.println(edu.getCurrentUser() == null);
 		ArrayList<Course> enrolled = (ArrayList<Course>) current.getEnrolledCourses();
 		ArrayList<Application> applied = (ArrayList<Application>) current.getAppliedCourses();
 		ArrayList<Course> forapply = new ArrayList<Course>();

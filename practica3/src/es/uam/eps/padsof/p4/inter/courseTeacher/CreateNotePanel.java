@@ -1,3 +1,7 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
 package es.uam.eps.padsof.p4.inter.courseTeacher;
 
 import java.awt.*;
@@ -32,6 +36,9 @@ public class CreateNotePanel extends JPanel{
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
+	/**
+	 * Constructor of CreateNotePanel
+	 */
 	public CreateNotePanel(){
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
@@ -117,32 +124,59 @@ public class CreateNotePanel extends JPanel{
 		
 
 	}
+	/**
+	 * Method to set controllers
+	 * @param c
+	 */
 	
 	public void setController(ActionListener c) {
 		this.signOut.addActionListener(c);
 		this.ok.addActionListener(c);
 		this.cancel.addActionListener(c);
 	}
+	/**
+	 * 
+	 * @return
+	 */
 
 	public JButton getSignOut() {
 		return signOut;
 	}
+	/**
+	 * 
+	 */
 	
 	public String getName() {
 		return nameField.getText();
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDesc() {
 		return descField.getText();
 	}
+	/**
+	 * 
+	 * @return
+	 */
 
 	public String getContent() {
 		return contentField.getText();
 	}
+	/**
+	 * 
+	 * @return
+	 */
 
 	public JButton getOk() {
 		return ok;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 
 	public JButton getCancel() {
 		return cancel;

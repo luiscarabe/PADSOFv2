@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.exerciseTeacher;
 
 import java.awt.*;
@@ -29,7 +34,9 @@ public class AddQuestionTFPanel extends JDialog{
 	private JButton cancel = new JButton("Cancel");
 			
 	private SpringLayout layout = new SpringLayout();
-	
+	/**
+	 * Constructor of AddQuestionTFPanel
+	 */
 	public AddQuestionTFPanel(){
 		this.jp.setVisible(true);
 		this.jp.setPreferredSize(new Dimension(300, 300));
@@ -89,10 +96,17 @@ public class AddQuestionTFPanel extends JDialog{
 		this.setVisible(true);
 		this.setSize(new Dimension(500,300));
 	}
+	/**
+	 * @return the titleField
+	 */
 	
 	public String getName(){
 		return this.titleField.getText();
 	}
+	/**
+	 * 
+	 * @return the weightField
+	 */
 
 	public String getWeightText(){
 		if(this.weightField.isVisible() == false){
@@ -100,7 +114,10 @@ public class AddQuestionTFPanel extends JDialog{
 		}
 		return this.weightField.getText();
 	}
-	
+	/**
+	 * Method to set the controllers
+	 * @param c
+	 */
 	public void setController(ActionListener c) {
 		this.create.addActionListener(c);
 		this.cancel.addActionListener(c);

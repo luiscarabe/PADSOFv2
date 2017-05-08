@@ -1,6 +1,7 @@
 /**
- * 
- */
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
 package es.uam.eps.padsof.p4.inter.Educagram;
 
 
@@ -44,21 +45,15 @@ import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionOTPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionTFPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionUQPanel;
 import es.uam.eps.padsof.p4.inter.stats.CourseMarksPanel;
+import es.uam.eps.padsof.p4.inter.stats.ExerciseAnswersPanel;
+import es.uam.eps.padsof.p4.inter.stats.ExerciseSolutionPanel;
 import es.uam.eps.padsof.p4.inter.stats.ExerciseStatPanel;
 import es.uam.eps.padsof.p4.inter.stats.GlobalStatsPanel;
 
 import java.util.*;
 import java.util.List;
 
-
-/**
- * @author yo
- *
- */
 public class MainFrame extends JFrame{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final MainFrame Instance = new MainFrame("Educagram");
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -98,6 +93,8 @@ public class MainFrame extends JFrame{
 	private CourseMarksPanel cmp;
 	private GlobalStatsPanel gsp;
 	private ExerciseStatPanel esp;
+	private ExerciseSolutionPanel esolp;
+	private ExerciseAnswersPanel eap;
 	
 	
 	/* Controllers */
@@ -134,6 +131,8 @@ public class MainFrame extends JFrame{
 	private TakeExercisePanelController tepc;
 	private CourseMarksPanelController cmpc;
 	private GlobalStatsPanelController gspc;
+	private ExerciseSolutionPanelController esolpc;
+	private ExerciseAnswersPanelController eapc;
 	
 	
 	
@@ -162,7 +161,10 @@ public class MainFrame extends JFrame{
 	public static MainFrame getInstance(){
 		return MainFrame.Instance;
 	}
-	
+	/**
+	 * 
+	 * @param panel
+	 */
 	public void addPanel(JPanel panel){
 		this.add(panel);
 	}
@@ -829,6 +831,40 @@ public class MainFrame extends JFrame{
 	 */
 	public void setEsp(ExerciseStatPanel esp) {
 		this.esp = esp;
+	}
+
+
+
+	public ExerciseSolutionPanel getEsolp() {
+		return esolp;
+	}
+
+
+
+	public void setEsolp(ExerciseSolutionPanel esolp, Exercise exercise) {
+		this.esolpc = new ExerciseSolutionPanelController(esolp, exercise);
+		esolp.setController(this.esolpc);
+		this.esolp = esolp;
+	}
+
+
+
+	/**
+	 * @return the eap
+	 */
+	public ExerciseAnswersPanel getEap() {
+		return eap;
+	}
+
+
+
+	/**
+	 * @param eap the eap to set
+	 */
+	public void setEap(ExerciseAnswersPanel eap, Exercise exercise) {
+		this.eapc = new ExerciseAnswersPanelController(eap, exercise);
+		eap.setController(this.eapc);
+		this.eap = eap;
 	}
 	
 	

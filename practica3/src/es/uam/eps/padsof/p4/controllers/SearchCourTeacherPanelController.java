@@ -16,6 +16,7 @@ import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
 import es.uam.eps.padsof.p4.inter.courseStudent.SearchCourStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CourseTeacherPanel;
+import es.uam.eps.padsof.p4.inter.courseTeacher.CreateCoursePanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.SearchCourTeacherPanel;
 
 /**
@@ -95,6 +96,13 @@ public class SearchCourTeacherPanelController implements ActionListener{
 			view.setVisible(false);
 			return;
 		}else if(source == this.view.getSearchCour()){
+			return;
+		}else if(source == this.view.getCreateCourse()){
+			MainFrame.getInstance().setCcp(new CreateCoursePanel());
+			newview = MainFrame.getInstance().getCcp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
 			return;
 		}else if(source == this.view.getCourButton()){
 			String name = this.view.getCourList().getSelectedValue();

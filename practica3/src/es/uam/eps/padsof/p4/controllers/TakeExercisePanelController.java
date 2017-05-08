@@ -60,7 +60,7 @@ public class TakeExercisePanelController implements ActionListener{
 		TakeTFExercisePanel tf;
 		List<String> nameOp = new ArrayList<String>();
 		List<Question> ques;
-		int i = 0;
+		int i = 1;
 		
 		if(this.exercise.isRandomness()){
 			Collections.shuffle(this.exercise.getQuestions());
@@ -134,8 +134,11 @@ public class TakeExercisePanelController implements ActionListener{
 				System.out.println(ex.getMessage());
 			}
 		}else if(source == this.view.getSend()){
+			int i = 1;
 			answer = new Answer(exercise, current, exercise.getNumQues());
+			System.out.println(exercise.getQuestions());
 			for(Question aux: exercise.getQuestions()){
+				System.out.println(i + "veces");
 				sa = new SpecificAnswer(aux);
 				options  = new ArrayList<Option>();
 				if(aux instanceof TFQuestion){
@@ -153,7 +156,7 @@ public class TakeExercisePanelController implements ActionListener{
 						sa.calculateMark();
 						sa.setAnswers(options);
 					}else{
-						options.add(new Option(""));
+						
 						sa.setAnswers(options);
 						sa.setQuestion(aux);
 						sa.calculateMark();
@@ -175,9 +178,7 @@ public class TakeExercisePanelController implements ActionListener{
 							break;
 						}
 					}
-					if(options.isEmpty()){
-						options.add(new Option(""));
-					}
+					
 					sa.setAnswers(options);
 					sa.setQuestion(aux);
 					sa.calculateMark();
@@ -189,28 +190,27 @@ public class TakeExercisePanelController implements ActionListener{
 							options.add(new Option(aux2.getText()));
 						}
 					}
-					if(options.isEmpty()){
-						options.add(new Option(""));
-					}
+					
 					sa.setAnswers(options);
 					sa.setQuestion(aux);
 					sa.calculateMark();
 					answer.getSpecificAnswer().add(sa);
 				}
-				answer.calculateMark();
-				System.out.println(answer.getSpecificAnswer());
-				((Student)edu.getCurrentUser()).getAnswers().add(answer);
-				System.out.println("Take exercise controller" + ((Student)edu.getCurrentUser()).getAnswers());
-				this.exercise.getAnswers().add(answer);
-				newview = MainFrame.getInstance().getCsp();
-				MainFrame.getInstance().setContentPane(newview);
-				newview.setVisible(true);
-				((CourseStudentPanel)newview).getTake().setVisible(false);
-				newview.revalidate();
-				newview.repaint();
-				view.setVisible(false);
-				return;
+				
 			}
+			answer.calculateMark();
+			System.out.println(answer.getSpecificAnswer());
+			((Student)edu.getCurrentUser()).getAnswers().add(answer);
+			System.out.println("Take exercise controller" + ((Student)edu.getCurrentUser()).getAnswers());
+			this.exercise.getAnswers().add(answer);
+			newview = MainFrame.getInstance().getCsp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			((CourseStudentPanel)newview).getTake().setVisible(false);
+			newview.revalidate();
+			newview.repaint();
+			view.setVisible(false);
+			return;
 		}else if(source == this.view.getCancel()){
 			newview = MainFrame.getInstance().getCsp();
 			MainFrame.getInstance().setContentPane(newview);

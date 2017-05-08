@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.courseTeacher;
 
 import java.awt.Color;
@@ -29,7 +34,9 @@ public class CreateCoursePanel extends JPanel {
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
+	/**
+	 * Constructor of CreateCoursePanel
+	 */
 	public CreateCoursePanel(){
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
@@ -106,16 +113,27 @@ public class CreateCoursePanel extends JPanel {
 		
 
 	}
+	/**
+	 * Method to set controllers
+	 * @param c
+	 */
 	
 	public void setController(ActionListener c) {
 		this.signOut.addActionListener(c);
 		this.ok.addActionListener(c);
 		this.cancel.addActionListener(c);
 	}
+	/**
+	 * 
+	 */
 	
 	public String getName() {
 		return this.nameField.getText();
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	
 	public String getDesc() {
 		return this.descField.getText();

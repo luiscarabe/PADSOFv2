@@ -663,11 +663,16 @@ public class CourseTeacherPanelController implements ActionListener, TreeSelecti
 			this.nodo = (CourseElement) source;
 			this.padre = (CourseElement) parent;
 			/* this.view.setDescription(((Exercise)source).getDesc()); */
-			this.view.getDesc().setText(((Exercise) source).getTitle() + ":\n" + ((Exercise) source).getDesc());
+			this.view.getDesc().setText(((Exercise) source).getTitle() + ":\n" + ((Exercise) source).getDesc()+ "\n -Start Date: " + ((Exercise) source).getStartDate() + "\n -Expiration Date: " + ((Exercise) source).getExpDate());
 			this.view.getDesc().revalidate();
 
 			this.view.getCommonButtons().setVisible(true);
-			this.view.getEdit().setVisible(true);
+			
+			if(((Exercise)this.nodo).isModifiable() == false){
+				this.view.getEdit().setVisible(false);
+			}else{
+				this.view.getEdit().setVisible(true);
+			}
 			this.view.getDelete().setVisible(true);
 			this.view.getHide().setVisible(true);
 

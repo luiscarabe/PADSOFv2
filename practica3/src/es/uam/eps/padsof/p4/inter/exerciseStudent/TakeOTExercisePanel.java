@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.exerciseStudent;
 
 import java.awt.*;
@@ -16,6 +21,13 @@ public class TakeOTExercisePanel extends JPanel{
 		
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
+		/**
+		 * Constructor of TakeOTExercisePanel
+		 * @param nameStud
+		 * @param nameExer
+		 * @param nameQues
+		 * @param wei
+		 */
 		public TakeOTExercisePanel(String nameStud, String nameExer, String nameQues, float wei){
 			this.setVisible(true);
 			this.setSize(new Dimension(screenSize.width, 800));

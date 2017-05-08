@@ -1,3 +1,8 @@
+/**
+* @author Luis Carabe 
+* @author Alejo Polania 
+*/
+
 package es.uam.eps.padsof.p4.inter.stats;
 
 import java.awt.*;
@@ -32,7 +37,11 @@ public class CourseMarksPanel extends JPanel {
 	private SpringLayout layout2 = new SpringLayout();
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
+	/**
+	 * Constructor of CourseMarksPanel
+	 * @param nameStud
+	 * @param cm
+	 */
 	public CourseMarksPanel(String nameStud, CMark cm){
 		this.setVisible(true);
 		this.setSize(screenSize.width, screenSize.height);
@@ -121,6 +130,10 @@ public class CourseMarksPanel extends JPanel {
 		layout2.putConstraint(SpringLayout.WEST, this.back, 10, SpringLayout.WEST, this);
 		
 	}
+	/**
+	 * Method to set controllers
+	 * @param c
+	 */
 
 	public void setController(ActionListener c){
 		this.signOut.addActionListener(c);
