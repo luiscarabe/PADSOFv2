@@ -41,10 +41,6 @@ public class StudentsOfCourPanel extends JPanel {
 	private JButton appliedRejectButton = new JButton("Reject");
 	private JScrollPane appliedPane;
 
-	private JLabel searchLabel = new JLabel("Search Course");
-	private JTextField searchField = new JTextField(15);
-	private JButton searchButton = new JButton("Search");
-	
 	private JButton returning = new JButton("Return to course");
 
 	private SpringLayout layout2 = new SpringLayout();
@@ -126,8 +122,6 @@ public class StudentsOfCourPanel extends JPanel {
 		this.appliedLabel.setFont(font.deriveFont(attributes));
 		this.appliedLabel.setFont(this.appliedLabel.getFont().deriveFont(15f));
 
-		this.searchLabel.setLabelFor(this.searchField);
-
 		this.add(this.supPanel);
 		this.add(this.enrolPane);
 		this.add(this.expelPane);
@@ -140,9 +134,6 @@ public class StudentsOfCourPanel extends JPanel {
 		this.add(this.enrolButton);
 		this.add(this.expelButton);
 		this.add(this.expelButton);
-		this.add(this.searchButton);
-		this.add(this.searchLabel);
-		this.add(this.searchField);
 		this.add(this.returning);
 		
 
@@ -186,18 +177,7 @@ public class StudentsOfCourPanel extends JPanel {
 		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.appliedRejectButton, 50, SpringLayout.HORIZONTAL_CENTER, this.appliedPane);
 		layout2.putConstraint(SpringLayout.NORTH, this.appliedRejectButton, 10, SpringLayout.SOUTH, this.appliedPane);
 
-		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.searchLabel, 0, SpringLayout.HORIZONTAL_CENTER,
-				this.searchField);
-		layout2.putConstraint(SpringLayout.SOUTH, this.searchLabel, -10, SpringLayout.NORTH, this.searchField);
-
-		layout2.putConstraint(SpringLayout.EAST, this.searchField, -50, SpringLayout.EAST, this);
-		layout2.putConstraint(SpringLayout.NORTH, this.searchField, 0, SpringLayout.NORTH, this.enrolPane);
-
-		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.searchButton, 0, SpringLayout.HORIZONTAL_CENTER,
-				this.searchField);
-		layout2.putConstraint(SpringLayout.NORTH, this.searchButton, 10, SpringLayout.SOUTH, this.searchField);
-	
-		layout2.putConstraint(SpringLayout.HORIZONTAL_CENTER, this.returning, 0, SpringLayout.HORIZONTAL_CENTER, this.searchButton);
+		layout2.putConstraint(SpringLayout.EAST, this.returning, -50, SpringLayout.EAST, this);
 		layout2.putConstraint(SpringLayout.NORTH, this.returning, 0, SpringLayout.NORTH, this.appliedAcceptButton);
 	}
 	public void addEnrStudent(String name){
@@ -370,24 +350,7 @@ public class StudentsOfCourPanel extends JPanel {
 	public JScrollPane getAppliedPane() {
 		return appliedPane;
 	}
-	/**
-	 * @return the searchLabel
-	 */
-	public JLabel getSearchLabel() {
-		return searchLabel;
-	}
-	/**
-	 * @return the searchField
-	 */
-	public JTextField getSearchField() {
-		return searchField;
-	}
-	/**
-	 * @return the searchButton
-	 */
-	public JButton getSearchButton() {
-		return searchButton;
-	}
+
 	/**
 	 * @return the returning
 	 */
