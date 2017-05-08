@@ -18,7 +18,7 @@ import es.uam.eps.padsof.p4.inter.courseStudent.SearchCourStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.CreateCoursePanel;
 
 public class HomePanelStudentController implements ActionListener{
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	private HomePanelStudent view;
 	private Educagram edu = Educagram.getInstance();

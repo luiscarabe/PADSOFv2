@@ -43,6 +43,9 @@ import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionMQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionOTPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionTFPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionUQPanel;
+import es.uam.eps.padsof.p4.inter.stats.CourseMarksPanel;
+import es.uam.eps.padsof.p4.inter.stats.ExerciseStatPanel;
+import es.uam.eps.padsof.p4.inter.stats.GlobalStatsPanel;
 
 import java.util.*;
 import java.util.List;
@@ -92,6 +95,9 @@ public class MainFrame extends JFrame{
 	private ModifyQuestionMQPanel mqmqp;
 	private ModifyExercisePanel mep;
 	private TakeExercisePanel tep;
+	private CourseMarksPanel cmp;
+	private GlobalStatsPanel gsp;
+	private ExerciseStatPanel esp;
 	
 	
 	/* Controllers */
@@ -126,6 +132,8 @@ public class MainFrame extends JFrame{
 	private ModifyQuestionMQPanelController mqmqpc;
 	private ModifyExercisePanelController mepc;
 	private TakeExercisePanelController tepc;
+	private CourseMarksPanelController cmpc;
+	private GlobalStatsPanelController gspc;
 	
 	
 	
@@ -763,6 +771,64 @@ public class MainFrame extends JFrame{
 		this.tepc = new TakeExercisePanelController(tep, exercise);
 		tep.setController(this.tepc);
 		this.tep = tep;
+	}
+
+
+
+	/**
+	 * @return the cmp
+	 */
+	public CourseMarksPanel getCmp() {
+		return cmp;
+	}
+
+
+
+	/**
+	 * @param cmp the cmp to set
+	 */
+	public void setCmp(CourseMarksPanel cmp) {
+		this.cmpc = new CourseMarksPanelController(cmp);
+		cmp.setController(this.cmpc);
+		this.cmp = cmp;
+	}
+
+
+
+	/**
+	 * @return the gsp
+	 */
+	public GlobalStatsPanel getGsp() {
+		return gsp;
+	}
+
+
+
+	/**
+	 * @param gsp the gsp to set
+	 */
+	public void setGsp(GlobalStatsPanel gsp) {
+		this.gspc = new GlobalStatsPanelController(gsp);
+		gsp.setController(this.gspc);
+		this.gsp = gsp;
+	}
+
+
+
+	/**
+	 * @return the esp
+	 */
+	public ExerciseStatPanel getEsp() {
+		return esp;
+	}
+
+
+
+	/**
+	 * @param esp the esp to set
+	 */
+	public void setEsp(ExerciseStatPanel esp) {
+		this.esp = esp;
 	}
 	
 	

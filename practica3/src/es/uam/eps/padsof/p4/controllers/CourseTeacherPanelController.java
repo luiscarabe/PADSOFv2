@@ -24,6 +24,9 @@ import es.uam.eps.padsof.p3.course.Note;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
+import es.uam.eps.padsof.p3.stat.CMark;
+import es.uam.eps.padsof.p3.stat.CourseStat;
+import es.uam.eps.padsof.p3.stat.ExerciseStat;
 import es.uam.eps.padsof.p3.user.Application;
 import es.uam.eps.padsof.p3.user.Student;
 import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
@@ -43,6 +46,10 @@ import es.uam.eps.padsof.p4.inter.courseTeacher.StudentsOfCourPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.CreateExercisePanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyExercisePanel;
+import es.uam.eps.padsof.p4.inter.exerciseTeacher.ModifyQuestionTFPanel;
+import es.uam.eps.padsof.p4.inter.stats.CourseMarksPanel;
+import es.uam.eps.padsof.p4.inter.stats.ExerciseStatPanel;
+import es.uam.eps.padsof.p4.inter.stats.GlobalStatsPanel;
 
 /**
  * @author Miguel
@@ -384,7 +391,33 @@ public class CourseTeacherPanelController implements ActionListener, TreeSelecti
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
-		} else if (source == this.view.getHide()) {
+		} else if(source == this.view.getGlobalStats()){
+			CourseStat del = null;
+			List<CMark> cmarks = new ArrayList<CMark>();
+			CourseStat cstat = new CourseStat();
+			for(Student aux: this.course.getEnrolledStudents()){
+				for(CMark aux2: aux.getcMarks()){
+					if(aux2.getCourse().equals(this.course)){
+						cmarks.add(aux2);
+					}
+				}
+			}
+			cstat.setcMarks(cmarks);
+			cstat.calculateCstat();
+			
+			
+			MainFrame.getInstance().setGsp(new GlobalStatsPanel(cstat, this.course.getTitle()));
+			newview = MainFrame.getInstance().getGsp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+			return;
+		}else if(source == this.view.getStats()){
+			ExerciseStat es = new ExerciseStat((Exercise)this.nodo);
+			es.setAll();
+			MainFrame.getInstance().setEsp(new ExerciseStatPanel(es));
+			return;
+		}else if (source == this.view.getHide()) {
 			if (this.nodo instanceof Unit) {
 				if (this.padre == null) {
 					if (this.view.getHide().isSelected() == true) {

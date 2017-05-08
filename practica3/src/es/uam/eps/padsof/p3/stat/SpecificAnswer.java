@@ -112,6 +112,7 @@ public class SpecificAnswer implements Serializable{
 	public void calculateMark(){
 		int flag = 0;
 		if (this.answers.isEmpty()){
+			System.out.println("Empty?? specificAnswer calculatemark");
 			this.markOutWeight = 0;
 			this.markOut10 = 0;
 			return;

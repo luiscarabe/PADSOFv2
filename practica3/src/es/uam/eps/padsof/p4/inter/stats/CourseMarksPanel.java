@@ -1,6 +1,7 @@
 package es.uam.eps.padsof.p4.inter.stats;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.Map;
@@ -78,7 +79,7 @@ public class CourseMarksPanel extends JPanel {
 		this.courName.setFont(this.courName.getFont().deriveFont(attributes));
 		this.courName.setFont(this.courName.getFont().deriveFont(23f));
 		
-		this.courMark = new JLabel("Global: "+cm.calculateCMark());
+		this.courMark = new JLabel("Global: "+cm.getCourseMark());
 		this.courMark.setFont(this.courMark.getFont().deriveFont(attributes));
 		this.courMark.setFont(this.courMark.getFont().deriveFont(18f));
 		
@@ -119,6 +120,102 @@ public class CourseMarksPanel extends JPanel {
 		layout2.putConstraint(SpringLayout.NORTH, this.back, 20, SpringLayout.SOUTH, this.marksPane);
 		layout2.putConstraint(SpringLayout.WEST, this.back, 10, SpringLayout.WEST, this);
 		
+	}
+
+	public void setController(ActionListener c){
+		this.signOut.addActionListener(c);
+		this.back.addActionListener(c);
+	}
+	
+	/**
+	 * @return the supPanel
+	 */
+	public JPanel getSupPanel() {
+		return supPanel;
+	}
+
+	/**
+	 * @return the image
+	 */
+	public ImageIcon getImage() {
+		return image;
+	}
+
+	/**
+	 * @return the imgLabel
+	 */
+	public JLabel getImgLabel() {
+		return imgLabel;
+	}
+
+	/**
+	 * @return the homeLabel
+	 */
+	public JLabel getHomeLabel() {
+		return homeLabel;
+	}
+
+	/**
+	 * @return the student
+	 */
+	public JLabel getStudent() {
+		return student;
+	}
+
+	/**
+	 * @return the signOut
+	 */
+	public JButton getSignOut() {
+		return signOut;
+	}
+
+	/**
+	 * @return the layout
+	 */
+	public SpringLayout getLayout() {
+		return layout;
+	}
+
+	/**
+	 * @return the courName
+	 */
+	public JLabel getCourName() {
+		return courName;
+	}
+
+	/**
+	 * @return the courMark
+	 */
+	public JLabel getCourMark() {
+		return courMark;
+	}
+
+	/**
+	 * @return the marksPanel
+	 */
+	public JPanel getMarksPanel() {
+		return marksPanel;
+	}
+
+	/**
+	 * @return the marksPane
+	 */
+	public JScrollPane getMarksPane() {
+		return marksPane;
+	}
+
+	/**
+	 * @return the back
+	 */
+	public JButton getBack() {
+		return back;
+	}
+
+	/**
+	 * @return the layout2
+	 */
+	public SpringLayout getLayout2() {
+		return layout2;
 	}
 		
 }

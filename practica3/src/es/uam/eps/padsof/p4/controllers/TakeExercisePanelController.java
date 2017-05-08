@@ -28,6 +28,7 @@ import es.uam.eps.padsof.p3.stat.Answer;
 import es.uam.eps.padsof.p3.stat.SpecificAnswer;
 import es.uam.eps.padsof.p3.user.Student;
 import es.uam.eps.padsof.p4.inter.Educagram.MainFrame;
+import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseStudent.ViewNoteStudentPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.TakeExercisePanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.TakeMQExercisePanel;
@@ -142,11 +143,20 @@ public class TakeExercisePanelController implements ActionListener{
 					if(tf.getSolutionF().isSelected() == true){
 						options.add(new Option("T"));
 						sa.setAnswers(options);
+						sa.setQuestion(aux);
+						sa.calculateMark();
+						sa.setAnswers(options);
 					}else if(tf.getSolutionT().isSelected() == true){
 						options.add(new Option("F"));
 						sa.setAnswers(options);
+						sa.setQuestion(aux);
+						sa.calculateMark();
+						sa.setAnswers(options);
 					}else{
 						options.add(new Option(""));
+						sa.setAnswers(options);
+						sa.setQuestion(aux);
+						sa.calculateMark();
 						sa.setAnswers(options);
 					}
 					answer.getSpecificAnswer().add(sa);
@@ -154,6 +164,8 @@ public class TakeExercisePanelController implements ActionListener{
 					ot = (TakeOTExercisePanel) map.get(aux);
 					options.add(new Option(ot.getSolution().getText()));
 					sa.setAnswers(options);
+					sa.setQuestion(aux);
+					sa.calculateMark();
 					answer.getSpecificAnswer().add(sa);
 				}else if(aux instanceof UniqQuestion){
 					uq = (TakeUQExercisePanel) map.get(aux);
@@ -167,6 +179,8 @@ public class TakeExercisePanelController implements ActionListener{
 						options.add(new Option(""));
 					}
 					sa.setAnswers(options);
+					sa.setQuestion(aux);
+					sa.calculateMark();
 					answer.getSpecificAnswer().add(sa);
 				}else if(aux instanceof MultiQuestion){
 					mq = (TakeMQExercisePanel) map.get(aux);
@@ -179,11 +193,21 @@ public class TakeExercisePanelController implements ActionListener{
 						options.add(new Option(""));
 					}
 					sa.setAnswers(options);
+					sa.setQuestion(aux);
+					sa.calculateMark();
 					answer.getSpecificAnswer().add(sa);
 				}
+				answer.calculateMark();
+				System.out.println(answer.getSpecificAnswer());
+				((Student)edu.getCurrentUser()).getAnswers().add(answer);
+				System.out.println("Take exercise controller" + ((Student)edu.getCurrentUser()).getAnswers());
+				this.exercise.getAnswers().add(answer);
 				newview = MainFrame.getInstance().getCsp();
 				MainFrame.getInstance().setContentPane(newview);
 				newview.setVisible(true);
+				((CourseStudentPanel)newview).getTake().setVisible(false);
+				newview.revalidate();
+				newview.repaint();
 				view.setVisible(false);
 				return;
 			}

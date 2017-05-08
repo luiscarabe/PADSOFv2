@@ -250,6 +250,9 @@ public class CreateExercisePanelController implements ActionListener{
 				unit.deleteExercise(exercise);
 				return;
 			}
+			for(Question aux: questions){
+				aux.setExer(exercise);
+			}
 			
 			exercise.setPenalty(penalty);
 			exercise.setWeight(weight);

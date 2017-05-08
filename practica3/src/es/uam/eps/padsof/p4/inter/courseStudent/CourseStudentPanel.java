@@ -226,7 +226,10 @@ public class CourseStudentPanel extends JPanel{
 				this.desc.repaint();
 				this.desc.revalidate();
 
-				this.otherButtons.setVisible(false);
+				this.otherButtons.setVisible(true);
+				this.view.setVisible(false);
+				this.take.setVisible(false);
+				this.marks.setVisible(true);
 				this.exerReady.setVisible(false);
 
 				this.otherButtons.validate();
@@ -454,6 +457,7 @@ public class CourseStudentPanel extends JPanel{
 				this.go.addActionListener((ActionListener) c);
 				this.view.addActionListener((ActionListener) c);
 				this.take.addActionListener((ActionListener) c);
+				this.marks.addActionListener((ActionListener) c);
 				this.courTree.addTreeSelectionListener((TreeSelectionListener) c);
 				
 			}

@@ -54,6 +54,7 @@ public class ExerciseStatPanel extends JDialog{
 			a[i] = aux;
 		}
 		this.table = new JTable(a, titles);
+		this.table.setEnabled(false);
 		this.table.setPreferredScrollableViewportSize(new Dimension(400,450));
 		this.tablePane = new JScrollPane(this.table,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.tablePane.setVisible(true);

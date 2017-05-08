@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.Map;
 
@@ -34,7 +35,7 @@ public class GlobalStatsPanel extends JPanel {
 		
 		public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		public GlobalStatsPanel(CourseStat cs){
+		public GlobalStatsPanel(CourseStat cs, String courName){
 			this.setVisible(true);
 			this.setSize(screenSize.width, screenSize.height);
 			this.setLayout(layout2);
@@ -69,13 +70,12 @@ public class GlobalStatsPanel extends JPanel {
 			layout.putConstraint(SpringLayout.NORTH, this.signOut, 40, SpringLayout.NORTH, this.supPanel);
 			layout.putConstraint(SpringLayout.EAST, this.signOut, -50 , SpringLayout.EAST, this.supPanel);
 			
-			this.courName = new JLabel(cs.getcMarks().get(0).getCourse().getTitle());
+			this.courName = new JLabel(courName);
 			Map attributes = this.courName.getFont().getAttributes();
 			attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 			this.courName.setFont(this.courName.getFont().deriveFont(attributes));
 			this.courName.setFont(this.courName.getFont().deriveFont(23f));
 			
-			cs.calculateCstat();
 			this.globAvMedia = new JLabel("Global average mark: " + cs.getAverageMark());
 			this.globAvMedia.setFont(this.globAvMedia.getFont().deriveFont(20f));
 			
@@ -116,4 +116,102 @@ public class GlobalStatsPanel extends JPanel {
 			
 			
 		}
+		
+		public void setController(ActionListener c){
+			this.signOut.addActionListener(c);
+			this.back.addActionListener(c);
+		}
+
+		/**
+		 * @return the supPanel
+		 */
+		public JPanel getSupPanel() {
+			return supPanel;
+		}
+
+		/**
+		 * @return the image
+		 */
+		public ImageIcon getImage() {
+			return image;
+		}
+
+		/**
+		 * @return the imgLabel
+		 */
+		public JLabel getImgLabel() {
+			return imgLabel;
+		}
+
+		/**
+		 * @return the creatLabel
+		 */
+		public JLabel getCreatLabel() {
+			return creatLabel;
+		}
+
+		/**
+		 * @return the professor
+		 */
+		public JLabel getProfessor() {
+			return professor;
+		}
+
+		/**
+		 * @return the signOut
+		 */
+		public JButton getSignOut() {
+			return signOut;
+		}
+
+		/**
+		 * @return the layout
+		 */
+		public SpringLayout getLayout() {
+			return layout;
+		}
+
+		/**
+		 * @return the courName
+		 */
+		public JLabel getCourName() {
+			return courName;
+		}
+
+		/**
+		 * @return the globAvMedia
+		 */
+		public JLabel getGlobAvMedia() {
+			return globAvMedia;
+		}
+
+		/**
+		 * @return the marksPanel
+		 */
+		public JPanel getMarksPanel() {
+			return marksPanel;
+		}
+
+		/**
+		 * @return the marksPane
+		 */
+		public JScrollPane getMarksPane() {
+			return marksPane;
+		}
+
+		/**
+		 * @return the back
+		 */
+		public JButton getBack() {
+			return back;
+		}
+
+		/**
+		 * @return the layout2
+		 */
+		public SpringLayout getLayout2() {
+			return layout2;
+		}
+		
+		
 }

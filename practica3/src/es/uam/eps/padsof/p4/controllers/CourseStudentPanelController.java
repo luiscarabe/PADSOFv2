@@ -21,6 +21,7 @@ import es.uam.eps.padsof.p3.course.Note;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
+import es.uam.eps.padsof.p3.stat.CMark;
 import es.uam.eps.padsof.p3.user.Application;
 import es.uam.eps.padsof.p3.user.Student;
 import es.uam.eps.padsof.p4.inter.Educagram.HomePanelTeacher;
@@ -30,6 +31,7 @@ import es.uam.eps.padsof.p4.inter.courseStudent.SearchCourStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseStudent.ViewNoteStudentPanel;
 import es.uam.eps.padsof.p4.inter.courseTeacher.ViewNoteTeacherPanel;
 import es.uam.eps.padsof.p4.inter.exerciseStudent.TakeExercisePanel;
+import es.uam.eps.padsof.p4.inter.stats.CourseMarksPanel;
 
 /**
  * @author Miguel
@@ -231,6 +233,27 @@ public class CourseStudentPanelController implements ActionListener, TreeSelecti
 			newview.setVisible(true);
 			view.setVisible(false);
 			return;
+		}else if(source == this.view.getMarks()){
+			CMark del = null;
+			CMark cmark = new CMark(this.course, current);
+			for(CMark aux: current.getcMarks()){
+				if(aux.getCourse().equals(this.course)){
+					del = aux;
+				}
+			}
+			if(del != null){
+				current.getcMarks().remove(del);
+			}
+			current.getcMarks().add(cmark);
+			cmark.calculateCMark();
+			
+			
+			MainFrame.getInstance().setCmp(new CourseMarksPanel(current.getName(), cmark));
+			newview = MainFrame.getInstance().getCmp();
+			MainFrame.getInstance().setContentPane(newview);
+			newview.setVisible(true);
+			view.setVisible(false);
+			return;
 		}
 	}
 
@@ -267,7 +290,10 @@ public class CourseStudentPanelController implements ActionListener, TreeSelecti
 			this.view.getDesc().repaint();
 			this.view.getDesc().revalidate();
 
-			this.view.getOtherButtons().setVisible(false);
+			this.view.getOtherButtons().setVisible(true);
+			this.view.getView().setVisible(false);
+			this.view.getTake().setVisible(false);
+			this.view.getMarks().setVisible(true);
 			this.view.getExerReady().setVisible(false);
 
 			this.view.getOtherButtons().validate();
@@ -284,7 +310,10 @@ public class CourseStudentPanelController implements ActionListener, TreeSelecti
 			this.view.getDesc().setText(((Unit) source).getTitle() + ":\n" + ((Unit) source).getDesc());
 			this.view.getDesc().revalidate();
 
-			this.view.getOtherButtons().setVisible(false);
+			this.view.getOtherButtons().setVisible(true);
+			this.view.getView().setVisible(false);
+			this.view.getTake().setVisible(false);
+			this.view.getMarks().setVisible(true);
 			this.view.getExerReady().setVisible(false);
 
 			this.view.getOtherButtons().validate();
@@ -307,7 +336,7 @@ public class CourseStudentPanelController implements ActionListener, TreeSelecti
 			this.view.getOtherButtons().setVisible(true);
 			this.view.getView().setVisible(true);
 			this.view.getTake().setVisible(false);
-			this.view.getMarks().setVisible(false);
+			this.view.getMarks().setVisible(true);
 
 			this.view.getExerReady().setVisible(false);
 
@@ -328,7 +357,12 @@ public class CourseStudentPanelController implements ActionListener, TreeSelecti
 
 			this.view.getOtherButtons().setVisible(true);
 			this.view.getView().setVisible(false);
-			this.view.getTake().setVisible(true);
+			if(((Exercise)this.nodo).isTakenExerciseByStudent((Student) edu.getCurrentUser())){
+				this.view.getTake().setVisible(false);
+			}else {
+				this.view.getTake().setVisible(true);
+			}
+			
 			this.view.getMarks().setVisible(true);
 
 			this.view.getExerReady().setVisible(true);

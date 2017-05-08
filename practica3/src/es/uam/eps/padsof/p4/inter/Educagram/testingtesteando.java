@@ -10,6 +10,7 @@ import es.uam.eps.padsof.p3.course.Note;
 import es.uam.eps.padsof.p3.course.Unit;
 import es.uam.eps.padsof.p3.educagram.Educagram;
 import es.uam.eps.padsof.p3.exercise.Exercise;
+import es.uam.eps.padsof.p3.stat.CMark;
 import es.uam.eps.padsof.p3.user.*;
 import es.uam.eps.padsof.p4.inter.courseStudent.CourseStudentPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionMQPanel;
@@ -17,6 +18,7 @@ import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionOTPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionTFPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.AddQuestionUQPanel;
 import es.uam.eps.padsof.p4.inter.exerciseTeacher.CreateExercisePanel;
+import es.uam.eps.padsof.p4.inter.stats.CourseMarksPanel;
 
 public class testingtesteando {
 
@@ -41,7 +43,7 @@ public class testingtesteando {
 		ar.add("Adios");
 		ar.add("Hola");
 		ar.add("Adios");
-		AddQuestionMQPanel lo = new AddQuestionMQPanel();
+		CourseMarksPanel lo = new CourseMarksPanel("alejop", new CMark(lcour.get(0), ((Student)edu.getCurrentUser())));
 		//MainFrame.getInstance().setCsp(lo, lcour.get(0));
 		Unit u1 = new Unit("Unidad 1", "hola", false, null);
 		Unit u2 = new Unit("Subunidad 1", "adios", false, null);

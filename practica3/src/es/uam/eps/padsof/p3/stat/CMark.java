@@ -85,10 +85,10 @@ public class CMark implements Serializable{
 		}
 		for (Answer a: this.student.getAnswers()){
 			if (a.getExercise().getCourse().equals(this.course)){
-				if(a.allowedToShow()){
+				//if(a.allowedToShow()){
 					aux += a.getMarkOutWeight();
 					totalWeight += a.getExercise().getWeight();
-				}
+				//}
 			}
 		}
 		if(totalWeight == 0){

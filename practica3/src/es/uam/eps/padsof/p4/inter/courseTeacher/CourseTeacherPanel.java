@@ -505,6 +505,8 @@ public class CourseTeacherPanel extends JPanel{
 		this.go.addActionListener((ActionListener) c);
 		this.searchCour.addActionListener((ActionListener) c);
 		this.createCourse.addActionListener((ActionListener) c);
+		this.globalStats.addActionListener((ActionListener) c);
+		this.stats.addActionListener((ActionListener) c);
 		this.courTree.addTreeSelectionListener((TreeSelectionListener) c);
 		/*this.courseModel.addTreeModelListener((TreeModelListener) c);*/
 	}
